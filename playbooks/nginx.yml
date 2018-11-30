@@ -1,16 +1,20 @@
 ---
-- hosts: fea_nginx
-  become: yes
-  become_method: su
+- name: install nginx
+  hosts: fea_nginx
+  become: true
+
   tasks:
-    - name: upgrade all packages
-      yum:
-        name: '*'
-        state: latest
-    - name: ensure nginx feas is at the latest version
-      yum: name=nginx state=latest
-    - name: start nginx
-      service:
-          name: nginx
-          state: started
- 
+  - name: add epel-release repo
+    yum:
+      name: epel-release
+      state: present
+
+  - name: install nginx
+    yum:
+      name: nginx
+      state: present
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
