@@ -1,0 +1,16 @@
+---
+- hosts: fea_nginx
+  become: yes
+  become_method: su
+  tasks:
+    - name: upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+    - name: ensure nginx feas is at the latest version
+      yum: name=nginx state=latest
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+ 
