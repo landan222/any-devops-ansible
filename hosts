@@ -2,8 +2,7 @@
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
 
 [fea_node] # Group Name, 空白错误 [node server] 错误 
-10.0.0.21 ansible_ssh_host=10.0.0.21 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-10.0.0.22 ansible_ssh_host=10.0.0.22 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+127.0.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
 
 [fea_mysql]
 10.0.0.31 ansible_ssh_host=10.0.0.31 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
