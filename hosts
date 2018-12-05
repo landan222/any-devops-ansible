@@ -1,5 +1,5 @@
 [fea_ansible] 
-10.0.0.11 ansible_ssh_host=10.0.0.11 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+#10.0.0.11 ansible_ssh_host=10.0.0.11 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
 
 [fea_gitlab] 
 10.0.0.12 ansible_ssh_host=10.0.0.12 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
@@ -7,8 +7,9 @@
 [fea_jenkins] 
 10.0.0.13 ansible_ssh_host=10.0.0.13 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
 
-[fea_nginx] 
-10.0.0.21 ansible_ssh_host=10.0.0.21 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+[fea_nginx]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+#10.0.0.21 ansible_ssh_host=10.0.0.21 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
 
 [fea_php] # Group Name, 空白错误 [node server] 错误 
 10.0.0.31 ansible_ssh_host=10.0.0.31 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
