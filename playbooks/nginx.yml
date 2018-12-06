@@ -2,5 +2,10 @@
 - name: Install nginx
   hosts: fea_nginx
   become: true
+
+  pre_tasks:
+    - shell: echo 'playbook nginx starts'
   roles:
     - nginx
+  post_tasks:
+    - shell: echo 'playbook nginx ends'
