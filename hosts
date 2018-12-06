@@ -21,3 +21,9 @@
 
 [dev_nginx]
 10.0.0.21 ansible_ssh_host=10.0.0.21 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+
+[rel_nginx]
+14.14.14.14 ansible_ssh_host=14.14.14.14 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+
+[mas_nginx]
+14.14.14.14 ansible_ssh_host=14.14.14.14 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant

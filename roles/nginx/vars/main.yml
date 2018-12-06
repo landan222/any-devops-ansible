@@ -1,0 +1,4 @@
+---
+HTTP_PORT: 80
+SERVER_NAME: 'fea.qjj8.com'
+ROOT: '/home/vagrant/www/discuz'

@@ -6,48 +6,41 @@
   pre_tasks:
     - shell: echo 'playbook nginx starts'
   roles:
-    - nginx
+    - role: nginx
   post_tasks:
     - shell: echo 'playbook nginx ends'
   tags:
     - fea
-    - feature
 - name: Install develop nginx
   hosts: dev_nginx
   become: true
-
   pre_tasks:
     - shell: echo 'playbook nginx starts'
   roles:
-    - nginx
+    - role: nginx
   post_tasks:
     - shell: echo 'playbook nginx ends'
   tags:
     - dev
-    - develop
-- name: Install release nginx
-  hosts: rel_nginx
-  become: true
-
-  pre_tasks:
-    - shell: echo 'playbook nginx starts'
-  roles:
-    - nginx
-  post_tasks:
-    - shell: echo 'playbook nginx ends'
-  tags:
-    - rel
-    - release
-- name: Install master nginx
-  hosts: mas_nginx
-  become: true
-
-  pre_tasks:
-    - shell: echo 'playbook nginx starts'
-  roles:
-    - nginx
-  post_tasks:
-    - shell: echo 'playbook nginx ends'
-  tags:
-    - mas
-    - master
+# - name: Install release nginx
+#   hosts: rel_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - rel
+# - name: Install master nginx
+#   hosts: mas_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - mas
