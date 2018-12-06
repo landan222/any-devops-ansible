@@ -15,3 +15,8 @@ ansible-playbook -i hosts playbooks/nginx.yml -vvv
 ```
 ansible -i hosts fea_nginx -a "/sbin/nginx -v"
 ```
+
+4. install nginx of feature environtment via ansible
+```
+ansible-playbook playbooks/nginx.yml --tags "fea"
+```

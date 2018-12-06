@@ -1,5 +1,5 @@
 - name: Main Task Starts
   import_tasks: add-epel_release-repo.yml
 - import_tasks: install-nginx.yml
-- import_tasks: start-nginx.yml
-- import_tasks: template-etc-nginx-nginx_conf.yml
+- import_tasks: etc-nginx-nginx_conf.yml
+# - import_tasks: start-nginx.yml
