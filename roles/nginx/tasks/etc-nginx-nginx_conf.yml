@@ -6,4 +6,4 @@
     owner: vagrant
     group: vagrant
     mode: 0766
-  notify: start nginx
+  # notify: start nginx
