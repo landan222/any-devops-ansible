@@ -1,0 +1,4 @@
+- name: Main Task Starts
+# import_tasks: rpm-mysql_community.yml
+  import_tasks: install-mysql-community-server.yml
+- import_tasks: start-mysqld.yml

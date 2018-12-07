@@ -1,0 +1,5 @@
+--- # 优先次序高
+HTTP_PORT: 80
+ROOT: '/home/vagrant/www/test'
+# SERVER_NAME: 'feature.qjj8.com'
+# branch: 'fea'
