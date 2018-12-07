@@ -1,32 +1,32 @@
 [fea_ansible] 
-#10.0.0.11 ansible_ssh_host=10.0.0.11 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+#10.0.0.11 ansible_ssh_host=10.0.0.11 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea_gitlab] 
-10.0.0.12 ansible_ssh_host=10.0.0.12 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+10.0.0.12 ansible_ssh_host=10.0.0.12 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea_jenkins] 
-10.0.0.13 ansible_ssh_host=10.0.0.13 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+10.0.0.13 ansible_ssh_host=10.0.0.13 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea_nginx]
-127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea_php] # Group Name, 空白错误 [node server] 错误 
-10.0.0.31 ansible_ssh_host=10.0.0.31 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-10.0.0.32 ansible_ssh_host=10.0.0.32 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+10.0.0.31 ansible_ssh_host=10.0.0.31 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.32 ansible_ssh_host=10.0.0.32 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea_mysql]
-127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [dev_mysql]
-10.0.0.41 ansible_ssh_host=10.0.0.41 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-10.0.0.42 ansible_ssh_host=10.0.0.42 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-10.0.0.43 ansible_ssh_host=10.0.0.43 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+10.0.0.41 ansible_ssh_host=10.0.0.41 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.42 ansible_ssh_host=10.0.0.42 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.43 ansible_ssh_host=10.0.0.43 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [dev_nginx]
-10.0.0.21 ansible_ssh_host=10.0.0.21 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+10.0.0.21 ansible_ssh_host=10.0.0.21 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [rel_nginx]
-14.14.14.14 ansible_ssh_host=14.14.14.14 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+14.14.14.14 ansible_ssh_host=14.14.14.14 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [mas_nginx]
-14.14.14.14 ansible_ssh_host=14.14.14.14 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+14.14.14.14 ansible_ssh_host=14.14.14.14 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
