@@ -34,7 +34,12 @@ ansible-playbook playbooks/nginx.yml
 ansible-playbook playbooks/nginx.yml --extra-vars "branch=all"
 ```
 
-5. install nginx, php of any environtment via ansible
+6. install nginx, php of any environtment via ansible
 ```
 ansible-playbook playbooks/main.yml --tags "nginx, php"
+```
+
+7. install any of any environtment via ansible with debug mode
+```
+ansible-playbook playbooks/main.yml --tags "nginx, php" --extra-vars "debug=true"
 ```

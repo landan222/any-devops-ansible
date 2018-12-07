@@ -3,4 +3,8 @@
   service:
     name: nginx
     state: started
+- name: Debug start nginx
+  debug: 
+    msg: 'The key value is !!'
+  when: debug==true or debug==1
     
