@@ -1,6 +1,7 @@
 ---
 - name: Install feature nginx
   hosts: fea_nginx
+  gather_facts: true
   become: true
   pre_tasks:
     - shell: echo 'playbook nginx starts'
@@ -13,6 +14,7 @@
     SERVER_NAME: 'fea.qjj8.com'
 - name: Install develop nginx
   hosts: dev_nginx
+  gather_facts: true
   become: true
   pre_tasks:
     - shell: echo 'playbook nginx starts'

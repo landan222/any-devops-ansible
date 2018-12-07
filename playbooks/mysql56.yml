@@ -1,6 +1,7 @@
 ---
 - name: Install feature mysql
   hosts: fea_mysql
+  gather_facts: true
   become: true
   pre_tasks:
     - shell: echo 'playbook mysql starts'
@@ -11,6 +12,7 @@
     - shell: echo 'playbook mysql ends'
 - name: Install develop mysql
   hosts: dev_mysql
+  gather_facts: true
   become: true
   pre_tasks:
     - shell: echo 'playbook mysql starts'
