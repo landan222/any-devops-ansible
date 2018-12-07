@@ -11,8 +11,6 @@
     - shell: echo 'playbook nginx ends'
   vars:
     SERVER_NAME: 'fea.qjj8.com'
-  vars_files:
-    - /vars/external_vars.yml
 - name: Install develop nginx
   hosts: dev_nginx
   become: true

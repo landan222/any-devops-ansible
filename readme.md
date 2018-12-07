@@ -22,6 +22,10 @@ ansible-playbook playbooks/nginx.yml --extra-vars "branch=fea"
 
 or 
 
+ansible-playbook playbooks/nginx.yml --extra-vars "branch=feature"
+
+or
+
 ansible-playbook playbooks/nginx.yml
 ```
 

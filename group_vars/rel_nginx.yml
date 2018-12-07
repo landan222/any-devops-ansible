@@ -1,0 +1,3 @@
+# group_vars 根据不同的 hosts 加载的变量
+---
+branch: 'fea'
