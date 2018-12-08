@@ -3,3 +3,4 @@
 - import_tasks: yum-install-nginx.yml
 - import_tasks: template-etc_nginx_nginx_conf.yml
 - import_tasks: service-nginx-restarted.yml
+- import_tasks: service-firewalld-restarted.yml
