@@ -6,4 +6,5 @@
     owner: vagrant
     group: vagrant
     mode: 0766
+    validate: nginx -t -c %s
   # notify: start nginx
