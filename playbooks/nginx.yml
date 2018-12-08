@@ -7,7 +7,7 @@
     - shell: echo 'playbook nginx starts'
   roles:
     - role: nginx
-      when: branch == 'fea' or branch == 'feature' or branch == 'all'
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
     - shell: echo 'playbook nginx ends'
   vars:

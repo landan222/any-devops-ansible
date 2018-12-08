@@ -7,7 +7,7 @@
     - shell: echo 'playbook mysql starts'
   roles:
     - role: mysql56
-      when: branch == 'fea' or branch == 'feature' or branch == 'all'
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
     - shell: echo 'playbook mysql ends'
 - name: Install develop mysql
