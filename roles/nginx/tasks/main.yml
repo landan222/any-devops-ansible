@@ -2,4 +2,4 @@
   import_tasks: add-epel_release-repo.yml
 - import_tasks: install-nginx.yml
 - import_tasks: etc-nginx-nginx_conf.yml
-- import_tasks: restart-nginx.yml
+- import_tasks: service-nginx-restarted.yml
