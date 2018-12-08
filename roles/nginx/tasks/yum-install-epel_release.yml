@@ -1,5 +1,5 @@
 ---
-- name: Add epel-release repo
+- name: yum install epel-release
   yum:
     name: epel-release
     state: present
