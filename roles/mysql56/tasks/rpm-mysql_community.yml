@@ -1,3 +1,0 @@
----
-- name: Rpm mysql-community
-  shell: 'rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm'

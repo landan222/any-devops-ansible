@@ -1,0 +1,10 @@
+---
+- name: template-tmp_grant_sql
+  template:
+    src: tmp/grant.sql.j2
+    dest: /tmp/grant.sql
+    owner: vagrant
+    group: vagrant
+    mode: 0766
+# - name: command mysql < /tmp/grant.sql
+#   command: mysql < /tmp/grant.sql

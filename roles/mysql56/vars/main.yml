@@ -1,5 +1,8 @@
 --- # 优先次序高
-HTTP_PORT: 80
-ROOT: '/home/vagrant/www/test'
-# SERVER_NAME: 'feature.qjj8.com'
-# branch: 'fea'
+ROOT_USER: 'root'
+ROOT_PASSWORD: '1qaz2wsx#EDC'
+ROOT_HOST: '127.0.0.1'
+SERVICE_BACKEND_USER: 'service_backend'
+SERVICE_BACKEND_HOST: '10.0.0.1'
+SERVICE_BACKEND_PASSWORD: '1qaz2wsx'
+SERVICE_BACKEND_DATABASE: 'landan'
