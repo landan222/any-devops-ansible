@@ -1,0 +1,23 @@
+---
+- name: Install feature php
+  hosts: fea_php
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook php starts'
+  roles:
+    - role: php
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook php ends'
+- name: Install develop php
+  hosts: dev_php
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook php starts'
+  roles:
+    - role: php
+      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook php ends'

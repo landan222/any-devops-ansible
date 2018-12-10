@@ -1,0 +1,67 @@
+---
+- name: 'yum-config-manager --disable remi-php'
+  command: "yum-config-manager --disable {{ item }}"
+  with_items:
+    - remi-php54
+    - remi-php55
+    - remi-php56
+    - remi-php70
+    - remi-php71
+    - remi-php72
+    - remi-php73
+
+- name: 'yum-config-manager --enable remi-php'
+  command: "yum-config-manager --enable remi-php{{ php_version | default(56) }}"
+
+- name: yum remove php...
+  yum: 
+    name:
+      - php 
+      - php-mcrypt 
+      - php-cli 
+      - php-gd 
+      - php-curl 
+      - php-mysql 
+      - php-ldap 
+      - php-zip 
+      - php-fileinfo
+      - php-fpm
+      - php-common 
+      - php-devel 
+      - php-json 
+      - php-mbstring 
+      - php-mysqlnd 
+      - php-xml 
+      - php-xmlrpc 
+      - php-opcache
+    state: absent
+
+- name: yum install php...
+  yum: 
+    name:
+      - php
+      - php-mcrypt 
+      - php-cli 
+      - php-gd 
+      - php-curl 
+      - php-mysql 
+      - php-ldap 
+      - php-zip 
+      - php-fileinfo
+      - php-fpm
+      - php-common 
+      - php-devel 
+      - php-json 
+      - php-mbstring 
+      - php-mysqlnd 
+      - php-xml 
+      - php-xmlrpc 
+      - php-opcache
+    state: latest
+
+- name: php -v
+  shell: php -v
+  register: php_version_string
+- name: Debug yum install php...
+  debug: 
+    msg: "{{ php_version_string }}"

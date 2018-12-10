@@ -1,23 +1,23 @@
 ---
-- name: Install feature php72
+- name: Install feature php55
   hosts: fea_php
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook php72 starts'
+    - shell: echo 'playbook php55 starts'
   roles:
     - role: php72
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook php72 ends'
-- name: Install develop php72
+    - shell: echo 'playbook php55 ends'
+- name: Install develop php55
   hosts: dev_php
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook php72 starts'
+    - shell: echo 'playbook php55 starts'
   roles:
     - role: php72
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
-    - shell: echo 'playbook php72 ends'
+    - shell: echo 'playbook php55 ends'
