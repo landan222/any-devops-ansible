@@ -1,5 +1,9 @@
 ---
-
+- name: yum remove nodejs...
+  yum: 
+    name:
+      - nodejs
+    state: absent
 - name: yum install nodejs...
   yum: 
     name:
