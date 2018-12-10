@@ -6,5 +6,8 @@
     owner: vagrant
     group: vagrant
     mode: 0766
-# - name: command mysql < /tmp/grant.sql
-#   command: mysql < /tmp/grant.sql
+- name: mysql_db /tmp/grant.sql
+  mysql_db:
+    state: import
+    name: all
+    target: /tmp/grant.sql

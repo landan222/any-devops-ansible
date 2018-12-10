@@ -1,8 +1,0 @@
----
-- name: get_url mysql-community rpm
-  get_url:
-    url: http://repo.mysql.com/mysql-community-release-el7-7.noarch.rpm
-    dest: /tmp
-- name: yum insatll mysql-community rpm
-  yum: 
-    name: /tmp/mysql-community-release-el7-7.noarch.rpm

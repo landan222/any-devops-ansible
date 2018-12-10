@@ -1,0 +1,4 @@
+---
+- name: yum insatll mysql-community.rpm
+  yum: 
+    name: http://repo.mysql.com/mysql-community-release-el7-7.noarch.rpm
