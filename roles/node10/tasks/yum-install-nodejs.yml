@@ -1,0 +1,13 @@
+---
+
+- name: yum install nodejs...
+  yum: 
+    name:
+      - nodejs
+    state: latest
+- name: node -v
+  shell: node -v
+  register: node_version_string
+- name: Debug yum install nodejs...
+  debug: 
+    msg: "{{ node_version_string }}"

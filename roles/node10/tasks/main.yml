@@ -1,0 +1,4 @@
+---
+- name: Main Task Starts
+  import_tasks: curl-shell-bash.yml
+- import_tasks: yum-install-nodejs.yml

@@ -1,0 +1,13 @@
+---
+# - name: curl shell bash
+#   shell: curl -sL https://rpm.nodesource.com/setup_10.x | bash - 
+
+
+- name: get_url
+  get_url:
+    url: https://rpm.nodesource.com/setup_10.x
+    dest: /tmp/setup_10.x
+    mode: 0775
+
+- name: command /tmp/setup_10.x
+  command: /tmp/setup_10.x
