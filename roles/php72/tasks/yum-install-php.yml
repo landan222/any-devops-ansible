@@ -1,0 +1,31 @@
+---
+- name: 'yum-config-manager --enable remi-php72'
+  command: yum-config-manager --enable remi-php72
+
+- name: yum install php...
+  yum: 
+    name:
+      - php 
+      - php-mcrypt 
+      - php-cli 
+      - php-gd 
+      - php-curl 
+      - php-mysql 
+      - php-ldap 
+      - php-zip 
+      - php-fileinfo
+      - php-fpm
+      - php-common 
+      - php-devel 
+      - php-json 
+      - php-mbstring 
+      - php-mysqlnd 
+      - php-xml 
+      - php-xmlrpc 
+      - php-opcache
+    state: latest
+# - name: Debug start nginx
+#   debug: 
+#     msg: 'The key value is !!'
+#   when: debug==true or debug==1
+    
