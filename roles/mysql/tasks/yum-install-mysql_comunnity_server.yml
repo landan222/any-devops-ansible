@@ -1,0 +1,39 @@
+---
+- name: 'command yum-config-manager --disable mysql-community'
+  command: "yum-config-manager --disable {{ package_name }}"
+  with_items:
+    - mysql55-community
+    - mysql56-community
+    - mysql57-community
+    - mysql80-community
+  loop_control:
+    loop_var: package_name
+
+- name: 'command yum-config-manager --enable mysql-community'
+  command: "yum-config-manager --enable {{ package_name }}"
+  with_items:
+    - mysql{{ mysql_version | default(56) }}-community
+  loop_control:
+    loop_var: package_name
+
+- name: yum remove mysql-community-server
+  yum: 
+    name:
+      - mysql-community-server
+      - mysql-community-client
+      - mysql-community-common
+      - mysql-community-libs
+    state: absent
+
+- name: yum install mysql-community-server
+  yum: 
+    name:
+      - mysql-community-server
+    state: latest
+
+- name: mysql --version
+  shell: mysql --version
+  register: mysql_version_string
+- name: Debug yum install mysql
+  debug: 
+    msg: "{{ mysql_version_string }}"

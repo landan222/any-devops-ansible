@@ -1,5 +1,5 @@
 ---
-- name: 'yum-config-manager --disable remi-php'
+- name: 'command yum-config-manager --disable remi-php'
   command: "yum-config-manager --disable {{ item }}"
   with_items:
     - remi-php54
@@ -10,8 +10,10 @@
     - remi-php72
     - remi-php73
 
-- name: 'yum-config-manager --enable remi-php'
-  command: "yum-config-manager --enable remi-php{{ php_version | default(56) }}"
+- name: 'command yum-config-manager --enable remi-php'
+  command: "yum-config-manager --enable {{ item }}"
+  with_items:
+    - remi-php{{ php_version | default(56) }}
 
 - name: yum remove php...
   yum: 
