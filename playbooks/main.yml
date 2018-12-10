@@ -1,5 +1,10 @@
 ---
-tasks:
-  - include: nginx.yml
-  - include: php.yml
-  - include: mysql.yml
+- import_playbook: mysql.yml
+  tags:
+    - mysql
+- import_playbook: nginx.yml
+  tags:
+    - nginx
+- import_playbook: php.yml
+  tags:
+    - php

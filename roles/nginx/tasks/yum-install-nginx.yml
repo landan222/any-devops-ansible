@@ -3,3 +3,9 @@
   yum:
     name: nginx
     state: present
+- name: nginx -v
+  shell: nginx -v
+  register: nginx_version_string
+- name: Debug yum install nginx...
+  debug: 
+    msg: "{{ nginx_version_string }}"

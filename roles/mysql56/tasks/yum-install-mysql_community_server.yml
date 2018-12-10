@@ -1,5 +1,0 @@
----
-- name: yum install mysql-community-server
-  yum:
-    name: mysql-community-server
-    state: present
