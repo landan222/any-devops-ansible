@@ -1,5 +1,3 @@
-- name: Main Task Starts
-  import_tasks: yum-install-epel_release.yml
 - import_tasks: yum-install-nginx.yml
 - import_tasks: template-etc_nginx_nginx_conf.yml
 - import_tasks: service-nginx-restarted.yml

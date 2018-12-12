@@ -1,3 +1,3 @@
 --- # 优先次序高
 ERROR_REPORTING: 'E_ALL & ~E_DEPRECATED & ~E_STRICT'
-php_version: 56
+php_version: '5.6'

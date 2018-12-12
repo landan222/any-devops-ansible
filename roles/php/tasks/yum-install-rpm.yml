@@ -1,7 +1,0 @@
----
-- name: yum insatll epel.rpm
-  yum: 
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-- name: yum insatll remi.rpm
-  yum: 
-    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
