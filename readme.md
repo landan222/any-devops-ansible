@@ -45,5 +45,10 @@ ansible-playbook playbooks/main.yml --tags "nginx, php"
 
 7. install any of any environtment via ansible with debug mode
 ```
-ansible-playbook playbooks/main.yml --tags "nginx, php, node, mysql" --extra-vars "debug=true"
+ansible-playbook playbooks/main.yml --tags "nginx, php, node, mysql, mongodb" --extra-vars "debug=true"
+
+or 
+
+ansible-playbook playbooks/main.yml --extra-vars "debug=true"
+
 ```
