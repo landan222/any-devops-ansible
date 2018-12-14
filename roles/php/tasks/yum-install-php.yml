@@ -27,25 +27,7 @@
 
 - name: yum remove php...
   yum: 
-    name:
-      - php 
-      - php-mcrypt 
-      - php-cli 
-      - php-gd 
-      - php-curl 
-      - php-mysql 
-      - php-ldap 
-      - php-zip 
-      - php-fileinfo
-      - php-fpm
-      - php-common 
-      - php-devel 
-      - php-json 
-      - php-mbstring 
-      - php-mysqlnd 
-      - php-xml 
-      - php-xmlrpc 
-      - php-opcache
+    name: php*
     state: absent
 
 - name: yum install php...
