@@ -1,4 +1,3 @@
-# 安裝 MySQL 5.6 預設 無密碼
 ---
 - import_tasks: yum-install-php.yml
 - import_tasks: template-etc_php_ini.yml

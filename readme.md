@@ -31,6 +31,10 @@ ansible-playbook playbooks/nginx.yml
 or
 
 ansible-playbook playbooks/main.yml --tags "nginx" --extra-vars "branch=feature"
+
+or
+
+ansible-playbook playbooks/php.yml -e '{ "branch": "feature" }'
 ```
 
 5. install nginx of all environtment via ansible

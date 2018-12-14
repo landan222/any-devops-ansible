@@ -1,10 +1,10 @@
 ---
-- name: Install feature php
+- name: "Install feature php"
   hosts: fea_php
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook php starts'
+    - shell: "echo 'playbook php starts' "
   roles:
     - role: php
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
