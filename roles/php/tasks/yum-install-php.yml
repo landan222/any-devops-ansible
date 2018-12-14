@@ -20,10 +20,10 @@
     - remi-php72
     - remi-php73
 
-- name: 'command yum-config-manager --enable remi-php'
+- name: "command yum-config-manager --enable remi-php"
   command: "yum-config-manager --enable {{ item }}"
   with_items:
-    - remi-php{{ php_version | default(5.6) | regex_replace('.', '') }}
+    - "remi-php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}"
 
 - name: yum remove php...
   yum: 
@@ -51,6 +51,8 @@
       - php-xml 
       - php-xmlrpc 
       - php-opcache
+      - php-xdebug
+      - php-swoole
     state: latest
 
 - name: php -v
