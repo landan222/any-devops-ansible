@@ -19,6 +19,8 @@
     - remi-php71
     - remi-php72
     - remi-php73
+  loop_control:
+    label: "yum-config-manager --disable {{ item }}"
 
 - name: "command yum-config-manager --enable remi-php"
   command: "yum-config-manager --enable {{ item }}"
