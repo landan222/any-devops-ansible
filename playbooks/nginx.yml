@@ -1,6 +1,7 @@
 ---
 - name: Install feature nginx
   hosts: fea_nginx
+  strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
@@ -14,6 +15,7 @@
     SERVER_NAME: 'fea.qjj8.com'
 - name: Install develop nginx
   hosts: dev_nginx
+  strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:

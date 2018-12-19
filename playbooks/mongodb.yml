@@ -1,6 +1,7 @@
 ---
 - name: Install feature mongodb
   hosts: fea_mongodb
+  strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
@@ -12,6 +13,7 @@
     - shell: echo 'playbook mongodb ends'
 - name: Install develop mongodb
   hosts: fea_mongodb
+  strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:

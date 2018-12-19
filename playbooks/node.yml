@@ -1,6 +1,7 @@
 ---
 - name: Install feature node
   hosts: fea_node
+  strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
@@ -12,6 +13,7 @@
     - shell: echo 'playbook node10 ends'
 - name: Install develop node
   hosts: dev_node
+  strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
