@@ -1,10 +1,33 @@
-#
+###
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ ROOT_PASSWORD }}';
+{% if mysql_version == '5.5' or mysql_version == '5.6' %}
+UPDATE mysql.user SET password=PASSWORD('{{ ROOT_PASSWORD }}') WHERE user='root';
+{% endif %}
 
-GRANT ALL ON *.* TO '{{ ROOT_USER }}'@'{{ ROOT_HOST }}' IDENTIFIED BY '{{ ROOT_PASSWORD }}' WITH GRANT OPTION;
+{% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
+ALTER USER '{{ ROOT_USER }}'@'{{ ROOT_HOST }}' IDENTIFIED BY '{{ ROOT_PASSWORD }}';
+{% endif %}
+
+###
+
+{% if branch == 'fea' or branch == 'feature' %}
+GRANT ALL ON *.* TO '{{ ROOT_USER }}'@'10.0.0.1' IDENTIFIED BY '{{ ROOT_PASSWORD }}' WITH GRANT OPTION;
+{% endif %}
+
+GRANT ALL ON *.* TO '{{ ROOT_USER }}'@'127.0.0.1' IDENTIFIED BY '{{ ROOT_PASSWORD }}' WITH GRANT OPTION;
+GRANT ALL ON *.* TO '{{ ROOT_USER }}'@'localhost' IDENTIFIED BY '{{ ROOT_PASSWORD }}' WITH GRANT OPTION;
+
+###
 
 DROP USER IF EXISTS '{{ BACKEND_USER }}'@'{{ BACKEND_HOST }}';
 CREATE USER '{{ BACKEND_USER }}'@'{{ BACKEND_HOST }}';
 
 GRANT ALL ON {{ BACKEND_DATABASE }}.* TO '{{ BACKEND_USER }}'@'{{ BACKEND_HOST }}' IDENTIFIED BY '{{ BACKEND_PASSWORD }}';
+
+###
+
+
+FLUSH PRIVILEGES;
+
+
+###

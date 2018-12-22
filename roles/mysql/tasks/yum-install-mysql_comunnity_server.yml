@@ -12,7 +12,7 @@
 - name: 'command yum-config-manager --enable mysql-community'
   command: "yum-config-manager --enable {{ package_name }}"
   with_items:
-    - mysql{{ mysql_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-community
+    - "mysql{{ mysql_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-community"
   loop_control:
     loop_var: package_name
 
