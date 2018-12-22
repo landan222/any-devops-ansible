@@ -1,0 +1,15 @@
+---
+# - name: command mysql_upgrade --force -uroot
+#   command: mysql_upgrade --force -u root
+- name: template-tmp_create_sql
+  template:
+    src: tmp/create.sql.j2
+    dest: /tmp/create.sql
+    owner: vagrant
+    group: vagrant
+    mode: 0766
+- name: Debug branch
+  debug: 
+    msg: "{{ branch }}"
+- name: shell mysqldump < /tmp/create.sql
+  shell: mysqldump --defaults-extra-file=/etc/my.cnf --force < /tmp/create.sql

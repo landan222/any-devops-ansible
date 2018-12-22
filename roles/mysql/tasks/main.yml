@@ -1,8 +1,10 @@
 # 安裝 MySQL 5.6 預設 無密碼
 ---
-- include_vars: "{{ branch | default('dev') }}.yml"
+- include_vars: "{{ branch | default('fea') }}.yml"
+- import_tasks: shell-mysqldump.yml
 - import_tasks: yum-install-mysql80_community_rpm.yml
 - import_tasks: yum-install-yum_utils.yml
 - import_tasks: yum-install-mysql_comunnity_server.yml
 - import_tasks: service-mysqld-restarted.yml
-- import_tasks: mysql_db-tmp_grant_sql.yml
+- import_tasks: shell-mysqldumb-tmp_create_sql.yml
+- import_tasks: shell-mysqldumb-tmp_grant_sql.yml

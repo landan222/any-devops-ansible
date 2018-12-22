@@ -24,7 +24,10 @@
       - mysql-community-common
       - mysql-community-libs
     state: absent
-
+- name: file absent (rm -Rf) /var/lib/mysql
+  file:
+    state: absent
+    path: "/var/lib/mysql"
 - name: yum install mysql-community-server
   yum: 
     name:

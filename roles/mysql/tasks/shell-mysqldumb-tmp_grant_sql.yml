@@ -8,8 +8,8 @@
     owner: vagrant
     group: vagrant
     mode: 0766
-- name: mysql_db /tmp/grant.sql
-  mysql_db:
-    state: import
-    name: all
-    target: /tmp/grant.sql
+- name: Debug branch
+  debug: 
+    msg: "{{ branch }}"
+- name: shell mysqldump < /tmp/grant.sql
+  shell: mysqldump --defaults-extra-file=/etc/my.cnf --force < /tmp/grant.sql

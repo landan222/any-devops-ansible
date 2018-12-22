@@ -1,5 +1,6 @@
 ###
 
+
 {% if mysql_version == '5.5' or mysql_version == '5.6' %}
 UPDATE mysql.user SET password=PASSWORD('{{ ROOT_PASSWORD }}') WHERE user='root';
 {% endif %}
@@ -19,10 +20,15 @@ GRANT ALL ON *.* TO '{{ ROOT_USER }}'@'localhost' IDENTIFIED BY '{{ ROOT_PASSWOR
 
 ###
 
-DROP USER IF EXISTS '{{ BACKEND_USER }}'@'{{ BACKEND_HOST }}';
-CREATE USER '{{ BACKEND_USER }}'@'{{ BACKEND_HOST }}';
+{% for CONNECTION in CONNECTIONS %}
+DROP USER IF EXISTS '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}';
+CREATE USER '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}';
+GRANT ALL ON {{ CONNECTION['DATABASE'] }}.* TO '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}' IDENTIFIED BY '{{ CONNECTION['PASSWORD'] }}';
 
-GRANT ALL ON {{ BACKEND_DATABASE }}.* TO '{{ BACKEND_USER }}'@'{{ BACKEND_HOST }}' IDENTIFIED BY '{{ BACKEND_PASSWORD }}';
+{% endfor %}
+
+
+
 
 ###
 
