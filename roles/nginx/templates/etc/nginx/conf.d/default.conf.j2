@@ -3,12 +3,28 @@ server {
     listen       [::]:{{ CONF['HTTP_PORT'] | default(80) }};
     server_name  {% if bra == 'mas' %}{% else %}{{ bra }}.{% endif %}{{ CONF['SERVER_NAME'] }};
     root         {{ CONF['ROOT'] }};
+    index        index.html index.php index.htm;
 
     # Load configuration files for the default server block.
 
-    location / {
+    location ~* \.(ico|css|js|gif|jpe?g|png|ogg|ogv|svg|svgz|eot|otf|woff)(\?.+)?$ {
+        expires max;
+        log_not_found off;
     }
-
+ 
+    server_tokens off;
+ 
+    location / {
+        try_files $uri $uri/ /index.php;
+    }
+ 
+    location ~* \.php$ {
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_split_path_info ^(.+\.php)(.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
     error_page 404 /404.html;
         location = /40x.html {
     }
