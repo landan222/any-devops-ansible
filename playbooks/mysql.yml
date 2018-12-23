@@ -8,6 +8,8 @@
     - shell: echo 'playbook mysql starts'
   roles:
     - role: mysql
+      vars:
+        bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
     - shell: echo 'playbook mysql ends'
@@ -20,6 +22,8 @@
     - shell: echo 'playbook mysql starts'
   roles:
     - role: mysql
+      vars:
+        bra: dev
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
     - shell: echo 'playbook mysql ends'

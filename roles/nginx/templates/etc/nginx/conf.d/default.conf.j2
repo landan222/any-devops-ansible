@@ -1,0 +1,19 @@
+server {
+    listen       {{ CONF['HTTP_PORT'] | default(80) }};
+    listen       [::]:{{ CONF['HTTP_PORT'] | default(80) }};
+    server_name  {% if bra == 'mas' %}{% else %}{{ bra }}.{% endif %}{{ CONF['SERVER_NAME'] }};
+    root         {{ CONF['ROOT'] }};
+
+    # Load configuration files for the default server block.
+
+    location / {
+    }
+
+    error_page 404 /404.html;
+        location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}

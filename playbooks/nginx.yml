@@ -8,11 +8,12 @@
     - shell: echo 'playbook nginx starts'
   roles:
     - role: nginx
+      vars:
+        bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
     - shell: echo 'playbook nginx ends'
   vars:
-    SERVER_NAME: 'fea.qjj8.com'
 - name: Install develop nginx
   hosts: dev_nginx
   strategy: linear # free, debug
@@ -22,11 +23,11 @@
     - shell: echo 'playbook nginx starts'
   roles:
     - role: nginx
+      vars:
+        bra: dev
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
     - shell: echo 'playbook nginx ends'
-  vars:
-    SERVER_NAME: 'dev.qjj8.com'
 # - name: Install release nginx
 #   hosts: rel_nginx
 #   become: true
