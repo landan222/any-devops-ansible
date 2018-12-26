@@ -1,0 +1,29 @@
+---
+- name: "Install feature golang"
+  hosts: fea_golang
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: "echo 'playbook golang starts' "
+  roles:
+    - role: golang
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook golang ends'
+- name: Install develop golang
+  hosts: dev_golang
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook golang starts'
+  roles:
+    - role: golang
+      vars:
+        bra: dev
+      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook golang ends'
