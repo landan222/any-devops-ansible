@@ -2,6 +2,9 @@
 - import_playbook: nginx.yml
   tags:
     - nginx
+- import_playbook: golang.yml
+  tags:
+    - golang
 - import_playbook: php.yml
   tags:
     - php
