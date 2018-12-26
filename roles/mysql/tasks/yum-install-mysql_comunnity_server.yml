@@ -8,7 +8,10 @@
     - mysql80-community
   loop_control:
     loop_var: package_name
-
+# - name: service mysqld stopped
+#   service:
+#     name: mysqld
+#     state: stopped
 - name: 'command yum-config-manager --enable mysql-community'
   command: "yum-config-manager --enable {{ package_name }}"
   with_items:

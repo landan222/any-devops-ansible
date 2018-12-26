@@ -7,9 +7,9 @@
     dest: /tmp/grant.sql
     owner: vagrant
     group: vagrant
-    mode: 0766
+    mode: 0755
 - name: Debug branch
   debug: 
     msg: "{{ branch }}"
 - name: shell mysqldump < /tmp/grant.sql
-  shell: mysqldump --defaults-extra-file=/etc/my.cnf --force < /tmp/grant.sql
+  shell: mysql --defaults-extra-file=/etc/my.cnf --force < /tmp/grant.sql
