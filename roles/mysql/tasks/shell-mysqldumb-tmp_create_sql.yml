@@ -8,5 +8,5 @@
     owner: vagrant
     group: vagrant
     mode: 0755
-- name: shell mysqldump < /tmp/create.sql
+- name: shell mysql < /tmp/create.sql
   shell: mysql --defaults-extra-file=/etc/my.cnf --force < /tmp/create.sql
