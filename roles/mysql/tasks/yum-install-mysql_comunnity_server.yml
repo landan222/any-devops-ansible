@@ -27,10 +27,10 @@
       - mysql-community-common
       - mysql-community-libs
     state: absent
-- name: file absent (rm -Rf) /var/lib/mysql
+- name: "file absent (rm -Rf) {{ DATADIR }}"
   file:
     state: absent
-    path: "/var/lib/mysql"
+    path: "{{ DATADIR }}"
 - name: yum install mysql-community-server
   yum: 
     name:

@@ -1,5 +1,6 @@
 ---
 mysql_version: 5.6
+DATADIR: '/var/lib/mysql'
 DATABASE: 'landan'
 ROOT_USER: 'root'
 ROOT_PASSWORD: 'mysql_password'

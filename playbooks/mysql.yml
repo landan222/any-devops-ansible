@@ -2,6 +2,9 @@
 - name: install feature mysql
   hosts: fea_mysql
   strategy: linear # free, debug
+  serail:
+    - 10
+    - 50%
   gather_facts: true
   become: true
   pre_tasks:
