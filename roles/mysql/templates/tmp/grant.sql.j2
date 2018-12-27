@@ -6,7 +6,8 @@ UPDATE mysql.user SET password=PASSWORD('{{ ROOT_PASSWORD }}') WHERE user='root'
 {% endif %}
 
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
-ALTER USER '{{ ROOT_USER }}'@'{{ ROOT_HOST }}' IDENTIFIED BY '{{ ROOT_PASSWORD }}';
+ALTER USER '{{ ROOT_USER }}'@'127.0.0.1' IDENTIFIED BY '{{ ROOT_PASSWORD }}';
+ALTER USER '{{ ROOT_USER }}'@'localhost' IDENTIFIED BY '{{ ROOT_PASSWORD }}';
 {% endif %}
 
 ###

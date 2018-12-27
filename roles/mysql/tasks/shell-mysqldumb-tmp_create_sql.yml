@@ -8,8 +8,5 @@
     owner: vagrant
     group: vagrant
     mode: 0755
-- name: Debug branch
-  debug: 
-    msg: "{{ branch }}"
 - name: shell mysqldump < /tmp/create.sql
   shell: mysql --defaults-extra-file=/etc/my.cnf --force < /tmp/create.sql

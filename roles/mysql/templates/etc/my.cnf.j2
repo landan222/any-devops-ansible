@@ -25,15 +25,16 @@ symbolic-links=0
 
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+{% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
+skip-grant-tables
+skip-networking
+{% endif %}
 
 [mysqld_safe]
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 
 [mysqldump]
-{% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
-skip-grant-tables
-skip-networking
-{% endif %}
+
 user={{ ROOT_USER }}
 password={{ ROOT_PASSWORD }}
