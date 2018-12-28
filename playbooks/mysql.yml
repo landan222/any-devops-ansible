@@ -2,7 +2,7 @@
 - name: install feature mysql
   hosts: fea_mysql
   strategy: linear # free, debug
-  serail:
+  serial:
     - 10
     - 50%
   gather_facts: true
