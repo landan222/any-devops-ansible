@@ -29,7 +29,8 @@ symbolic-links=0
 
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
 # mysql 5.7 以後版本, 預設有安全密碼
-validate-password=0
+skip-grant-tables=1
+skip-networking=1
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 {% endif %}

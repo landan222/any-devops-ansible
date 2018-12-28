@@ -7,5 +7,5 @@
 - import_tasks: yum-install-mysql_comunnity_server.yml
 - import_tasks: template-etc_my_cnf.yml
 - import_tasks: service-mysqld-restarted.yml
-- import_tasks: shell-mysqldumb-tmp_create_sql.yml
-- import_tasks: shell-mysqldumb-tmp_grant_sql.yml
+#- import_tasks: shell-mysqldumb-tmp_create_sql.yml
+#- import_tasks: shell-mysqldumb-tmp_grant_sql.yml
