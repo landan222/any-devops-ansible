@@ -8,5 +8,5 @@
     owner: vagrant
     group: vagrant
     mode: 0755
-# - name: shell mysql < /tmp/grant.sql
-#   shell: mysql --defaults-extra-file=/etc/my.cnf --force < /tmp/grant.sql
+- name: shell mysql < /tmp/grant.sql
+  shell: mysql --force < /tmp/grant.sql
