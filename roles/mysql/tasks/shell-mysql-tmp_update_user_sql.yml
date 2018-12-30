@@ -1,0 +1,12 @@
+---
+# - name: command mysql_upgrade --force -uroot
+#   command: mysql_upgrade --force -u root
+- name: template-tmp_grant_sql
+  template:
+    src: tmp/update_user.sql.j2
+    dest: /tmp/update_user.sql
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+- name: shell mysql < /tmp/update_user.sql
+  shell: mysql --force < /tmp/update_user.sql

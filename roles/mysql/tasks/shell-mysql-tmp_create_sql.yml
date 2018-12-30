@@ -8,5 +8,5 @@
     owner: vagrant
     group: vagrant
     mode: 0755
-- name: shell mysql < /tmp/create.sql
-  shell: mysql --force < /tmp/create.sql
+- name: "shell mysql --user={{ ROOT_USER }} --password={{ ROOT_PASSWORD }} --force < /tmp/create.sql"
+  shell: "mysql --user={{ ROOT_USER }} --password={{ ROOT_PASSWORD }} --force < /tmp/create.sql"

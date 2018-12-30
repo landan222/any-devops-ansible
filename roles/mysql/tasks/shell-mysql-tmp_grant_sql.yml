@@ -8,5 +8,5 @@
     owner: vagrant
     group: vagrant
     mode: 0755
-- name: shell mysql < /tmp/grant.sql
-  shell: mysql --force < /tmp/grant.sql
+- name: "shell mysql --user={{ ROOT_USER }} --password={{ ROOT_PASSWORD }} --force < /tmp/grant.sql"
+  shell: "mysql --user={{ ROOT_USER }} --password={{ ROOT_PASSWORD }} --force < /tmp/grant.sql"
