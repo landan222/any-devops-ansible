@@ -1,0 +1,15 @@
+---
+- name: Install feature kibana
+  hosts: it_kibana
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook kibana starts'
+  roles:
+    - role: kibana
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook kibana ends'
