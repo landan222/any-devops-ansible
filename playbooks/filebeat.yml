@@ -1,0 +1,52 @@
+---
+- name: Install feature filebeat
+  hosts: fea_filebeat
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook filebeat starts'
+  roles:
+    - role: filebeat
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook filebeat ends'
+  vars:
+- name: Install develop filebeat
+  hosts: dev_filebeat
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook filebeat starts'
+  roles:
+    - role: filebeat
+      vars:
+        bra: dev
+      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook filebeat ends'
+# - name: Install release nginx
+#   hosts: rel_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - rel
+# - name: Install master nginx
+#   hosts: mas_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - mas
