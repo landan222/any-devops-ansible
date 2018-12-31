@@ -1,0 +1,30 @@
+---
+- name: Install feature git
+  hosts: fea_git
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook git starts'
+  roles:
+    - role: git
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook git ends'
+  vars:
+- name: Install develop git
+  hosts: dev_git
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook git starts'
+  roles:
+    - role: git
+      vars:
+        bra: dev
+      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook git ends'

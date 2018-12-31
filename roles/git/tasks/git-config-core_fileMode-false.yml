@@ -1,0 +1,3 @@
+- name: git config core.fileMode falsen
+  shell: git config core.fileMode false
+  ignore_errors: True
