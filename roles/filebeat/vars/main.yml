@@ -8,4 +8,5 @@ FILEBEAT:
       - /home/centos/www/landan-admin_backend-lumen/storage/.log/*.log
 OUTPUT:
   LOGSTASH:
-    HOSTS: [127.0.0.1:5044]
+    HOSTS:
+      - "127.0.0.1:5044"

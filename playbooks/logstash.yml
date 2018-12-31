@@ -1,0 +1,30 @@
+---
+- name: Install feature logstash
+  hosts: fea_logstash
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook logstash starts'
+  roles:
+    - role: logstash
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook logstash ends'
+  vars:
+- name: Install develop logstash
+  hosts: dev_logstash
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook logstash starts'
+  roles:
+    - role: logstash
+      vars:
+        bra: dev
+      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook logstash ends'

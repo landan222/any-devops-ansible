@@ -1,2 +1,5 @@
 ---
-- import_tasks: selinux-permissive.yml
+- import_tasks: yum-install-logstash.yml
+- import_tasks: template-etc_logstash_conf_d_logstash_conf.yml
+- import_tasks: service-logstash-restarted.yml
+- import_tasks: service-firewalld-restarted.yml

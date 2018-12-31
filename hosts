@@ -13,10 +13,6 @@
 [it_zabbix] 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[it_kibana] 
-127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-
-
 ####################################################################################################################################################################
 
 [fea_git]
@@ -61,6 +57,12 @@
 [fea_elasticsearch]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
+[fea_logstash]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+
+[fea_kibana]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+
 
 ####################################################################################################################################################################
 
@@ -84,6 +86,10 @@
 
 [dev_elasticsearch]
 
+[dev_logstash]
+
+[dev_kibana]
+
 ####################################################################################################################################################################
 
 [rel_git]
@@ -106,6 +112,10 @@
 
 [rel_elasticsearch]
 
+[rel_logstash]
+
+[rel_kibana]
+
 ####################################################################################################################################################################
 
 [mas_git]
@@ -127,3 +137,7 @@
 [mas_mysql]
 
 [mas_elasticsearch]
+
+[mas_logstash]
+
+[mas_kibana]
