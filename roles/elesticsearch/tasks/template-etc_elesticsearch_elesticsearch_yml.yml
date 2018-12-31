@@ -1,8 +1,0 @@
----
-- name: template /etc/elesticsearch/elesticsearch.yml
-  template:
-    src: etc/elesticsearch/elesticsearch.yml.j2
-    dest: /etc/elesticsearch/elesticsearch.yml
-    owner: root
-    group: root
-    mode: 0766

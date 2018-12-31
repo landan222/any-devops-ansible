@@ -54,7 +54,7 @@
 [fea_mongodb]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_elesticsearch]
+[fea_elasticsearch]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 
@@ -78,7 +78,7 @@
 
 [dev_mysql]
 
-[dev_elesticsearch]
+[dev_elasticsearch]
 
 ####################################################################################################################################################################
 
@@ -100,7 +100,7 @@
 
 [rel_mysql]
 
-[rel_elesticsearch]
+[rel_elasticsearch]
 
 ####################################################################################################################################################################
 
@@ -122,4 +122,4 @@
 
 [mas_mysql]
 
-[mas_elesticsearch]
+[mas_elasticsearch]

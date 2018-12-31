@@ -3,9 +3,9 @@
 #   service:
 #     name: elesticsearch
 #     enabled: yes
-- name: service elesticsearch restarted
+- name: service elasticsearch restarted
   service:
-    name: elesticsearch
+    name: elasticsearch
     state: restarted
     enabled: yes
 # - name: Debug start nginx

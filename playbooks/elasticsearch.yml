@@ -1,30 +1,30 @@
 ---
-- name: Install feature elesticsearch
-  hosts: fea_elesticsearch
+- name: Install feature elasticsearch
+  hosts: fea_elasticsearch
   strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook elesticsearch starts'
+    - shell: echo 'playbook elasticsearch starts'
   roles:
-    - role: elesticsearch
+    - role: elasticsearch
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook elesticsearch ends'
+    - shell: echo 'playbook elasticsearch ends'
   vars:
 - name: Install develop elesticsearch
-  hosts: dev_elesticsearch
+  hosts: dev_elasticsearch
   strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook elesticsearch starts'
+    - shell: echo 'playbook elasticsearch starts'
   roles:
-    - role: elesticsearch
+    - role: elasticsearch
       vars:
         bra: dev
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
-    - shell: echo 'playbook elesticsearch ends'
+    - shell: echo 'playbook elasticsearch ends'
