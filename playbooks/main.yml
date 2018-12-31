@@ -13,7 +13,7 @@
     - php
  - import_playbook: node.yml
    tags:
-     - node
+    - node
 - import_playbook: redis.yml
   tags:
     - redis
