@@ -1,0 +1,17 @@
+---
+- name: yum install elasticsearch-6.2.4.rpm
+  yum:
+    name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.rpm
+    state: present
+# - name: yum install mongodb-org
+#   yum: 
+#     name:
+#       - mongodb-org
+#     state: latest
+# - name: mongo --version
+#   shell: mongo --version
+#   register: mongo_version_string
+#   become: False
+# - name: debug yum install mongodb-org
+#   debug: 
+#     msg: "{{ mongo_version_string }}"

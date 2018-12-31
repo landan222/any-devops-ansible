@@ -1,0 +1,14 @@
+---
+# - name: service elesticsearch enabled
+#   service:
+#     name: elesticsearch
+#     enabled: yes
+- name: service elesticsearch restarted
+  service:
+    name: elesticsearch
+    state: restarted
+    enabled: yes
+# - name: Debug start nginx
+#   debug: 
+#     msg: 'The key value is !!'
+#   when: debug==true or debug==1

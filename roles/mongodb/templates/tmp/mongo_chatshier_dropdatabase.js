@@ -1,0 +1,2 @@
+use chatshier;
+db.dropDatabase();
