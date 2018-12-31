@@ -1,0 +1,16 @@
+---
+- name: yum install epel-release
+  yum:
+    name: epel-release
+    state: present
+    
+- name: yum install java
+  yum:
+    name: java
+    state: present
+- name: java -version
+  shell: java -version
+  register: java_version_string
+- name: Debug yum install java
+  debug: 
+    msg: "{{ java_version_string }}"
