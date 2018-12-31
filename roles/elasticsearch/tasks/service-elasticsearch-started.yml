@@ -3,10 +3,10 @@
 #   service:
 #     name: elesticsearch
 #     enabled: yes
-- name: service elasticsearch restarted
+- name: service elasticsearch started
   service:
     name: elasticsearch
-    state: restarted
+    state: started
     enabled: yes
 # - name: Debug start nginx
 #   debug: 

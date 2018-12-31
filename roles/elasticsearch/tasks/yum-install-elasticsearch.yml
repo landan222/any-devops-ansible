@@ -1,17 +1,9 @@
 ---
-- name: yum install elasticsearch-1.3.2.noarch.rpm
+- name: yum elasticsearch absent
   yum:
-    name: https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.noarch.rpm
+    name: elasticsearch*
+    state: absent
+- name: yum install elasticsearch-1.7.3.noarch.rpm
+  yum:
+    name: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.3.noarch.rpm
     state: present
-# - name: yum install mongodb-org
-#   yum: 
-#     name:
-#       - mongodb-org
-#     state: latest
-# - name: mongo --version
-#   shell: mongo --version
-#   register: mongo_version_string
-#   become: False
-# - name: debug yum install mongodb-org
-#   debug: 
-#     msg: "{{ mongo_version_string }}"
