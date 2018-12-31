@@ -1,5 +1,5 @@
 filebeat.prospectors:
 - input_type: log
-  paths: {{ FILEBEAT.PROSPECTORS.PATH }}
+  paths: {{ FILEBEAT.PROSPECTORS.PATHS }}
 output.logstash:
   hosts: {{ OUTPUT.LOGSTASH.HOSTS }}
