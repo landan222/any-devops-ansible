@@ -1,7 +1,7 @@
 ---
 # - name: command mysql_upgrade --force -uroot
 #   command: mysql_upgrade --force -u root
-- name: template-tmp_grant_sql
+- name: template-tmp_update_user_sql
   template:
     src: tmp/update_user.sql.j2
     dest: /tmp/update_user.sql

@@ -11,6 +11,9 @@
  - import_playbook: node.yml
    tags:
      - node
+- import_playbook: redis.yml
+  tags:
+    - redis
 - import_playbook: mysql.yml
   tags:
     - mysql

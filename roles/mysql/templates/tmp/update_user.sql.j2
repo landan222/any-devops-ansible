@@ -6,4 +6,8 @@ UPDATE mysql.user SET password=PASSWORD('{{ ROOT_PASSWORD }}') WHERE user='root'
 UPDATE mysql.user SET authentication_string=password('{{ ROOT_PASSWORD }}'), password_expired = 'N' WHERE user='root';
 {% endif %}
 
+{% if mysql_version == '8.0' or mysql_version == '8.1' %}
+ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ ROOT_PASSWORD }}';
+{% endif %}
+
 FLUSH PRIVILEGES;

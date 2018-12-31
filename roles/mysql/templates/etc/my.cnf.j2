@@ -28,10 +28,16 @@ symbolic-links=0
 
 
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
-# mysql 5.7 以後版本, 預設有安全密碼
-validate-password=0
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
+{% endif %}
+
+{% if mysql_version == '5.7'%}
+validate-password=0
+{% elif mysql_version == '8.0' or mysql_version == '8.1' %}
+validate_password.dictionary_file=/usr/share/dict/words
+validate_password.length=4
+validate_password.number_count=1
 {% endif %}
 
 {% if mysql_version == '5.5' or mysql_version == '5.6' %}
