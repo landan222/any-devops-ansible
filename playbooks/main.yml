@@ -1,4 +1,7 @@
 ---
+- import_playbook: git.yml
+  tags:
+    - git
 - import_playbook: nginx.yml
   tags:
     - nginx
