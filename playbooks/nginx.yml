@@ -1,33 +1,33 @@
 ---
-- name: Install feature java
-  hosts: fea_java
+- name: Install feature nginx
+  hosts: fea_nginx
   strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook java starts'
+    - shell: echo 'playbook nginx starts'
   roles:
-    - role: java
+    - role: nginx
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook java ends'
+    - shell: echo 'playbook nginx ends'
   vars:
-- name: Install develop java
-  hosts: dev_java
+- name: Install develop nginx
+  hosts: dev_nginx
   strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook java starts'
+    - shell: echo 'playbook nginx starts'
   roles:
-    - role: java
+    - role: nginx
       vars:
         bra: dev
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
-    - shell: echo 'playbook java ends'
+    - shell: echo 'playbook nginx ends'
 # - name: Install release nginx
 #   hosts: rel_nginx
 #   become: true
