@@ -1,0 +1,9 @@
+---
+- name: template /etc/sysconfig/memcached
+  template:
+    src: etc/sysconfig/memcached.j2
+    dest: /etc/sysconfig/memcached
+    owner: root
+    group: root
+    mode: 0766
+  # notify: start nginx

@@ -17,6 +17,9 @@
 - import_playbook: redis.yml
   tags:
     - redis
+- import_playbook: memcached.yml
+  tags:
+    - memcached
 - import_playbook: beanstalkd.yml
   tags:
     - beanstalkd
