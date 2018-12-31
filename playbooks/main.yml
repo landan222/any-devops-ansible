@@ -17,6 +17,9 @@
 - import_playbook: redis.yml
   tags:
     - redis
+- import_playbook: beanstalkd.yml
+  tags:
+    - beanstalkd
 - import_playbook: mysql.yml
   tags:
     - mysql
