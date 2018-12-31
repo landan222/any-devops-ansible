@@ -1,0 +1,5 @@
+---
+- name: yum install filebeat-6.5.4-x86_64.rpm
+  yum:
+    name: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.5.4-x86_64.rpm
+		

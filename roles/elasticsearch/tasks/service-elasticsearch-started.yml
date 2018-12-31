@@ -8,11 +8,11 @@
     state: restarted
     daemon_reload: yes
     name: elasticsearch
-- name: service elasticsearch started
-  service:
-    name: elasticsearch
-    state: started
-    enabled: yes
+# - name: service elasticsearch started
+#   service:
+#     name: elasticsearch
+#     state: started
+#     enabled: yes
 # - name: Debug start nginx
 #   debug: 
 #     msg: 'The key value is !!'

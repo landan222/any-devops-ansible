@@ -1,2 +1,5 @@
 ---
-- import_tasks: selinux-permissive.yml
+- import_tasks: yum-install-filebeat.yml
+- import_tasks: template-etc_filebeat_filebeat_yml.yml
+- import_tasks: service-filebeat-restarted.yml
+- import_tasks: service-firewalld-restarted.yml

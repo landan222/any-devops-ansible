@@ -1,7 +1,5 @@
 filebeat.prospectors:
 - input_type: log
-  paths:
-    - /home/vagrant/www/api-chatshier/.log/*.log
-    - /home/centos/www/api-chatshier/.log/*.log
+  paths: {{ FILEBEAT.PROSPECTORS.PATH }}
 output.logstash:
-  hosts: ["127.0.0.1:5044"]
+  hosts: {{ OUTPUT.LOGSTASH.HOSTS }}
