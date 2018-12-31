@@ -3,7 +3,7 @@
   yum:
     name: elasticsearch*
     state: absent
-- name: yum install elasticsearch-1.7.3.noarch.rpm
+- name: yum install elasticsearch-6.5.4.rpm
   yum:
-    name: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.3.noarch.rpm
+    name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.5.4.rpm
     state: present
