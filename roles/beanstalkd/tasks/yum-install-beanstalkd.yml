@@ -1,0 +1,16 @@
+---
+- name: yum install epel-release
+  yum:
+    name: epel-release
+    state: present
+    
+- name: yum install beanstalkd
+  yum:
+    name: beanstalkd
+    state: present
+- name: beanstalkd -v
+  shell: beanstalkd -v
+  register: beanstalkd_version_string
+- name: Debug yum install beanstalkd
+  debug: 
+    msg: "{{ beanstalkd_version_string }}"
