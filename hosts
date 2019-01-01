@@ -39,6 +39,10 @@
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.51 ansible_ssh_host=10.0.0.51 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
+[fea_python]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+
+
 [fea_redis]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
