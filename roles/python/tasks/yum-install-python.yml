@@ -48,16 +48,24 @@
       - python-pip
     state: latest
   when: python_version == '2.7'
+	
+# Cannt ln to python , the YUM will get error
+- name: ln -sf /usr/bin/python{{ python_version | default(3.6) }} /usr/bin/python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}  
+  shell: ln -sf /usr/bin/python{{ python_version | default(3.6) }} /usr/bin/python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}
 
-- name: python{{ python_version | default(3.6) }} --version
-  shell: python{{ python_version | default(3.6) }} --version
-  register: python_version_string
-  when: python_version == '3.4' or  python_version == '3.5' or  python_version == '3.6'
+- name: ln -sf /usr/bin/pip{{ python_version | default(3.6) }} /usr/bin/pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}  
+  shell: ln -sf /usr/bin/pip{{ python_version | default(3.6) }} /usr/bin/pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}
 
-- name: python --version
-  shell: python --version
+
+- name: python2 --version
+  shell: python2 --version
   register: python_version_string
   when: python_version == '2.7'
+	
+- name: python3 --version
+  shell: python3 --version
+  register: python_version_string
+  when: python_version == '3.4' or  python_version == '3.5' or  python_version == '3.6'
 	
 - name: Debug yum install python...
   debug: 
