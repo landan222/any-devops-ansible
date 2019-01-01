@@ -1,4 +1,7 @@
 ---
+# PYTHON 这里有一个坑，Yum 指令 , Ansible 指令 都是相依於 PYTHON 
+# 不可随意改变 python 版本
+
 
 # - name: "Install feature python"
 #   hosts: fea_python # Ansible tower cannt remove or reinstall python
