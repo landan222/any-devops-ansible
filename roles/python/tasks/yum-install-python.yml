@@ -1,0 +1,65 @@
+---
+- name: yum insatll ius-release.rpm
+  yum: 
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+- name: yum install yum-utils
+  yum:
+    name: yum-utils
+    state: present
+# - name: 'command yum-config-manager --disable remi-php'
+#   command: "yum-config-manager --disable {{ item }}"
+#   with_items:
+#     - remi-php54
+#     - remi-php55
+#     - remi-php56
+#     - remi-php70
+#     - remi-php71
+#     - remi-php72
+#     - remi-php73
+#   loop_control:
+#     label: "yum-config-manager --disable {{ item }}"
+# 
+# - name: "command yum-config-manager --enable remi-php"
+#   command: "yum-config-manager --enable {{ item }}"
+#   with_items:
+#     - "remi-php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}"
+# 
+- name: yum remove python*
+  yum: 
+    name:
+      - python27*
+      - python34*
+      - python35*
+      - python36*
+    state: absent
+
+- name: yum install python{{ python_version | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u
+  yum: 
+    name:
+      - python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u
+      - python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u-pip
+    state: latest
+  when: python_version == '3.4' or  python_version == '3.5' or  python_version == '3.6'
+
+- name: yum install python
+  yum: 
+    name:
+      - python
+      - python-pip
+    state: latest
+  when: python_version == '2.7'
+
+- name: python{{ python_version | default(3.6) }} --version
+  shell: python{{ python_version | default(3.6) }} --version
+  register: python_version_string
+  when: python_version == '3.4' or  python_version == '3.5' or  python_version == '3.6'
+
+- name: python --version
+  shell: python --version
+  register: python_version_string
+  when: python_version == '2.7'
+	
+- name: Debug yum install python...
+  debug: 
+    msg: "{{ python_version_string }}"
+	
