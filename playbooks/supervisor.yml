@@ -1,0 +1,29 @@
+---
+- name: "Install feature supervisor"
+  hosts: fea_supervisor
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: "echo 'playbook supervisor starts' "
+  roles:
+    - role: supervisor
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook supervisor ends'
+- name: Install develop supervisor
+  hosts: dev_supervisor
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: echo 'playbook supervisor starts'
+  roles:
+    - role: supervisor
+      vars:
+        bra: dev
+      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook supervisor ends'

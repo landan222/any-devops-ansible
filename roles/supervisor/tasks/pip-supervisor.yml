@@ -1,0 +1,5 @@
+---
+- name: pip supervisor
+  pip:
+    name: supervisor
+    state: present
