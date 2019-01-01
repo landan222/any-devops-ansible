@@ -1,22 +1,22 @@
 ---
 # PYTHON 这里有一个坑，Yum 指令 , Ansible 指令 都是相依於 PYTHON 
-# 不可随意改变 python 版本
+# 不可随意改变 python 版本，
+# 请用 /usr/bin/python2 /usr/bin/python3
 
-
-# - name: "Install feature python"
-#   hosts: fea_python # Ansible tower cannt remove or reinstall python
-#   strategy: linear # free, debug
-#   gather_facts: true
-#   become: true
-#   pre_tasks:
-#     - shell: "echo 'playbook python starts' "
-#   roles:
-#     - role: python
-#       vars:
-#         bra: fea
-#       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
-#   post_tasks:
-#     - shell: echo 'playbook python ends'
+- name: "Install feature python"
+  hosts: fea_python # Ansible tower cannt remove or reinstall python
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - shell: "echo 'playbook python starts' "
+  roles:
+    - role: python
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook python ends'
 - name: Install develop python
   hosts: dev_python
   strategy: linear # free, debug
