@@ -32,6 +32,9 @@
 #10.0.0.41 ansible_ssh_host=10.0.0.41 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.42 ansible_ssh_host=10.0.0.42 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
+[fea_supervisor]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+
 [fea_node] # Group Name, 空白错误 [node server] 错误 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.51 ansible_ssh_host=10.0.0.51 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
@@ -77,6 +80,8 @@
 
 [dev_php]
 
+[dev_supervisor]
+
 [dev_node]
 
 [dev_redis]
@@ -105,6 +110,8 @@
 
 [rel_php]
 
+[rel_supervisor]
+
 [rel_node]
 
 [rel_redis]
@@ -132,6 +139,8 @@
 [mas_golang]
 
 [mas_php]
+
+[mas_supervisor]
 
 [mas_node]
 
