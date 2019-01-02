@@ -1,0 +1,25 @@
+input {
+ beats {
+   port => {{ FILEBEAT_PORT }}
+  }
+}
+filter {
+    json {
+        source => "message"
+        target => "data"
+    }
+    grok {
+        match => ["source", "\/(?<type>\w+)\.log"]
+    }
+}
+output {
+  elasticsearch {
+    hosts => {{ OUTPUT.ELASTICSEARCH.HOSTS }}
+    index => "log"
+    document_type => "%{[type]}"
+  }
+  stdout {
+    codec => rubydebug
+    workers => 2
+ }
+}

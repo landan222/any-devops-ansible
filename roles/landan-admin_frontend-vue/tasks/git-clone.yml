@@ -1,0 +1,8 @@
+---
+- name: "git clone https://github.com/landan789/landan-admin_frontend-vue.git {{ DEST}}"
+  git:
+    repo: 'https://github.com/landan789/landan-admin_frontend-vue.git'
+    dest: "{{ DEST }}"
+    clone: yes
+    update: yes
+    accept_hostkey: yes
