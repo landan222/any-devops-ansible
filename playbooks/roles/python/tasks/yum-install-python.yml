@@ -1,0 +1,37 @@
+---
+- name: yum insatll ius-release.rpm
+  yum: 
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: "yum install python{{ python_version | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u"
+  yum: 
+    name:
+      - "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u"
+      - "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u-pip"
+    state: latest
+  when: python_version == '3.4' or  python_version == '3.5' or  python_version == '3.6'
+
+- name: yum install python
+  yum: 
+    name:
+      - python
+      - python-pip
+    state: latest
+  when: python_version == '2.7'
+
+# Cannt ln to python , the YUM will get error
+
+- name: "ln -sf /usr/bin/pip{{ python_version | default(3.6) }} /usr/bin/pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}"  
+  file:
+    src: "/usr/bin/pip{{ python_version | default(3.6) }}"
+    dest: "/usr/bin/pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}"
+    state: link
+    force: True
+
+- name: "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
+  shell: "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
+  register: python_version_string
+
+- name: Debug yum install python...
+  debug: 
+    msg: "{{ python_version_string }}"

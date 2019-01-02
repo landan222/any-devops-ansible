@@ -1,0 +1,13 @@
+---
+- name: yum install golang
+  yum: 
+    name:
+      - golang
+    state: latest
+
+- name: go version
+  shell: go version
+  register: golang_version
+- name: Debug yum install golang
+  debug: 
+    msg: "{{ golang_version }}"

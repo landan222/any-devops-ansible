@@ -1,0 +1,9 @@
+---
+- name: yum elasticsearch absent
+  yum:
+    name: elasticsearch*
+    state: absent
+- name: yum install elasticsearch-6.5.4.rpm
+  yum:
+    name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.5.4.rpm
+    state: present

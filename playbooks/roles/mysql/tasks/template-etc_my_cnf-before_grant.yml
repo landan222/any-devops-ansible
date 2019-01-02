@@ -1,0 +1,7 @@
+- name: template-etc_my_cnf-before_grant.yml
+  template:
+    src: etc/my.cnf.before_grant.j2
+    dest: /etc/my.cnf
+    owner: root
+    group: root
+    mode: 0755

@@ -1,0 +1,9 @@
+---
+- name: service mongod restarted
+  service:
+    name: mongod
+    state: restarted
+# - name: Debug start nginx
+#   debug: 
+#     msg: 'The key value is !!'
+#   when: debug==true or debug==1

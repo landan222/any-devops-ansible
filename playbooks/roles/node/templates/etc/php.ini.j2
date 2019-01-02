@@ -457,12 +457,7 @@ memory_limit = 128M
 ; Development Value: E_ALL
 ; Production Value: E_ALL & ~E_DEPRECATED & ~E_STRICT
 ; http://php.net/error-reporting
-
-{% if bra == 'mas' %}
-error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
-{% else %}
-error_reporting = E_ALL
-{% endif %}
+error_reporting = {{ ERROR_REPORTING }}
 
 ; This directive controls whether or not and where PHP will output errors,
 ; notices and warnings too. Error output is very useful during development, but
@@ -1676,24 +1671,3 @@ ldap.max_links = -1
 ; Local Variables:
 ; tab-width: 4
 ; End:
-
-
-[xdebug]
-;xdebug.remote_autostart = 1
-;xdebug.remote_host=10.0.0.1 ; IDE-Environments IP, from vagrant box.
-zend_extension="/usr/lib/php/20160303/xdebug.so"
-xdebug.remote_enable = 1    
-xdebug.default_enable = 1
-xdebug.remote_port = 9000
-xdebug.remote_handler="dbgp"
-xdebug.remote_log="/var/log/xdebug/xdebug.log"
-xdebug.force_display_errors = 1
-xdebug.show_error_trace = 1
-xdebug.remote_mode = req
-xdebug.remote_connect_back=1
-xdebug.scream=0
-xdebug.show_local_vars=1
-xdebug.idekey=PHPSTORM
-xdebug.force_error_reporting = 1
-
-

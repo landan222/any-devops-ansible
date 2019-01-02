@@ -1,0 +1,8 @@
+---
+- name: template /etc/elasticsearch/logging.yml
+  template:
+    src: etc/elasticsearch/logging.yml.j2
+    dest: /etc/elasticsearch/logging.yml
+    owner: vagrant
+    group: vagrant
+    mode: 0766

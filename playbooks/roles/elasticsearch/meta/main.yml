@@ -1,0 +1,6 @@
+---  
+dependencies:
+  - role: selinux
+    vars:
+      some_parameter: 3
+  - role: java

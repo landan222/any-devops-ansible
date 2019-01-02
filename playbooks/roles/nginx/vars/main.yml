@@ -1,0 +1,8 @@
+--- # 优先次序高
+CONFS:
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-service_backend-lumen/public'
+    SERVER_NAME: 'landan.com'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-admin_backend-lumen/public'
+    SERVER_NAME: 'admin.landan.com'
