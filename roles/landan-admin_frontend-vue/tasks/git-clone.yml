@@ -3,6 +3,7 @@
   git:
     repo: 'https://github.com/landan789/landan-admin_frontend-vue.git'
     dest: "{{ DEST }}"
+    version: "{{ 'develop' if branch == 'feature' or branch == 'fea' else branch }}"
     clone: yes
     update: yes
     accept_hostkey: yes
