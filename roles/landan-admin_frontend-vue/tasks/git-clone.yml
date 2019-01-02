@@ -1,7 +1,10 @@
 ---
-- name: "git clone https://github.com/landan789/landan-admin_frontend-vue.git {{ DEST}}"
+# chmod -R 700 /root/.ssh/id_rsa
+# chmod -R 700 /root/.ssh/id_rsa.pub
+# key must be put in root because sudo git clone
+- name: "git clone git@github.com:landan789/landan-admin_backend-lumen.git {{ DEST}}"
   git:
-    repo: 'https://github.com/landan789/landan-admin_frontend-vue.git'
+    repo: 'git@github.com:landan789/landan-admin_backend-lumen.git'
     dest: "{{ DEST }}"
     version: "{{ 'develop' if branch == 'feature' or branch == 'fea' else branch }}"
     clone: yes
