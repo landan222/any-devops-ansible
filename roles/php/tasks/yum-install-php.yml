@@ -36,6 +36,9 @@
   yum: 
     name:
       - php
+      - php-memcached
+      - php-pdo
+      - php-pdo_mysql
       - php-mcrypt 
       - php-cli 
       - php-gd 
