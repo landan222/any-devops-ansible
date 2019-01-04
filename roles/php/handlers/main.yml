@@ -1,1 +1,3 @@
 ---
+- name: debug yum install php
+  import_tasks: debug-yum-install-php.yml

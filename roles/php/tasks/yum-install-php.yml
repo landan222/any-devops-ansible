@@ -59,10 +59,4 @@
       - php-xdebug
       - php-swoole
     state: latest
-
-- name: php -v
-  shell: php -v
-  register: php_version_string
-- name: Debug yum install php...
-  debug: 
-    msg: "{{ php_version_string }}"
+  notify: debug yum install php

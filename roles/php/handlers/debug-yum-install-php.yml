@@ -1,0 +1,7 @@
+---
+- name: php -v
+  shell: php -v
+  register: php_version_string
+- name: debug yum install php2
+  debug: 
+    msg: "{{ php_version_string }}"
