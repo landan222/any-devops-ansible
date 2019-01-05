@@ -1,0 +1,15 @@
+---
+- name: node -v
+  shell: node -v
+  register: node_version_string
+  become: False
+- name: debug node_version_string
+  debug: 
+    msg: "{{ node_version_string }}"
+- name: npm -v
+  shell: npm -v
+  register: npm_version_string
+  become: False
+- name: debug npm_version_string
+  debug: 
+    msg: "{{ npm_version_string }}"

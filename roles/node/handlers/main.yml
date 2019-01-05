@@ -1,1 +1,4 @@
 ---
+- name: debug yum install nodejs
+  import_tasks: debug-yum-install-nodejs.yml
+  #listen: # ansible 2.7 版本 import_tasks 没有 listen
