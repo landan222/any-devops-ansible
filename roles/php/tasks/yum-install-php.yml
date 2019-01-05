@@ -51,13 +51,13 @@
       - php-fpm
       - php-common 
       - php-devel 
-      # - php-json # php 5.6 不叫 php-json ， php 5.6 叫 php-pecl-jsonc 
+      - php-pecl-json # php 5.6 不叫 php-json ， php 5.6 叫 php-pecl-jsonc 
       - php-mbstring 
       - php-mysqlnd 
       - php-xml 
       - php-xmlrpc 
       - php-opcache
-      - php-xdebug
+      - php-pecl-xdebug # php 7.0 开始 可以 php-xdebug ， php 5.6 不可用 php-xdebug
       - php-swoole
     state: latest
   notify: debug yum install php
