@@ -1,6 +1,4 @@
 ---
-#- import_tasks: debug-yum-install-nginx.yml
-
 - name: nginx -v
   shell: nginx -v
   register: nginx_version_string

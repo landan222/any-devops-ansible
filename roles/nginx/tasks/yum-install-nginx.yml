@@ -3,14 +3,19 @@
   yum:
     name: epel-release
     state: present
-    
+- name: yum remove nginx
+  yum:
+    name: nginx
+    state: absent    
 - name: yum install nginx
   yum:
     name: nginx
     state: present
-- name: nginx -v
-  shell: nginx -v
-  register: nginx_version_string
-- name: Debug yum install nginx...
-  debug: 
-    msg: "{{ nginx_version_string }}"
+  notify: 
+    - debug yum install nginx
+    - nginx -v
+
+
+# notify 是 ansible 状态 为 changed 才执行， 
+# 在所有 tasks 完成后执行， 
+# 次序是 roles/*/handlers 内的次序 不是 notifiy 的次序
