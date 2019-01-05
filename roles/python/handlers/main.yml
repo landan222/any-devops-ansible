@@ -1,1 +1,5 @@
 ---
+- name: debug yum install python
+  import_tasks: debug-yum-install-python.yml
+- name: debug yum install python-pip
+  import_tasks: debug-yum-install-python_pip.yml

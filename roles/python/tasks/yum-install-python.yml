@@ -10,6 +10,15 @@
       - "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u-pip"
     state: latest
   when: python_version == '3.4' or  python_version == '3.5' or  python_version == '3.6'
+  notify: debug yum install python
+
+# - name: yum install python
+#   yum: 
+#     name:
+#       - python
+#       - python-pip
+#     state: absent # 不能移除 python yum 会出错
+#   when: python_version == '2.7'
 
 - name: yum install python
   yum: 
@@ -27,11 +36,13 @@
     dest: "/usr/bin/pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}"
     state: link
     force: True
+  notify: debug yum install python-pip
+ 
 
-- name: "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
-  shell: "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
-  register: python_version_string
-
-- name: Debug yum install python...
-  debug: 
-    msg: "{{ python_version_string }}"
+- name: "ln -sf /usr/bin/python{{ python_version | default(3.6) }} /usr/bin/python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}"  
+  file:
+    src: "/usr/bin/pytohn{{ python_version | default(3.6) }}"
+    dest: "/usr/bin/python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}"
+    state: link
+    force: True
+  notify: debug yum install python

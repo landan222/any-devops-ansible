@@ -1,0 +1,9 @@
+---
+
+- name: "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
+  shell: "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
+  register: python_version_string
+
+- name: debug yum install python...
+  debug: 
+    msg: "{{ python_version_string }}"
