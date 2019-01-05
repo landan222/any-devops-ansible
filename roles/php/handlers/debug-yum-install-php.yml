@@ -2,6 +2,6 @@
 - name: php -v
   shell: php -v
   register: php_version_string
-- name: aa
+- name: debug php_version_string
   debug: 
     msg: "{{ php_version_string }}"

@@ -3,7 +3,15 @@
   template:
     src: etc/php.ini.j2
     dest: /etc/php.ini
-    owner: root
-    group: root
+    owner: vagrant
+    group: vagrant
     mode: 0766
-  # notify: start nginx
+    backup: yes
+- name: template /etc/php.d/15-xdebug.ini
+  template:
+    src: etc/php.d/15-xdebug.ini.j2
+    dest: /etc/php.d/15-xdebug.ini
+    owner: vagrant
+    group: vagrant
+    mode: 0766
+    backup: yes

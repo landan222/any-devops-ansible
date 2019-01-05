@@ -4,6 +4,6 @@
     name: elasticsearch*
     state: absent
 - name: yum install elasticsearch-6.5.4.rpm
-  yum:
+  yum: # 请去 ELK 官网 找最新 rpm
     name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.5.4.rpm
     state: present

@@ -6,6 +6,7 @@
     owner: vagrant
     group: vagrant
     mode: 0766
+    backup: yes
     validate: nginx -t -c %s
 - name: template /etc/nginx/conf.d/*.conf
   template:
@@ -14,6 +15,7 @@
     owner: vagrant
     group: vagrant
     mode: 0766
+    backup: yes
     #validate: nginx -t -c /etc/nginx/nginx.conf
   with_items: "{{ CONFS }}"
   loop_control:
