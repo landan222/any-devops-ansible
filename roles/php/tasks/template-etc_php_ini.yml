@@ -8,9 +8,9 @@
     mode: 0766
     backup: no
     
-- name: "rm -f /etc/php.d/*xdebug*.ini*"  
+- name: "rm -f /etc/php.d/15-xdebug.ini"  
   file:
-    dest: "/etc/php.d/*xdebug*.ini*"
+    dest: "/etc/php.d/15-xdebug.ini"
     state: absent
     force: True
     
