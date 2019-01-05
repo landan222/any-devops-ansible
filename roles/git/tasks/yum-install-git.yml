@@ -1,5 +1,5 @@
 ---
-- name: yum remove git...
+- name: yum remove git
   yum: 
     name: git*
     state: absent
@@ -11,12 +11,7 @@
 - name: yum insatll ius-release.rpm
   yum: 
     name: https://centos7.iuscommunity.org/ius-release.rpm
-- name: yum git2u
+- name: yum install git2u
   yum:
     name: git2u
-- name: git --version
-  shell: git --version
-  register: git_version_string
-- name: Debug yum install git
-  debug: 
-    msg: "{{ git_version_string }}"
+  notify: debug yum install git
