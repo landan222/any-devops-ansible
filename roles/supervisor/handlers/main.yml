@@ -1,3 +1,3 @@
 ---
-# - name: Main Task Starts
-#   import_tasks: start-nginx.yml
+- name: debug pip install supervisor
+  import_tasks: debug-pip-install-supervisor.yml

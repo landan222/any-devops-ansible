@@ -1,0 +1,10 @@
+---
+- name: pip uninstall supervisor
+  pip:
+    name: supervisor
+    state: absent
+- name: pip install supervisor
+  pip:
+    name: supervisor
+    state: present
+  notify: debug pip install supervisor
