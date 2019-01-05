@@ -1,3 +1,4 @@
 - import_tasks: yum-install-git.yml
 - import_tasks: service-firewalld-restarted.yml
 - import_tasks: git-config-core_fileMode-false.yml
+- import_tasks: git-config-core_autocrlf-input.yml
