@@ -53,7 +53,7 @@
       - php-devel 
       # - php-pecl-json # php 5.6 没有
       - php-mbstring 
-      - php-mysqlnd 
+      # - php-mysqlnd 
       - php-xml 
       - php-xmlrpc 
       # - php-opcache # php 5.6 没有
