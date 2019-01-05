@@ -8,9 +8,4 @@
   yum:
     name: beanstalkd
     state: present
-- name: beanstalkd -v
-  shell: beanstalkd -v
-  register: beanstalkd_version_string
-- name: Debug yum install beanstalkd
-  debug: 
-    msg: "{{ beanstalkd_version_string }}"
+  notify: debug yum install beanstalkd

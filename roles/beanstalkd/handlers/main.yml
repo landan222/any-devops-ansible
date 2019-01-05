@@ -1,3 +1,4 @@
 ---
-# - name: Main Task Starts
-#   import_tasks: start-nginx.yml
+- name: debug yum install beanstalkd
+  import_tasks: debug-yum-install-beanstalkd.yml
+  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen

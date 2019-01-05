@@ -1,0 +1,7 @@
+---
+- name: beanstalkd -v
+  shell: beanstalkd -v
+  register: beanstalkd_version_string
+- name: debug beanstalkd_version_string
+  debug: 
+    msg: "{{ beanstalkd_version_string }}"
