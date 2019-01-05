@@ -3,14 +3,13 @@
   yum:
     name: epel-release
     state: present
+- name: yum remove redis
+  yum:
+    name: redis
+    state: absent
     
 - name: yum install redis
   yum:
     name: redis
     state: present
-- name: redis-server --version
-  shell: redis-server --version
-  register: redis_version_string
-- name: Debug yum install redis...
-  debug: 
-    msg: "{{ redis_version_string }}"
+  notify: debug yum install redis
