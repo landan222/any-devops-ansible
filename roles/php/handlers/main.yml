@@ -1,3 +1,5 @@
 ---
 - name: debug yum install php
   import_tasks: debug-yum-install-php.yml
+- name: php composer-setup.php
+  import_tasks: php-composer_setup_php.yml
