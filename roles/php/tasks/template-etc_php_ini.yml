@@ -6,12 +6,19 @@
     owner: vagrant
     group: vagrant
     mode: 0766
-    backup: yes
-- name: template /etc/php.d/15-xdebug.ini
+    backup: no
+    
+- name: "rm -f /etc/php.d/*xdebug*.ini*"  
+  file:
+    dest: "/etc/php.d/*xdebug*.ini*"
+    state: absent
+    force: True
+    
+- name: template /etc/php.d/xdebug.ini
   template:
-    src: etc/php.d/15-xdebug.ini.j2
-    dest: /etc/php.d/15-xdebug.ini
+    src: etc/php.d/xdebug.ini.j2
+    dest: /etc/php.d/xdebug.ini
     owner: vagrant
     group: vagrant
     mode: 0766
-    backup: yes
+    backup: 
