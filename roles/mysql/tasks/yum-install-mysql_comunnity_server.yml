@@ -36,10 +36,4 @@
     name:
       - mysql-community-server
     state: latest
-
-- name: mysql --version
-  shell: mysql --version
-  register: mysql_version_string
-- name: Debug yum install mysql
-  debug: 
-    msg: "{{ mysql_version_string }}"
+  notify: debug yum install mysql-community-server

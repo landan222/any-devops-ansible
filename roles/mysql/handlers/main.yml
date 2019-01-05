@@ -1,1 +1,4 @@
 ---
+- name: debug yum install mysql-community-server
+  import_tasks: debug-yum-install-mysql_community_server.yml
+  #listen: # ansible 2.7 版本 import_tasks 没有 listen
