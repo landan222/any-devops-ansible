@@ -8,9 +8,4 @@
   yum:
     name: python-pip
     state: present
-- name: pip --version
-  shell: pip --version
-  register: pip_version_string
-- name: Debug yum install pip
-  debug: 
-    msg: "{{ pip_version_string }}"
+  notify: debug yum install python-pip

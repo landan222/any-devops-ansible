@@ -1,3 +1,3 @@
 ---
-# - name: Main Task Starts
-#   import_tasks: start-nginx.yml
+- name: debug yum install python-pip
+  import_tasks: debug-yum-install-python_pip.yml
