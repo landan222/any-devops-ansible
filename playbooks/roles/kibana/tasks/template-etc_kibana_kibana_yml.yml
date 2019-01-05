@@ -1,8 +1,0 @@
----
-- name: template /etc/kibana/kibana.yml.j2
-  template:
-    src: etc/kibana/kibana.yml.j2
-    dest: /etc/kibana/kibana.yml
-    owner: vagrant
-    group: vagrant
-    mode: 0766

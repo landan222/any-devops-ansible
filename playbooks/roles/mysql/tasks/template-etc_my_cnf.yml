@@ -1,7 +1,0 @@
-- name: template-etc_my_cnf.yml
-  template:
-    src: etc/my.cnf.j2
-    dest: /etc/my.cnf
-    owner: root
-    group: root
-    mode: 0755

@@ -1,8 +1,0 @@
----
-- name: template /etc/filebeat/filebeat.yml.j2
-  template:
-    src: etc/filebeat/filebeat.yml.j2
-    dest: /etc/filebeat/filebeat.yml
-    owner: vagrant
-    group: vagrant
-    mode: 0766

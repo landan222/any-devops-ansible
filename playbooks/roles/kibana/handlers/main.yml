@@ -1,3 +1,0 @@
----
-- name: Main Task Starts
-  import_tasks: start-nginx.yml

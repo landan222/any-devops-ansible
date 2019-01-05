@@ -1,3 +1,0 @@
----
-- import_tasks: yum-install-mongodb_org.yml
-- import_tasks: service-mongod-restarted.yml

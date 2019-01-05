@@ -1,9 +1,0 @@
----
-- name: copy etc/php-fpm.d/www.conf
-  copy:
-    src: etc/php-fpm.d/www.conf
-    dest: /etc/php-fpm.d/www.conf
-    owner: root
-    group: root
-    mode: 0777
-  # notify: start nginx

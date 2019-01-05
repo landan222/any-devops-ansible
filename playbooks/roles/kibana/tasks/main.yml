@@ -1,4 +1,0 @@
-- import_tasks: yum-install-kibana.yml
-- import_tasks: template-etc_kibana_kibana_yml.yml
-- import_tasks: service-kibana-restarted.yml
-- import_tasks: "service-firewalld-restarted.yml"

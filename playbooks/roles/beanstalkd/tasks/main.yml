@@ -1,3 +1,0 @@
-- import_tasks: yum-install-beanstalkd.yml
-- import_tasks: service-firewalld-restarted.yml
-- import_tasks: service-beanstalkd-restarted.yml
