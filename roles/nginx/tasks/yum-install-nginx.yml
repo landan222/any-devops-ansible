@@ -13,8 +13,6 @@
     state: present
   notify: 
     - debug yum install nginx
-    - nginx -v
-
 
 # notify 是 ansible 状态 为 changed 才执行， 
 # 在所有 tasks 完成后执行， 

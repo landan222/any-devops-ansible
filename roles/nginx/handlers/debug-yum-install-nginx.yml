@@ -2,6 +2,6 @@
 - name: nginx -v
   shell: nginx -v
   register: nginx_version_string
-- name: debug yum install nginx
+- name: debug nginx_version_string
   debug: 
     msg: "{{ nginx_version_string }}"
