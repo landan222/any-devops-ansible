@@ -1,5 +1,5 @@
 ---
-- name: yum_repository mongodb repository
+- name: (yum_repository) mongodb repository
   yum_repository:
     name: mongodb-org-{{ mongodb_version | default(4.0) }}
     enabled: 1
@@ -8,26 +8,26 @@
     baseurl: "https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/{{ mongodb_version | default(4.0) }}/x86_64/"
     gpgkey: "https://www.mongodb.org/static/pgp/server-{{ mongodb_version | default(4.0) }}.asc"
 
-- name: yum install yum-utils
+- name: (yum) yum install yum-utils
   yum:
     name: yum-utils
     state: present
-- name: 'command yum-config-manager --disable mongodb-org'
+- name: '(command) yum-config-manager --disable mongodb-org'
   command: "yum-config-manager --disable {{ item }}"
   with_items:
     - mongodb-org-4.0
     - mongodb-org-3.6
     - mongodb-org-3.4
     - mongodb-org-3.2
-- name: service mongod stop
+- name: (service) service mongod stop
   service:
     name: mongod
     state: stopped
-- name: 'command yum-config-manager --enable mongodb-org'
+- name: '(command) yum-config-manager --enable mongodb-org'
   command: "yum-config-manager --enable {{ item }}"
   with_items:
     - mongodb-org-{{ mongodb_version | default(4.0) }}
-- name: yum remove mongodb-org
+- name: (yum) yum remove mongodb-org
   yum: 
     name:
       - mongodb-org
@@ -36,7 +36,7 @@
       - mongodb-org-shell
       - mongodb-org-tools
     state: absent
-- name: yum install mongodb-org
+- name: (yum) yum install mongodb-org
   yum: 
     name:
       - mongodb-org

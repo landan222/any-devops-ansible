@@ -1,5 +1,5 @@
 ---
-- name: template /etc/kibana/kibana.yml.j2
+- name: (template) scp etc/kibana/kibana.yml.j2 /etc/kibana/kibana.yml
   template:
     src: etc/kibana/kibana.yml.j2
     dest: /etc/kibana/kibana.yml

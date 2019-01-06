@@ -1,9 +1,9 @@
 ---
-- name: pip uninstall supervisor
+- name: (pip) pip uninstall supervisor
   pip:
     name: supervisor
     state: absent
-- name: pip install supervisor
+- name: (pip) pip install supervisor
   pip:
     name: supervisor
     state: present

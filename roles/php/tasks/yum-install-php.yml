@@ -23,17 +23,17 @@
   loop_control:
     label: "yum-config-manager --disable {{ item }}"
 
-- name: "command yum-config-manager --enable remi-php"
+- name: "(command) yum-config-manager --enable remi-php"
   command: "yum-config-manager --enable {{ item }}"
   with_items:
     - "remi-php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}"
 
-- name: yum remove php...
+- name: (yum) yum remove php...
   yum: 
     name: php*
     state: absent
 
-- name: yum install php...
+- name: (yum) yum install php...
   yum: 
     name:
       - php

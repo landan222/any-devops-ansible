@@ -1,5 +1,5 @@
 ---
-- name: template /etc/sysconfig/memcached
+- name: (template) scp etc/sysconfig/memcached.j2 /etc/sysconfig/memcached
   template:
     src: etc/sysconfig/memcached.j2
     dest: /etc/sysconfig/memcached

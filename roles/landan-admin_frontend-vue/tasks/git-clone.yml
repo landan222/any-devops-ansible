@@ -1,5 +1,5 @@
 ---
-- name: "git clone git@github.com:landan789/landan-admin_frontend-vue.git {{ DEST}}"
+- name: "(git) git clone git@github.com:landan789/landan-admin_frontend-vue.git {{ DEST}}"
   git:
     repo: 'git@github.com:landan789/landan-admin_frontend-vue.git'
     dest: "{{ DEST }}"

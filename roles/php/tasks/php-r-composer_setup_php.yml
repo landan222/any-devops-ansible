@@ -1,7 +1,7 @@
-- name: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+- name: (shell) php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
   shell: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-- name: php composer-setup.php --install-dir=/usr/bin --filename=composer
+- name: (shell) php composer-setup.php --install-dir=/usr/bin --filename=composer
   shell: php composer-setup.php --install-dir=/usr/bin --filename=composer
   notify: php composer-setup.php
-- name: php -r "unlink('composer-setup.php');"
+- name: (shell) php -r "unlink('composer-setup.php');"
   shell: php -r "unlink('composer-setup.php');"

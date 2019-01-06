@@ -1,4 +1,4 @@
 ---
-- name: yum install logstash-6.5.4.rpm
+- name: (yum) yum install logstash-6.5.4.rpm
   yum:
     name: https://artifacts.elastic.co/downloads/logstash/logstash-6.5.4.rpm

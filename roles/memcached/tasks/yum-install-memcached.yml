@@ -1,16 +1,16 @@
 ---
-- name: yum install epel-release
+- name: (yum) yum install epel-release
   yum:
     name: epel-release
     state: present
     
-- name: yum install memcached
+- name: (yum) yum install memcached
   yum:
     name: memcached
     state: latest
-- name: memcached -h
+- name: (shell) memcached -h
   shell: memcached -h
   register: memcached_version_string
-- name: Debug yum install memcached
+- name: (debug) memcached_version_string
   debug: 
     msg: "{{ memcached_version_string }}"

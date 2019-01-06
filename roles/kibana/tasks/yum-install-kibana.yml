@@ -1,5 +1,5 @@
 ---
-- name: yum install kibana-6.5.4-x86_64.rpm
+- name: (yum) yum install kibana-6.5.4-x86_64.rpm
   yum:
     name: https://artifacts.elastic.co/downloads/kibana/kibana-6.5.4-x86_64.rpm
     

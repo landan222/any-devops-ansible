@@ -1,14 +1,14 @@
 ---
-- name: yum install epel-release
+- name: (yum) yum install epel-release
   yum:
     name: epel-release
     state: present
-- name: yum remove python-pip
+- name: (yum) yum remove python-pip
   yum:
     name: python-pip
     state: absent
 
-- name: yum install python-pip
+- name: (yum) yum install python-pip
   yum:
     name: python-pip
     state: present

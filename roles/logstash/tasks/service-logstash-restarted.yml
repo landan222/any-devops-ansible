@@ -1,5 +1,5 @@
 ---
-- name: service logstash restarted
+- name: (service) service logstash restarted
   service:
     name: logstash
     state: restarted
