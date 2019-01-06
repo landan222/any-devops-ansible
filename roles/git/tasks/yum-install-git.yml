@@ -1,5 +1,5 @@
 ---
-- name: yum remove git
+- name: (yum) yum remove git*
   yum: 
     name: git*
     state: absent
@@ -8,10 +8,10 @@
     name: epel-release
     state: present
 
-- name: yum insatll ius-release.rpm
+- name: (yum) yum insatll ius-release.rpm
   yum: 
     name: https://centos7.iuscommunity.org/ius-release.rpm
-- name: yum install git2u
+- name: (yum) yum install git2u
   yum:
     name: git2u
   notify: debug yum install git
