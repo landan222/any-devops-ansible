@@ -1,5 +1,5 @@
 ---
-- name: service beanstalkd restarted
+- name: (service) service beanstalkd restarted
   service:
     name: beanstalkd
     state: restarted

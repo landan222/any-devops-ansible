@@ -1,10 +1,10 @@
 ---
-- name: yum install epel-release
+- name: (yum) yum install epel-release
   yum:
     name: epel-release
     state: present
     
-- name: yum install beanstalkd
+- name: (yum) yum install beanstalkd
   yum:
     name: beanstalkd
     state: present

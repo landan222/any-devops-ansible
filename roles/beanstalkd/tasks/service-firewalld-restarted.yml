@@ -1,5 +1,5 @@
 ---
-- name: service firewalld restarted
+- name: (service) service firewalld restarted
   service:
     name: firewalld
     state: restarted
