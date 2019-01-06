@@ -1,4 +1,16 @@
 ---
-- name: (yum) yum install logstash-6.5.4.rpm
+- name: (yum) yum remove logstash
   yum:
-    name: https://artifacts.elastic.co/downloads/logstash/logstash-6.5.4.rpm
+    name: logstash
+    state: absent
+- name: (yum) yum install logstash-{{ logstash_version | default(6.5.4) }}.rpm
+  yum:
+    name: https://artifacts.elastic.co/downloads/logstash/logstash-{{ logstash_version | default(6.5.4) }}.rpm
+- name: "(file) ln -sf /usr/share/logstash/bin/logstash /usr/bin/logstash"  
+  file:
+    src: "/usr/share/logstash/bin/logstash"
+    dest: "/usr/bin/logstash"
+    state: link
+    force: True
+    follow: False
+  notify: debug yum install logstash

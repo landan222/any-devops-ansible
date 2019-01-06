@@ -1,4 +1,5 @@
 --- # 优先次序高
+logstash_version: 6.5.4
 FILEBEAT_PORT: 5044
 OUTPUT:
   ELASTICSEARCH:

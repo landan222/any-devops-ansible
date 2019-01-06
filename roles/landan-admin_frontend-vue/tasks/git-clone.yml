@@ -7,7 +7,7 @@
     clone: yes
     update: yes
     accept_hostkey: yes
-  become: no
+  become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
   register: landan_admin_frontend_vue_version
   notify: debug git clone landan-admin_frontend-vue
 # chmod -R 700 /root/.ssh/id_rsa
