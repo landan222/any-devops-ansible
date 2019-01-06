@@ -1,12 +1,12 @@
 ---
-- name: chmod -R 766 /etc/elasticsearch
+- name: (file) chmod -R 766 /etc/elasticsearch
   file:
     dest: /etc/elasticsearch
     recurse: yes
     owner: root
     group: root
     mode: 766
-- name: template /etc/elasticsearch/elasticsearch.yml
+- name: (template) scp etc/elasticsearch/elasticsearch.yml.j2 /etc/elasticsearch/elasticsearch.yml
   template:
     src: etc/elasticsearch/elasticsearch.yml.j2
     dest: /etc/elasticsearch/elasticsearch.yml

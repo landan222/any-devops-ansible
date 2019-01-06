@@ -1,5 +1,5 @@
 ---
-- name: template /etc/elasticsearch/logging.yml
+- name: (template) scp etc/elasticsearch/logging.yml.j2 /etc/elasticsearch/logging.yml
   template:
     src: etc/elasticsearch/logging.yml.j2
     dest: /etc/elasticsearch/logging.yml

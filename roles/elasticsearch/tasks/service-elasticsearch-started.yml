@@ -3,12 +3,12 @@
 #   service:
 #     name: elesticsearch
 #     enabled: yes
-- name: systemd elasticsearch restarted
+- name: (systemd) systemd elasticsearch restarted
   systemd:
     state: restarted
     daemon_reload: yes
     name: elasticsearch
-- name: service elasticsearch started
+- name: (service) service elasticsearch started
   service:
     name: elasticsearch
     state: started
