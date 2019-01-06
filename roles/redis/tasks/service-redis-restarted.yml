@@ -1,5 +1,5 @@
 ---
-- name: service redis restarted
+- name: (service) service redis restarted
   service:
     name: redis
     state: restarted

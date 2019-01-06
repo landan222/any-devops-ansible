@@ -1,14 +1,14 @@
 ---
-- name: yum install epel-release
+- name: (yum) yum install epel-release
   yum:
     name: epel-release
     state: present
-- name: yum remove redis
+- name: (yum )yum remove redis
   yum:
     name: redis
     state: absent
     
-- name: yum install redis
+- name: (yum) yum install redis
   yum:
     name: redis
     state: present

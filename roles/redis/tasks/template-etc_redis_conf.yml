@@ -1,5 +1,5 @@
 ---
-- name: template /etc/redis.conf
+- name: (template) scp etc/redis.conf.j2 /etc/redis.conf
   template:
     src: etc/redis.conf.j2
     dest: /etc/redis.conf
