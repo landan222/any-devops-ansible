@@ -1,13 +1,13 @@
 ---
-- name: yum install golang
+- name: (yum) yum install golang
   yum: 
     name:
       - golang
     state: latest
 
-- name: go version
+- name: (shell) go version
   shell: go version
   register: golang_version
-- name: Debug yum install golang
+- name: (debug) golang_version
   debug: 
     msg: "{{ golang_version }}"
