@@ -1,5 +1,5 @@
 ---
-- name: selinux permissive
+- name: (selinux) setenforce 1 
   selinux:
     policy: targeted
     state: permissive
