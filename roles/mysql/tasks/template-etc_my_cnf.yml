@@ -1,4 +1,4 @@
-- name: template-etc_my_cnf.yml
+- name: (template) scp etc/my.cnf.j2 /etc/my.cnf
   template:
     src: etc/my.cnf.j2
     dest: /etc/my.cnf

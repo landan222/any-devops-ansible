@@ -1,5 +1,5 @@
 ---
-- name: 'command yum-config-manager --disable mysql-community'
+- name: '(command) yum-config-manager --disable mysql-community'
   command: "yum-config-manager --disable {{ package_name }}"
   with_items:
     - mysql55-community
@@ -12,14 +12,14 @@
 #   service:
 #     name: mysqld
 #     state: stopped
-- name: 'command yum-config-manager --enable mysql-community'
+- name: '(command) yum-config-manager --enable mysql-community'
   command: "yum-config-manager --enable {{ package_name }}"
   with_items:
     - "mysql{{ mysql_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-community"
   loop_control:
     loop_var: package_name
 
-- name: yum remove mysql-community-server
+- name: (yum) yum remove mysql-community-server
   yum: 
     name:
       - mysql-community-server
@@ -27,11 +27,11 @@
       - mysql-community-common
       - mysql-community-libs
     state: absent
-- name: "file absent (rm -Rf) {{ DATADIR }}"
+- name: "(file) rm -Rf {{ DATADIR }}"
   file:
     state: absent
     path: "{{ DATADIR }}"
-- name: yum install mysql-community-server
+- name: (yum) yum install mysql-community-server
   yum: 
     name:
       - mysql-community-server
