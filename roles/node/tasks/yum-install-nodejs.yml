@@ -1,17 +1,17 @@
 ---
-- name: yum remove nodejs
+- name: (yum) yum remove nodejs
   yum: 
     name:
       - nodejs
     state: absent
-- name: yum install nodejs
+- name: (yum) yum install nodejs
   yum: 
     name:
       - nodejs
     state: latest
-- name: "npm install n -g"
+- name: "(command) npm install n -g"
   command: "npm install n -g"
-- name: "command n {{ node_version }}"
+- name: "(command) n {{ node_version }}"
   command: "n {{ node_version }}"
   notify: 
     - debug yum install nodejs

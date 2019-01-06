@@ -1,0 +1,9 @@
+---
+- name: (get_url) wget https://rpm.nodesource.com/setup_11.x
+  get_url:
+    url: "https://rpm.nodesource.com/setup_11.x"
+    dest: "/tmp/setup_11.x"
+    mode: 0775
+
+- name: "(command) /tmp/setup_11.x"
+  command: "/tmp/setup_11.x"
