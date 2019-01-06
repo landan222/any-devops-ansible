@@ -1,31 +1,41 @@
 ---
 mysql_version: 5.6
 DATADIR: '/var/lib/mysql'
-DATABASE: 'landan'
-ROOT_USER: 'root'
-ROOT_PASSWORD: 'mysql_password'
+BIND_ADDRESS: '0.0.0.0'
+CREATE_DATABASES:
+  - landan
+  - vpn
+  - lorentz
+  - chatshier
+  - nouya
 CONNECTIONS:
-  - USER: 'backend'
-    HOST: '127.0.0.1'
+  - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+    with_grant_option: true
+    USER: 'root'
+    HOST: 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+    PASSWORD: 'mysql_pass_localhost'
+    DATABASE: '*'
+  - drop_user: false
+    with_grant_option: true
+    USER: 'root'
+    HOST: '127.0.0.1'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+    PASSWORD: 'mysql_pass_localhost'
+    DATABASE: '*'
+  - drop_user: true
+    with_grant_option: true
+    USER: 'root'
+    HOST: '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+    PASSWORD: 'mysql_pass_natgateway'
+    DATABASE: '*'
+  - drop_user: true
+    with_grant_option: true
+    USER: 'root'
+    HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 ROUTER 经过 10.0.0.1)  连取 10.0.0.21 ，在 VM 外网
+    PASSWORD: 'mysql_pass_router'
+    DATABASE: '*'
+  - drop_user: true
+    with_grant_option: false
+    USER: 'backend'
+    HOST: '10.0.0.21'                # 提供 PHP GOLANG NODEJS 从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
     PASSWORD: 'mysql_pass'
-    DATABASE: 'landan'
-  - USER: 'backend'
-    HOST: '10.0.0.31'
-    PASSWORD: 'mysql_pass'
-    DATABASE: 'landan'
-  - USER: 'backend'
-    HOST: '10.0.0.32'
-    PASSWORD: 'mysql_pass'
-    DATABASE: 'landan'
-  - USER: 'backend'
-    HOST: '10.0.0.41'
-    PASSWORD: 'mysql_pass'
-    DATABASE: 'landan'
-  - USER: 'backend'
-    HOST: '10.0.0.42'
-    PASSWORD: 'mysql_pass'
-    DATABASE: 'landan'
-  - USER: 'backend'
-    HOST: '10.0.0.51'
-    PASSWORD: 'mysql_pass'
-    DATABASE: 'landan'
+    DATABASE: '*'

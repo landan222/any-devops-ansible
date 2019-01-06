@@ -42,5 +42,5 @@ pid-file=/var/run/mysqld/mysqld.pid
 {% endif %}
 
 [mysqldump]
-user={{ ROOT_USER }}
-password={{ ROOT_PASSWORD }}
+user={{ CONNECTIONS[0]['USER'] }}
+password={{ CONNECTIONS[0]['PASSWORD'] }}

@@ -1,1 +1,4 @@
 ---
+- name: debug yum install mongodb-org
+  import_tasks: debug-yum-install-mongodb_org.yml
+  #listen: # ansible 2.7 版本 import_tasks 没有 listen

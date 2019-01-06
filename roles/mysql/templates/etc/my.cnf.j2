@@ -25,7 +25,7 @@ symbolic-links=0
 
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
-
+bind-address = {{ BIND_ADDRESS }}
 
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
 log-error=/var/log/mysqld.log
@@ -47,5 +47,5 @@ pid-file=/var/run/mysqld/mysqld.pid
 {% endif %}
 
 [mysqldump]
-user={{ ROOT_USER }}
-password={{ ROOT_PASSWORD }}
+user={{ CONNECTIONS[0]['USER'] }}
+password={{ CONNECTIONS[0]['PASSWORD'] }}

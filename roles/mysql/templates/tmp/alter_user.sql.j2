@@ -1,4 +1,4 @@
 # ALTER USER 不能在 skip-grant-tables 模式執行
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
-ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ ROOT_PASSWORD }}';
+ALTER USER '{{ CONNECTIONS[0]['USER'] }}'@'{{ CONNECTIONS[0]['HOST'] }}' IDENTIFIED BY '{{ CONNECTIONS[0]['PASSWORD'] }}';
 {% endif %}
