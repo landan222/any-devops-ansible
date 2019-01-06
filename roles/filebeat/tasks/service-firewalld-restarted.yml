@@ -1,5 +1,5 @@
 ---
-- name: service filebeat restarted
+- name: (service) service filebeat restarted
   service:
     name: filebeat
     state: restarted
