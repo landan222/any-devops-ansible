@@ -8,6 +8,8 @@
     update: yes
     accept_hostkey: yes
   become: no
+  register: landan_admin_frontend_vue_version
+  notify: debug git clone landan-admin_frontend-vue
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
 # key must be put in root because sudo git clone
