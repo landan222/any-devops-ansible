@@ -1,0 +1,7 @@
+---
+- name: (shell) go version
+  shell: go version
+  register: golang_version
+- name: (debug) golang_version
+  debug: 
+    msg: "{{ golang_version }}"

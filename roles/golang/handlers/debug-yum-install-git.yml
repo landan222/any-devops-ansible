@@ -1,7 +1,0 @@
----
-- name: (shell) git --version
-  shell: git --version
-  register: git_version_string
-- name: (debug) git_version_string
-  debug: 
-    msg: "{{ git_version_string }}"

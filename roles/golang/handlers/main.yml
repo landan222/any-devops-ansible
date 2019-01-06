@@ -1,4 +1,4 @@
 ---
-- name: debug yum install git
-  import_tasks: debug-yum-install-git.yml
+- name: debug yum install golang
+  import_tasks: debug-yum-install-golang.yml
   #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen
