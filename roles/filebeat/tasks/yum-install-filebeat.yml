@@ -1,4 +1,9 @@
 ---
-- name: (yum) yum install filebeat-6.5.4-x86_64.rpm
+- name: (yum) yum remove filebeat
   yum:
-    name: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.5.4-x86_64.rpm # 请到 ELK 官网 复制最新 rpm url
+    name: filebeat
+    state: absent
+- name: (yum) yum install filebeat-{{ filebeat_version | default(6.5.4) }}-x86_64.rpm
+  yum:
+    name: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ filebeat_version | default(6.5.4) }}-x86_64.rpm # 请到 ELK 官网 复制最新 rpm url
+  notify: debug yum install filebeat

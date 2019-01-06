@@ -1,9 +1,9 @@
 ---
-- name: (yum) yum elasticsearch absent
+- name: (yum) yum remove elasticsearch*
   yum:
     name: elasticsearch*
     state: absent
-- name: (yum) yum install elasticsearch-6.5.4.rpm
+- name: (yum) yum install elasticsearch-6.5.3.rpm
   yum: # 请去 ELK 官网 找最新 rpm
     name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.5.4.rpm
     state: present
