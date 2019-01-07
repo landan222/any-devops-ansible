@@ -3,7 +3,7 @@
   yum: 
     name: git*
     state: absent
-- name: yum install epel-release
+- name: (yum) yum install epel-release
   yum:
     name: epel-release
     state: present
