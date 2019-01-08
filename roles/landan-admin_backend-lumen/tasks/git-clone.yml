@@ -1,0 +1,15 @@
+---
+- name: "(git) git clone git@github.com:landan789/landan-admin_backend-lumen.git"
+  git:
+    repo: 'git@github.com:landan789/landan-admin_backend-lumen.git'
+    dest: "{{ DEST }}"
+    version: "{{ 'develop' if branch == 'feature' or branch == 'fea' else branch }}"
+    clone: yes
+    update: yes
+    accept_hostkey: yes
+  become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
+  register: landan_admin_backend_lumen_version
+  notify: debug git clone landan-admin_backend-lumen
+# chmod -R 700 /root/.ssh/id_rsa
+# chmod -R 700 /root/.ssh/id_rsa.pub
+# key must be put in root because sudo git clone
