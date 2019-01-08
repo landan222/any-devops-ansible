@@ -1,0 +1,7 @@
+---
+- name: (shell) kibana version
+  shell: kibana version
+  register: kibana_version_string
+- name: (debug) kibana_version_string
+  debug: 
+    msg: "{{ kibana_version_string }}"
