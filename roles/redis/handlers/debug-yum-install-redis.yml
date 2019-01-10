@@ -1,6 +1,6 @@
 ---
 - name: (shell) redis-server --version
-  shell: (shell) redis-server --version
+  shell: redis-server --version
   register: redis_version_string
 - name: (debug) redis_version_string
   debug: 

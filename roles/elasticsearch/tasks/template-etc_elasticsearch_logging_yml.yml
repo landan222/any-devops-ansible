@@ -3,13 +3,13 @@
   file:
     dest: /etc/elasticsearch
     recurse: yes
-    owner: root
-    group: root
-    mode: 766
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 776
 - name: (template) scp etc/elasticsearch/elasticsearch.yml.j2 /etc/elasticsearch/elasticsearch.yml
   template:
     src: etc/elasticsearch/elasticsearch.yml.j2
     dest: /etc/elasticsearch/elasticsearch.yml
-    owner: vagrant
-    group: vagrant
-    mode: 0766
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0776

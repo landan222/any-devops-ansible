@@ -1,5 +1,5 @@
 ---
 - import_tasks: yum-install-elasticsearch.yml
-- import_tasks: template-etc_elasticsearch_elasticsearch_yml.yml
-- import_tasks: template-etc_elasticsearch_logging_yml.yml
+# - import_tasks: template-etc_elasticsearch_elasticsearch_yml.yml
+# - import_tasks: template-etc_elasticsearch_logging_yml.yml
 - import_tasks: service-elasticsearch-started.yml
