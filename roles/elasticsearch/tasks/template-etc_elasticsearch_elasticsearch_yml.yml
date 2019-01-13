@@ -1,8 +1,8 @@
 ---
-- name: (template) scp etc/elasticsearch/logging.yml.j2 /etc/elasticsearch/logging.yml
+- name: (template) scp etc/elasticsearch/elasticsearch.yml.j2 /etc/elasticsearch/elasticsearch.yml
   template:
-    src: etc/elasticsearch/logging.yml.j2
-    dest: /etc/elasticsearch/logging.yml
+    src: etc/elasticsearch/elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
     owner: elasticsearch
     group: elasticsearch
     mode: 0776

@@ -1,20 +1,20 @@
 ---
-# - name: service elesticsearch enabled
-#   service:
-#     name: elesticsearch
-#     enabled: yes
-- name: (systemd) systemd elasticsearch restarted
-  systemd:
-    state: restarted
-    daemon_reload: yes
-    name: elasticsearch
+# - name: (systemd) systemd elasticsearch restarted
+#   systemd:
+#     state: restarted
+#     daemon_reload: yes
+#     name: elasticsearch
 - name: (service) service elasticsearch started
   service:
     name: elasticsearch
     state: started
     enabled: yes
-  notify: debug yum install elasticsearch
-# - name: Debug start nginx
-#   debug: 
-#     msg: 'The key value is !!'
-#   when: debug==true or debug==1
+    
+# 这里有个坑 
+# 一定要 service elasticsearch start 两次
+# 第二次 service elasticsearch start 无法用 ansible 模组
+- name: (shell) service elasticsearch start
+  shell: service elasticsearch start
+  
+- name: (shell) service elasticsearch status
+  shell: service elasticsearch status

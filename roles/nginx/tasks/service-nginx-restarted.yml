@@ -3,6 +3,7 @@
   service:
     name: nginx
     state: restarted
+  
 # - name: Debug start nginx
 #   debug: 
 #     msg: 'The key value is !!'
