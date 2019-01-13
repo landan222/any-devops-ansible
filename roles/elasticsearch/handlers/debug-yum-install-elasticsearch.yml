@@ -1,11 +1,4 @@
 ---
-- name: uri 127.0.0.1:9200
-  uri:
-    url: http://127.0.0.1:9200
-    method: GET
-    return_content: yes
-    status_code: 200
-  register: elasticsearch_version_string
 - name: debug yum install elasticsearch
   debug: 
     msg: "{{ elasticsearch_version_string }}"

@@ -9,6 +9,10 @@
     name: elasticsearch
     state: started
     enabled: yes
+  notify: debug yum install elasticsearch
+ 
+ 
+ 
     
 # 这里有个坑 
 # 一定要 service elasticsearch start 两次
@@ -18,3 +22,17 @@
   
 - name: (shell) service elasticsearch status
   shell: service elasticsearch status
+ 
+ # 这里有个坑 
+ # 需要等待一段时间 service 才会起来
+- name: (pause) sleep 1m
+  pause:
+    minutes: 1
+    
+- name: "(uri) curl {{ELASTICSEARCH.NETWORK_HOST}}:{{ELASTICSEARCH.HTTP_PORT}}"
+  uri:
+    url: "http://{{ELASTICSEARCH.NETWORK_HOST}}:{{ELASTICSEARCH.HTTP_PORT}}"
+    method: GET
+    return_content: yes
+    status_code: 200
+  register: elasticsearch_version_string
