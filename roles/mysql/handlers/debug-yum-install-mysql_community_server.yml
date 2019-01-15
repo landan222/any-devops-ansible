@@ -1,7 +1,7 @@
 ---
 - name: (shell) mysql --version
   shell: mysql --version
-  register: mysql_version_string
-- name: (debug) mysql_version_string
+  register: string_mysql_version
+- name: (debug) string_mysql_version
   debug: 
-    msg: "{{ mysql_version_string }}"
+    msg: "{{ string_mysql_version }}"

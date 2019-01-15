@@ -1,7 +1,7 @@
 ---
 - name: (shell) filebeat version
   shell: filebeat version
-  register: filebeat_version_string
-- name: (debug) filebeat_version_string
+  register: string_filebeat_version
+- name: (debug) string_filebeat_version
   debug: 
-    msg: "{{ filebeat_version_string }}"
+    msg: "{{ string_filebeat_version }}"

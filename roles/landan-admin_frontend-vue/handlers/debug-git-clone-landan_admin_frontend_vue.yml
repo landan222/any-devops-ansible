@@ -1,4 +1,4 @@
 ---
-- name: (debug) landan_admin_frontend_vue_version
+- name: (debug) string_landan_admin_frontend_vue_version
   debug: 
-    msg: "{{ landan_admin_frontend_vue_version }}"
+    msg: "{{ string_landan_admin_frontend_vue_version }}"

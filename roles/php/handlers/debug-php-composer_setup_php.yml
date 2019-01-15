@@ -1,7 +1,7 @@
 ---
 - name: (shell) composer --version
   shell: composer --version
-  register: composer_version_string
-- name: (debug) composer_version_string
+  register: string_composer_version
+- name: (debug) string_composer_version
   debug: 
-    msg: "{{ composer_version_string }}"
+    msg: "{{ string_composer_version }}"

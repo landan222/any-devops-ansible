@@ -1,4 +1,4 @@
 ---
 - name: debug yum install elasticsearch
   debug: 
-    msg: "{{ elasticsearch_version_string }}"
+    msg: "{{ string_elasticsearch_version }}"

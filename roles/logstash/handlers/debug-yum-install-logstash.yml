@@ -1,7 +1,7 @@
 ---
 - name: (shell) logstash --version
   shell: logstash --version
-  register: logstash_version_string
-- name: (debug) logstash_version_string
+  register: string_logstash_version
+- name: (debug) string_logstash_version
   debug: 
-    msg: "{{ logstash_version_string }}"
+    msg: "{{ string_logstash_version }}"

@@ -14,7 +14,7 @@ filter {
 }
 output {
   elasticsearch {
-    hosts => {{ OUTPUT.ELASTICSEARCH.HOSTS }}
+    hosts => ["{{ OUTPUT.ELASTICSEARCH.HOSTS[0] }}"]
     index => "log"
     document_type => "%{[type]}"
   }

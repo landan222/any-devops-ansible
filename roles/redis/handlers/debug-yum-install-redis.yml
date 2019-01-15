@@ -1,7 +1,7 @@
 ---
 - name: (shell) redis-server --version
   shell: redis-server --version
-  register: redis_version_string
-- name: (debug) redis_version_string
+  register: string_redis_version
+- name: (debug) string_redis_version
   debug: 
-    msg: "{{ redis_version_string }}"
+    msg: "{{ string_redis_version }}"

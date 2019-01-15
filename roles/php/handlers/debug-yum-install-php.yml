@@ -1,7 +1,7 @@
 ---
 - name: (shell) php -v
   shell: php -v
-  register: php_version_string
-- name: (debug) php_version_string
+  register: string_php_version
+- name: (debug) string_php_version
   debug: 
-    msg: "{{ php_version_string }}"
+    msg: "{{ string_php_version }}"
