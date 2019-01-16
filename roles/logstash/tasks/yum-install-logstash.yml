@@ -14,3 +14,6 @@
     force: True
     follow: False
   notify: debug yum install logstash
+  
+- name: (shell) /usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd
+  shell: /usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd

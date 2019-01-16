@@ -3,6 +3,7 @@
   service:
     name: logstash
     state: restarted
+  notify: debug yum install logstash
 # - name: Debug start nginx
 #   debug: 
 #     msg: 'The key value is !!'
