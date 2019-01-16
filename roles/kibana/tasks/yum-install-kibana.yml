@@ -7,7 +7,15 @@
   yum:
     name: https://artifacts.elastic.co/downloads/kibana/kibana-{{ kibana_version | default(6.5.4) }}-x86_64.rpm
   notify: debug yum install kibana
-    
+
+- name: "(file) ln -sf /usr/share/kibana/bin/kibana /usr/bin/kibana"  
+  file:
+    src: "/usr/share/kibana/bin/kibana"
+    dest: "/usr/bin/kibana"
+    state: link
+    force: True
+    follow: False
+  notify: debug yum install kibana
 # - name: yum install nginx
 #   yum:
 #     name: nginx
