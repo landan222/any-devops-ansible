@@ -1,3 +1,4 @@
+# kiban 必须要 elasticsearch 开启才有用
 - import_tasks: yum-install-kibana.yml
 - import_tasks: template-etc_kibana_kibana_yml.yml
 - import_tasks: service-kibana-restarted.yml

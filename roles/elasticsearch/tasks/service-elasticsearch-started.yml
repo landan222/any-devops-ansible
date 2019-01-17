@@ -9,9 +9,6 @@
     name: elasticsearch
     state: started
     enabled: yes
-  notify: debug yum install elasticsearch
- 
- 
  
     
 # 这里有个坑 
@@ -22,6 +19,7 @@
   
 - name: (shell) service elasticsearch status
   shell: service elasticsearch status
+  notify: debug yum install elasticsearch
  
  # 这里有个坑 
  # 需要等待一段时间 service 才会起来
@@ -35,4 +33,5 @@
     method: GET
     return_content: yes
     status_code: 200
-  register: elasticsearch_version_string
+  register: string_elasticsearch_version
+
