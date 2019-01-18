@@ -1,6 +1,6 @@
 ---
 - import_tasks: yum-install-php.yml
 - import_tasks: template-etc_php_ini.yml
-- import_tasks: copy-etc_php_fpm_d_www_conf.yml
+- import_tasks: template-etc_opt_remi_php_php_fpm_d_www_conf.yml
 - import_tasks: service-php_fpm-restarted.yml
 - import_tasks: php-r-composer_setup_php.yml

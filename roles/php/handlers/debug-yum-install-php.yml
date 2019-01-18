@@ -1,6 +1,6 @@
 ---
-- name: (shell) php -v
-  shell: php -v
+- name: "(shell) php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }} -v"
+  shell: "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }} -v"
   register: string_php_version
 - name: (debug) string_php_version
   debug: 

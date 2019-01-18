@@ -1,62 +1,57 @@
 ---
-- name: yum insatll epel.rpm
+- name: (yum) yum insatll epel-release-latest-7.noarch.rpm
   yum: 
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-- name: yum insatll remi.rpm
+- name: (yum) yum insatll remi.rpm
   yum: 
     name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-- name: yum install yum-utils
-  yum:
-    name: yum-utils
-    state: present
-- name: 'command yum-config-manager --disable remi-php'
-  command: "yum-config-manager --disable {{ item }}"
-  with_items:
-    - remi-php54
-    - remi-php55
-    - remi-php56
-    - remi-php70
-    - remi-php71
-    - remi-php72
-    - remi-php73
-  loop_control:
-    label: "yum-config-manager --disable {{ item }}"
 
-- name: "(command) yum-config-manager --enable remi-php"
-  command: "yum-config-manager --enable {{ item }}"
-  with_items:
-    - "remi-php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}"
-
-- name: (yum) yum remove php...
+- name: "(yum) yum remove php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}..."
   yum: 
-    name: php*
+    name: "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}"
     state: absent
 
-- name: (yum) yum install php...
+- name: "(yum) yum install php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}..."
   yum: 
     name:
-      - php
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}"
       # - php-memcached
-      - php-pdo
-      - php-pdo_mysql
-      - php-mcrypt 
-      - php-cli 
-      - php-gd 
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-pdo"
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-pdo_mysql"
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-mcrypt"
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-cli"
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-gd"
       # - php-curl 
-      - php-mysql 
-      - php-ldap 
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-mysql"
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-ldap"
       # - php-zip 
       # - php-fileinfo
-      - php-fpm
-      - php-common 
-      - php-devel 
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-fpm"
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-common" 
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-devel"
       # - php-pecl-json # php 5.6 没有
-      - php-mbstring 
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-mbstring" 
       # - php-mysqlnd 
-      - php-xml 
-      - php-xmlrpc 
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-xml"
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-xmlrpc" 
       # - php-opcache # php 5.6 没有
-      - php-pecl-xdebug # php 7.0 开始 可以 php-xdebug ， php 5.6 不可用 php-xdebug
-      - php-swoole
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-pecl-xdebug" # php 7.0 开始 可以 php-xdebug ， php 5.6 不可用 php-xdebug
+      - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-swoole"
     state: latest
   notify: debug yum install php
+  
+- name: "(file) ln -sf /usr/bin/php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }} /usr/bin/php"  
+  file:
+    src: "/usr/bin/php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}"
+    dest: "/usr/bin/php"
+    state: link
+    force: True
+    follow: False
+  
+- name: (user) adduer nginx
+  user:
+    name: nginx
+    comment: nginx
+    uid: 1001
+    group: nginx
+  ignore_errors: yes
