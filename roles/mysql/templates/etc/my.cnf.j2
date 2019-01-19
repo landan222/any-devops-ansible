@@ -37,6 +37,7 @@ validate-password=0
 {% elif mysql_version == '8.0' or mysql_version == '8.1' %}
 validate_password.dictionary_file=/usr/share/dict/words
 validate_password.length=4
+validate_password.policy=0
 validate_password.number_count=1
 {% endif %}
 

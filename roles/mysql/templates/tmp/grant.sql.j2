@@ -1,14 +1,15 @@
 ###
-
+ALTER USER '{{ CONNECTIONS[0]['USER'] }}'@'{{ CONNECTIONS[0]['HOST'] }}' IDENTIFIED BY '{{ CONNECTIONS[0]['PASSWORD'] }}';  
 {% for CONNECTION in CONNECTIONS %}
 
 {% if CONNECTION['drop_user'] == True %}
 DROP USER IF EXISTS '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}';
 {% endif %}
-CREATE USER '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}';
-GRANT ALL ON {{ CONNECTION['DATABASE'] }}.* TO '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}' IDENTIFIED BY '{{ CONNECTION['PASSWORD'] }}'{% if CONNECTION['with_grant_option'] == True %} WITH GRANT OPTION{% endif %};
+CREATE USER '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}'{% if mysql_version == '5.5' or mysql_version == '5.6' or mysql_version == '5.7'%}{% elif mysql_version == '8.0' or mysql_version == '8.1' %} IDENTIFIED BY '{{ CONNECTION['PASSWORD'] }}'{% endif %};
+GRANT ALL ON {{ CONNECTION['DATABASE'] }}.* TO '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}'{% if mysql_version == '5.5' or mysql_version == '5.6' or mysql_version == '5.7'%}IDENTIFIED BY '{{ CONNECTION['PASSWORD'] }}' {% elif mysql_version == '8.0' or mysql_version == '8.1' %}{% endif %}{% if CONNECTION['with_grant_option'] == True %} WITH GRANT OPTION{% endif %};
 
 {% endfor %}
+
 
 
 

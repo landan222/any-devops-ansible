@@ -14,13 +14,13 @@ CONNECTIONS:
     with_grant_option: true
     USER: 'root'
     HOST: 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-    PASSWORD: 'mysql_pass_localhost'
+    PASSWORD: 'mysql_pass_cli'
     DATABASE: '*'
   - drop_user: false
     with_grant_option: true
     USER: 'root'
     HOST: '127.0.0.1'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-    PASSWORD: 'mysql_pass_localhost'
+    PASSWORD: 'mysql_pass_cli'
     DATABASE: '*'
   - drop_user: true
     with_grant_option: true
@@ -37,6 +37,18 @@ CONNECTIONS:
   - drop_user: true
     with_grant_option: false
     USER: 'backend'
+    HOST: '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+    PASSWORD: 'mysql_pass_backend'
+    DATABASE: '*'
+  - drop_user: true
+    with_grant_option: false
+    USER: 'backend'
+    HOST: 'localhost'                # 提供 PHP GOLANG NODEJS 从 localhost 连取 localhost ，在 VN localhost
+    PASSWORD: 'mysql_pass_backend'
+    DATABASE: '*' 
+  - drop_user: true
+    with_grant_option: false
+    USER: 'backend'
     HOST: '10.0.0.21'                # 提供 PHP GOLANG NODEJS 从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
-    PASSWORD: 'mysql_pass'
+    PASSWORD: 'mysql_pass_backend'
     DATABASE: '*'
