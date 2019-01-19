@@ -7,7 +7,7 @@ UPDATE mysql.user SET authentication_string=PASSWORD('{{ CONNECTIONS[0]['PASSWOR
 {% endif %}
 
 {% if mysql_version == '8.0' or mysql_version == '8.1' %}
-UPDATE mysql.user SET authentication_string='{{ CONNECTIONS[0]['PASSWORD'] }}', password_expired = 'N' WHERE user='{{ CONNECTIONS[0]['USER'] }}';
+UPDATE mysql.user SET authentication_string='', password_expired = 'N' WHERE user='{{ CONNECTIONS[0]['USER'] }}';
 {% endif %}
 
 

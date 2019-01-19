@@ -1,15 +1,15 @@
 ---
 # - name: command mysql_upgrade --force -uroot
 #   command: mysql_upgrade --force -u root
-- name: (template) scp tmp/update_user.sql.j2 /tmp/update_user.sql
+- name: (template) scp tmp/alter_user.sql.j2 /tmp/alter_user.sql
   template:
-    src: tmp/update_user.sql.j2
-    dest: /tmp/update_user.sql
+    src: tmp/alter_user.sql.j2
+    dest: /tmp/alter_user.sql
     owner: vagrant
     group: vagrant
     mode: 0755
-- name: (shell) mysql --force < /tmp/update_user.sql
-  shell: mysql --force < /tmp/update_user.sql
+- name: "(shell) mysql --user={{ CONNECTIONS[0]['USER'] }} --password='' --force < /tmp/alter_user.sql"
+  shell: "mysql --user={{ CONNECTIONS[0]['USER'] }} --password='' --force < /tmp/alter_user.sql"
  # when: mysql_version == '5.5' or mysql_version == '5.6' or mysql_version == '5.7'
 # - name: (shell) mysqld --init-file=/tmp/update_user.sql
 #   shell: mysqld --init-file=/tmp/update_user.sql
