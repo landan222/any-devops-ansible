@@ -1,4 +1,9 @@
 ---
+- name: "(file) rm -Rf /etc/nginx/conf.d/*.conf"
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_fileglob: '/etc/nginx/conf.d/*.conf'
 - name: (template) scp etc/nginx/nginx.conf.j2 /etc/nginx/nginx.conf
   template:
     src: etc/nginx/nginx.conf.j2

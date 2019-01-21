@@ -1,0 +1,42 @@
+--- # 优先次序高
+CONFS:
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-service_backend-lumen/public'
+    SERVER_NAME: 'fea.landan.com'
+    PHP_VERSION: '5.6'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-admin_backend-lumen/public'
+    SERVER_NAME: 'fea.admin.landan.com'
+    PHP_VERSION: '7.3'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo53-php/'
+    SERVER_NAME: 'fea.phpinfo53.com'
+    PHP_VERSION: '5.3'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo54-php/'
+    SERVER_NAME: 'fea.phpinfo54.com'
+    PHP_VERSION: '5.4'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo55-php/'
+    SERVER_NAME: 'fea.phpinfo55.com'
+    PHP_VERSION: '5.5'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo56-php/'
+    SERVER_NAME: 'fea.phpinfo56.com'
+    PHP_VERSION: '5.6'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo70-php/'
+    SERVER_NAME: 'fea.phpinfo70.com'
+    PHP_VERSION: '7.0'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo71-php/'
+    SERVER_NAME: 'fea.phpinfo71.com'
+    PHP_VERSION: '7.1'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo72-php/'
+    SERVER_NAME: 'fea.phpinfo72.com'
+    PHP_VERSION: '7.2'
+  - HTTP_PORT: 80
+    ROOT: '/home/vagrant/www/landan-phpinfo73-php/'
+    SERVER_NAME: 'fea.phpinfo73.com'
+    PHP_VERSION: '7.3'

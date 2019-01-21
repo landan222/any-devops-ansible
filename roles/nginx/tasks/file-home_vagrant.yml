@@ -1,0 +1,8 @@
+---
+- name: (file) chmod -R 775 /home/vagrant
+  file:
+    path: /home/vagrant
+    owner: vagrant
+    group: vagrant
+    recurse: yes
+    mode: 0775

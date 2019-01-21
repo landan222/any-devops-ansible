@@ -1,7 +1,7 @@
 server {
     listen       {{ CONF['HTTP_PORT'] | default(80) }};
     listen       [::]:{{ CONF['HTTP_PORT'] | default(80) }};
-    server_name  {% if bra == 'mas' %}{% else %}{{ bra }}.{% endif %}{{ CONF['SERVER_NAME'] }};
+    server_name  {{ CONF['SERVER_NAME'] }};
     root         {{ CONF['ROOT'] }};
     index        index.html index.php index.htm;
 
@@ -13,11 +13,7 @@ server {
     }
  
     server_tokens off;
- 
-    location phpinfo.php {
-        
-    }
- 
+  
     location / {
         try_files $uri $uri/ /index.php;
     }
