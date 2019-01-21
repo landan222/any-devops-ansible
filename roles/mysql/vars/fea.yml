@@ -52,3 +52,9 @@ CONNECTIONS:
     HOST: '10.0.0.21'                # 提供 PHP GOLANG NODEJS 从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
     PASSWORD: 'mysql_pass_backend'
     DATABASE: '*'
+  - drop_user: true
+    with_grant_option: false
+    USER: 'replicat'
+    HOST: '10.0.0.21'                # 提供 PHP GOLANG NODEJS 从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
+    PASSWORD: 'mysql_pass_backend'
+    DATABASE: '*'
