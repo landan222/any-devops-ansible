@@ -2,4 +2,4 @@ filebeat.prospectors:
 - input_type: log
   paths: {{ FILEBEAT.PROSPECTORS.PATHS }}
 output.logstash:
-  hosts: {{ OUTPUT.LOGSTASH.HOSTS }}
+  hosts: {{ FILEBEAT.OUTPUT.LOGSTASH.HOSTS }}
