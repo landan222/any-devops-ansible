@@ -1,4 +1,5 @@
 ---
+- include_vars: "{{ bra | default('fea') }}.yml"
 - import_tasks: yum-install-elasticsearch.yml
 - import_tasks: template-etc_elasticsearch_elasticsearch_yml.yml
 - import_tasks: service-elasticsearch-started.yml
