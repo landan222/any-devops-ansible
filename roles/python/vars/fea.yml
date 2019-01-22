@@ -1,2 +1,2 @@
 --- # 优先次序高
-ERROR_REPORTING: 'E_ALL'
+python_version: '2.7'
