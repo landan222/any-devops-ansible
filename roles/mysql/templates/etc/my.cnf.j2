@@ -69,3 +69,7 @@ log_bin_trust_function_creators = 1 #将函数复制到slave
 [mysqldump]
 user={{ MYSQL.CONNECTIONS[0]['USER'] }}
 password={{ MYSQL.CONNECTIONS[0]['PASSWORD'] }}
+
+[client]
+user={{ MYSQL.CONNECTIONS[0]['USER'] }}
+password={{ MYSQL.CONNECTIONS[0]['PASSWORD'] }}
