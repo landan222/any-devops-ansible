@@ -1,0 +1,10 @@
+CREATE TABLE `landan`.`users` (
+  `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NULL,
+  `expired_time` DATETIME '2999-12-31 23:59:59',
+  `created_time` DATETIME '2000-01-01 00:00:00',
+  `updated_time` DATETIME '2000-01-01 00:00:00',
+  `deleted_time` DATETIME NULL,
+  PRIMARY KEY (`user_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4 PARTITION BY LINEAR HASH(user_id) PARTITIONS 8 ;
