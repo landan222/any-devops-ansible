@@ -5,11 +5,8 @@ MYSQL:
   BIND_ADDRESS: '0.0.0.0'
   CREATE_DATABASES:
     - landan
-    - vpn
-    - lorentz
-    - chatshier
-    - nouya
-    - legeo
+    - stupid
+    - fuck
   CONNECTIONS:
     - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
       with_grant_option: true
