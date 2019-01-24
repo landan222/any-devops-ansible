@@ -17,6 +17,8 @@ SHOW PROFILE FOR QUERY 3;
 
 LOAD DATA INFILE '/tmp/users.csv' INTO TABLE users;
 
+SELECT * FROM users INTO '/tmp/users.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
 ANALYZE TABLE users;
 
 CHECK TABLE users;
@@ -28,4 +30,5 @@ SELECT * FROM users PROCEDURE ANALYZE();
 EXPLAIN SELECT * FROM users;
 
 SHOW STATUS LIKE 'Handler_read%';
+
 
