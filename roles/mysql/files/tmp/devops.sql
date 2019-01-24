@@ -23,4 +23,9 @@ CHECK TABLE users;
 
 OPTIMIZE TABLE users;
  
- EXPLAIN SELECT * FROM users;
+SELECT * FROM users PROCEDURE ANALYZE();
+
+EXPLAIN SELECT * FROM users;
+
+SHOW STATUS LIKE 'Handler_read%';
+
