@@ -1,0 +1,1 @@
+mysqlimport -uroot test /tmp/users.txt --fields-terminated-by="," --lines-terminated-by="\r\n"
