@@ -49,9 +49,11 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 server_id = 1     
       
-log-bin = mysql-bin #开启二进制日志                  
+log-bin = /var/log/mysql-bin.log #开启二进制日志                  
 
-binlog-do-db = db #需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可     
+{% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
+binlog-do-db = {{ CREATE_DATABASE }} #需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可
+{% endfor %}
        
 log-slave-updates #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
     
