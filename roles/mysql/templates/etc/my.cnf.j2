@@ -49,7 +49,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 server_id = 1     
       
-log-bin = /var/log/mysql-bin.log #开启二进制日志                  
+log-bin = mysql-bin #开启二进制日志                  
 
 {% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
 binlog-do-db = {{ CREATE_DATABASE }} #需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可
