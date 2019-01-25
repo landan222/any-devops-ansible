@@ -1,6 +1,12 @@
+SHOW GLOBAL STATUS LIKE 'Com_%'; # 查詢全 session 服務器 Com 結果
+
+SHOW SESSION STATUS LIKE 'Com_%';       # 查詢 當下 session 服務器 Com 結果
+SHOW STATUS LIKE 'Com_%';
+
+
 SHOW BINLOG EVENTS;
 
-SHOW BINLOG EVENTS in 'MySQL-bin-00001';
+SHOW BINLOG EVENTS in 'mysql-bin-00001' FROM 101;
 
 SHOW ENGINES;
 
@@ -23,4 +29,4 @@ CHECK TABLE users;
 
 OPTIMIZE TABLE users;
  
- EXPLAIN SELECT * FROM users;
+EXPLAIN SELECT * FROM users;
