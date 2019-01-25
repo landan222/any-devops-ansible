@@ -57,6 +57,11 @@ binlog-do-db = {{ CREATE_DATABASE }} #需要复制的数据库名，如果复制
 binlog-ignore-db=information_schema
 binlog-ignore-db=performace_schema
 binlog-ignore-db=sys
+
+{% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
+#gtid_mode=ON
+#enforce-gtid-consistency=true
+{% endif %}
        
 log-slave-updates #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
     
