@@ -1,0 +1,12 @@
+---
+# - name: command mysql_upgrade --force -uroot
+#   command: mysql_upgrade --force -u root
+- name: (template) scp tmp/change_master.sql.j2 /tmp/change_master.sql
+  template:
+    src: tmp/change_master.sql.j2
+    dest: /tmp/change_master.sql
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+- name: "(shell) mysql --user={{ MYSQL.CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"
+  shell: "mysql --user={{ MYSQL.CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"

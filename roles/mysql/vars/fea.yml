@@ -1,6 +1,10 @@
 ---
 mysql_version: 5.6
 MYSQL:
+  HOSTS:
+    - IP: '10.0.0.61' # MASTER
+    - IP: '10.0.0.62' # SLAVE
+    - IP: '10.0.0.63' # SLAVE
   DATADIR: '/var/lib/mysql'
   BIND_ADDRESS: '0.0.0.0'
   CREATE_DATABASES:

@@ -1,10 +1,10 @@
 ---
 # - name: command mysql_upgrade --force -uroot
 #   command: mysql_upgrade --force -u root
-- name: (template) scp tmp/grant.sql.j2 /tmp/grant.sql
+- name: (template) scp tmp/grant.sql.j2 /tmp/grant.sql.j2.sql
   template:
     src: tmp/grant.sql.j2
-    dest: /tmp/grant.sql
+    dest: /tmp/grant
     owner: vagrant
     group: vagrant
     mode: 0755

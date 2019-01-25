@@ -15,3 +15,4 @@
 - import_tasks: service-mysqld-restarted.yml
 - import_tasks: shell-mysql-tmp_grant_sql.yml
 - import_tasks: shell-mysql-tmp_alter_user_sql.yml
+- import_tasks: shell-mysql-tmp_change_master_sql.yml
