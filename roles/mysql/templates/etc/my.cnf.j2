@@ -47,13 +47,16 @@ log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 {% endif %}
 
-server_id = 1     
+server_id = {{ groups[bra ~ '_mysql'].index(inventory_hostname) + 1 }}    
       
 log-bin = mysql-bin #开启二进制日志                  
 
 {% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
 binlog-do-db = {{ CREATE_DATABASE }} #需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可
 {% endfor %}
+binlog-ignore-db=information_schema
+binlog-ignore-db=performace_schema
+binlog-ignore-db=sys
        
 log-slave-updates #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
     

@@ -97,6 +97,6 @@ MYSQL:
         - 'REPLICATION SLAVE'
         - 'REPLICATION CLIENT'
       USER: 'replicator'
-      HOST: '10.0.0.21'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
+      HOST: '10.0.0.62'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
       PASSWORD: 'mysql_pass_replicator'
       DATABASE: '*'
