@@ -3,7 +3,7 @@ CHANGE MASTER TO MASTER_HOST='{{ MYSQL.HOSTS[0].IP }}',
                  MASTER_USER='replicator', 
                  MASTER_PASSWORD='mysql_pass_replicator', 
                  MASTER_LOG_FILE='mysql-bin.000001', 
-                 MASTER_LOG_POS=5577;
+                 MASTER_LOG_POS=5821;
                  
 START SLAVE;
 SHOW SLAVE STATUS;

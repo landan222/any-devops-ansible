@@ -10,9 +10,10 @@
 - import_tasks: service-mysqld-restarted.yml
 - import_tasks: shell-mysql-tmp_update_user_sql.yml
 - import_tasks: service-mysqld-restarted.yml
-- import_tasks: shell-mysql-tmp_create_sql.yml
-- import_tasks: template-etc_my_cnf.yml
+- import_tasks: template-etc_my_cnf.yml # 之後的 MySQL 才會寫 BINLOG 
 - import_tasks: service-mysqld-restarted.yml
 - import_tasks: shell-mysql-tmp_grant_sql.yml
 - import_tasks: shell-mysql-tmp_alter_user_sql.yml
+- import_tasks: shell-mysql-tmp_create_sql.yml
+- import_tasks: shell-mysql-tmp_landan_sql.yml
 - import_tasks: shell-mysql-tmp_change_master_sql.yml
