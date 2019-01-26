@@ -1,5 +1,6 @@
 ---
 mysql_version: 5.6
+mysql_ha: 'master-slave' # master-slave, mmm, cluster, mha, mmm-cluster
 MYSQL:
   GTID: yes
   HOSTS:

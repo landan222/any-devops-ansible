@@ -1,0 +1,15 @@
+---
+- name: "(git) git clone git@www.gitlab.com:root/admin168.git"
+  git:
+    repo: 'git@www.gitlab.com:root/admin168.git'
+    dest: "{{ ADMIN168.DEST }}"
+    version: "v/1.0"
+    clone: yes
+    update: yes
+    accept_hostkey: yes
+  become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
+  register: admin168_version
+  notify: debug git clone admin168_version
+# chmod -R 700 /root/.ssh/id_rsa
+# chmod -R 700 /root/.ssh/id_rsa.pub
+# key must be put in root because sudo git clone

@@ -12,4 +12,4 @@
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook admin168g ends'
+    - shell: echo 'playbook admin168 ends'

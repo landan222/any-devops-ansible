@@ -1,3 +1,5 @@
+SELECT VERSION();
+
 SHOW GLOBAL STATUS LIKE 'Com_%';        # 查詢全 session 服務器 Com 結果
 
 SHOW SESSION STATUS LIKE 'Com_%';       # 查詢 當下 session 服務器 Com 結果

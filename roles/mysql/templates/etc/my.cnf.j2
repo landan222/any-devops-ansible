@@ -57,14 +57,10 @@ binlog-do-db = {{ CREATE_DATABASE }} #需要复制的数据库名，如果复制
 binlog-ignore-db=information_schema
 binlog-ignore-db=performace_schema
 binlog-ignore-db=sys
-
-{% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
-#gtid_mode=ON
-#enforce-gtid-consistency=true
-{% endif %}
        
 log-slave-updates #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
-    
+binlog_format=row
+
 sync_binlog = 1 #控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
  
 auto_increment_offset = 1 #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
@@ -78,6 +74,13 @@ log_bin_trust_function_creators = 1 #将函数复制到slave
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 %}
 read-only=1    # GRANT 含 SUPER 的 才可以 改寫 db 
 {% endif %}
+
+{% if (mysql_version == '5.7' or mysql_version == '8.0') %}
+gtid_executed_compression_period    =1000                      
+gtid_mode                           =on                     
+enforce_gtid_consistency            =on
+{% endif %}
+
 
 [mysqldump]
 user={{ MYSQL.CONNECTIONS[0]['USER'] }}
