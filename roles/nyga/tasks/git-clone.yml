@@ -1,15 +1,15 @@
 ---
-- name: "(git) git clone git@www.gitlab.com:root/admin168.git"
+- name: "(git) git clone git@www.gitlab.com:izumi/nyga.git"
   git:
-    repo: 'git@www.gitlab.com:root/admin168.git'
-    dest: "{{ ADMIN168.DEST }}"
+    repo: 'git@www.gitlab.com:izumi/nyga.git'
+    dest: "{{ NYGA.DEST }}"
     version: "v/1.0"
     clone: yes
     update: yes
     accept_hostkey: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
-  register: string_admin168_version
-  notify: debug git clone string_admin168_version
+  register: string_nyga_version
+  notify: debug git clone string_nyga_version
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
 # key must be put in root because sudo git clone

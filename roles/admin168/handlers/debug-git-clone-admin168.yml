@@ -1,0 +1,4 @@
+---
+- name: (debug) string_admin168_version
+  debug: 
+    msg: "{{ string_admin168_version }}"

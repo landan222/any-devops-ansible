@@ -1,0 +1,4 @@
+---
+- name: (debug) string_nyga_version
+  debug: 
+    msg: "{{ string_nyga_version }}"

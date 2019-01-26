@@ -1,4 +1,4 @@
 ---
-- name: debug git clone landan-admin_frontend-vue
-  import_tasks: debug-git-clone-landan_admin_frontend_vue.yml
+- name: debug git clone string_admin168_version
+  import_tasks: debug-git-clone-admin168.yml
   #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen
