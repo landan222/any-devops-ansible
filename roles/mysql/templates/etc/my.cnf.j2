@@ -76,7 +76,7 @@ expire_logs_days = 7 #二进制日志自动删除的天数，默认值为0,表�
 log_bin_trust_function_creators = 1 #将函数复制到slave  
 
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 %}
-read-only=1
+read-only=1    # GRANT 含 SUPER 的 才可以 改寫 db 
 {% endif %}
 
 [mysqldump]
