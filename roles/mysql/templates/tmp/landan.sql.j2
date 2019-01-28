@@ -135,11 +135,12 @@
 
 -- END ;;
 -- DELIMITER ;
-
+-- e888d1bd26527e20a14083635f7ba65662c8ad0a15d9d1ca38d5dee762a16e0194273db6f1a3e5b9b434e7b2bb350dff = md5('landan' . 'LANDAN_PASSWORD_KEY') . md5('1234qwer') . md5( strrev(md5('1234qwer' . 'LANDAN_PASSWORD_KEY')) );
 
 CREATE TABLE `landan`.`users` (
   `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NULL,
+  `name` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
+  `password` VARCHAR(64) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NULL, # md5(users.name . KEY). md5(md5(users.password) . strrev(md5(users.password . KEY)))
   `expired_time` DATETIME NOT NULL DEFAULT '2100-01-01 00:00:00',
   `created_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
@@ -150,7 +151,7 @@ DEFAULT CHARACTER SET = utf8mb4 PARTITION BY LINEAR HASH(user_id) PARTITIONS 8 ;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-# INSERT INTO `a2` VALUES (17,4,'韩国1.5分彩加奖周 优惠根本停不下来',0,1,0,1,0,0,0,54,'damon',1,'system','2016-08-01 00:00:00','2016-08-07 23:59:00',NULL,0,'{\"get_condition\":\"null\",\"lotteries_set\":{\"set_type\":1,\"lotteries\":\"13\"},\"auto_send\":1,\"get_rules\":{\"800\":8,\"2000\":18,\"5000\":68,\"8000\":108,\"20000\":288,\"50000\":688,\"100000\":1388}}',NULL,NULL,NULL,0,0,'',3,'2016-07-29 16:34:18','2016-08-18 15:59:24',2,'39,42','2016-08-01 00:00:00','2016-08-10 23:59:00');
+INSERT INTO `users` (user_id, name, password) VALUES (1,'landan','e888d1bd26527e20a14083635f7ba65662c8ad0a15d9d1ca38d5dee762a16e0194273db6f1a3e5b9b434e7b2bb350dff');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

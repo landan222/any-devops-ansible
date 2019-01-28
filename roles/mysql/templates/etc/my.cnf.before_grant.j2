@@ -19,11 +19,11 @@
 # join_buffer_size = 128M
 # sort_buffer_size = 2M
 # read_rnd_buffer_size = 2M
-datadir={{ MYSQL.DATADIR }}
-socket=/var/lib/mysql/mysql.sock
+datadir = {{ MYSQL.DATADIR }}
+socket = /var/lib/mysql/mysql.sock
 
 # Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links=0
+symbolic-links = 0
 
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
@@ -31,22 +31,22 @@ symbolic-links=0
 
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
 # mysql 5.7 以後版本, 預設有安全密碼
-skip-grant-tables=1
-skip-networking=1
-log-error=/var/log/mysqld.log
-pid-file=/var/run/mysqld/mysqld.pid
+skip-grant-tables = 1
+skip-networking = 1
+log-error = /var/log/mysqld.log
+pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
 {% if mysql_version == '5.5' or mysql_version == '5.6' %}
 [mysqld_safe]
-log-error=/var/log/mysqld.log
-pid-file=/var/run/mysqld/mysqld.pid
+log-error = /var/log/mysqld.log
+pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
 [mysqldump]
-user={{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
-password={{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
+password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
 
 [client]
-user={{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
-password={{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
+password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
