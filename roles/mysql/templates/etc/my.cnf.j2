@@ -49,14 +49,20 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 server_id = {{ groups[bra ~ '_mysql'].index(inventory_hostname) + 1 }}    
       
+{% if (mysql_version == '5.7' or mysql_version == '8.0') %}
+gtid_executed_compression_period    =1000                      
+gtid_mode                           =on                     
+enforce_gtid_consistency            =on
+{% endif %}
+
 log-bin = mysql-bin #开启二进制日志                  
 
 {% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
-binlog-do-db = {{ CREATE_DATABASE }} #需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可
+binlog-do-db = {{ CREATE_DATABASE }}
 {% endfor %}
-binlog-ignore-db=information_schema
-binlog-ignore-db=performace_schema
-binlog-ignore-db=sys
+binlog-ignore-db = information_schema
+binlog-ignore-db = performace_schema
+binlog-ignore-db = sys
        
 log-slave-updates #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
 binlog_format=row
@@ -74,13 +80,6 @@ log_bin_trust_function_creators = 1 #将函数复制到slave
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 %}
 read-only=1    # GRANT 含 SUPER 的 才可以 改寫 db 
 {% endif %}
-
-{% if (mysql_version == '5.7' or mysql_version == '8.0') %}
-gtid_executed_compression_period    =1000                      
-gtid_mode                           =on                     
-enforce_gtid_consistency            =on
-{% endif %}
-
 
 [mysqldump]
 user={{ MYSQL.CONNECTIONS[0]['USER'] }}
