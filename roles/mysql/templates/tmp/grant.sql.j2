@@ -1,5 +1,7 @@
 ###
-{% for CONNECTION in MYSQL.CONNECTIONS %}
+{% set i =  groups[bra ~ '_mysql'].index(inventory_hostname) %}
+
+{% for CONNECTION in MYSQL.HOSTS[i].CONNECTIONS %}
 
 {% if CONNECTION['drop_user'] == True %}
 DROP USER IF EXISTS '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}';

@@ -1,3 +1,5 @@
+{% set i =  groups[bra ~ '_mysql'].index(inventory_hostname) %}
+
 # For advice on how to change settings please see
 # http://dev.mysql.com/doc/refman/5.5/en/server-configuration-defaults.html
 
@@ -42,5 +44,9 @@ pid-file=/var/run/mysqld/mysqld.pid
 {% endif %}
 
 [mysqldump]
-user={{ MYSQL.CONNECTIONS[0]['USER'] }}
-password={{ MYSQL.CONNECTIONS[0]['PASSWORD'] }}
+user={{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
+password={{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+
+[client]
+user={{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
+password={{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}

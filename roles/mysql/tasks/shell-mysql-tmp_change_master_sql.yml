@@ -7,6 +7,7 @@
     dest: /tmp/change_master.sql
     owner: vagrant
     group: vagrant
-    mode: 0755
-- name: "(shell) mysql --user={{ MYSQL.CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"
-  shell: "mysql --user={{ MYSQL.CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"
+- name: (set_fact) 
+  set_fact: "i='{{ groups[bra ~ '_mysql'].index(inventory_hostname) }}'"
+- name: "(shell) mysql --user={{ MYSQL.HOSTS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.HOSTS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"
+  shell: "mysql --user={{ MYSQL.HOSTS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.HOSTS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"
