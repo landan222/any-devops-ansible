@@ -16,4 +16,5 @@
 - import_tasks: shell-mysql-tmp_alter_user_sql.yml
 - import_tasks: shell-mysql-tmp_create_sql.yml
 - import_tasks: shell-mysql-tmp_landan_sql.yml
+- import_tasks: shell-mysql-tmp_cms_sql.yml
 - import_tasks: shell-mysql-tmp_change_master_sql.yml

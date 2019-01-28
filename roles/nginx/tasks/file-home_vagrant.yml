@@ -4,5 +4,4 @@
     path: /home/vagrant
     owner: vagrant
     group: vagrant
-    recurse: yes
     mode: 0775
