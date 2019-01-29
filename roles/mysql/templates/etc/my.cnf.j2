@@ -66,7 +66,7 @@ binlog-ignore-db = information_schema
 binlog-ignore-db = performace_schema
 binlog-ignore-db = sys
        
-log-slave-updates #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
+log-slave-updates = 1 #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
 binlog_format = row
 
 sync_binlog = 1 #控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
@@ -77,6 +77,13 @@ log_bin_trust_function_creators = 1 #将函数复制到slave
 
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 %}
 read-only = 1    # GRANT 含 SUPER 的 才可以 改寫 db 
+{% endif %}
+
+# 二级 master 使用 BACKHOLE engine
+{% if mysql_ha == 'master-master-slave' and groups[bra ~ '_mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.HOSTS[i].ENGINE is undefined %}
+default_storage_engine = BLACKHOLE
+{% else %}
+default_storage_engine = {{ MYSQL.HOSTS[i].ENGINE }}
 {% endif %}
 
 [mysqldump]

@@ -11,6 +11,7 @@ MYSQL:
   GTID: yes
   HOSTS:
     - HOST: '10.0.0.81' # MASTER
+      ENGINE: 'InnoDB'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
           with_grant_option: true
@@ -159,6 +160,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.82' # SLAVE
+      ENGINE: 'BLACKHOLE'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
           with_grant_option: true
@@ -266,6 +268,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.83' # SLAVE
+      ENGINE: 'InnoDB'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
           with_grant_option: true

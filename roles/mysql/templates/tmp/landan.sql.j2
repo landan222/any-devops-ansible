@@ -136,6 +136,8 @@
 -- END ;;
 -- DELIMITER ;
 -- e888d1bd26527e20a14083635f7ba65662c8ad0a15d9d1ca38d5dee762a16e0194273db6f1a3e5b9b434e7b2bb350dff = md5('landan' . 'LANDAN_PASSWORD_KEY') . md5('1234qwer') . md5( strrev(md5('1234qwer' . 'LANDAN_PASSWORD_KEY')) );
+
+# 需要指定 使用的 database, 才知道 是不是该忽略 binglog 复制
 USE `landan`;
 
 CREATE TABLE `users` (
@@ -147,7 +149,7 @@ CREATE TABLE `users` (
   `updated_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `deleted_time` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`))
-ENGINE = InnoDB
+-- ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4 PARTITION BY LINEAR HASH(user_id) PARTITIONS 8 ;
 
 

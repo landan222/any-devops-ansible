@@ -10,7 +10,7 @@ NGINX:
       SERVER_NAME: 'fea.admin.landan.com'
       PHP_VERSION: '7.3'
     - HTTP_PORT: 80
-      ROOT: '/home/vagrant/www/cms-service_admin_backend-dm2018/'
+      ROOT: '/home/vagrant/www/cms-service_admin_backend-demososo/'
       SERVER_NAME: 'fea.cms.com'
       PHP_VERSION: '7.3'
     - HTTP_PORT: 80
