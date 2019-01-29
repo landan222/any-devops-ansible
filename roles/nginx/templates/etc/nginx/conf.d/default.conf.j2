@@ -1,3 +1,5 @@
+#jinja2: lstrip_blocks: True
+
 server {
     listen       {{ CONF['HTTP_PORT'] | default(80) }};
     listen       [::]:{{ CONF['HTTP_PORT'] | default(80) }};
@@ -5,6 +7,12 @@ server {
     root         {{ CONF['ROOT'] }};
     index        index.html index.php index.htm;
 
+    {% if CONF.REWRITES is defined %}
+    {% for REWRITE in CONF.REWRITES %}
+    rewrite      {{ REWRITE }};
+    {% endfor %}
+    {% endif %}
+    
     # Load configuration files for the default server block.
 
     location ~* \.(ico|css|js|gif|jpe?g|png|ogg|ogv|svg|svgz|eot|otf|woff)(\?.+)?$ {

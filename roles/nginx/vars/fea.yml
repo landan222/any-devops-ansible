@@ -12,6 +12,19 @@ NGINX:
     - HTTP_PORT: 80
       ROOT: '/home/vagrant/www/cms-service_admin_backend-demososo/'
       SERVER_NAME: 'fea.cms.com'
+      REWRITES:
+        - '^/404.html /index.php?file=404'
+        - '^/index.html /index.php?file=404'
+        - '"^/category-([0-9]{1,}).html$" /index.php?routeid=$1&ifalias=n&file=category&page=1'
+        - '"^/category-([0-9]{1,})-([0-9]{1,}).html$" /index.php?routeid=$1&ifalias=n&file=category&page=$2'
+        - '"^/detail-([0-9]{1,}).html$" /index.php?detailid=$1&ifalias=n&file=category'
+        - '"^/tag-([0-9]{1,}).html$" /index.php?routeid=$1&ifalias=n&file=tag&page=1'
+        - '"^/tag-([0-9]{1,})-([0-9]{1,}).html$" /index.php?routeid=$1&ifalias=n&file=tag&page=$2'
+        - '"^/dmlink-([a-z0-9A-Z_]{1,})-([a-z0-9A-Z_]{1,})-([a-z0-9A-Z_]{1,}).html$" /index.php?file=$1&alias=$2&page=$3'
+        - '"^/page-([0-9]{1,}).html$" /index.php?routeid=$1&ifalias=n&file=page&page=1'
+        - '^/baidumap.html$ /index.php?routeid=$1&ifalias=n&file=baidumap&page=1'
+        - '"^/([a-z0-9A-Z_]{1,}).html$" /index.php?alias=$1&ifalias=y&file=alias&page=1'
+        - '"^/([a-z0-9A-Z_]{1,})-([0-9]{1,}).html$" /index.php?alias=$1&ifalias=y&file=alias&page=$2'
       PHP_VERSION: '7.3'
     - HTTP_PORT: 80
       ROOT: '/home/vagrant/www/phpinfo53-php/'
