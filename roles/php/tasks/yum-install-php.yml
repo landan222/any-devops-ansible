@@ -47,7 +47,10 @@
     state: link
     force: True
     follow: False
-  
+- name: (group) groupadd nginx
+  group:
+    name: nginx
+    state: present
 - name: (user) adduer nginx
   user:
     name: nginx
