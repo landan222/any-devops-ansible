@@ -1,4 +1,4 @@
 - import_tasks: yum-install-memcached.yml
-- import_tasks: service-firewalld-restarted.yml
+# - import_tasks: service-firewalld-restarted.yml
 - import_tasks: template-etc_sysconfig_memcached.yml
 - import_tasks: service-memcached-restarted.yml
