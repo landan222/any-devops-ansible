@@ -1,0 +1,18 @@
+---
+- name: "(template) scp etc/opt/remi/php/php.ini.j2 /etc/opt/remi/php/php.ini"
+  template:
+    src: etc/opt/remi/php/php.ini.j2
+    dest: "/etc/opt/remi/php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}/php.ini"
+    owner: vagrant
+    group: vagrant
+    mode: 0766
+    backup: no
+       
+# - name: (template) scp etc/php.d/xdebug.ini.j2 /etc/php.d/xdebug.ini
+#   template:
+#     src: etc/php.d/xdebug.ini.j2
+#     dest: /etc/php.d/xdebug.ini
+#     owner: vagrant
+#     group: vagrant
+#     mode: 0766
+#     backup: 

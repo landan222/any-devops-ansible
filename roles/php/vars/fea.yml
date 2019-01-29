@@ -2,3 +2,6 @@
 php_version: '5.6'
 PHP:
   ERROR_REPORTING: 'E_ALL'
+  SESSION:
+    SAVE_HANDLER: 'memcached'
+    SAVE_PATH: '127.0.0.1:11211'
