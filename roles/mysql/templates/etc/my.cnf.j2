@@ -100,6 +100,9 @@ max_allowed_packet = 64M
 max_connect_errors = 1000
 back_log = 1000                                          # 指出在MySQL暂时停止响应新请求之前，短时间内的多少个请求
 open_files_limit = 1024                                  # 打开文件的最大个数，如果出现too mantopen files之类的就需要调整该值了
+max_allowed_packet = 8M                                  #服务器一次能处理的最大的查询包的值
+wait_timeout = 360                                       #指定一个请求的最大连接时间
+interactive_timeout = 360                                #连接保持活动的时间
 
 [mysqldump]
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
