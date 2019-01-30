@@ -5,8 +5,8 @@
 
 [mysqld]
 
-#external-locking = FALSE                                   #避免外部锁定(减少出错几率，增加稳定性)
-#skip-name-resolv                                           #禁止外部连接进行DNS解析
+#external-locking = FALSE                                   # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
+#skip-name-resolv                                           # 5.7 不作用, 禁止外部连接进行DNS解析
 
 #
 # Remove leading # and set to the amount of RAM for the most important data
@@ -23,7 +23,7 @@ innodb_buffer_pool_size = 128M
 datadir = {{ MYSQL.DATADIR }}
 socket = /var/lib/mysql/mysql.sock
 character-set-server = utf8mb4
-collation-server = utf8mb4_general_ci                         #设置校对规则
+collation-server = utf8mb4_general_ci                         # 设置校对规则
 symbolic-links = 0                                            # Disabling symbolic-links is recommended to prevent assorted security risks
 
 # Recommended in standard MySQL setup
@@ -66,8 +66,8 @@ binlog-cache-size = 32M                #设置二进制日志缓存大小
 sync_binlog = 1                        #控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
 auto_increment_offset = 1              #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
 auto_increment_increment = 1           #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
-max_binlog_cache_size = 8M                                 #最大的二进制Cache日志缓冲尺寸
-max_binlog_size = 1G                                       #单个二进制日志文件的最大值，默认1G，最大1G
+max_binlog_cache_size = 8M             #最大的二进制Cache日志缓冲尺寸
+max_binlog_size = 1G                   #单个二进制日志文件的最大值，默认1G，最大1G
 expire_logs_days = 7                   #二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
 log_bin_trust_function_creators = 1    #将函数复制到slave  
 
@@ -83,6 +83,7 @@ relay-log = relay-bin                                      # relay目录
 relay-log-info-file = relay-log.info                       # info目录
 slave-skip-errors = 1007,1008,1032,1062                    # 跳过主从复制时的错误
 read-only = 1                                              # GRANT 含 SUPER 的 才可以 改寫 db 
+#master-connect-retry = 30                                 # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
 {% endif %}
 
 # 二级 master 使用 BACKHOLE engine
@@ -97,7 +98,8 @@ wait_timeout = 28800
 max_connections = 100000
 max_allowed_packet = 64M
 max_connect_errors = 1000
-
+back_log = 1000                                          # 指出在MySQL暂时停止响应新请求之前，短时间内的多少个请求
+open_files_limit = 1024                                  # 打开文件的最大个数，如果出现too mantopen files之类的就需要调整该值了
 
 [mysqldump]
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
