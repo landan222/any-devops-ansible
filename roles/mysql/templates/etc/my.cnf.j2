@@ -19,11 +19,11 @@
 # join_buffer_size = 128M
 # sort_buffer_size = 2M
 # read_rnd_buffer_size = 2M
-datadir={{ MYSQL.DATADIR }}
-socket=/var/lib/mysql/mysql.sock
-character-set-server=utf8mb4
-# Disabling symbolic-links is recommended to prevent assorted security risks
-symbolic-links = 0
+datadir = {{ MYSQL.DATADIR }}
+socket = /var/lib/mysql/mysql.sock
+character-set-server = utf8mb4
+collation-server = utf8mb4_general_ci                         #设置校对规则
+symbolic-links = 0                                            # Disabling symbolic-links is recommended to prevent assorted security risks
 
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
@@ -66,18 +66,17 @@ binlog-ignore-db = information_schema
 binlog-ignore-db = performace_schema
 binlog-ignore-db = sys
        
-log-slave-updates = 1 #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
+log-slave-updates = 1                  #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
 binlog_format = row
 
-sync_binlog = 1 #控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
-auto_increment_offset = 1 #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
-auto_increment_increment = 1 #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
-expire_logs_days = 7 #二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
-log_bin_trust_function_creators = 1 #将函数复制到slave  
+sync_binlog = 1                        #控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
+auto_increment_offset = 1              #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
+auto_increment_increment = 1           #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
+expire_logs_days = 7                   #二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
+log_bin_trust_function_creators = 1    #将函数复制到slave  
 
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 %}
-read-only = 1    # GRANT 含 SUPER 的 才可以 改寫 db 
-master-connect-retry = 30
+read-only = 1                          # GRANT 含 SUPER 的 才可以 改寫 db 
 {% endif %}
 
 # 二级 master 使用 BACKHOLE engine
@@ -86,6 +85,13 @@ default_storage_engine = BLACKHOLE
 {% else %}
 default_storage_engine = {{ MYSQL.HOSTS[i].ENGINE }}
 {% endif %}
+
+connect_timeout = 60
+wait_timeout = 28800
+max_connections = 100000
+max_allowed_packet = 64M
+max_connect_errors = 1000
+
 
 [mysqldump]
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
