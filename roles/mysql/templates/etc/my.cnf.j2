@@ -4,6 +4,10 @@
 # http://dev.mysql.com/doc/refman/5.5/en/server-configuration-defaults.html
 
 [mysqld]
+
+#external-locking = FALSE                                   #避免外部锁定(减少出错几率，增加稳定性)
+#skip-name-resolv                                           #禁止外部连接进行DNS解析
+
 #
 # Remove leading # and set to the amount of RAM for the most important data
 # cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
@@ -54,7 +58,18 @@ gtid_mode = on
 enforce_gtid_consistency = on
 {% endif %}
 
-log-bin = mysql-bin #开启二进制日志                  
+log-bin = mysql-bin                    #开启二进制日志                  
+log-bin-index = mysql-bin.index      
+log-slave-updates = 1                  #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
+binlog_format = row
+binlog-cache-size = 32M                #设置二进制日志缓存大小
+sync_binlog = 1                        #控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
+auto_increment_offset = 1              #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
+auto_increment_increment = 1           #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
+max_binlog_cache_size = 8M                                 #最大的二进制Cache日志缓冲尺寸
+max_binlog_size = 1G                                       #单个二进制日志文件的最大值，默认1G，最大1G
+expire_logs_days = 7                   #二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
+log_bin_trust_function_creators = 1    #将函数复制到slave  
 
 {% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
 binlog-do-db = {{ CREATE_DATABASE }}
@@ -62,15 +77,6 @@ binlog-do-db = {{ CREATE_DATABASE }}
 binlog-ignore-db = information_schema
 binlog-ignore-db = performace_schema
 binlog-ignore-db = sys
-       
-log-slave-updates = 1                  #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
-binlog_format = row
-
-sync_binlog = 1                        #控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
-auto_increment_offset = 1              #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
-auto_increment_increment = 1           #这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
-expire_logs_days = 7                   #二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
-log_bin_trust_function_creators = 1    #将函数复制到slave  
 
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 %}
 read-only = 1                          # GRANT 含 SUPER 的 才可以 改寫 db 
@@ -97,3 +103,7 @@ password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
 [client]
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
 password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+default-character-set = utf8mb4
+
+[mysql]
+no-auto-rehash                                            # 仅允许使用键值的updates和deletes
