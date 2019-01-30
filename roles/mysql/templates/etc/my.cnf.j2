@@ -8,6 +8,10 @@
 #external-locking = FALSE                                   # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
 #skip-name-resolv                                           # 5.7 不作用, 禁止外部连接进行DNS解析
 
+
+
+#########################基本设置#########################
+server_id = {{ groups[bra ~ '_mysql'].index(inventory_hostname) + 1 }}
 #
 # Remove leading # and set to the amount of RAM for the most important data
 # cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
@@ -20,11 +24,13 @@ innodb_buffer_pool_size = 128M
 # join_buffer_size = 128M
 # sort_buffer_size = 2M
 # read_rnd_buffer_size = 2M
+
 datadir = {{ MYSQL.DATADIR }}
 socket = /var/lib/mysql/mysql.sock
 character-set-server = utf8mb4
 collation-server = utf8mb4_general_ci                         # 设置校对规则
 symbolic-links = 0                                            # Disabling symbolic-links is recommended to prevent assorted security risks
+lower_case_table_names = 1
 
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
@@ -50,14 +56,12 @@ log-error = /var/log/mysqld.log
 pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
-server_id = {{ groups[bra ~ '_mysql'].index(inventory_hostname) + 1 }}    
-      
+#########################Binlog 相关#########################
 {% if (mysql_version == '5.7' or mysql_version == '8.0') %}
 gtid_executed_compression_period = 1000                      
 gtid_mode = on                     
 enforce_gtid_consistency = on
 {% endif %}
-
 log-bin = mysql-bin                    #开启二进制日志                  
 log-bin-index = mysql-bin.index      
 log-slave-updates = 1                  #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
@@ -93,6 +97,7 @@ default_storage_engine = BLACKHOLE
 default_storage_engine = {{ MYSQL.HOSTS[i].ENGINE }}
 {% endif %}
 
+#########################连接相关#########################
 connect_timeout = 60
 wait_timeout = 28800
 max_connections = 100000
@@ -100,9 +105,13 @@ max_allowed_packet = 64M
 max_connect_errors = 1000
 back_log = 1000                                          # 指出在MySQL暂时停止响应新请求之前，短时间内的多少个请求
 open_files_limit = 1024                                  # 打开文件的最大个数，如果出现too mantopen files之类的就需要调整该值了
-max_allowed_packet = 8M                                  #服务器一次能处理的最大的查询包的值
-wait_timeout = 360                                       #指定一个请求的最大连接时间
-interactive_timeout = 360                                #连接保持活动的时间
+max_allowed_packet = 8M                                  # 服务器一次能处理的最大的查询包的值
+wait_timeout = 360                                       # 指定一个请求的最大连接时间
+interactive_timeout = 360                                # 连接保持活动的时间
+
+#########################访问日志#########################
+general_log = on
+general_log_file = mysql-access.log
 
 [mysqldump]
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
