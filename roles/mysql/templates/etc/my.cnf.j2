@@ -79,7 +79,10 @@ binlog-ignore-db = performace_schema
 binlog-ignore-db = sys
 
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 %}
-read-only = 1                          # GRANT 含 SUPER 的 才可以 改寫 db 
+relay-log = relay-bin                                      # relay目录
+relay-log-info-file = relay-log.info                       # info目录
+slave-skip-errors = 1007,1008,1032,1062                    # 跳过主从复制时的错误
+read-only = 1                                              # GRANT 含 SUPER 的 才可以 改寫 db 
 {% endif %}
 
 # 二级 master 使用 BACKHOLE engine
