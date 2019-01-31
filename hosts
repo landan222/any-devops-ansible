@@ -17,10 +17,6 @@
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.25 ansible_ssh_host=10.0.0.25 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[it-kibana] 
-127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-#10.0.0.26 ansible_ssh_host=10.0.0.26 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-
 ####################################################################################################################################################################
 
 [fea-python]
@@ -78,6 +74,11 @@
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.74 ansible_ssh_host=10.0.0.74 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
+[fea-kibana] 
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.75 ansible_ssh_host=10.0.0.75 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+
+
 ##
 
 [fea-mysql]
@@ -132,15 +133,18 @@
 
 [dev-beanstalkd]
 
+[dev-logstash]
+
+[dev-kibana]
+
 [dev-mysql]
 
 [dev-elasticsearch]
 
 [dev-filebeat]
 
-[dev-logstash]
 
-[dev-kibana]
+
 
 ####################################################################################################################################################################
 
@@ -162,15 +166,17 @@
 
 [rel-beanstalkd]
 
+[rel-logstash]
+
+[rel-kibana]
+
 [rel-mysql]
 
 [rel-elasticsearch]
 
 [rel-filebeat]
 
-[rel-logstash]
 
-[rel-kibana]
 
 ####################################################################################################################################################################
 
@@ -192,12 +198,12 @@
 
 [mas-beanstalkd]
 
+[mas-logstash]
+
+[mas-kibana]
+
 [mas-mysql]
 
 [mas-elasticsearch]
 
 [mas-filebeat]
-
-[mas-logstash]
-
-[mas-kibana]
