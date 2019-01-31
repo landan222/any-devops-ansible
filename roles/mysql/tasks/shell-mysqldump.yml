@@ -1,5 +1,5 @@
 ---
 # -e, --extended-insert  使用全新多行INSERT语法。（给出更紧缩并且更快的插入语句）
-- name: (shell) mysqldump --extended-insert > /tmp/*.sql
-  shell: "mysqldump --defaults-extra-file=/etc/my.cnf --extended-insert > /tmp/mysqldump-{{ ansible_date_time.year }}_{{ ansible_date_time.month }}{{ ansible_date_time.day }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.sql"
+- name: (shell) mysqldump --extended-insert --all-databases > /tmp/*.sql
+  shell: "mysqldump --defaults-extra-file=/etc/my.cnf --extended-insert --all-databases > /tmp/mysqldump-{{ ansible_date_time.year }}_{{ ansible_date_time.month }}{{ ansible_date_time.day }}_{{ ansible_date_time.hour }}{{ ansible_date_time.minute }}.sql"
   ignore_errors: True # Because this shell will not response, that ansible will determine it as error
