@@ -1,6 +1,6 @@
 ---
 - name: install feature mysql
-  hosts: fea_mysql
+  hosts: fea-mysql
   strategy: linear # free, debug
   serial:
     - 10
@@ -17,7 +17,7 @@
   post_tasks:
     - shell: echo 'playbook mysql ends'
 - name: install develop mysql
-  hosts: dev_mysql
+  hosts: dev-mysql
   strategy: linear # free, debug
   gather_facts: true
   become: true

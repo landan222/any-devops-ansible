@@ -1,6 +1,6 @@
 ---
 - name: Install feature elasticsearch
-  hosts: fea_elasticsearch
+  hosts: fea-elasticsearch
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -15,7 +15,7 @@
     - shell: echo 'playbook elasticsearch ends'
   vars:
 - name: Install develop elesticsearch
-  hosts: dev_elasticsearch
+  hosts: dev-elasticsearch
   strategy: linear # free, debug
   gather_facts: true
   become: true

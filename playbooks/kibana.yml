@@ -1,6 +1,6 @@
 ---
 - name: Install feature kibana
-  hosts: it_kibana
+  hosts: fea-kibana
   strategy: linear # free, debug
   gather_facts: true
   become: true

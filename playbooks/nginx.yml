@@ -1,6 +1,6 @@
 ---
 - name: Install feature nginx
-  hosts: fea_nginx
+  hosts: fea-nginx
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -15,7 +15,7 @@
     - shell: echo 'playbook nginx ends'
   vars:
 - name: Install develop nginx
-  hosts: dev_nginx
+  hosts: dev-nginx
   strategy: linear # free, debug
   gather_facts: true
   become: true

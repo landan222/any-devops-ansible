@@ -1,6 +1,6 @@
 ---
 - name: Install feature memcached
-  hosts: fea_memcached
+  hosts: fea-memcached
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -15,7 +15,7 @@
     - shell: echo 'playbook memcached ends'
   vars:
 - name: Install develop memcached
-  hosts: dev_memcached
+  hosts: dev-memcached
   strategy: linear # free, debug
   gather_facts: true
   become: true

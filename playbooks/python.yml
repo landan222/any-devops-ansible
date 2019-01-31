@@ -4,7 +4,7 @@
 # 请用 /usr/bin/python2 /usr/bin/python3
 
 - name: "Install feature python"
-  hosts: fea_python # Ansible tower cannt remove or reinstall python
+  hosts: fea-python # Ansible tower cannt remove or reinstall python
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -18,7 +18,7 @@
   post_tasks:
     - shell: echo 'playbook python ends'
 - name: Install develop python
-  hosts: dev_python
+  hosts: dev-python
   strategy: linear # free, debug
   gather_facts: true
   become: true

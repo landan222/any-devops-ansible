@@ -1,6 +1,6 @@
 ---
 - name: Install feature nyga
-  hosts: fea_nyga
+  hosts: fea-nyga
   strategy: linear # free, debug
   gather_facts: true
   become: true

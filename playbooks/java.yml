@@ -1,6 +1,6 @@
 ---
 - name: Install feature java
-  hosts: fea_java
+  hosts: fea-java
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -15,7 +15,7 @@
     - shell: echo 'playbook java ends'
   vars:
 - name: Install develop java
-  hosts: dev_java
+  hosts: dev-java
   strategy: linear # free, debug
   gather_facts: true
   become: true

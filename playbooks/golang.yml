@@ -1,6 +1,6 @@
 ---
 - name: "Install feature golang"
-  hosts: fea_golang
+  hosts: fea-golang
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -14,7 +14,7 @@
   post_tasks:
     - shell: echo 'playbook golang ends'
 - name: Install develop golang
-  hosts: dev_golang
+  hosts: dev-golang
   strategy: linear # free, debug
   gather_facts: true
   become: true

@@ -1,6 +1,6 @@
 ---
 - name: Install feature beanstalkd
-  hosts: fea_beanstalkd
+  hosts: fea-beanstalkd
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -15,7 +15,7 @@
     - shell: echo 'playbook beanstalkd ends'
   vars:
 - name: Install develop beanstalkd
-  hosts: dev_beanstalkd
+  hosts: dev-beanstalkd
   strategy: linear # free, debug
   gather_facts: true
   become: true

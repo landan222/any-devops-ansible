@@ -1,40 +1,40 @@
-[it_ansible] 
+[it-ansible] 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[it_gitlab] 
+[it-gitlab] 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.22 ansible_ssh_host=10.0.0.22 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[it_jenkins] 
+[it-jenkins] 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.23 ansible_ssh_host=10.0.0.23 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[it_jira] 
+[it-jira] 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.24 ansible_ssh_host=10.0.0.24 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[it_zabbix] 
+[it-zabbix] 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.25 ansible_ssh_host=10.0.0.25 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[it_kibana] 
+[it-kibana] 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.26 ansible_ssh_host=10.0.0.26 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 ####################################################################################################################################################################
 
-[fea_python]
+[fea-python]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 ##
 
-[fea_nginx]
+[fea-nginx]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.31 ansible_ssh_host=10.0.0.31 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 ## 
 
-[fea_filebeat]
+[fea-filebeat]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.41 ansible_ssh_host=10.0.0.41 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.42 ansible_ssh_host=10.0.0.42 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
@@ -42,45 +42,45 @@
 #10.0.0.52 ansible_ssh_host=10.0.0.52 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.61 ansible_ssh_host=10.0.0.61 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_golang] # Group Name, 空白错误 [node server] 错误 
+[fea-golang] # Group Name, 空白错误 [node server] 错误 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.41 ansible_ssh_host=10.0.0.41 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.42 ansible_ssh_host=10.0.0.42 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_php] # Group Name, 空白错误 [node server] 错误 
+[fea-php] # Group Name, 空白错误 [node server] 错误 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.51 ansible_ssh_host=10.0.0.51 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.52 ansible_ssh_host=10.0.0.52 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_supervisor]
+[fea-supervisor]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.61 ansible_ssh_host=10.0.0.61 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_node] # Group Name, 空白错误 [node server] 错误 
+[fea-node] # Group Name, 空白错误 [node server] 错误 
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.61 ansible_ssh_host=10.0.0.61 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 ## 
 
-[fea_redis]
+[fea-redis]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.71 ansible_ssh_host=10.0.0.71 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_memcached]
+[fea-memcached]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.72 ansible_ssh_host=10.0.0.72 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_beanstalkd]
+[fea-beanstalkd]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.73 ansible_ssh_host=10.0.0.73 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_logstash]
+[fea-logstash]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.74 ansible_ssh_host=10.0.0.74 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 ##
 
-[fea_mysql]
+[fea-mysql]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.81 ansible_ssh_host=10.0.0.81 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.82 ansible_ssh_host=10.0.0.82 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
@@ -88,14 +88,14 @@
 
 ##
 
-[fea_mongodb]
+[fea-mongodb]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.91 ansible_ssh_host=10.0.0.91 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.92 ansible_ssh_host=10.0.0.92 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 ##
 
-[fea_elasticsearch]
+[fea-elasticsearch]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.101 ansible_ssh_host=10.0.0.101 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.102 ansible_ssh_host=10.0.0.102 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
@@ -105,99 +105,99 @@
 [fea-landan-admin_frontend-vue]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_admin168]
+[fea-admin168]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea_nyga]
+[fea-nyga]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 
 ####################################################################################################################################################################
 
-[dev_git]
+[dev-git]
 
-[dev_nginx]
+[dev-nginx]
 
-[dev_golang]
+[dev-golang]
 
-[dev_php]
+[dev-php]
 
-[dev_supervisor]
+[dev-supervisor]
 
-[dev_node]
+[dev-node]
 
-[dev_redis]
+[dev-redis]
 
-[dev_memcached]
+[dev-memcached]
 
-[dev_beanstalkd]
+[dev-beanstalkd]
 
-[dev_mysql]
+[dev-mysql]
 
-[dev_elasticsearch]
+[dev-elasticsearch]
 
-[dev_filebeat]
+[dev-filebeat]
 
-[dev_logstash]
+[dev-logstash]
 
-[dev_kibana]
-
-####################################################################################################################################################################
-
-[rel_git]
-
-[rel_nginx]
-
-[rel_golang]
-
-[rel_php]
-
-[rel_supervisor]
-
-[rel_node]
-
-[rel_redis]
-
-[rel_memcached]
-
-[rel_beanstalkd]
-
-[rel_mysql]
-
-[rel_elasticsearch]
-
-[rel_filebeat]
-
-[rel_logstash]
-
-[rel_kibana]
+[dev-kibana]
 
 ####################################################################################################################################################################
 
-[mas_git]
+[rel-git]
 
-[mas_nginx]
+[rel-nginx]
 
-[mas_golang]
+[rel-golang]
 
-[mas_php]
+[rel-php]
 
-[mas_supervisor]
+[rel-supervisor]
 
-[mas_node]
+[rel-node]
 
-[mas_redis]
+[rel-redis]
 
-[mas_memcached]
+[rel-memcached]
 
-[mas_beanstalkd]
+[rel-beanstalkd]
 
-[mas_mysql]
+[rel-mysql]
 
-[mas_elasticsearch]
+[rel-elasticsearch]
 
-[mas_filebeat]
+[rel-filebeat]
 
-[mas_logstash]
+[rel-logstash]
 
-[mas_kibana]
+[rel-kibana]
+
+####################################################################################################################################################################
+
+[mas-git]
+
+[mas-nginx]
+
+[mas-golang]
+
+[mas-php]
+
+[mas-supervisor]
+
+[mas-node]
+
+[mas-redis]
+
+[mas-memcached]
+
+[mas-beanstalkd]
+
+[mas-mysql]
+
+[mas-elasticsearch]
+
+[mas-filebeat]
+
+[mas-logstash]
+
+[mas-kibana]

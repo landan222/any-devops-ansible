@@ -1,6 +1,6 @@
 ---
 - name: Install feature filebeat
-  hosts: fea_filebeat
+  hosts: fea-filebeat
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -15,7 +15,7 @@
     - shell: echo 'playbook filebeat ends'
   vars:
 - name: Install develop filebeat
-  hosts: dev_filebeat
+  hosts: dev-filebeat
   strategy: linear # free, debug
   gather_facts: true
   become: true

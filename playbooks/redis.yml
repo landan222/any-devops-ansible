@@ -1,6 +1,6 @@
 ---
 - name: Install feature redis
-  hosts: fea_redis
+  hosts: fea-redis
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -15,7 +15,7 @@
     - shell: echo 'playbook redis ends'
   vars:
 - name: Install develop redis
-  hosts: dev_redis
+  hosts: dev-redis
   strategy: linear # free, debug
   gather_facts: true
   become: true

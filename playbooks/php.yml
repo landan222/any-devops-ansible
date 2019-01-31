@@ -1,6 +1,6 @@
 ---
 - name: "Install feature php"
-  hosts: fea_php
+  hosts: fea-php
   strategy: linear # free, debug
   gather_facts: true
   become: true
@@ -14,7 +14,7 @@
   post_tasks:
     - shell: echo 'playbook php ends'
 - name: Install develop php
-  hosts: dev_php
+  hosts: dev-php
   strategy: linear # free, debug
   gather_facts: true
   become: true
