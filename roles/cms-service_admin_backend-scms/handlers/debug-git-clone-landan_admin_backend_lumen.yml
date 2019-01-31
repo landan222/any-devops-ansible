@@ -1,4 +1,4 @@
 ---
-- name: (debug) string_landan_admin_backend_lumen_version
+- name: (debug) string_cms-service_admin_backend-scms_version
   debug: 
-    msg: "{{ string_landan_admin_backend_lumen_version }}"
+    msg: "{{ string_cms-service_admin_backend-scms_version }}"

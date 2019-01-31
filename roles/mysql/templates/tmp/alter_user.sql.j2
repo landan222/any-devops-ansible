@@ -1,4 +1,4 @@
 ###
-{% set i =  groups[bra ~ '_mysql'].index(inventory_hostname) %}
+{% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
 
 ALTER USER '{{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}'@'{{ MYSQL.HOSTS[i].CONNECTIONS[0]['HOST'] }}' IDENTIFIED BY '{{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}';  

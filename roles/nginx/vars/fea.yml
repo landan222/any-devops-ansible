@@ -27,7 +27,7 @@ NGINX:
 #         - '"^/([a-z0-9A-Z_]{1,})-([0-9]{1,}).html$" /index.php?alias=$1&ifalias=y&file=alias&page=$2'
 #       PHP_VERSION: '7.3'
     - HTTP_PORT: 80
-      ROOT: '/home/vagrant/www/cms-service_admin_backend-scms/'
+      ROOT: '/var/www/cms-service_admin_backend-scms/'
       SERVER_NAME: 'fea.cms.com'
       PHP_VERSION: '7.3'
     - HTTP_PORT: 80

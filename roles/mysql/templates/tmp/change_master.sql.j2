@@ -1,13 +1,13 @@
-{% if mysql_ha == 'master-slave' or groups[bra ~ '_mysql'].index(inventory_hostname) + 1 == 2 %}
+{% if mysql_ha == 'master-slave' or groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 %}
 {% set host = MYSQL.HOSTS[0].HOST %}
-{% elif mysql_ha == 'master-master-slave' and groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 3 %}
+{% elif mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 3 %}
 {% set host = MYSQL.HOSTS[1].HOST %}
 {% else %}
 {% set host = MYSQL.HOSTS[0].HOST %}
 {% endif %}
 
 
-{% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.5' or mysql_version == '5.6')%}
+{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.5' or mysql_version == '5.6')%}
 STOP SLAVE;
 CHANGE MASTER TO MASTER_HOST='{{ host }}', 
                  MASTER_USER='replicator', 
@@ -20,7 +20,7 @@ START SLAVE;
 SHOW SLAVE STATUS;
 {% endif %}
 
-{% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.7' or mysql_version == '8.0')%}
+{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.7' or mysql_version == '8.0')%}
 STOP SLAVE;
 CHANGE MASTER TO MASTER_HOST='{{ host }}', 
                  MASTER_USER='replicator', 
