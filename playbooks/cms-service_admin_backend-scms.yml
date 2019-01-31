@@ -7,7 +7,7 @@
   pre_tasks:
     - shell: echo 'playbook cms-service_admin_backend-scms starts'
   roles:
-    - role: fea-cms-service_admin_backend-scms
+    - role: cms-service_admin_backend-scms
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
