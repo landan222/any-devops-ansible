@@ -56,14 +56,14 @@ log-error = /var/log/mysqld.log
 pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
-######################### Binlog 相关 - GTID MODE #########################
+######################### Bin log 相关 - GTID MODE #########################
 {% if (mysql_version == '5.7' or mysql_version == '8.0') and (MYSQL.GTID_MODE == 'yes' or MYSQL.GTID_MODE == 1 or MYSQL.GTID_MODE == true )%}
 gtid_executed_compression_period = 1000                      
 gtid_mode = on                     
 enforce_gtid_consistency = on
 {% endif %}
 
-############################ Binlog 相关 - 其他 ############################
+############################ Bin log 相关 - 其他 ############################
 log-bin = mysql-bin                    #开启二进制日志                  
 log-bin-index = mysql-bin.index      
 log-slave-updates = 1                  #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
@@ -84,14 +84,6 @@ binlog-ignore-db = information_schema
 binlog-ignore-db = performace_schema
 binlog-ignore-db = sys
 
-{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 %}
-relay-log = relay-bin                                      # relay目录
-relay-log-info-file = relay-log.info                       # info目录
-slave-skip-errors = 1007,1008,1032,1062                    # 跳过主从复制时的错误
-read-only = 1                                              # GRANT 含 SUPER 的 才可以 改寫 db 
-#master-connect-retry = 30                                 # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
-{% endif %}
-
 # 二级 master 使用 BACKHOLE engine , 在 二级 master 看不见资料的！！！！
 {% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.HOSTS[i].ENGINE is undefined %}
 default_storage_engine = BLACKHOLE
@@ -99,7 +91,16 @@ default_storage_engine = BLACKHOLE
 default_storage_engine = {{ MYSQL.HOSTS[i].ENGINE }}
 {% endif %}
 
-#########################连接相关#########################
+############################ Relay log 相关 ############################
+{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 %}
+relay-log = mysql-relay                                      # relay目录
+relay-log-info-file = mysql-relay.info                       # info目录
+slave-skip-errors = 1007,1008,1032,1062                      # 跳过主从复制时的错误
+read-only = 1                                                # GRANT 含 SUPER 的 才可以 改寫 db 
+#master-connect-retry = 30                                   # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
+{% endif %}
+
+############################# 连接相关 #############################
 connect_timeout = 60
 wait_timeout = 28800
 max_connections = 100000
@@ -110,10 +111,14 @@ open_files_limit = 1024                                  # 打开文件的最大
 max_allowed_packet = 8M                                  # 服务器一次能处理的最大的查询包的值
 wait_timeout = 360                                       # 指定一个请求的最大连接时间
 interactive_timeout = 360                                # 连接保持活动的时间
+#innodb_lock_wait_timeout = 15;
 
-#########################访问日志#########################
-general_log = on
-general_log_file = mysql-access.log
+######################### General Log 相关 #########################
+{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
+general_log = on                                         # 记录所有 DDL, DML, DCL, 语句
+general_log_file = mysql-general.log
+{% endif %}
+
 
 [mysqldump]
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
