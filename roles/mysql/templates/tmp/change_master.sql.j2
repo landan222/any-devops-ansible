@@ -6,28 +6,20 @@
 {% set host = MYSQL.HOSTS[0].HOST %}
 {% endif %}
 
-
-{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.5' or mysql_version == '5.6')%}
 STOP SLAVE;
+{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.5' or mysql_version == '5.6') or MYSQL.GTID == 'no' or MYSQL.GTID == 0 or MYSQL.GTID == false %}
 CHANGE MASTER TO MASTER_HOST='{{ host }}', 
                  MASTER_USER='replicator', 
                  MASTER_PASSWORD='mysql_pass_replicator', 
                  MASTER_LOG_FILE='mysql-bin.000001', 
-                 MASTER_LOG_POS=5821,
+                 MASTER_LOG_POS=2760,
                  MASTER_CONNECT_RETRY=30;
-                 
-START SLAVE;
-SHOW SLAVE STATUS;
-{% endif %}
-
-{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.7' or mysql_version == '8.0')%}
-STOP SLAVE;
+{% else %}               
 CHANGE MASTER TO MASTER_HOST='{{ host }}', 
                  MASTER_USER='replicator', 
                  MASTER_PASSWORD='mysql_pass_replicator', 
                  MASTER_AUTO_POSITION=1,
                  MASTER_CONNECT_RETRY=30;
-                 
+{% endif %}
 START SLAVE;
 SHOW SLAVE STATUS;
-{% endif %}
