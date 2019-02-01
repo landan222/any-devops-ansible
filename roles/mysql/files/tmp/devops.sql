@@ -1,4 +1,4 @@
--- 基本
+-- 基本 系统相关
 
 SELECT VERSION();
 
@@ -8,6 +8,12 @@ SHOW SESSION STATUS LIKE 'Com_%';       # 查詢 當下 session 服務器 Com �
 SHOW STATUS LIKE 'Com_%';
 
 SHOW STATUS LIKE 'innodb_row_lock%';
+
+-- 基本 表相关
+
+SHOW FULL COLUMNS FROM landan.users;
+INDEX
+SHOW  FROM landan.users;
 
 -- BIN 
 
