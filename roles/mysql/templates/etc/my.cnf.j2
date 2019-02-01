@@ -56,12 +56,14 @@ log-error = /var/log/mysqld.log
 pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
-#########################Binlog 相关#########################
-{% if (mysql_version == '5.7' or mysql_version == '8.0') %}
+######################### Binlog 相关 - GTID MODE #########################
+{% if (mysql_version == '5.7' or mysql_version == '8.0') and (MYSQL.GTID_MODE == 'yes' or MYSQL.GTID_MODE == 1 or MYSQL.GTID_MODE == true )%}
 gtid_executed_compression_period = 1000                      
 gtid_mode = on                     
 enforce_gtid_consistency = on
 {% endif %}
+
+############################ Binlog 相关 - 其他 ############################
 log-bin = mysql-bin                    #开启二进制日志                  
 log-bin-index = mysql-bin.index      
 log-slave-updates = 1                  #将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
@@ -90,7 +92,7 @@ read-only = 1                                              # GRANT 含 SUPER 的
 #master-connect-retry = 30                                 # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
 {% endif %}
 
-# 二级 master 使用 BACKHOLE engine
+# 二级 master 使用 BACKHOLE engine , 在 二级 master 看不见资料的！！！！
 {% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.HOSTS[i].ENGINE is undefined %}
 default_storage_engine = BLACKHOLE
 {% else %}

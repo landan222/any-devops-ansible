@@ -1,5 +1,6 @@
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
 
+-- 这里强制 table 使用 ENGINE MyISAM , 二级 maser 会看到 数据 !! 
 DROP DATABASE IF EXISTS `cms`;
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `cms`;

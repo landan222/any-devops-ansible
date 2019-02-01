@@ -7,7 +7,7 @@
 {% endif %}
 
 STOP SLAVE;
-{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.5' or mysql_version == '5.6') or MYSQL.GTID == 'no' or MYSQL.GTID == 0 or MYSQL.GTID == false %}
+{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.5' or mysql_version == '5.6') or MYSQL.GTID_MODE == 'no' or MYSQL.GTID_MODE == 0 or MYSQL.GTID_MODE == false %}
 CHANGE MASTER TO MASTER_HOST='{{ host }}', 
                  MASTER_USER='replicator', 
                  MASTER_PASSWORD='mysql_pass_replicator', 
