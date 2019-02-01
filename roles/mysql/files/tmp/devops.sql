@@ -1,3 +1,5 @@
+-- 基本
+
 SELECT VERSION();
 
 SHOW GLOBAL STATUS LIKE 'Com_%';        # 查詢全 session 服務器 Com 結果
@@ -7,11 +9,15 @@ SHOW STATUS LIKE 'Com_%';
 
 SHOW STATUS LIKE 'innodb_row_lock%';
 
+-- BIN 
+
 SHOW BINARY LOGS;  # 查看所有 binary log files 与 档案大小
 
 SHOW BINLOG EVENTS;
 
 SHOW BINLOG EVENTS in 'mysql-bin-00001' FROM 101;
+
+PURGE MASTER LOGS BEFORE DATE_SUB(NOW(), INTERVAL 14 day);
 
 SHOW ENGINES;
 
@@ -26,9 +32,13 @@ SHOW PROFILE SOURCE FOR QUERY 3;
 
 SHOW PROFILE FOR QUERY 3;
 
+-- 读取 csv 
+
 LOAD DATA INFILE '/tmp/users.csv' INTO TABLE users;
 
 SELECT * FROM users INTO '/tmp/users.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+
+-- 表格优化
 
 ANALYZE TABLE users;
 
@@ -42,6 +52,8 @@ SELECT * FROM users PROCEDURE ANALYZE();
 EXPLAIN SELECT * FROM users;
 
 SHOW STATUS LIKE 'Handler_read%';
+
+-- 主从配置
 
 CHANGE MASTER TO MASTER_HOST='10.0.0.61', MASTER_USER='replicator', MASTER_PASSWORD='mysql_pass_replicator', MASTER_LOG_FILE='mysql-bin.000001', MASTER_LOG_POS=5577;
 

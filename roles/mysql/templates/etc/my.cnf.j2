@@ -127,7 +127,7 @@ password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
 [client]
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
 password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
-default-character-set = utf8mb4
+# default-character-set = utf8mb4                        # 5.7 不作用, 
 
 [mysql]
-no-auto-rehash                                            # 仅允许使用键值的updates和deletes
+no-auto-rehash                                           # 仅允许使用键值的updates和deletes
