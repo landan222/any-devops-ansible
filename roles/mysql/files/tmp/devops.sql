@@ -11,13 +11,19 @@ SHOW STATUS LIKE 'innodb_row_lock%';
 
 -- BIN 
 
-SHOW BINARY LOGS;  # 查看所有 binary log files 与 档案大小
+SHOW BINARY LOGS;                       # 查看所有 binary log files 与 档案大小
 
 SHOW BINLOG EVENTS;
 
 SHOW BINLOG EVENTS in 'mysql-bin-00001' FROM 101;
 
 PURGE MASTER LOGS BEFORE DATE_SUB(NOW(), INTERVAL 14 day);
+
+PURGE MASTER LOGS BEFORE '2019-01-01 00:00:00';
+
+PURGE MASTER LOGS TO 'mysql-bin-00001';
+
+RESET MASTER;                           # 清除所有 MASTER binlog
 
 SHOW ENGINES;
 
