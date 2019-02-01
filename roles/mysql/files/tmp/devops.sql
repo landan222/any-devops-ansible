@@ -7,6 +7,8 @@ SHOW STATUS LIKE 'Com_%';
 
 SHOW STATUS LIKE 'innodb_row_lock%';
 
+SHOW BINARY LOGS;  # 查看所有 binary log files 与 档案大小
+
 SHOW BINLOG EVENTS;
 
 SHOW BINLOG EVENTS in 'mysql-bin-00001' FROM 101;
