@@ -6,6 +6,8 @@ mysqlshow -uroot landan --count        # 查看 MySQL database landan 里面 每
 
 mysqlshow -uroot landan users --count
 
+mysqlshow -uroot landan users --status
+
 mysqlimport -uroot test /tmp/users.csv --fields-terminated-by="," --lines-terminated-by="\r\n"
 
 mysqldbcompare --server1=root:mysql_pass_cli@127.0.0.1:3306 --server2=root:mysql_pass_router@10.0.0.22:3306 landan:landan

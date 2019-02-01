@@ -12,8 +12,10 @@ SHOW STATUS LIKE 'innodb_row_lock%';
 -- 基本 表相关
 
 SHOW FULL COLUMNS FROM landan.users;
-INDEX
-SHOW  FROM landan.users;
+
+SHOW INDEX FROM landan.users;
+
+SHOW TABLE STATUS FROM landan LIKE 'users';
 
 -- BIN 
 
