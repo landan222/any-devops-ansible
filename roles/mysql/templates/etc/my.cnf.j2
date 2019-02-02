@@ -66,11 +66,30 @@ bulk_insert_buffer_size = 8M                             # 可以适当调整参
 tmp_table_size = 64M                                     # 设置内存临时表最大值
 max_heap_table_size = 64M                                # 独立的内存表所允许的最大容量
 
-############################# [mysqld] 效能 - MyISAM 容量相关 #############################
+############################# [mysqld] 效能 - MyISAM 相关 #############################
 myisam_sort_buffer_size = 128M
 myisam_max_sort_file_size = 10G
 myisam_repair_threads = 1
 # myisam_recover                                         # 5.7 不作用,自动检查和修复没有适当关闭的MyISAM表
+
+############################# [mysqld] 效能 - InnoDB 相关 #############################
+innodb_old_blocks_time =1000                            # 减小单次的大批量数据查询,默认为0，调整后性能提升80%                     http://www.cnblogs.com/cenalulu/archive/2012/10/10/2718585.html 
+innodb_flush_method = O_DIRECT                          # 从innode刷新到磁盘，不经过系统write,fdatasync(默认)，O_DSYNC，O_DIRECT http://blog.csdn.net/jiao_fuyou/article/details/16113403 
+# innodb_additional_mem_pool_size = 16M                 # 5.7 不作用, 设置InnoDB存储的数据目录信息和其他内部数据结构的内存池大小
+# innodb_buffer_pool_size = 51G                         # 5.7 不作用, InnoDB使用一个缓冲池来保存索引和原始数据，官方建议物理内存的80%
+# innodb_data_file_path = ibdata1:128M:autoextend       # 5.7 不作用, 表空间
+# innodb_file_io_threads = 4                            #  5.7 不作用, InnoDB中的文件I/O线程，通常设置为4，innodb除master线程外，还有insert buffer, log, read, write这4种线程，默认各有一个
+innodb_read_io_threads = 8
+innodb_write_io_threads = 8
+innodb_thread_concurrency = 8                           # 服务器有几个CPU就设置为几，建议用默认设置，一般设为8
+innodb_flush_log_at_trx_commit = 2                      # 设置为0就等于innodb_log_buffer_size队列满后再统一存储，默认为1
+innodb_log_buffer_size = 16M                            # 默认为1MB，通常设置为6-8MB就足够
+innodb_log_file_size = 512M                             # 确定日志文件的大小，更大的设置可以提高性能，但也会增加恢复数据库的时间
+innodb_log_files_in_group = 3                           # 为提高性能，MySQL可以以循环方式将日志文件写到多个文件。推荐设置为3
+innodb_max_dirty_pages_pct = 90                         # InnoDB主线程刷新缓存池中的数据
+innodb_lock_wait_timeout = 120                          # InnoDB事务被回滚之前可以等待一个锁定的超时秒数
+innodb_file_per_table = 1                               # InnoDB为独立表空间模式，每个数据库的每个表都会生成一个数据空间,0关闭,1开启
+innodb_autoextend_increment = 256                       # 这个参数的作用是控制innodb 共享表空间文件自动扩展的大小
 
 ############################# [mysqld] 效能 - 连接相关 #############################
 bind-address = {{ MYSQL.BIND_ADDRESS }}
@@ -81,10 +100,6 @@ max_connect_errors = 1000
 back_log = 1000                                          # 指出在MySQL暂时停止响应新请求之前，短时间内的多少个请求
 wait_timeout = 360                                       # 指定一个请求的最大连接时间
 interactive_timeout = 360                                # 连接保持活动的时间
-
-############################# [mysqld] 效能 - 锁相关 #############################
-innodb_lock_wait_timeout = 15
-innodb_locks_unsafe_for_binlog = 0
 
 ######################### [mysqld] Log 相关 #########################
 log_output = FILE                                        # log 写入 file , 效能较好
