@@ -15,20 +15,8 @@ password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
 #external-locking = FALSE                                   # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
 #skip-name-resolv                                           # 5.7 不作用, 禁止外部连接进行DNS解析
 
-#########################基本设置#########################
+######################### 基本设置 #########################
 server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
-
-# Remove leading # and set to the amount of RAM for the most important data
-# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
-innodb_buffer_pool_size = 128M
-
-
-# Remove leading # to set options mainly useful for reporting servers.
-# The server defaults are faster for transactions and fast SELECTs.
-# Adjust sizes as needed, experiment to find the optimal values.
-# join_buffer_size = 128M
-# sort_buffer_size = 2M
-# read_rnd_buffer_size = 2M
 
 datadir = {{ MYSQL.DATADIR }}
 socket = /var/lib/mysql/mysql.sock
@@ -42,7 +30,6 @@ lower_case_table_names = 1
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
-
 {% if mysql_version == '5.7'%}
 validate-password = 0
 {% elif mysql_version == '8.0' or mysql_version == '8.1' %}
@@ -52,7 +39,13 @@ validate_password.policy = 0
 validate_password.number_count = 1
 {% endif %}
 
-############################# 连接相关 #############################
+############################# 效能 - 容量相关 #############################
+innodb_buffer_pool_size = 128M
+join_buffer_size = 128M
+sort_buffer_size = 2M
+read_rnd_buffer_size = 2M
+
+############################# 效能 - 连接相关 #############################
 bind-address = {{ MYSQL.BIND_ADDRESS }}
 connect_timeout = 60
 wait_timeout = 28800
@@ -64,11 +57,13 @@ open_files_limit = 1024                                  # 打开文件的最大
 max_allowed_packet = 8M                                  # 服务器一次能处理的最大的查询包的值
 wait_timeout = 360                                       # 指定一个请求的最大连接时间
 interactive_timeout = 360                                # 连接保持活动的时间
-#innodb_lock_wait_timeout = 15;
 
+############################# 效能 - 锁相关 #############################
+innodb_lock_wait_timeout = 15
+innodb_locks_unsafe_for_binlog = 0
 
 ######################### -- Log 相关 #########################
-log_output = table
+log_output = FILE                                        # log 写入 file , 效能较好
 
 ######################### General Log 相关 #########################
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
@@ -76,8 +71,7 @@ general_log = on                                         # 记录所有 DDL, DML
 general_log_file = mysql-general.log
 {% endif %}
 
-######################### Error log 相关 #########################
-
+######################### Error log 相关 #########################catc
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
 log-error = mysql-error.log
 {% endif %}
@@ -119,7 +113,7 @@ binlog-ignore-db = information_schema
 binlog-ignore-db = performace_schema
 binlog-ignore-db = sys
 
-# 二级 master 使用 BACKHOLE engine , 在 二级 master 看不见资料的！！！！
+# 二级 master 使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.HOSTS[i].ENGINE is undefined %}
 default_storage_engine = BLACKHOLE
 {% else %}

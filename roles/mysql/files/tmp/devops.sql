@@ -2,12 +2,16 @@
 
 SELECT VERSION();
 
+SELECT @@tx_isolation;
+
 SHOW GLOBAL STATUS LIKE 'Com_%';        # 查詢全 session 服務器 Com 結果
 
 SHOW SESSION STATUS LIKE 'Com_%';       # 查詢 當下 session 服務器 Com 結果
 SHOW STATUS LIKE 'Com_%';
 
 SHOW STATUS LIKE 'innodb_row_lock%';
+
+SHOW INNODB STATUS;
 
 -- 基本 表相关
 
@@ -40,9 +44,9 @@ SHOW VARIABLES LIKE 'long%';
 SHOW PROCESSLIST;
 
 
-SHOW PROFILES;
+SHOW PROFILES;                         # 查看 此 session query 记录 与执行时间
 
-SHOW PROFILE SOURCE FOR QUERY 3;
+SHOW PROFILE BLOCK IO, CPU, SOURCE;
 
 SHOW PROFILE FOR QUERY 3;
 
