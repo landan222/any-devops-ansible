@@ -8,6 +8,7 @@ mysql_ha: 'master-master-slave' # master-slave,master-master-slave , mmm, cluste
 # cluster 集从模式
 # mha 
 MYSQL:
+  PORT: 3306
   GTID_MODE: yes
   HOSTS:
     - HOST: '10.0.0.81' # MASTER

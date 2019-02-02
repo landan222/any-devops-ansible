@@ -1,22 +1,28 @@
 {% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
 [client]
+######################### [client] 基本设置 #########################
+port = {{ MYSQL.PORT }}
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
 password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
 # default-character-set = utf8mb4                        # 5.7 会造成 /usr/bin/mysqlbinlog 不作用, 
 
 [mysql]
+######################### [mysql] 基本设置 #########################
 no-auto-rehash                                           # 仅允许使用键值的updates和deletes
 
 [mysqldump]
+######################### [mysqldump] 基本设置 #########################
 user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
 password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+quick
+max_allowed_packet = 64M
 
 [mysqld]
-#external-locking = FALSE                                   # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
-#skip-name-resolv                                           # 5.7 不作用, 禁止外部连接进行DNS解析
-
-######################### 基本设置 #########################
+######################### [mysqld] 基本设置 #########################
 server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
+# external-locking = FALSE                                    # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
+# skip-name-resolv                                            # 5.7 不作用, 禁止外部连接进行DNS解析
+transaction_isolation = READ-COMMITTED                        # 事务隔离级别
 
 datadir = {{ MYSQL.DATADIR }}
 socket = /var/lib/mysql/mysql.sock
@@ -39,44 +45,71 @@ validate_password.policy = 0
 validate_password.number_count = 1
 {% endif %}
 
-############################# 效能 - 容量相关 #############################
-innodb_buffer_pool_size = 128M
-join_buffer_size = 128M
-sort_buffer_size = 2M
-read_rnd_buffer_size = 2M
+############################# [mysqld] 效能 - 一般容量相关 #############################
+max_allowed_packet = 64M
+open_files_limit = 1024                                  # 打开文件的最大个数，如果出现too mantopen files之类的就需要调整该值了
+max_allowed_packet = 8M                                  # 服务器一次能处理的最大的查询包的值
+# table_cache = 614                                      # 5.7 不作用, 表分配的内存，物理内存越大，设置就越大
+table_open_cache = 512                                   # 设置高速缓存表的数目
+thread_cache_size = 64                                   # 服务器线程缓存数，与内存大小有关(建议大于3G设置为64)
+# thread_concurrency = 32                                # 5.7 不作用, CPU核数的两倍
+query_cache_size = 32M                                   # 指定MySQL查询缓冲区的大小
+query_cache_limit = 2M                                   # 只有小于此设置值的结果才会被缓存
+query_cache_min_res_unit = 2k                            # 设置查询缓存分配内存的最小单位
+key_buffer_size = 512M                                   # 指定用于索引的缓冲区大小，增加它可得到更好的索引处理性能
+sort_buffer_size = 2M                                    # 设置查询排序时所能使用的缓冲区大小，系统默认大小为2MB
+join_buffer_size = 1M                                    # 联合查询操作所能使用的缓冲区大小
+read_buffer_size = 4M                                    # 读查询操作所能使用的缓冲区大小
+read_rnd_buffer_size = 16M                               # 设置进行随机读的时候所使用的缓冲区
+thread_stack = 192K                                      # 设置Mysql每个线程的堆栈大小，默认值足够大，可满足普通操作
+bulk_insert_buffer_size = 8M                             # 可以适当调整参数至16MB~32MB，建议8MB
+tmp_table_size = 64M                                     # 设置内存临时表最大值
+max_heap_table_size = 64M                                # 独立的内存表所允许的最大容量
 
-############################# 效能 - 连接相关 #############################
+############################# [mysqld] 效能 - MyISAM 容量相关 #############################
+myisam_sort_buffer_size = 128M
+myisam_max_sort_file_size = 10G
+myisam_repair_threads = 1
+# myisam_recover                                         # 5.7 不作用,自动检查和修复没有适当关闭的MyISAM表
+
+############################# [mysqld] 效能 - 连接相关 #############################
 bind-address = {{ MYSQL.BIND_ADDRESS }}
 connect_timeout = 60
 wait_timeout = 28800
-max_connections = 100000
-max_allowed_packet = 64M
+max_connections = 1000
 max_connect_errors = 1000
 back_log = 1000                                          # 指出在MySQL暂时停止响应新请求之前，短时间内的多少个请求
-open_files_limit = 1024                                  # 打开文件的最大个数，如果出现too mantopen files之类的就需要调整该值了
-max_allowed_packet = 8M                                  # 服务器一次能处理的最大的查询包的值
 wait_timeout = 360                                       # 指定一个请求的最大连接时间
 interactive_timeout = 360                                # 连接保持活动的时间
 
-############################# 效能 - 锁相关 #############################
+############################# [mysqld] 效能 - 锁相关 #############################
 innodb_lock_wait_timeout = 15
 innodb_locks_unsafe_for_binlog = 0
 
-######################### -- Log 相关 #########################
+######################### [mysqld] Log 相关 #########################
 log_output = FILE                                        # log 写入 file , 效能较好
 
-######################### General Log 相关 #########################
+######################### [mysqld] General Log 相关 #########################
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
 general_log = on                                         # 记录所有 DDL, DML, DCL, 语句
 general_log_file = mysql-general.log
 {% endif %}
 
-######################### Error log 相关 #########################catc
+######################### [mysqld] Error log 相关 #########################catc
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
 log-error = mysql-error.log
 {% endif %}
 
-############################ Relay log 相关 ############################
+######################### [mysqld] Slow log 相关 #########################catc
+slow_query_log = on                                        # 开启慢查询
+log-queries-not-using-indexes                              # 记录所有没有使用到索引的查询语句
+long_query_time = 1                                        # 指定多少秒未返回结果的查询属于慢查询
+min_examined_row_limit = 5                                 # 记录那些由于查找了多余5次而引发的慢查询
+log-slow-admin-statements                                  # 记录那些慢的OPTIMIZE TABLE,ANALYZE TABLE和ALTER TABLE语句
+log-slow-slave-statements                                  # 记录由slave所产生的慢查询
+slow_query_log_file = mysql-slow.log                       # 指定慢查询日志文件路径
+
+############################ [mysqld] Relay log 相关 ############################
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 %}
 relay-log = mysql-relay                                      # relay 目录
 relay-log-info-file = mysql-relay.info                       # info 目录
@@ -85,17 +118,21 @@ read-only = 1                                                # GRANT 含 SUPER �
 #master-connect-retry = 30                                   # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
 {% endif %}
 
-######################### Bin log 相关 - GTID MODE #########################
+######################### [mysqld] Bin log 相关 - GTID MODE #########################
 {% if (mysql_version == '5.7' or mysql_version == '8.0') and (MYSQL.GTID_MODE == 'yes' or MYSQL.GTID_MODE == 1 or MYSQL.GTID_MODE == true )%}
 gtid_executed_compression_period = 1000                      
 gtid_mode = on                     
 enforce_gtid_consistency = on
 {% endif %}
 
-############################ Bin log 相关 - 其他 ############################
+############################ [mysqld] Bin log 相关 - 其他 ############################
 log-bin = mysql-bin                    # 开启二进制日志                  
 log-bin-index = mysql-bin.index      
-log-slave-updates = 1                  # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
+{% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 %}
+log-slave-updates = 1                  # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中 
+{% else %}
+log-slave-updates = 0                  # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
+{% endif %}
 binlog_format = row
 binlog-cache-size = 32M                # 设置二进制日志缓存大小
 sync_binlog = 1                        # 控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
