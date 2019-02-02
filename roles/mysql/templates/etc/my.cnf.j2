@@ -17,6 +17,28 @@ password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
 quick
 max_allowed_packet = 64M
 
+[isamchk]
+######################### [isamchk] 基本设置 #########################
+key_buffer = 2048M
+sort_buffer_size = 2048M
+read_buffer = 32M
+write_buffer = 32M
+
+[myisamchk]
+######################### [myisamchk] 基本设置 #########################
+key_buffer = 2048M
+sort_buffer_size = 2048M
+read_buffer = 32M
+write_buffer = 32M
+
+[mysqlhotcopy]
+######################### [mysqlhotcopy] 基本设置 #########################
+interactive-timeout
+
+[mysqld_safe]
+######################### [mysqld_safe] 基本设置 #########################
+open-files-limit = 8192 # 增加每个进程的可打开文件数量.打开大量表需要将此值设大
+
 [mysqld]
 ######################### [mysqld] 基本设置 #########################
 server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
