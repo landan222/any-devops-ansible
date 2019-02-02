@@ -41,14 +41,15 @@ open-files-limit = 8192 # 增加每个进程的可打开文件数量.打开大�
 
 [mysqld]
 ######################### [mysqld] 基本设置 #########################
+port = {{ MYSQL.PORT }}
+datadir = {{ MYSQL.DATADIR }}
+socket = /var/lib/mysql/mysql.sock
+pid-file = /var/run/mysqld/mysqld.pid
+
 server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
 # external-locking = FALSE                                    # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
 # skip-name-resolv                                            # 5.7 不作用, 禁止外部连接进行DNS解析
 transaction_isolation = READ-COMMITTED                        # 事务隔离级别
-
-datadir = {{ MYSQL.DATADIR }}
-socket = /var/lib/mysql/mysql.sock
-pid-file = /var/run/mysqld/mysqld.pid
 
 character-set-server = utf8mb4
 collation-server = utf8mb4_general_ci                         # 设置校对规则
