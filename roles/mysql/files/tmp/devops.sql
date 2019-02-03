@@ -15,6 +15,8 @@ SHOW STATUS LIKE 'Com_%';
 
 SHOW STATUS LIKE 'innodb_row_lock%';
 
+SHOW STATUS LIKE '%semi_sync%';
+
 SHOW INNODB STATUS;
 
 -- 基本 表相关
@@ -86,3 +88,6 @@ SHOW SLAVE STATUS;
 INSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so';
 INSTALL PLUGIN rpl_semi_sync_slave SONAME 'semisync_slave.so';
 
+STOP SLAVE TO_THREAD;
+
+START SLAVE TO_THREAD;

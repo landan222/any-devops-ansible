@@ -122,16 +122,16 @@ connect_timeout = 60
 wait_timeout = 28800
 max_connections = 1000
 max_connect_errors = 1000
-back_log = 1000                                          # 指出在MySQL暂时停止响应新请求之前，短时间内的多少个请求
-wait_timeout = 360                                       # 指定一个请求的最大连接时间
-interactive_timeout = 360                                # 连接保持活动的时间
+back_log = 1000                                         # 指出在MySQL暂时停止响应新请求之前，短时间内的多少个请求
+wait_timeout = 360                                      # 指定一个请求的最大连接时间
+interactive_timeout = 360                               # 连接保持活动的时间
 
 ######################### [mysqld] Log 相关 #########################
-log_output = FILE                                        # log 写入 file , 效能较好
+log_output = FILE                                       # log 写入 file , 效能较好
 
 ######################### [mysqld] General Log 相关 #########################
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
-general_log = on                                         # 记录所有 DDL, DML, DCL, 语句
+general_log = on                                        # 记录所有 DDL, DML, DCL, 语句
 general_log_file = mysql-general.log
 {% endif %}
 
@@ -141,21 +141,21 @@ log-error = mysql-error.log
 {% endif %}
 
 ######################### [mysqld] Slow log 相关 #########################catc
-slow_query_log = on                                        # 开启慢查询
-log-queries-not-using-indexes                              # 记录所有没有使用到索引的查询语句
-long_query_time = 1                                        # 指定多少秒未返回结果的查询属于慢查询
-min_examined_row_limit = 5                                 # 记录那些由于查找了多余5次而引发的慢查询
-log-slow-admin-statements                                  # 记录那些慢的OPTIMIZE TABLE,ANALYZE TABLE和ALTER TABLE语句
-log-slow-slave-statements                                  # 记录由slave所产生的慢查询
-slow_query_log_file = mysql-slow.log                       # 指定慢查询日志文件路径
+slow_query_log = on                                     # 开启慢查询
+log-queries-not-using-indexes                           # 记录所有没有使用到索引的查询语句
+long_query_time = 1                                     # 指定多少秒未返回结果的查询属于慢查询
+min_examined_row_limit = 5                              # 记录那些由于查找了多余5次而引发的慢查询
+log-slow-admin-statements                               # 记录那些慢的OPTIMIZE TABLE,ANALYZE TABLE和ALTER TABLE语句
+log-slow-slave-statements                               # 记录由slave所产生的慢查询
+slow_query_log_file = mysql-slow.log                    # 指定慢查询日志文件路径
 
 ############################ [mysqld] Relay log 相关 ############################
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 %}
-relay-log = mysql-relay                                      # relay 目录
-relay-log-info-file = mysql-relay.info                       # info 目录
-slave-skip-errors = 1007,1008,1032,1062                      # 跳过主从复制时的错误
-read-only = 1                                                # GRANT 含 SUPER 的 才可以 改寫 db 
-#master-connect-retry = 30                                   # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
+relay-log = mysql-relay                                 # relay 目录
+relay-log-info-file = mysql-relay.info                  # info 目录
+slave-skip-errors = 1007,1008,1032,1062                 # 跳过主从复制时的错误
+read-only = 1                                           # GRANT 含 SUPER 的 才可以 改寫 db 
+#master-connect-retry = 30                              # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
 {% endif %}
 
 ######################### [mysqld] Bin log 相关 - GTID MODE #########################
@@ -166,17 +166,17 @@ enforce_gtid_consistency = on
 {% endif %}
 
 ############################ [mysqld] Bin log 相关 - 其他 ############################
-log-bin = mysql-bin                    # 开启二进制日志                  
+log-bin = mysql-bin                          # 开启二进制日志                  
 log-bin-index = mysql-bin.index      
 binlog_format = row
-binlog-cache-size = 32M                # 设置二进制日志缓存大小
-sync_binlog = 1                        # 控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
-auto_increment_offset = 1              # 这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
-auto_increment_increment = 1           # 这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
-max_binlog_cache_size = 8M             # 最大的二进制Cache日志缓冲尺寸
-max_binlog_size = 1G                   # 单个二进制日志文件的最大值，默认1G，最大1G
-expire_logs_days = 7                   # 二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
-log_bin_trust_function_creators = 1    # 将函数复制到slave  
+binlog-cache-size = 32M                      # 设置二进制日志缓存大小
+sync_binlog = 1                              # 控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 
+auto_increment_offset = 1                    # 这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
+auto_increment_increment = 1                 # 这个参数一般用在主主同步中，用来错开自增值, 防止键值冲突
+max_binlog_cache_size = 8M                   # 最大的二进制Cache日志缓冲尺寸
+max_binlog_size = 1G                         # 单个二进制日志文件的最大值，默认1G，最大1G
+expire_logs_days = 7                         # 二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
+log_bin_trust_function_creators = 1          # 将函数复制到slave  
 
 {% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
 binlog-do-db = {{ CREATE_DATABASE }}
@@ -187,25 +187,28 @@ binlog-ignore-db = sys
 
 ############################ [mysqld] Bin log 相关 - 主从问题 ############################
 {% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 %}
-log-slave-updates = 1                  # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中 
+log-slave-updates = 1                        # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中 
 {% else %}
-log-slave-updates = 0                  # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
+log-slave-updates = 0                        # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中                 
 {% endif %}
 
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
-plugin_load = "rpl_semi_sync_master=semisync_master.so"
-loose_rpl_semi_sync_master_enabled = 1
-loose_rpl_semi_sync_slave_enabled = 1
-loose_rpl_semi_sync_master_timeout = 5000
+plugin_load = "rpl_semi_sync_master=semisync_master.so"  # 一级 master 安装 semisync_master
+loose_rpl_semi_sync_master_enabled = 1                   # 一级 master 使用 semisync_master
+loose_rpl_semi_sync_master_timeout = 5000                # master 半同步 timeout 5000
 {% elif mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 %}
-plugin_load = "rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so"
+plugin_load = "rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so" # 一级 master 安装 semisync_master, semisync_slave
+loose_rpl_semi_sync_master_enabled = 1                   # 二级 master 使用 semisync_master
+loose_rpl_semi_sync_slave_enabled = 1                    # 二级 master 使用 semisync_slave
+loose_rpl_semi_sync_master_timeout = 5000                # 二级 master 半同步 timeout 5000
 {% else %}   
-plugin_load = "rpl_semi_sync_slave=semisync_slave.so"
+plugin_load = "rpl_semi_sync_slave=semisync_slave.so"    # slave 安装 semisync_slave
+loose_rpl_semi_sync_slave_enabled = 1                    # slave 使用 semisync_slave
 {% endif %}
 
 {% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.HOSTS[i].ENGINE is undefined %}
-default_storage_engine = BLACKHOLE  # 二级 master 使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
+default_storage_engine = BLACKHOLE                       # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% else %}
-default_storage_engine = {{ MYSQL.HOSTS[i].ENGINE }}
+default_storage_engine = {{ MYSQL.HOSTS[i].ENGINE }}     # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% endif %}
 
