@@ -8,5 +8,5 @@
     owner: vagrant
     group: vagrant
     mode: 0755
-- name: "(shell) mysql --user='{{ MYSQL.HOSTS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"
-  shell: "mysql --user='{{ MYSQL.HOSTS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"
+- name: "(shell) mysql --user='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"
+  shell: "mysql --user='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"

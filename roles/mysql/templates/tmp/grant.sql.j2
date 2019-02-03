@@ -7,7 +7,7 @@
 
 USE mysql;
 
-{% for CONNECTION in MYSQL.HOSTS[i].CONNECTIONS %}
+{% for CONNECTION in MYSQL.SERVERS[i].CONNECTIONS %}
 
 {% if CONNECTION['drop_user'] == True %}
 DROP USER IF EXISTS '{{ CONNECTION['USER'] }}'@'{{ CONNECTION['HOST'] }}';

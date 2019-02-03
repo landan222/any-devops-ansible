@@ -2,8 +2,8 @@
 [client]
 ######################### [client] 基本设置 #########################
 port = {{ MYSQL.PORT }}
-user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
-password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+user = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}
+password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}
 # default-character-set = utf8mb4                         # 5.7 会造成 /usr/bin/mysqlbinlog 不作用, 
 
 [mysql]
@@ -12,8 +12,8 @@ no-auto-rehash                                            # 仅允许使用键�
 
 [mysqldump]
 ######################### [mysqldump] 基本设置 #########################
-user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
-password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+user = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}
+password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}
 quick
 max_allowed_packet = 64M
 
@@ -206,9 +206,9 @@ plugin_load = "rpl_semi_sync_slave=semisync_slave.so"   # slave 安装 semisync_
 loose_rpl_semi_sync_slave_enabled = 1                   # slave 使用 semisync_slave
 {% endif %}
 
-{% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.HOSTS[i].ENGINE is undefined %}
+{% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.SERVERS[i].ENGINE is undefined %}
 default_storage_engine = BLACKHOLE                      # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% else %}
-default_storage_engine = {{ MYSQL.HOSTS[i].ENGINE }}    # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
+default_storage_engine = {{ MYSQL.SERVERS[i].ENGINE }}    # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% endif %}
 

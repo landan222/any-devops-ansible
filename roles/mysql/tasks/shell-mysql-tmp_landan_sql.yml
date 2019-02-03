@@ -8,5 +8,5 @@
     owner: vagrant
     group: vagrant
     mode: 0755
-- name: "(shell) mysql --user={{ MYSQL.HOSTS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.HOSTS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/landan.sql"
-  shell: "mysql --user={{ MYSQL.HOSTS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.HOSTS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/landan.sql"
+- name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/landan.sql"
+  shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/landan.sql"

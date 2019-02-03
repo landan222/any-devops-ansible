@@ -44,9 +44,9 @@ pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
 [mysqldump]
-user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
-password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+user = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}
+password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}
 
 [client]
-user = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['USER'] }}
-password = {{ MYSQL.HOSTS[i].CONNECTIONS[0]['PASSWORD'] }}
+user = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}
+password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}

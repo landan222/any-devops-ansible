@@ -1,6 +1,6 @@
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.5' or mysql_version == '5.6')%}
 STOP SLAVE;
-CHANGE MASTER TO MASTER_HOST='{{ MYSQL.HOSTS[0].IP }}', 
+CHANGE MASTER TO MASTER_HOST='{{ MYSQL.SERVERS[0].IP }}', 
                  MASTER_USER='replicator', 
                  MASTER_PASSWORD='mysql_pass_replicator', 
                  MASTER_LOG_FILE='mysql-bin.000001', 
@@ -12,7 +12,7 @@ SHOW SLAVE STATUS;
 
 {% if groups[bra ~ '_mysql'].index(inventory_hostname) + 1 >= 2 and (mysql_version == '5.7' or mysql_version == '8.0')%}
 STOP SLAVE;
-CHANGE MASTER TO MASTER_HOST='{{ MYSQL.HOSTS[0].IP }}', 
+CHANGE MASTER TO MASTER_HOST='{{ MYSQL.SERVERS[0].IP }}', 
                  MASTER_USER='replicator', 
                  MASTER_PASSWORD='mysql_pass_replicator', 
                  MASTER_AUTO_POSITION=1;
