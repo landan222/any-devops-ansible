@@ -8,11 +8,11 @@ mysql_ha: 'master-master-slave' # master-slave,master-master-slave , mmm, cluste
 # cluster 集从模式
 # mha 
 MYSQL:
-  PORT: 3306
   GTID_MODE: yes
   SERVERS:
     - HOST: '10.0.0.81' # MASTER
       BIND_ADDRESS: '0.0.0.0'
+      PORT: 3306
       ENGINE: 'InnoDB'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
@@ -163,6 +163,7 @@ MYSQL:
           DATABASE: '*'
     - HOST: '10.0.0.82' # SLAVE
       BIND_ADDRESS: '0.0.0.0'
+      PORT: 3306
       ENGINE: 'BLACKHOLE'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
@@ -272,6 +273,7 @@ MYSQL:
           DATABASE: '*'
     - HOST: '10.0.0.83' # SLAVE
       BIND_ADDRESS: '0.0.0.0'
+      PORT: 3306
       ENGINE: 'InnoDB'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序

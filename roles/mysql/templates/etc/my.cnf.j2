@@ -1,7 +1,7 @@
 {% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
 [client]
 ######################### [client] 基本设置 #########################
-port = {{ MYSQL.PORT }}
+port = {{ MYSQL.SERVERS[i].PORT }}
 user = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}
 password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}
 # default-character-set = utf8mb4                         # 5.7 会造成 /usr/bin/mysqlbinlog 不作用, 
@@ -41,7 +41,7 @@ open-files-limit = 8192                                   # 增加每个进程�
 
 [mysqld]
 ######################### [mysqld] 基本设置 #########################
-port = {{ MYSQL.PORT }}
+port = {{ MYSQL.SERVERS[i].PORT }}
 datadir = {{ MYSQL.DATADIR }}
 socket = /var/lib/mysql/mysql.sock
 pid-file = /var/run/mysqld/mysqld.pid
