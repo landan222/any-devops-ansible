@@ -12,6 +12,7 @@ MYSQL:
   GTID_MODE: yes
   SERVERS:
     - HOST: '10.0.0.81' # MASTER
+      BIND_ADDRESS: '0.0.0.0'
       ENGINE: 'InnoDB'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
@@ -161,6 +162,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.82' # SLAVE
+      BIND_ADDRESS: '0.0.0.0'
       ENGINE: 'BLACKHOLE'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
@@ -269,6 +271,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.83' # SLAVE
+      BIND_ADDRESS: '0.0.0.0'
       ENGINE: 'InnoDB'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
@@ -369,7 +372,6 @@ MYSQL:
           DATABASE: '*'
 
   DATADIR: '/var/lib/mysql'
-  BIND_ADDRESS: '0.0.0.0'
   CREATE_DATABASES:
     - landan
     - vpn

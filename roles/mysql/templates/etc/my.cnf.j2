@@ -117,7 +117,7 @@ innodb_file_per_table = 1                               # InnoDB为独立表空�
 innodb_autoextend_increment = 256                       # 这个参数的作用是控制innodb 共享表空间文件自动扩展的大小
 
 ############################# [mysqld] 效能 - 连接相关 #############################
-bind-address = {{ MYSQL.BIND_ADDRESS }}
+bind-address = {{ MYSQL.SERVERS[i].BIND_ADDRESS }}
 connect_timeout = 60
 wait_timeout = 28800
 max_connections = 1000
