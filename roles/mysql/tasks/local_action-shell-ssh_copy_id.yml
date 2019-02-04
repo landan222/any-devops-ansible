@@ -44,7 +44,7 @@
     mode: 0700
   when: mysql_ha == 'mha'
 
-- name: (file) /root/.ssh/authorized_keys
+- name: (file) rm /root/.ssh/authorized_keys
   file:
     path: "/root/.ssh/authorized_keys"
     owner: root
@@ -53,7 +53,7 @@
     state: absent
   when: mysql_ha == 'mha'
 
-- name: (file) /root/.ssh/authorized_keys
+- name: (file) touch /root/.ssh/authorized_keys
   file:
     path: "/root/.ssh/authorized_keys"
     owner: root
