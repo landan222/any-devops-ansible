@@ -1,1 +1,2 @@
 /filter_plugins/*.pyc
+/roles/mysql/files/root/.ssh/*

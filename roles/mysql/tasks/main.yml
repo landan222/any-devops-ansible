@@ -18,3 +18,4 @@
 - import_tasks: shell-mysql-tmp_landan_sql.yml
 - import_tasks: shell-mysql-tmp_cms_sql.yml
 - import_tasks: shell-mysql-tmp_change_master_sql.yml
+- import_tasks: local_action-shell-ssh_copy_id.yml

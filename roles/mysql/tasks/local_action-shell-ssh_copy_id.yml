@@ -1,0 +1,22 @@
+- name: "(shell) echo y | ssh-keygen -q -f /home/vagrant/www/landan-cicd_devops-ansible/roles/mysql/files/root/.ssh/id_rsa.{{ index + 1 }} -t rsa -N ''"
+  local_action: "shell echo y | ssh-keygen -q -f /home/vagrant/www/landan-cicd_devops-ansible/roles/mysql/files/root/.ssh/id_rsa.{{ index + 1 }} -t rsa -N ''"
+#     module:
+#       #shell: "echo y | ssh-keygen -q -f /home/vagrant/landan-cicd_devops-ansible/id_rsa -t rsa -N ''"
+#       shell: pwd
+  # become_user: vagrant
+  loop: "{{ MYSQL.SERVERS }}"
+  loop_control:
+    index_var: index
+  when: mysql_ha == 'mha'
+# - name: (shell) cat /root/.ssh/id_rsa.pub
+#   shell: cat /root/.ssh/id_rsa.pub
+#   register: string_id_rsa_pubs
+#   when: mysql_ha == 'mha'
+
+# - name: "(shell) echo \"{{ string_id_rsa_pubs.results | map(attribute='stdout') | join('\n') }}\" >> /root/.ssh/authorized_keys"
+#   shell: "echo \"{{ string_id_rsa_pubs.results | map(attribute='stdout') | join('\n') }}\" >> /root/.ssh/authorized_keys"
+# #   with_items:
+# #     - "{{ MYSQL.SERVERS }}"
+# #   loop_control:
+# #     loop_var: SERVER
+#   when: mysql_ha == 'mha'

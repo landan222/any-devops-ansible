@@ -1,7 +1,7 @@
 ---
 mysql_version: 5.6
 mysql_create_databases: 'landan,vpn'
-mysql_ha: 'master-master-slave' # master-slave,master-master-slave , mmm, cluster, mha, mmm-cluster
+mysql_ha: 'mha' # master-slave,master-master-slave , mmm, cluster, mha, mmm-cluster
 # master-slave 单主多从模式
 # master-master-slave 二主多从模式
 # mmm 双主模式, MMM 方案不适用对数据一致性要求很高的业务
@@ -10,8 +10,8 @@ mysql_ha: 'master-master-slave' # master-slave,master-master-slave , mmm, cluste
 MYSQL:
   GTID_MODE: yes
   SERVERS:
-    - HOST: '10.0.0.81' # MASTER
-      BIND_ADDRESS: '0.0.0.0'
+    - HOST: '10.0.0.81'        # 外网 IP
+      BIND_ADDRESS: '0.0.0.0'  # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
       CONNECTIONS:
@@ -161,8 +161,8 @@ MYSQL:
           HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
-    - HOST: '10.0.0.82' # SLAVE
-      BIND_ADDRESS: '0.0.0.0'
+    - HOST: '10.0.0.82'       # 外网 IP
+      BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'BLACKHOLE'
       CONNECTIONS:
@@ -271,8 +271,8 @@ MYSQL:
           HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
-    - HOST: '10.0.0.83' # SLAVE
-      BIND_ADDRESS: '0.0.0.0'
+    - HOST: '10.0.0.83'       # 外网 IP
+      BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
       CONNECTIONS:
