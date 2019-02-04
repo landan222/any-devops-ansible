@@ -82,6 +82,10 @@
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 #10.0.0.75 ansible_ssh_host=10.0.0.75 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
+[fea-masterha] 
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.76 ansible_ssh_host=10.0.0.75 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+
 
 ##
 
@@ -143,6 +147,8 @@
 
 [dev-kibana]
 
+[dev-masterha] 
+
 [dev-mysql]
 
 [dev-elasticsearch]
@@ -176,6 +182,8 @@
 
 [rel-kibana]
 
+[rel-masterha] 
+
 [rel-mysql]
 
 [rel-elasticsearch]
@@ -207,6 +215,8 @@
 [mas-logstash]
 
 [mas-kibana]
+
+[mas-masterha] 
 
 [mas-mysql]
 

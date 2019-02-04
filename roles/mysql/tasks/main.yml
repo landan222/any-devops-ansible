@@ -19,3 +19,4 @@
 - import_tasks: shell-mysql-tmp_cms_sql.yml
 - import_tasks: shell-mysql-tmp_change_master_sql.yml
 - import_tasks: lineinfile-root_ssh_authorized_keys.yml
+- import_tasks: yum-install-master_node.yml

@@ -1,0 +1,4 @@
+# 安裝 MySQL 5.6 預設 無密碼
+---
+- include_vars: "{{ bra | default('fea') }}.yml"
+- import_tasks: yum-install-master_manager.yml
