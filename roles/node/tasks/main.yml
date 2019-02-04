@@ -1,3 +1,4 @@
 ---
+- include_vars: "{{ bra | default('fea') }}.yml"
 - import_tasks: get_url-shell-bash.yml
 - import_tasks: yum-install-nodejs.yml
