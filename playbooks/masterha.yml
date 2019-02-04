@@ -1,6 +1,6 @@
 ---
-- name: install feature mysql
-  hosts: fea-mysql
+- name: install feature masterha
+  hosts: fea-masterha
   strategy: linear # free, debug
   serial:
     - 10
@@ -8,28 +8,28 @@
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook mysql starts'
+    - shell: echo 'playbook masterha starts'
   roles:
-    - role: mysql
+    - role: masterha
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook mysql ends'
-- name: install develop mysql
-  hosts: dev-mysql
+    - shell: echo 'playbook masterha ends'
+- name: install develop masterha
+  hosts: dev-masterha
   strategy: linear # free, debug
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook mysql starts'
+    - shell: echo 'playbook masterha starts'
   roles:
-    - role: mysql
+    - role: masterha
       vars:
         bra: dev
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
-    - shell: echo 'playbook mysql ends'
+    - shell: echo 'playbook masterha ends'
 # - name: Install release nginx
 #   hosts: rel_nginx
 #   become: true
