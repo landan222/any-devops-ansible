@@ -1,4 +1,4 @@
-## 在 ansible tower 产生三组 SSH key pairs 依序放入 MYSQL 1, MySQL 2, MySQL 3
+## 法一, 在 ansible tower 产生三组 SSH key pairs 依序放入 MYSQL 1, MySQL 2, MySQL 3
 
 - name: "(shell) echo y | ssh-keygen -q -f /home/vagrant/www/landan-cicd_devops-ansible/roles/mysql/files/root/.ssh/id_rsa.* -t rsa -N ''"
   local_action: "shell echo y | ssh-keygen -q -f /home/vagrant/www/landan-cicd_devops-ansible/roles/mysql/files/root/.ssh/id_rsa.{{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }} -t rsa -N ''"
@@ -62,7 +62,7 @@
     state: touch
   when: mysql_ha == 'mha'
 
-- name: "(copy) scp root/.ssh/id_rsa.{{ index + 1 }}.pub /root/.ssh/authorized_keys"
+- name: "(copy) scp root/.ssh/id_rsa.*.pub /root/.ssh/authorized_keys"
   lineinfile:
     dest: /root/.ssh/authorized_keys
     line: "{{ lookup('file', '/home/vagrant/www/landan-cicd_devops-ansible/roles/mysql/files/root/.ssh/id_rsa.{{ index + 1 }}.pub') }}"
