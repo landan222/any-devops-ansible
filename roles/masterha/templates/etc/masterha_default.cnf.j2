@@ -2,11 +2,3 @@
 user={{ MYSQL.SERVERS[0].CONNECTIONS[0].USER }}
 password={{ MYSQL.SERVERS[0].CONNECTIONS[0].PASSWORD }}
 ssh_user=root
-repl_user={{ MYSQL.SERVERS[0].CONNECTIONS[{{ (MYSQL.SERVERS[0].CONNECTIONS | length) - 1 }}].USER }}
-repl_password={{ MYSQL.SERVERS[0].CONNECTIONS[{{ (MYSQL.SERVERS[0].CONNECTIONS | length) - 1 }}].PASSWORD }}
-ping_interval=1
-#master_binlog_dir= /var/lib/mysql,/var/log/mysql
-secondary_check_script=masterha_secondary_check -s 192.168.1.57 -s 192.168.1.58 -s 192.168.1.56 
-master_ip_failover_script="/etc/mha/scripts/master_ip_failover"
-master_ip_online_change_script="/etc/mha/scripts/master_ip_online_change"
-report_script="/etc/mha/scripts/send_report"

@@ -1,0 +1,17 @@
+[server default]
+manager_workdir=/var/run/msaterha/
+manager_log=/var/log/msaterha/app1/manager.log
+
+{% for SERVER in MYSQL.SERVERS %}
+[server{{ loop.index}}]
+hostname={{ SERVER.HOST }}
+port={{ SERVER.PORT }}
+master_binlog_dir="/var/lib/mysql"
+{% if loop.index <= 1 %}
+candidate_master=1                     # 表示有机会成为master
+no_master=0
+{% else %}
+candidate_master=0                     # 表示没机会成为master
+no_master=1
+{% endif %}
+{% endfor %}

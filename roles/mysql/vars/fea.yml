@@ -48,6 +48,14 @@ MYSQL:
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'
         - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'ALL'
+          USER: 'root'
+          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          PASSWORD: 'mysql_pass_mha'
+          DATABASE: '*'
+        - drop_user: true
           with_grant_option: false
           GRANTS: 
             - 'SELECT'
@@ -195,7 +203,7 @@ MYSQL:
           GRANTS: 
             - 'ALL'
           USER: 'root'
-          HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.21 ，在 VM 外网
+          HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.81 ，在 VM 外网
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'
         - drop_user: true
@@ -211,7 +219,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.41'                # 提供 GOLANG 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.41'                # 提供 GOLANG 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
         - drop_user: true
@@ -227,7 +235,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.42'                # 提供 GOLANG  从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.42'                # 提供 GOLANG  从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
         - drop_user: true
@@ -243,7 +251,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.51'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.51'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
         - drop_user: true
@@ -259,7 +267,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
         - drop_user: true
@@ -268,7 +276,7 @@ MYSQL:
             - 'REPLICATION SLAVE'
             - 'REPLICATION CLIENT'
           USER: 'replicator'
-          HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.83'       # 外网 IP
@@ -305,7 +313,7 @@ MYSQL:
           GRANTS: 
             - 'ALL'
           USER: 'root'
-          HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.21 ，在 VM 外网
+          HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.83 ，在 VM 外网
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'
         - drop_user: true
@@ -321,7 +329,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.41'                # 提供 GOLANG 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.41'                # 提供 GOLANG 从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
         - drop_user: true
@@ -337,7 +345,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.42'                # 提供 GOLANG  从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.42'                # 提供 GOLANG  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
         - drop_user: true
@@ -353,7 +361,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.51'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.51'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
         - drop_user: true
@@ -369,7 +377,7 @@ MYSQL:
             - 'CREATE ROUTINE'
             - 'ALTER ROUTINE'
           USER: 'backend'
-          HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
 

@@ -1,0 +1,13 @@
+- name: (file) mkdir /etc/masterha
+  file:
+    path: /etc/masterha
+    state: directory
+    mode: 0755
+
+- name: "(template) scp etc/masterha/app1.cnf.j2 /etc/masterha/app1.cnf"
+  template:
+    src: etc/masterha/app1.cnf.j2
+    dest: /etc/masterha/app1.cnf
+    owner: root
+    group: root
+    mode: 0755
