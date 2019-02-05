@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+#自动切换时vip管理的脚本，不是必须，如果我们使用keepalived的，我们可以自己编写脚本完成对vip的管理，比如监控mysql，如果mysql异常，我们停止keepalived就行，这样vip就会自动漂移
 	use strict;
 	use warnings FATAL => 'all';
 	use Getopt::Long;
@@ -9,7 +10,7 @@
 	);
 
 	#定义VIP变量
-	my $vip = '192.168.1.59/24';
+	my $vip = {{ MYSQL.VIP }};
 	my $key = '1';
 	my $ssh_start_vip = "/sbin/ifconfig ens192:$key $vip";
 	my $ssh_stop_vip = "/sbin/ifconfig ens192:$key down";

@@ -6,6 +6,7 @@ MASTERHA:
   PASSWORD: 'mysql_pass_masterha'
   REPL_USER: 'replicator'
   REPL_PASSWORD: 'mysql_pass_replicator'
+  VIP: '10.0.0.80/24'
   SERVERS:
     - HOST: 10.0.0.81    # 内网 IP
       PORT: 3306
