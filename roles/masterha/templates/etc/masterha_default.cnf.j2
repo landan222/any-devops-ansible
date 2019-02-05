@@ -6,7 +6,7 @@ repl_user={{ MASTERHA.REPL_USER}}
 repl_password={{ MASTERHA.REPL_PASSWORD }}
 ping_interval=1
 #master_binlog_dir= /var/lib/mysql,/var/log/mysql
-secondary_check_script=masterha_secondary_check -s 192.168.1.57 -s 192.168.1.58 -s 192.168.1.56 
-master_ip_failover_script="/etc/mha/scripts/master_ip_failover"
-master_ip_online_change_script="/etc/mha/scripts/master_ip_online_change"
-report_script="/etc/mha/scripts/send_report"
+secondary_check_script=masterha_secondary_check -s {{ MASTERHA.SERVERS | map(attribute='HOST') | join(' -s ')}}
+master_ip_failover_script="/etc/masterha/scripts/master_ip_failover"
+master_ip_online_change_script="/etc/masterha/scripts/master_ip_online_change"
+report_script="/etc/masterha/scripts/send_report"

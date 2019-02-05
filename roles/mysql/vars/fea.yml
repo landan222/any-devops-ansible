@@ -207,6 +207,14 @@ MYSQL:
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'
         - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'ALL'
+          USER: 'root'
+          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          PASSWORD: 'mysql_pass_masterha'
+          DATABASE: '*'
+        - drop_user: true
           with_grant_option: false
           GRANTS:
             - 'SELECT'
@@ -315,6 +323,14 @@ MYSQL:
           USER: 'root'
           HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.83 ，在 VM 外网
           PASSWORD: 'mysql_pass_router'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'ALL'
+          USER: 'root'
+          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          PASSWORD: 'mysql_pass_masterha'
           DATABASE: '*'
         - drop_user: true
           with_grant_option: false
