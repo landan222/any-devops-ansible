@@ -181,13 +181,13 @@ read-only = 1                                           # GRANT 含 SUPER 的 �
 {% endif %}
 {% if mysql_ha == 'mha' %}
 relay_log_purge = 0                                     # MHA 需要 relay-log ， 请不要自动清除
-{% elif %}
+{% else %}
 relay_log_purge = 1                                     # MHA 需要 relay-log ， 请不要自动清除
 {% endif %}
 ######################### [mysqld] Bin log 相关 - GTID MODE #########################
 {% if (mysql_version == '5.7' or mysql_version == '8.0') and (MYSQL.GTID_MODE == 'yes' or MYSQL.GTID_MODE == 1 or MYSQL.GTID_MODE == true )%}
 gtid_executed_compression_period = 1000                      
-gtid_mode = on                     
+gtid_mode = on            
 enforce_gtid_consistency = on
 {% endif %}
 

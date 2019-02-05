@@ -88,6 +88,6 @@ SHOW SLAVE STATUS;
 INSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so';
 INSTALL PLUGIN rpl_semi_sync_slave SONAME 'semisync_slave.so';
 
-STOP SLAVE TO_THREAD;
+STOP SLAVE IO_THREAD;
 
-START SLAVE TO_THREAD;
+START SLAVE IO_THREAD;

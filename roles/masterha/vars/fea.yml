@@ -7,6 +7,8 @@ MASTERHA:
   REPL_USER: 'replicator'
   REPL_PASSWORD: 'mysql_pass_replicator'
   VIP: '10.0.0.80/24'
+  CONF: '/etc/masterha/app.cnf'
+  MANAGER_LOG: '/var/log/masterha/masterha.log'
   SERVERS:
     - HOST: 10.0.0.81    # 内网 IP
       PORT: 3306
