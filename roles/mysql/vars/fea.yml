@@ -52,7 +52,7 @@ MYSQL:
           GRANTS: 
             - 'SUPER'
             - 'RELOAD'
-            - 'REPLICATION CLIENT 
+            - 'REPLICATION CLIENT'
             - 'SELECT'
             - 'CREATE'
             - 'INSERT'
@@ -219,7 +219,7 @@ MYSQL:
           GRANTS: 
             - 'SUPER'
             - 'RELOAD'
-            - 'REPLICATION CLIENT 
+            - 'REPLICATION CLIENT'
             - 'SELECT'
             - 'CREATE'
             - 'INSERT'
@@ -345,7 +345,7 @@ MYSQL:
           GRANTS: 
             - 'SUPER'
             - 'RELOAD'
-            - 'REPLICATION CLIENT 
+            - 'REPLICATION CLIENT'
             - 'SELECT'
             - 'CREATE'
             - 'INSERT'
