@@ -120,6 +120,18 @@ innodb_max_dirty_pages_pct = 90                         # InnoDB主线程刷新�
 innodb_lock_wait_timeout = 120                          # InnoDB事务被回滚之前可以等待一个锁定的超时秒数
 innodb_file_per_table = 1                               # InnoDB为独立表空间模式，每个数据库的每个表都会生成一个数据空间,0关闭,1开启
 innodb_autoextend_increment = 256                       # 这个参数的作用是控制innodb 共享表空间文件自动扩展的大小
+innodb_flush_log_at_trx_commit = 0
+innodb_io_capacity             = 2000
+binlog_error_action = ABORT_SERVER
+innodb_file_format=Barracuda
+innodb_support_xa=0
+innodb_buffer_pool_dump_at_shutdown = 1
+innodb_buffer_pool_load_at_startup = 1
+# innodb_undo_tablespaces=4                             # 5.7 不作用
+innodb_undo_logs=2048
+innodb_purge_rseg_truncate_frequency=512
+innodb_max_undo_log_size=2G
+innodb_undo_log_truncate=1
 
 ############################# [mysqld] 效能 - 连接相关 #############################
 bind-address = {{ MYSQL.SERVERS[i].BIND_ADDRESS }}
