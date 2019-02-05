@@ -46,12 +46,17 @@ pid-file = /var/run/mysqld/mysqld.pid
 
 [mysqld]
 ######################### [mysqld] 基本设置 #########################
+server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
+
 port = {{ MYSQL.SERVERS[i].PORT }}
 datadir = {{ MYSQL.DATADIR }}
 socket = /var/lib/mysql/mysql.sock
 pid-file = /var/run/mysqld/mysqld.pid
+init-connect='SET NAMES utf8mb4'
+skip-character-set-client-handshake                      # 此处是忽略客户端的字符集，使用服务器的设置
+skip-external-locking
+slave-parallel-workers=6
 
-server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
 # external-locking = FALSE                               # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
 # skip-name-resolv                                       # 5.7 不作用, 禁止外部连接进行DNS解析
 transaction_isolation = READ-COMMITTED                   # 事务隔离级别
