@@ -3,4 +3,5 @@
 - include_vars: "{{ bra | default('fea') }}.yml"
 - import_tasks: yum-install-master_manager.yml
 - import_tasks: template-etc_masterha_defualt_cnf..yml
-- import_tasks: template-etc_master_app1_cnf.yml
+- import_tasks: template-etc_master_app_cnf.yml
+- import_tasks: lineinfile-root_ssh_authorized_keys.yml

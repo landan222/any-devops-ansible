@@ -4,10 +4,10 @@
     state: directory
     mode: 0755
 
-- name: "(template) scp etc/masterha/app1.cnf.j2 /etc/masterha/app1.cnf"
+- name: "(template) scp etc/masterha/app.cnf.j2 /etc/masterha/app.cnf"
   template:
-    src: etc/masterha/app1.cnf.j2
-    dest: /etc/masterha/app1.cnf
+    src: etc/masterha/app.cnf.j2
+    dest: /etc/masterha/app.cnf
     owner: root
     group: root
     mode: 0755
