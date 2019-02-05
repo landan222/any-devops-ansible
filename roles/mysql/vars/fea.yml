@@ -329,8 +329,8 @@ MYSQL:
           GRANTS: 
             - 'ALL'
           USER: 'root'
-          HOST: '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-          PASSWORD: 'mysql_pass_natgateway'
+          HOST: '10.0.2.2'                  # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+          PASSWORD: 'mysql_pass_natgateway' # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 192.168.0.144 (你PC的 区网 IP ) ，在 VM 外网 办公室区网
           DATABASE: '*'
         - drop_user: true
           with_grant_option: true

@@ -1,6 +1,6 @@
 ######################################## MHA-Manager工具 ########################################
 sudo masterha_check_ssh --conf=/etc/masterha/app.cnf           # 查看所有 SSH 配置
-sudo masterha_check_repl --conf=/etc/masterha/app.cnf          # 查看所有 SSH 配置
+sudo masterha_check_repl --conf=/etc/masterha/app.cnf          # 查看所有 从库 配置
 sudo masterha_manager                                          # 启动MHA。
 sudo masterha_check_status                                     # 检测当前MHA运行状态。
 sudo masterha_master_monitor                                   # 监测master是否宕机。

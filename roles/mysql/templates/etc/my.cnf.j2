@@ -179,7 +179,11 @@ slave-skip-errors = 1007,1008,1032,1062                 # 跳过主从复制时�
 read-only = 1                                           # GRANT 含 SUPER 的 才可以 改寫 db 
 #master-connect-retry = 30                              # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
 {% endif %}
-
+{% if mysql_ha == 'mha' %}
+relay_log_purge = 0                                     # MHA 需要 relay-log ， 请不要自动清除
+{% elif %}
+relay_log_purge = 1                                     # MHA 需要 relay-log ， 请不要自动清除
+{% endif %}
 ######################### [mysqld] Bin log 相关 - GTID MODE #########################
 {% if (mysql_version == '5.7' or mysql_version == '8.0') and (MYSQL.GTID_MODE == 'yes' or MYSQL.GTID_MODE == 1 or MYSQL.GTID_MODE == true )%}
 gtid_executed_compression_period = 1000                      
