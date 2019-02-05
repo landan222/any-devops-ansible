@@ -50,8 +50,16 @@ MYSQL:
         - drop_user: true
           with_grant_option: true
           GRANTS: 
-            - 'ALL'
-          USER: 'root'
+            - 'SUPER'
+            - 'RELOAD'
+            - 'REPLICATION CLIENT 
+            - 'SELECT'
+            - 'CREATE'
+            - 'INSERT'
+            - 'UPDATE'
+            - 'DELETE'
+            - 'DROP'
+          USER: 'masterha'
           HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
           PASSWORD: 'mysql_pass_masterha'
           DATABASE: '*'
@@ -209,8 +217,16 @@ MYSQL:
         - drop_user: true
           with_grant_option: true
           GRANTS: 
-            - 'ALL'
-          USER: 'root'
+            - 'SUPER'
+            - 'RELOAD'
+            - 'REPLICATION CLIENT 
+            - 'SELECT'
+            - 'CREATE'
+            - 'INSERT'
+            - 'UPDATE'
+            - 'DELETE'
+            - 'DROP'
+          USER: 'masterha'
           HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
           PASSWORD: 'mysql_pass_masterha'
           DATABASE: '*'
@@ -327,8 +343,16 @@ MYSQL:
         - drop_user: true
           with_grant_option: true
           GRANTS: 
-            - 'ALL'
-          USER: 'root'
+            - 'SUPER'
+            - 'RELOAD'
+            - 'REPLICATION CLIENT 
+            - 'SELECT'
+            - 'CREATE'
+            - 'INSERT'
+            - 'UPDATE'
+            - 'DELETE'
+            - 'DROP'
+          USER: 'masterha'
           HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
           PASSWORD: 'mysql_pass_masterha'
           DATABASE: '*'

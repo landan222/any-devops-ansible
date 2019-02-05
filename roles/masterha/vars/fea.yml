@@ -2,7 +2,7 @@
 mysql_ha: 'mha' # master-slave,master-master-slave , mmm, cluster, mha, mmm-cluster
 MASTERHA:
   SSH_USER: root
-  USER: 'root'
+  USER: 'masterha'
   PASSWORD: 'mysql_pass_masterha'
   REPL_USER: 'replicator'
   REPL_PASSWORD: 'mysql_pass_replicator'
