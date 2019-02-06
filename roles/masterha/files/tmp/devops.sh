@@ -1,3 +1,5 @@
+## 此 Perl CLI 还蛮多坑的，一般书上也没解答，出问题请 GOOGLE
+
 ######################################## MHA-Manager工具 ########################################
 sudo masterha_check_ssh --conf=/etc/masterha/app.cnf           # 查看所有 SSH 配置
 sudo masterha_check_repl --conf=/etc/masterha/app.cnf          # 查看所有 从库 配置
@@ -5,7 +7,12 @@ sudo nohup masterha_manager --conf=/etc/masterha/app.cnf --remove_dead_master_co
 sudo masterha_check_status --conf=/etc/masterha/app.cnf        # 检测当前MHA运行状态。
 sudo masterha_stop --conf=/etc/masterha/app.cnf                # 关闭当前MHA运行状态。
 sudo masterha_master_monitor --conf=/etc/masterha/app.cnf      # 监测master是否宕机。
+
+
 sudo masterha_master_switch --conf=/etc/masterha/app.cnf --master_state=dead --dead_master_host=10.0.0.81 --dead_master_port=3306 --new_master_host=10.0.0.82 --new_master_port=3306 --ignore_last_failover                # 控制故障转移(自动或手动)。
+
+## 这里有坑，执行 masterha_master_switch ， 请先执行 masterha_stop
+##           手动切换 master. 请先关闭 master monitor
 sudo masterha_master_switch --conf=/etc/masterha/app.cnf --master_state=alive --new_master_host=10.0.0.82 --new_master_port=3306 --orig_master_is_new_slave --running_updates_limit=10000 
 sudo masterha_conf_host                                        # 添加或删除配置的server信息。
 
