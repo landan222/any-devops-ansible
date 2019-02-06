@@ -177,6 +177,24 @@ MYSQL:
           HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.91'                # 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.92'                # 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
     - HOST: '10.0.0.82'       # 外网 IP
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
@@ -312,6 +330,24 @@ MYSQL:
           HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.93'                # 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.94'                # 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
     - HOST: '10.0.0.83'       # 外网 IP
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
@@ -445,6 +481,24 @@ MYSQL:
             - 'REPLICATION CLIENT'
           USER: 'replicator'               # 因为 MHA 中 slave 可能被提升为 master , 需要 打开 其他 replication 权限
           HOST: '10.0.0.82'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.95'                # 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.96'                # 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
   DATADIR: '/var/lib/mysql'
