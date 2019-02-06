@@ -1,3 +1,14 @@
+-- 基本 权限
+
+SHOW GRANTS;
+
+SHOW GRANTS FOR root@'127.0.0.1';
+
+SHOW GRANTS FOR backend@'10.0.0.41';
+
+REVOKE ALL PRIVILEGES, GRANT OPTION ON *.* FROM backend@'10.0.0.41';
+
+
 -- 基本 系统相关
 
 SELECT VERSION();
