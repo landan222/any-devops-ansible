@@ -300,7 +300,16 @@ MYSQL:
             - 'REPLICATION SLAVE'
             - 'REPLICATION CLIENT'
           USER: 'replicator'
-          HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
+          HOST: '10.0.0.81'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.83'       # 外网 IP
@@ -420,7 +429,24 @@ MYSQL:
           HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'
-
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.81'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'REPLICATION SLAVE'
+            - 'REPLICATION CLIENT'
+          USER: 'replicator'
+          HOST: '10.0.0.82'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_replicator'
+          DATABASE: '*'
   DATADIR: '/var/lib/mysql'
   CREATE_DATABASES:
     - landan

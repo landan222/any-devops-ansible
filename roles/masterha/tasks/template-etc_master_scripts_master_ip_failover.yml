@@ -4,10 +4,10 @@
     state: directory
     mode: 0755
 
-- name: "(template) scp etc/masterha/scripts/master_ip_failover.j2 /etc/masterha/scripts/master_ip_failover"
+- name: "(template) scp etc/masterha/scripts/master_ip_online_change /etc/masterha/scripts/master_ip_online_change"
   template:
-    src: etc/masterha/scripts/master_ip_failover.j2
-    dest: /etc/masterha/scripts/master_ip_failover
+    src: etc/masterha/scripts/master_ip_online_change.j2
+    dest: /etc/masterha/scripts/master_ip_online_change
     owner: root
     group: root
     mode: 0755

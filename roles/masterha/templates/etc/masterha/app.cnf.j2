@@ -9,8 +9,8 @@ hostname={{ SERVER.HOST }}
 port={{ SERVER.PORT }}
 master_binlog_dir="/var/lib/mysql"
 {% if loop.index <= 2 %}
-candidate_master=1                     # 表示有机会成为master
+candidate_master=1
 {% else %}
-candidate_master=0                     # 表示没机会成为master
+candidate_master=0
 {% endif %}
 {% endfor %}
