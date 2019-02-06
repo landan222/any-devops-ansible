@@ -234,6 +234,8 @@ loose_rpl_semi_sync_slave_enabled = 1                   # slave 使用 semisync_
 
 {% if mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.SERVERS[i].ENGINE is undefined %}
 default_storage_engine = BLACKHOLE                      # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
+{% elif MYSQL.SERVERS[i].ENGINE is undefined %}
+default_storage_engine = InnoDB                         # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% else %}
 default_storage_engine = {{ MYSQL.SERVERS[i].ENGINE }}  # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% endif %}

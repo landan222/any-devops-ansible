@@ -180,7 +180,7 @@ MYSQL:
     - HOST: '10.0.0.82'       # 外网 IP
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
-      ENGINE: 'BLACKHOLE'
+      # ENGINE: 'BLACKHOLE'
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
           with_grant_option: true
@@ -299,7 +299,7 @@ MYSQL:
           GRANTS: 
             - 'REPLICATION SLAVE'
             - 'REPLICATION CLIENT'
-          USER: 'replicator'
+          USER: 'replicator'               # 因为 MHA 中 slave 可能被提升为 master , 需要 打开 其他 replication 权限
           HOST: '10.0.0.81'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
@@ -308,7 +308,7 @@ MYSQL:
           GRANTS: 
             - 'REPLICATION SLAVE'
             - 'REPLICATION CLIENT'
-          USER: 'replicator'
+          USER: 'replicator'               # 因为 MHA 中 slave 可能被提升为 master , 需要 打开 其他 replication 权限
           HOST: '10.0.0.83'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
@@ -434,7 +434,7 @@ MYSQL:
           GRANTS: 
             - 'REPLICATION SLAVE'
             - 'REPLICATION CLIENT'
-          USER: 'replicator'
+          USER: 'replicator'               # 因为 MHA 中 slave 可能被提升为 master , 需要 打开 其他 replication 权限
           HOST: '10.0.0.81'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
@@ -443,7 +443,7 @@ MYSQL:
           GRANTS: 
             - 'REPLICATION SLAVE'
             - 'REPLICATION CLIENT'
-          USER: 'replicator'
+          USER: 'replicator'               # 因为 MHA 中 slave 可能被提升为 master , 需要 打开 其他 replication 权限
           HOST: '10.0.0.82'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
