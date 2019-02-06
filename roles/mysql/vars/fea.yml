@@ -14,7 +14,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0'  # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
-      LEVEL: 1                              # 一级 MYSQL , 大部分 主机 log-slave-updates = 1
+      IS_MASTER: yes                        # 一级 MYSQL , 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
           with_grant_option: true
@@ -236,7 +236,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       # ENGINE: 'BLACKHOLE'
-      LEVEL: 1                              # 一级 MYSQL , 大部分 主机 log-slave-updates = 1
+      IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
       MASTER_HOST: '10.0.0.81'             
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
@@ -427,7 +427,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
-      LEVEL: 1                              # 一级 MYSQL , 大部分 主机 log-slave-updates = 1
+      IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
       MASTER_HOST: '10.0.0.81'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序

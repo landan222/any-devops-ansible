@@ -221,7 +221,7 @@ log-slave-updates = 0                                   # master-slave SLAVE 不
 {% elif groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2  and mysql_ha == 'master-master-slave' %}
 log-slave-updates = 1                                   # master-master-slave 次级 哈MASTER 需 将 replication 来的 记入到从服务器自己的二进制日志文件中 
   
-{% elif groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2  and mysql_ha == 'mha' and MYSQL.SERVERS[i].LEVEL == 1 %}
+{% elif groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2  and mysql_ha == 'mha' and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
 log-slave-updates = 1                                   # mha 一级 MYSQL需 将 replication 来的 记入到从服务器自己的二进制日志文件中 
 
 {% else %}
@@ -241,7 +241,7 @@ loose_rpl_semi_sync_master_enabled = 1                  # 二级 master 使用 s
 loose_rpl_semi_sync_slave_enabled = 1                   # 二级 master 使用 semisync_slave
 loose_rpl_semi_sync_master_timeout = 5000               # 二级 master 半同步 timeout 5000
 
-{% elif groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and mysql_ha == 'mha' and MYSQL.SERVERS[i].LEVEL == 1 %}
+{% elif groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and mysql_ha == 'mha' and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
 plugin_load = "rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so" # 一级 master 安装 semisync_master, semisync_slave
 loose_rpl_semi_sync_master_enabled = 1                  # 一级 master 使用 semisync_master
 loose_rpl_semi_sync_slave_enabled = 1                   # 一级 master 使用 semisync_slave
