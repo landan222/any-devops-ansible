@@ -11,8 +11,8 @@ sudo masterha_master_monitor --conf=/etc/masterha/app.cnf      # 监测master是
 
 sudo masterha_master_switch --conf=/etc/masterha/app.cnf --master_state=dead --dead_master_host=10.0.0.81 --dead_master_port=3306 --new_master_host=10.0.0.82 --new_master_port=3306 --ignore_last_failover                # 控制故障转移(自动或手动)。
 
-## 这里有坑，执行 masterha_master_switch ， 请先执行 masterha_stop
-##           手动切换 master. 请先关闭 master monitor
+## 这里有坑， --master_state=alive alive 切换时，请先关闭 master monitor
+##           执行 masterha_master_switch ， 请先执行 masterha_stop
 sudo masterha_master_switch --conf=/etc/masterha/app.cnf --master_state=alive --new_master_host=10.0.0.82 --new_master_port=3306 --orig_master_is_new_slave --running_updates_limit=10000 
 sudo masterha_conf_host                                        # 添加或删除配置的server信息。
 
