@@ -15,7 +15,7 @@
 {% set master_host = MYSQL.SERVERS[1].HOST %}
 
 {% else %}
-{% set host = MYSQL.SERVERS[i].MASTER_HOST %} ## 预设指向 设定当里面的 MASTER_HOST
+{% set master_host = MYSQL.SERVERS[i].MASTER_HOST %} ## 预设指向 设定当里面的 MASTER_HOST
 
 {% endif %}
 

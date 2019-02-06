@@ -1,7 +1,7 @@
 ---
 mysql_version: 5.6
 mysql_create_databases: 'landan,vpn'
-mysql_ha: 'master-master-slave' # master-slave,master-master-slave , mmm, cluster, mha, mmm-cluster, pxc
+mysql_ha: 'mha' # master-slave,master-master-slave , mmm, cluster, mha, mmm-cluster, pxc
 # master-slave 单主多从模式
 # master-master-slave 二主多从模式
 # mmm 双主模式, MMM 方案不适用对数据一致性要求很高的业务
@@ -10,10 +10,11 @@ mysql_ha: 'master-master-slave' # master-slave,master-master-slave , mmm, cluste
 MYSQL:
   GTID_MODE: yes
   SERVERS:
-    - HOST: '10.0.0.81'        # 内网 IP    # 一级 MYSQL 
+    - HOST: '10.0.0.81'        # 内网 IP    
       BIND_ADDRESS: '0.0.0.0'  # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
+      LEVEL: 1                              # 一级 MYSQL , 大部分 主机 log-slave-updates = 1
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
           with_grant_option: true
@@ -235,7 +236,8 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       # ENGINE: 'BLACKHOLE'
-      MASTER_HOST: '10.0.0.81'              
+      LEVEL: 1                              # 一级 MYSQL , 大部分 主机 log-slave-updates = 1
+      MASTER_HOST: '10.0.0.81'             
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
           with_grant_option: true
@@ -425,6 +427,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
+      LEVEL: 1                              # 一级 MYSQL , 大部分 主机 log-slave-updates = 1
       MASTER_HOST: '10.0.0.81'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
       CONNECTIONS:
         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
