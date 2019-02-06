@@ -10,7 +10,8 @@ mysql_ha: 'mha' # master-slave,master-master-slave , mmm, cluster, mha, mmm-clus
 MYSQL:
   GTID_MODE: yes
   SERVERS:
-    - HOST: '10.0.0.81'        # 内网 IP    
+    - HOST: '10.0.0.81'        # 内网 IP   
+      NAME: 'mysql1'
       BIND_ADDRESS: '0.0.0.0'  # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -259,6 +260,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_backup'
           DATABASE: '*'
     - HOST: '10.0.0.82'       # 外网 IP   # 次一级 MYSQL 
+      NAME: 'mysql2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       # ENGINE: 'BLACKHOLE'
@@ -450,6 +452,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.83'       # 外网 IP    # 次一级 MYSQL 
+      NAME: 'mysql3'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -605,6 +608,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
     - HOST: '10.0.0.91'       # 内网 IP      # 二级 MYSQL 
+      NAME: 'mysql1-1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -707,6 +711,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                    # 二级 MYSQL 不需要 replocation
     - HOST: '10.0.0.92'       # 内网 IP      # 二级 MYSQL 
+      NAME: 'mysql1-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -809,6 +814,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                     # 二级 MYSQL 不需要 replocation
     - HOST: '10.0.0.93'       # 内网 IP     # 二级 MYSQL 
+      NAME: 'mysql2-1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -911,6 +917,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                     # 二级 MYSQL 不需要 replocation
     - HOST: '10.0.0.94'       # 内网 IP     # 二级 MYSQL 
+      NAME: 'mysql2-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'                      # 若 master-slave 高可用，slave 使用 replication 都改指向第一台 MySQL
@@ -1013,6 +1020,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                    # 二级 MYSQL 不需要 replocation
     - HOST: '10.0.0.95'       # 内网 IP      # 二级 MYSQL 
+      NAME: 'mysql3-1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -1115,6 +1123,7 @@ MYSQL:
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                    # 二级 MYSQL 不需要 replocation
     - HOST: '10.0.0.96'       # 内网 IP      # 二级 MYSQL 
+      NAME: 'mysql3-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306
       ENGINE: 'InnoDB'
