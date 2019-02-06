@@ -104,3 +104,8 @@ INSTALL PLUGIN rpl_semi_sync_slave SONAME 'semisync_slave.so';
 STOP SLAVE IO_THREAD;
 
 START SLAVE IO_THREAD;
+
+-- 备份
+
+ALTER TABLE users DISCARD TABLESPACE;    -- copy *.frm *.ibd 的方式 需要重启 TALBESPACE
+ALTER TABLE users IMPORT TABLESPACE;
