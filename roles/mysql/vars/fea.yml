@@ -232,6 +232,30 @@ MYSQL:
           HOST: '10.0.0.96'                # master-slave， 提供 其他 SLAVE 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
+        - drop_user: false                  
+          with_grant_option: true
+          GRANTS:
+            - 'RELOAD'
+            - 'LOCK TABLES'
+            - 'REPLICATION CLIENT'
+            - 'CREATE TABLESPACE'
+            - 'SUPER'
+          USER: 'backup'
+          HOST: 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+          PASSWORD: 'mysql_pass_backup'
+          DATABASE: '*'
+        - drop_user: false                   
+          with_grant_option: true
+          GRANTS:
+            - 'RELOAD'
+            - 'LOCK TABLES'
+            - 'REPLICATION CLIENT'
+            - 'CREATE TABLESPACE'
+            - 'SUPER'
+          USER: 'backup'
+          HOST: '10.0.0.21'                 # 提供 xtrabuckup shell  连取 10.0.0.81 ，在 Ansilbe 主机
+          PASSWORD: 'mysql_pass_backup'
+          DATABASE: '*'
     - HOST: '10.0.0.82'       # 外网 IP   # 次一级 MYSQL 
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       PORT: 3306

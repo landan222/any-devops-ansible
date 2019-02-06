@@ -1,0 +1,7 @@
+---
+- name: "(shell) sudo masterha_check_repl --conf={{ MASTERHA.CONF }}"
+  shell: "masterha_check_repl --conf={{ MASTERHA.CONF }}"
+  register: string_masterha_repl
+- name: (debug) string_masterha_repl
+  debug: 
+    msg: "{{ string_masterha_repl }}"
