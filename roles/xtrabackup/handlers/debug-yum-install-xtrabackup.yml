@@ -1,0 +1,7 @@
+---
+- name: (shell) xtrabackup --version
+  shell: xtrabackup --version
+  register: string_xtrabackup_version
+- name: (debug) string_xtrabackup_version
+  debug: 
+    msg: "{{ string_xtrabackup_version }}"

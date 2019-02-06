@@ -44,6 +44,8 @@ SHOW BINARY LOGS;                       # 查看所有 binary log files 与 档�
 
 SHOW BINLOG EVENTS;
 
+SHOW MASTER LOGS;
+
 SHOW BINLOG EVENTS in 'mysql-bin-00001' FROM 101;
 
 PURGE MASTER LOGS BEFORE DATE_SUB(NOW(), INTERVAL 14 day);

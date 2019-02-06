@@ -1,5 +1,0 @@
-- name: (file) mkdir /var/log/masterha
-  file:
-    path: /var/log/masterha
-    state: directory
-    mode: 0755

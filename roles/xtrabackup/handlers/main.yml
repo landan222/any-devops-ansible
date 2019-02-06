@@ -1,8 +1,4 @@
 ---
-- name: debug yum install master manager
-  import_tasks: debug-masterha_check_ssh.yml
-- name: debug yum install master manager
-  import_tasks: debug-masterha_check_repl.yml
-- name: debug yum install master manager
-  import_tasks: debug-masterha_check_status.yml
+- name: debug yum install xtrabackup
+  import_tasks: debug-yum-install-xtrabackup.yml
   #listen: # ansible 2.7 版本 import_tasks 没有 listen

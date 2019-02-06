@@ -1,0 +1,17 @@
+---
+- name: (yum) yum remove percona-xtrabackup*
+  yum:
+    name: percona-xtrabackup*
+    state: absent
+- name: (yum) yum install percona-xtrabackup-80-8.0.4-1.el7.x86_64.rpm
+  yum: # 请去 ELK 官网 找最新 rpm
+    name: https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-8.0.4/binary/redhat/7/x86_64/percona-xtrabackup-80-8.0.4-1.el7.x86_64.rpm
+    state: present
+  notify: debug yum install xtrabackup
+  when: xtrabackup_version == '8.0'  
+- name: (yum) yum install percona-xtrabackup-24-2.4.13-1.el7.x86_64.rpm
+  yum: # 请去 ELK 官网 找最新 rpm
+    name: https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-2.4.13/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.13-1.el7.x86_64.rpm
+    state: present
+  notify: debug yum install xtrabackup
+  when: xtrabackup_version == '2.4'
