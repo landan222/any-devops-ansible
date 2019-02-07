@@ -5,3 +5,6 @@
 - name: (debug) string_mysql_version
   debug: 
     msg: "{{ string_mysql_version }}"
+- name: (debug) mysql_ha
+  debug: 
+    msg: "{{ mysql_ha }}"

@@ -1,10 +1,12 @@
 ---
 mysql_version: 5.6
 mysql_create_databases: 'landan,vpn'
-mysql_ha: 'mha' # master-slave,master-master-slave , mmm, cluster, mha, mmm-cluster, pxc
-# master-slave 单主多从模式
+mysql_ha: 'dual-master' # master-slave, master-master-slave, dual-master, mmm, mha, cluster, mmm-cluster, pxc
+# master-slave 一主一从模式
+# master-slave 一主多从模式
 # master-master-slave 二主多从模式
-# mmm 双主模式, MMM 方案不适用对数据一致性要求很高的业务
+# dual-master 双主模式
+# mmm 多主模式, MMM 方案不适用对数据一致性要求很高的业务
 # cluster 集从模式
 # mha 
 MYSQL:
