@@ -6,6 +6,21 @@
   shell: "cat /root/.ssh/id_rsa.pub"
   register: string_id_rsa_pub
   when: mysql_ha == 'mha'
+  
+- name: (file) touch /root/.ssh/authorized_keys
+  file:
+    path: "/root/.ssh/authorized_keys"
+    owner: root
+    group: root
+    mode: 0700
+    state: touch
+  delegate_to: "{{ host }}"
+  loop: "{{ groups[bra ~ '-mysql'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'mha'
    
 - name: "(lineinfile) scp root/.ssh/id_rsa.*.pub  >> /root/.ssh/authorized_keys"
   lineinfile:
