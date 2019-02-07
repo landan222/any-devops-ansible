@@ -2,7 +2,6 @@
 ---
 - include_vars: "{{ bra | default('fea') }}.yml"
 - import_tasks: shell-mysqldump.yml
-- import_tasks: yum-install-mysql80_community_rpm.yml
 - import_tasks: yum-install-yum_utils.yml
 - import_tasks: yum-install-mysql_comunnity_server.yml
 - import_tasks: service-mysqld-restarted.yml # when service mysqld start at the first time, should not template /etc/my.cnf
@@ -19,5 +18,13 @@
 - import_tasks: shell-mysql-tmp_cms_sql.yml
 - import_tasks: shell-mysql-tmp_change_master_sql.yml
 - import_tasks: lineinfile-root_ssh_authorized_keys.yml
+
+
+## MYSQL MMM HA
 - import_tasks: template-etc_hosts.yml
+- import_tasks: yum-install-mysql_mmm.yml
+- import_tasks: template-etc_mysql_mmm_mmm_common_conf.yml
+- import_tasks: template-etc_mysql_mmm_mmm_agent_conf.yml
+- import_tasks: service-mysql_mmm_agent-restarted.yml
+## MYSQL MHA HA
 - import_tasks: yum-install-master_node.yml

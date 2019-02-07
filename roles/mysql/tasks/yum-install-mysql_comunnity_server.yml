@@ -1,4 +1,9 @@
 ---
+- name: (yum) yum insatll mysql80-community rpm
+  yum: 
+    name: https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+    allow_downgrade: True
+    
 - name: '(command) yum-config-manager --disable mysql-community'
   command: "yum-config-manager --disable {{ package_name }}"
   with_items:

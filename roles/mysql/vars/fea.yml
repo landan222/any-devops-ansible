@@ -1,7 +1,7 @@
 ---
 mysql_version: 5.6
 mysql_create_databases: 'landan,vpn'
-mysql_ha: 'dual-master' # master-slave, master-master-slave, dual-master, mmm, mha, cluster, mmm-cluster, pxc
+mysql_ha: 'mmm' # master-slave, master-master-slave, dual-master, mmm, mha, cluster, mmm-cluster, pxc
 # master-slave 一主一从模式
 # master-slave 一主多从模式
 # master-master-slave 二主多从模式
@@ -54,6 +54,14 @@ MYSQL:
         - drop_user: true
           with_grant_option: true
           GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: true
+          GRANTS: 
             - 'SUPER'
             - 'RELOAD'
             - 'REPLICATION CLIENT'
@@ -64,7 +72,7 @@ MYSQL:
             - 'DELETE'
             - 'DROP'
           USER: 'masterha'
-          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          HOST: '10.0.0.77'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
           PASSWORD: 'mysql_pass_masterha'
           DATABASE: '*'
         - drop_user: true
@@ -235,6 +243,89 @@ MYSQL:
           HOST: '10.0.0.96'                # master-slave， 提供 其他 SLAVE 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
+          
+          
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'          
+          
         - drop_user: false                  
           with_grant_option: true
           GRANTS:
@@ -304,6 +395,14 @@ MYSQL:
         - drop_user: true
           with_grant_option: true
           GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: true
+          GRANTS: 
             - 'SUPER'
             - 'RELOAD'
             - 'REPLICATION CLIENT'
@@ -314,7 +413,7 @@ MYSQL:
             - 'DELETE'
             - 'DROP'
           USER: 'masterha'
-          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          HOST: '10.0.0.77'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
           PASSWORD: 'mysql_pass_masterha'
           DATABASE: '*'
         - drop_user: true
@@ -453,6 +552,90 @@ MYSQL:
           HOST: '10.0.0.94'                # mha, 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.82 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
+        
+        
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'  
+        
+          
     - HOST: '10.0.0.83'       # 外网 IP    # 次一级 MYSQL 
       NAME: 'mysql3'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -496,6 +679,14 @@ MYSQL:
         - drop_user: true
           with_grant_option: true
           GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: true
+          GRANTS: 
             - 'SUPER'
             - 'RELOAD'
             - 'REPLICATION CLIENT'
@@ -506,7 +697,7 @@ MYSQL:
             - 'DELETE'
             - 'DROP'
           USER: 'masterha'
-          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          HOST: '10.0.0.77'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
           PASSWORD: 'mysql_pass_masterha'
           DATABASE: '*'
         - drop_user: true
@@ -609,6 +800,92 @@ MYSQL:
           HOST: '10.0.0.96'                # 提供 二级 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_replicator'
           DATABASE: '*'
+          
+          
+          
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'    
+          
+          
+          
     - HOST: '10.0.0.91'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql1-1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -648,6 +925,14 @@ MYSQL:
           HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.91 ，在 VM 外网
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'                    # 二级 MYSQL 不需 MHA Monitor
+        - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 提供 MHA manager 从 10.0.0.76  连取 10.0.0.81 ，在 VM 外网
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
         - drop_user: true
           with_grant_option: false
           GRANTS:
@@ -712,6 +997,92 @@ MYSQL:
           HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                    # 二级 MYSQL 不需要 replocation
+          
+          
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'    
+          
+          
+          
+          
     - HOST: '10.0.0.92'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql1-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -751,6 +1122,14 @@ MYSQL:
           HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.91 ，在 VM 外网
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'                    # 二级 MYSQL 不需 MHA Monitor
+        - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 二级 MYSQL 需 mmm Monitor
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
         - drop_user: true
           with_grant_option: false
           GRANTS:
@@ -815,6 +1194,90 @@ MYSQL:
           HOST: '10.0.0.52'                 # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                     # 二级 MYSQL 不需要 replocation
+          
+          
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'    
+          
+          
     - HOST: '10.0.0.93'       # 内网 IP     # 二级 MYSQL 
       NAME: 'mysql2-1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -854,6 +1317,14 @@ MYSQL:
           HOST: '10.0.0.1'                  # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.91 ，在 VM 外网
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'                     # 二级 MYSQL 不需 MHA Monitor
+        - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 二级 MYSQL 需 mmm Monitor
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
         - drop_user: true
           with_grant_option: false
           GRANTS:
@@ -918,6 +1389,92 @@ MYSQL:
           HOST: '10.0.0.52'                 # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                     # 二级 MYSQL 不需要 replocation
+          
+          
+          
+          
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'    
+          
+          
     - HOST: '10.0.0.94'       # 内网 IP     # 二级 MYSQL 
       NAME: 'mysql2-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -958,6 +1515,14 @@ MYSQL:
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'                    # 二级 MYSQL 不需 MHA Monitor
         - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 二级 MYSQL 需 mmm Monitor
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
+        - drop_user: true
           with_grant_option: false
           GRANTS:
             - 'SELECT'
@@ -1021,6 +1586,90 @@ MYSQL:
           HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                    # 二级 MYSQL 不需要 replocation
+          
+          
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'    
+          
+          
     - HOST: '10.0.0.95'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql3-1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -1061,6 +1710,14 @@ MYSQL:
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'                    # 二级 MYSQL 不需 MHA Monitor
         - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 二级 MYSQL 需 mmm Monitor
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
+        - drop_user: true
           with_grant_option: false
           GRANTS:
             - 'SELECT'
@@ -1124,6 +1781,88 @@ MYSQL:
           HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                    # 二级 MYSQL 不需要 replocation
+          
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.96'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'    
+          
     - HOST: '10.0.0.96'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql3-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -1164,6 +1903,14 @@ MYSQL:
           PASSWORD: 'mysql_pass_router'
           DATABASE: '*'                    # 二级 MYSQL 不需 MHA Monitor
         - drop_user: true
+          with_grant_option: true
+          GRANTS: 
+            - 'REPLICATION CLIENT'
+          USER: 'monitor'
+          HOST: '10.0.0.76'                 # 二级 MYSQL 需 mmm Monitor
+          PASSWORD: 'mysql_pass_monitor'
+          DATABASE: '*'
+        - drop_user: true
           with_grant_option: false
           GRANTS:
             - 'SELECT'
@@ -1227,6 +1974,87 @@ MYSQL:
           HOST: '10.0.0.52'                # 提供 PHP  从 10.0.0.* 连取 10.0.0.83 ，在 VM 内网
           PASSWORD: 'mysql_pass_backend'
           DATABASE: '*'                    # 二级 MYSQL 不需要 replocation
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.81'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.82'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.83'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.91'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.92'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.93'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.94'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'
+        - drop_user: true
+          with_grant_option: false
+          GRANTS: 
+            - 'SUPER'
+            - 'REPLICATION CLIENT'
+            - 'PROCESS'
+          USER: 'agent'
+          HOST: '10.0.0.95'                # 提供 MYSQL DB 节点的 agnent 从 10.0.0.* 连取 10.0.0.81 ，在 VM 内网
+          PASSWORD: 'mysql_pass_agent'
+          DATABASE: '*'           
+          
   DATADIR: '/var/lib/mysql'
   CREATE_DATABASES:
     - landan

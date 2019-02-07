@@ -1,0 +1,10 @@
+---
+- name: (service) service mysql-mmm-monitor restared
+  service:
+    name: mysql-mmm-monitor
+    state: restarted
+# - name: Debug start nginx
+#   debug: 
+#     msg: 'The key value is !!'
+#   when: debug==true or debug==1
+    

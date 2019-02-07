@@ -1,0 +1,11 @@
+---
+- name: (yum) yum insatll epel-release-latest-7.noarch.rpm
+  yum: 
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    allow_downgrade: True
+- name: (yum) yum install mysql-mmm*
+  yum: 
+    name:
+      - mysql-mmm*
+    state: latest
+  when: mysql_ha == 'mmm'

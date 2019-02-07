@@ -1,0 +1,98 @@
+---
+mysql_version: 5.6
+MYSQL:
+  DATADIR: '/var/lib/mysql'
+  BIND_ADDRESS: '0.0.0.0'
+  CREATE_DATABASES:
+    - landan
+    - vpn
+    - lorentz
+    - chatshier
+    - nouya
+    - legeo
+  CONNECTIONS:
+    - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+      with_grant_option: true
+      GRANTS: 'ALL'
+      USER: 'root'
+      HOST: 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+      PASSWORD: 'mysql_pass_cli'
+      DATABASE: '*'
+    - drop_user: false
+      with_grant_option: true
+      GRANTS: 'ALL'
+      USER: 'root'
+      HOST: '127.0.0.1'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+      PASSWORD: 'mysql_pass_cli'
+      DATABASE: '*'
+    - drop_user: true
+      with_grant_option: true
+      GRANTS: 'ALL'
+      USER: 'root'
+      HOST: '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+      PASSWORD: 'mysql_pass_natgateway'
+      DATABASE: '*'
+    - drop_user: true
+      with_grant_option: true
+      GRANTS: 'ALL'
+      USER: 'root'
+      HOST: '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 ROUTER 经过 10.0.0.1)  连取 10.0.0.21 ，在 VM 外网
+      PASSWORD: 'mysql_pass_router'
+      DATABASE: '*'
+    - drop_user: true
+      with_grant_option: false
+      GRANTS:
+        - 'SELECT'
+        - 'INSERT'
+        - 'UPDATE'
+        - 'CREATE'
+        - 'CREATE TEMPORARY TABLES'
+        - 'LOCK TABLES'
+        - 'EXECUTE'
+        - 'CREATE ROUTINE'
+        - 'ALTER ROUTINE'      
+      USER: 'backend'
+      HOST: '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+      PASSWORD: 'mysql_pass_backend'
+      DATABASE: '*'
+    - drop_user: true
+      with_grant_option: false
+      GRANTS:
+        - 'SELECT'
+        - 'INSERT'
+        - 'UPDATE'
+        - 'CREATE'
+        - 'CREATE TEMPORARY TABLES'
+        - 'LOCK TABLES'
+        - 'EXECUTE'
+        - 'CREATE ROUTINE'
+        - 'ALTER ROUTINE'      
+      USER: 'backend'
+      HOST: 'localhost'                # 提供 PHP GOLANG NODEJS 从 localhost 连取 localhost ，在 VN localhost
+      PASSWORD: 'mysql_pass_backend'
+      DATABASE: '*' 
+    - drop_user: true
+      with_grant_option: false
+      GRANTS:
+        - 'SELECT'
+        - 'INSERT'
+        - 'UPDATE'
+        - 'CREATE'
+        - 'CREATE TEMPORARY TABLES'
+        - 'LOCK TABLES'
+        - 'EXECUTE'
+        - 'CREATE ROUTINE'
+        - 'ALTER ROUTINE'      
+      USER: 'backend'
+      HOST: '10.0.0.21'                # 提供 PHP GOLANG NODEJS 从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
+      PASSWORD: 'mysql_pass_backend'
+      DATABASE: '*'
+    - drop_user: true
+      with_grant_option: false
+      GRANTS: 
+        - 'REPLICATION SLAVE'
+        - 'REPLICATION CLIENT'
+      USER: 'replicator'
+      HOST: '10.0.0.21'                # 提供  从 10.0.0.* 连取 10.0.0.21 ，在 VM 内网
+      PASSWORD: 'mysql_pass_replicator'
+      DATABASE: '*'

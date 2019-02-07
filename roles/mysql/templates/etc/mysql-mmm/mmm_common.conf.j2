@@ -1,0 +1,39 @@
+#jinja2: lstrip_blocks: True
+
+active_master_role      writer
+
+<host default>
+    cluster_interface       eth0
+    pid_path                /run/mysql-mmm-agent.pid
+    bin_path                /usr/libexec/mysql-mmm/
+    replication_user        replicantor
+    replication_password    mysql_pass_replicator
+    agent_user              agent
+    agent_password          mysql_pass_agent
+</host>
+
+{% for SERVER in MYSQL.SERVERS %}
+<host {{ SERVER.NAME }}>
+    ip      {{ SERVER.HOST }}
+    mode    {{ 'master' if ( loop.index <= 2 ) else 'slave' }}
+    {% if loop.index == 1 %}
+    peer    {{ MYSQL.SERVERS[1].NAME }}
+    {% elif loop.index == 2 %}
+    peer    {{ MYSQL.SERVERS[0].NAME }}
+    {% else %}
+    {% endif %}
+</host>
+
+{% endfor %}
+
+<role writer>
+    hosts   {{ ([((MYSQL.SERVERS | map(attribute='NAME') | list)[0])] + [((MYSQL.SERVERS | map(attribute='NAME') | list)[1])]) | join(', ') }}
+    ips     10.0.0.80
+    mode    exclusive
+</role>
+
+<role reader>
+    hosts   {{ MYSQL.SERVERS | map(attribute='NAME') | list | difference([((MYSQL.SERVERS | map(attribute='NAME') | list)[0])] + [((MYSQL.SERVERS | map(attribute='NAME') | list)[1])]) | join(', ') }}
+    ips     10.0.0.90
+    mode    balanced
+</role>
