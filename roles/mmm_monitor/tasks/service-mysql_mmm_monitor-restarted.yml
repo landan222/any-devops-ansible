@@ -1,5 +1,5 @@
 ---
-- name: (service) service mysql-mmm-monitor restared
+- name: (service) service mysql-mmm-monitor restarted
   service:
     name: mysql-mmm-monitor
     state: restarted

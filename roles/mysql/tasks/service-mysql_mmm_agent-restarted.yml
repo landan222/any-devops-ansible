@@ -1,5 +1,5 @@
 ---
-- name: (service) service mysql-mmm-agent restared
+- name: (service) service mysql-mmm-agent restarted
   service:
     name: mysql-mmm-agent
     state: restarted
