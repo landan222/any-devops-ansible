@@ -1,0 +1,8 @@
+---
+- name: "(shell) mmm_control checks all"
+  shell: "mmm_control checks all"
+  register: string_mmm_control_checks_all
+  ignore_errors: yes
+- name: (debug) string_mmm_control_checks_all
+  debug: 
+    msg: "{{ string_mmm_control_checks_all }}"
