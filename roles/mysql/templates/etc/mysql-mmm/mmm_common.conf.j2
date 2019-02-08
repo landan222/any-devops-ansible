@@ -12,9 +12,9 @@ active_master_role      writer
     agent_password          mysql_pass_agent
 </host>
 
-{% for SERVER in MYSQL.SERVERS %}
-<host {{ SERVER.NAME }}>
-    ip      {{ SERVER.HOST }}
+{% for host in groups[bra ~ '-mysql'] %}
+<host {{ MYSQL.SERVERS[loop.index - 1].NAME }}>
+    ip      {{ MYSQL.SERVERS[loop.index - 1].HOST }}
     mode    {{ 'master' if ( loop.index <= 2 ) else 'slave' }}
     {% if loop.index == 1 %}
     peer    {{ MYSQL.SERVERS[1].NAME }}
@@ -27,13 +27,13 @@ active_master_role      writer
 {% endfor %}
 
 <role writer>
-    hosts   {{ ([((MYSQL.SERVERS | map(attribute='NAME') | list)[0])] + [((MYSQL.SERVERS | map(attribute='NAME') | list)[1])]) | join(', ') }}
+    hosts   {{ MYSQL.SERVERS[0].NAME }}, {{MYSQL.SERVERS[1].NAME }}
     ips     10.0.0.80
     mode    exclusive
 </role>
 
 <role reader>
-    hosts   {{ MYSQL.SERVERS | map(attribute='NAME') | list | difference([((MYSQL.SERVERS | map(attribute='NAME') | list)[0])] + [((MYSQL.SERVERS | map(attribute='NAME') | list)[1])]) | join(', ') }}
+    hosts   {% for host in groups[bra ~ '-mysql'] %}{% if loop.index >= 2 and loop.index < groups[bra ~ '-mysql'] | length %}{{ MYSQL.SERVERS[loop.index - 1].NAME }}, {% elif loop.index >= 2 %}{{ MYSQL.SERVERS[loop.index - 1].NAME }}{% endif %}{% endfor %} 
     ips     10.0.0.90
     mode    balanced
 </role>

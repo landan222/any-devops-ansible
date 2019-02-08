@@ -1,4 +1,7 @@
 ---
+- name: (pause) sleep 1m
+  pause:
+    minutes: 1
 - name: "(shell) mmm_control checks all"
   shell: "mmm_control checks all"
   register: string_mmm_control_checks_all

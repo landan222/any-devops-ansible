@@ -1,5 +1,5 @@
 ---
-- name: (service) service mysqld restared
+- name: (service) service mysqld restarted
   service:
     name: mysqld
     state: restarted
