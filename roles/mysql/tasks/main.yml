@@ -36,3 +36,6 @@
 
 ## MYSQL MHA HA 节点部分
 - import_tasks: yum-install-master_node.yml
+
+## MYSQL MHA HA MASTERHA 部分
+- import_tasks: yum-install-delegate_to-master_manager.yml

@@ -9,7 +9,13 @@ mysql_ha: 'mmm' # master-slave, master-master-slave, dual-master, mmm, mha, clus
 # mmm 多主模式, MMM 方案不适用对数据一致性要求很高的业务
 # cluster 集从模式
 # mha 
+
+
 MYSQL:
+  MASTERHA:
+    VIP: '10.0.0.80/24'
+    CONF: '/etc/masterha/app.cnf'
+    MANAGER_LOG: '/var/log/masterha/masterha.log'
   GTID_MODE: yes
   SERVERS:
     - HOST: '10.0.0.81'        # 内网 IP   
