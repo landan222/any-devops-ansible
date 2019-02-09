@@ -19,8 +19,8 @@ include mmm_common.conf
 </monitor>
 
 <host default>
-    monitor_user        monitor
-    monitor_password    mysql_pass_monitor
+    monitor_user        {{ MYSQL.SERVERS[0].CONNECTIONS[3].USER }}
+    monitor_password    {{ MYSQL.SERVERS[0].CONNECTIONS[3].PASSWORD }}
 </host>
 
 debug 0

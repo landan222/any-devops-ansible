@@ -72,6 +72,7 @@ SHOW PROFILE FOR QUERY 3;
 -- 读取 csv 
 
 LOAD DATA INFILE '/tmp/users.csv' INTO TABLE users;
+LOAD DATA INFILE '/tmp/users.txt' INTO TABLE users FIELDS TERMINATED BY ',' ENCLOSE BY '"' SET user_id = user_id + 10;
 
 SELECT * FROM users INTO '/tmp/users.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"';
 

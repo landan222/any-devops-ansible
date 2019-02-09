@@ -28,25 +28,12 @@
     group: root
     mode: 0700
     state: touch
-  delegate_to: "{{ host }}"
-  run_once: true
-  loop: "{{ groups[bra ~ '-masterha'] }}"
-  loop_control:
-    index_var: index
-    loop_var: host
-    label: "{{ host }}"
   when: mysql_ha == 'mha'
    
+# 把 MASTERHA 的 key pair 放到 个个 MYSQLs
 - name: "(lineinfile) scp root/.ssh/id_rsa.*.pub  >> /root/.ssh/authorized_keys"
   lineinfile:
     dest: /root/.ssh/authorized_keys
     line: "{{ string_id_rsa_pub.results[0].stdout }}"
     insertbefore: 'EOF'
-  delegate_to: "{{ host }}"
-  run_once: true
-  loop: "{{ groups[bra ~ '-masterha'] }}"
-  loop_control:
-    index_var: index
-    loop_var: host
-    label: "{{ host }}"
   when: mysql_ha == 'mha'

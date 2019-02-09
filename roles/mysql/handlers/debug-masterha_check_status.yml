@@ -10,12 +10,12 @@
   ignore_errors: yes
   delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
   run_once: true
-  loop: "{{ groups[bra ~ '-mmm_monitor'] }}"
+  loop: "{{ groups[bra ~ '-masterha'] }}"
   loop_control:
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'mmm'
+  when: mysql_ha == 'mha'
 - name: (debug) string_masterha_status
   run_once: true
   debug: 

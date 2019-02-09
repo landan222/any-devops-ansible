@@ -6,10 +6,10 @@ active_master_role      writer
     cluster_interface       eth0
     pid_path                /run/mysql-mmm-agent.pid
     bin_path                /usr/libexec/mysql-mmm/
-    replication_user        replicantor
-    replication_password    mysql_pass_replicator
-    agent_user              agent
-    agent_password          mysql_pass_agent
+    replication_user        {{ MYSQL.SERVERS[0].CONNECTIONS[6].USER }}
+    replication_password    {{ MYSQL.SERVERS[0].CONNECTIONS[6].PASSWORD }}
+    agent_user              {{ MYSQL.SERVERS[0].CONNECTIONS[7].USER }}
+    agent_password          {{ MYSQL.SERVERS[0].CONNECTIONS[7].PASSWORD }}
 </host>
 
 {% for host in groups[bra ~ '-mysql'] %}
@@ -28,12 +28,12 @@ active_master_role      writer
 
 <role writer>
     hosts   {{ MYSQL.SERVERS[0].NAME }}, {{MYSQL.SERVERS[1].NAME }}
-    ips     10.0.0.80
+    ips     10.0.0.190
     mode    exclusive
 </role>
 
 <role reader>
     hosts   {% for host in groups[bra ~ '-mysql'] %}{% if loop.index >= 2 and loop.index < groups[bra ~ '-mysql'] | length %}{{ MYSQL.SERVERS[loop.index - 1].NAME }}, {% elif loop.index >= 2 %}{{ MYSQL.SERVERS[loop.index - 1].NAME }}{% endif %}{% endfor %} 
-    ips     10.0.0.90
+    ips     10.0.0.200
     mode    balanced
 </role>

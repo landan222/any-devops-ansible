@@ -5,7 +5,7 @@
     - debug yum install master manager
   run_once: true
   delegate_to: "{{ host }}"
-  loop: "{{ groups[bra ~ '-mysql'] }}"
+  loop: "{{ groups[bra ~ '-masterha'] }}"
   loop_control:
     index_var: index
     loop_var: host
