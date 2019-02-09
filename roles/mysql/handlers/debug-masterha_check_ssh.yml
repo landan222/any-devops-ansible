@@ -1,0 +1,17 @@
+---
+- name: "(shell) sudo masterha_check_ssh --conf={{ MYSQL.MASTERHA.CONF }}"
+  shell: "masterha_check_ssh --conf={{ MYSQL.MASTERHA.CONF }}"
+  register: string_masterha_ssh
+  ignore_errors: yes
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-mmm_monitor'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'mmm'
+- name: (debug) string_masterha_ssh
+  run_once: true
+  debug: 
+    msg: "{{ string_masterha_ssh }}"

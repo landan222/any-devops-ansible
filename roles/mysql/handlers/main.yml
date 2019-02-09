@@ -6,4 +6,11 @@
   import_tasks: debug-mmm_control_check_all.yml
 - name: debug yum install mysql-mmm monitor
   import_tasks: debug-mmm_control_show.yml
+  
+- name: debug yum install master manager
+  import_tasks: debug-masterha_check_ssh.yml
+- name: debug yum install master manager
+  import_tasks: debug-masterha_check_repl.yml
+- name: debug yum install master manager
+  import_tasks: debug-masterha_check_status.yml
   #listen: # ansible 2.7 版本 import_tasks 没有 listen

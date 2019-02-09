@@ -14,5 +14,6 @@
     loop_var: host
     label: "{{ host }}"
 - name: (debug) string_mmm_control_checks_all
+  run_once: true
   debug: 
     msg: "{{ string_mmm_control_checks_all }}"

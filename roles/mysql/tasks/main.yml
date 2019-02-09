@@ -39,3 +39,10 @@
 
 ## MYSQL MHA HA MASTERHA 部分
 - import_tasks: yum-install-delegate_to-master_manager.yml
+- import_tasks: template-delegate_to-etc_masterha_defualt_cnf.yml
+- import_tasks: template-delegate_to-etc_master_app_cnf.yml
+- import_tasks: template-delegate_to-etc_master_scripts_master_ip_failover.yml
+- import_tasks: template-delegate_to-etc_master_scripts_master_ip_online_change.yml
+- import_tasks: file-delegate_to-mkdir-var_log_masterha.yml
+- import_tasks: lineinfile-delegate_to-root_ssh_authorized_keys.yml
+- import_tasks: shell-delegate_to-masterha_manager.yml
