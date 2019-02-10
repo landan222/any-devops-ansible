@@ -1,9 +1,9 @@
 ---
  # 这里有个坑 
  # 需要等待一段时间 才会起来
-- name: (pause) sleep 60s
+- name: (pause) sleep 90s
   pause:
-    seconds: 60
+    seconds: 90
 - name: "(shell) ndb_mgmd -f /etc/mgm.ini --initial"
   shell: "ndb_mgmd -f /etc/mgm.ini --initial"
   notify: 
