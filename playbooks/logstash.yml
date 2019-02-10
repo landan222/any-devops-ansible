@@ -4,6 +4,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/logstash.fea.yml
   pre_tasks:
     - shell: echo 'playbook logstash starts'
   roles:
@@ -19,6 +21,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/logstash.dev.yml
   pre_tasks:
     - shell: echo 'playbook logstash starts'
   roles:
