@@ -1,0 +1,18 @@
+---
+mysql_version: 5.6
+mysql_create_databases: 'landan,vpn'
+mysql_ha: 'ndb' # master-slave, master-master-slave, dual-master, mmm, mha, ndb, mmm-cluster, pxc
+
+
+NDB:
+  SERVERS:
+    - HOST: '10.0.0.181'
+      PORT: 3306
+      DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
+      SOCKET: '/var/lib/mysql/mysql.sock'
+    - HOST: '10.0.0.182'
+      PORT: 3306
+      DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
+      SOCKET: '/var/lib/mysql/mysql.sock'
