@@ -1,6 +1,2 @@
 --- # 优先次序高
-kibana_version: 6.5.4 # KIBANA 版本必须跟 elasticsearch 相同
-KIBANA:
-  SERVER_PORT: 5601
-  SERVER_HOST: '0.0.0.0'
-  ELASTICSEARCH_URL: "http://localhost:9200"
+

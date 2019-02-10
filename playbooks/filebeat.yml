@@ -4,6 +4,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/filebeat.fea.yml
   pre_tasks:
     - shell: echo 'playbook filebeat starts'
   roles:
@@ -19,6 +21,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/filebeat.fea.yml
   pre_tasks:
     - shell: echo 'playbook filebeat starts'
   roles:

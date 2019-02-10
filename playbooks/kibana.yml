@@ -4,6 +4,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/kibana.fea.yml
   pre_tasks:
     - shell: echo 'playbook kibana starts'
   roles:
