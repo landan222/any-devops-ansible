@@ -1,8 +1,0 @@
-- name: (template) scp etc/mysql-mmm/mmm_common.conf.j2 /etc/mysql-mmm/mmm_common.conf
-  template:
-    src: etc/mysql-mmm/mmm_common.conf.j2
-    dest: /etc/mysql-mmm/mmm_common.conf
-    owner: vagrant
-    group: vagrant
-    mode: 0660
-    backup: no

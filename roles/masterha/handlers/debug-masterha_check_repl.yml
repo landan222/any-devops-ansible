@@ -1,8 +1,0 @@
----
-- name: "(shell) sudo masterha_check_repl --conf={{ MYSQL.MASTERHA.CONF }}"
-  shell: "masterha_check_repl --conf={{ MYSQL.MASTERHA.CONF }}"
-  register: string_masterha_repl
-  ignore_errors: yes
-- name: (debug) string_masterha_repl
-  debug: 
-    msg: "{{ string_masterha_repl }}"

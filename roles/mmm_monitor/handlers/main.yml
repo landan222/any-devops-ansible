@@ -1,6 +1,0 @@
----
-- name: debug yum install mysql-mmm monitor
-  import_tasks: debug-mmm_control_check_all.yml
-- name: debug yum install mysql-mmm monitor
-  import_tasks: debug-mmm_control_show.yml
-  #listen: # ansible 2.7 版本 import_tasks 没有 listen

@@ -1,8 +1,0 @@
----
-- name: "(shell) sudo masterha_check_ssh --conf={{ MYSQL.MASTERHA.CONF }}"
-  shell: "masterha_check_ssh --conf={{ MYSQL.MASTERHA.CONF }}"
-  register: string_masterha_ssh
-  ignore_errors: yes
-- name: (debug) string_masterha_ssh
-  debug: 
-    msg: "{{ string_masterha_ssh }}"
