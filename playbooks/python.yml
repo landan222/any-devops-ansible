@@ -8,6 +8,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/python.fea.yml
   pre_tasks:
     - shell: "echo 'playbook python starts' "
   roles:
@@ -22,6 +24,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/python.fea.yml
   pre_tasks:
     - shell: echo 'playbook python starts'
   roles:
