@@ -4,6 +4,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/php.fea.yml
   pre_tasks:
     - shell: "echo 'playbook php starts' "
   roles:
@@ -18,6 +20,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/php.dev.yml
   pre_tasks:
     - shell: echo 'playbook php starts'
   roles:
