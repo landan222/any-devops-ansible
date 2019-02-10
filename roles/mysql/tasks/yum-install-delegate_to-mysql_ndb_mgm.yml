@@ -1,0 +1,93 @@
+---
+- name: (yum) yum remove mariadb-libs
+  yum: 
+    name: mariadb-libs
+    state: absent
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'ndb'
+
+- name: (yum) yum insatll epel-release-latest-7.noarch.rpm
+  yum: 
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    allow_downgrade: True
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'ndb'
+
+- name: (yum) yum insatll mysql-cluster-community-common-7.6.9-1.el7.x86_64.rpm
+  yum: 
+    name: https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-common-7.6.9-1.el7.x86_64.rpm
+    allow_downgrade: True
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'ndb'
+  
+
+- name: (yum) yum insatll mysql-cluster-community-libs-7.6.9-1.el7.x86_64.rpm
+  yum: 
+    name: https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-libs-7.6.9-1.el7.x86_64.rpm
+    allow_downgrade: True
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'ndb'
+  
+- name: (yum) yum insatll mysql-cluster-community-client-7.6.9-1.el7.x86_64.rpm
+  yum: 
+    name: https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-client-7.6.9-1.el7.x86_64.rpm
+    allow_downgrade: True
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'ndb'
+
+- name: (yum) yum insatll mysql-cluster-community-server-7.6.9-1.el7.x86_64.rpm
+  yum: 
+    name: https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-server-7.6.9-1.el7.x86_64.rpm
+    allow_downgrade: True
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'ndb'
+
+- name: (yum) yum insatll mysql-cluster-community-server-7.6.9-1.el7.x86_64.rpm
+  yum: 
+    name: https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-management-server-7.6.9-1.el7.x86_64.rpm
+    allow_downgrade: True
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'ndb'  
+  

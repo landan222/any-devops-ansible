@@ -1,3 +1,27 @@
+## inventory_hostname:{{inventory_hostname }}
+## host:{{ host }}
+
+{% if host is defined and host in groups[bra ~ '-ndb'] %}
+################################ MYSQL NDB NODE
+
+{% set j =  groups[bra ~ '-ndb'].index(host) %}
+
+[mysqld]
+ndbcluster
+basedir           = {{ NDB.SERVERS[j].BASEDIR }}
+datadir           = {{ NDB.SERVERS[j].DATADIR }}
+user              = mysql
+port              = {{ NDB.SERVERS[j].PORT }}
+socket            = {{ NDB.SERVERS[j].SOCKET }}
+ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
+
+[MYSQL_CLUSTER]
+ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
+
+{% else %}
+
+### MYSQL GENERAL NODE
+
 {% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
 [client]
 ######################### [client] 基本设置 #########################
@@ -354,3 +378,4 @@ default_storage_engine = InnoDB                         # 二级 master 若使�
 default_storage_engine = {{ MYSQL.SERVERS[i].ENGINE }}  # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% endif %}
 
+{% endif %}

@@ -1,0 +1,32 @@
+[ndbd default]
+NoOfReplicas=2
+
+{% set int_nodeid = 0 %}
+[ndb_mgmd]
+{% set int_nodeid = int_nodeid + 1 %}
+nodeid={{ int_nodeid }}
+HostName={{ NDB_MGM.SERVERS[0].HOST }}
+DataDir=/var/lib/mysql
+
+
+{% set int_nodeid = 1 %}
+{% for host in groups[bra ~ '-ndb'] %}
+{% set int_nodeid = int_nodeid + 1 %}
+[ndbd]
+nodeid={{ int_nodeid }}
+HostName={{ NDB.SERVERS[loop.index - 1].HOST }}
+DataDir={{ NDB.SERVERS[loop.index - 1].DATADIR }}
+
+{% endfor %}
+
+
+{% set int_nodeid = (groups[bra ~ '-ndb'] | length)  + 1 %}
+{% for host in groups[bra ~ '-mysql'] %}
+{# ansible template ， 有 scope 问题 ， for 里面 的 int_nodeid 与外面的 int_nodeid 无关 #}
+{% set int_nodeid = int_nodeid + 1 %}
+[mysqld]
+nodeid={{ int_nodeid }}
+HostName={{ MYSQL.SERVERS[loop.index - 1].HOST }}
+DataDir={{ MYSQL.SERVERS[loop.index - 1].DATADIR }}
+
+{% endfor %}

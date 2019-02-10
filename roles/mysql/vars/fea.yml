@@ -1,16 +1,32 @@
 ---
 mysql_version: 5.6
 mysql_create_databases: 'landan,vpn'
-mysql_ha: 'mmm' # master-slave, master-master-slave, dual-master, mmm, mha, cluster, mmm-cluster, pxc
+mysql_ha: 'ndb' # master-slave, master-master-slave, dual-master, mmm, mha, ndb, mmm-cluster, pxc
+# none         无
 # master-slave 一主一从模式
 # master-slave 一主多从模式
 # master-master-slave 二主多从模式
 # dual-master 双主模式
 # mmm 多主模式, MMM 方案不适用对数据一致性要求很高的业务
-# cluster 集从模式
 # mha 
+# ndb MYSQL CLUSTER 集从模式
+NDB_MGM:
+  SERVERS:
+    - HOST: '10.0.0.173'
 
-
+NDB:
+  SERVERS:
+    - HOST: '10.0.0.181'
+      PORT: 3306
+      DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
+      SOCKET: '/var/lib/mysql/mysql.sock'
+    - HOST: '10.0.0.182'
+      PORT: 3306
+      DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
+      SOCKET: '/var/lib/mysql/mysql.sock'
+      
 MYSQL:
   MASTERHA:
     VIP: '10.0.0.180/24'
@@ -21,6 +37,7 @@ MYSQL:
     - HOST: '10.0.0.191'       # 内网 IP   
       NAME: 'mysql-1'
       BIND_ADDRESS: '0.0.0.0'  # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       IS_MASTER: yes                        # 一级 MYSQL , 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
@@ -161,6 +178,7 @@ MYSQL:
     - HOST: '10.0.0.192'       # 外网 IP   # 次一级 MYSQL 
       NAME: 'mysql-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       # ENGINE: 'BLACKHOLE'
       IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
@@ -302,6 +320,7 @@ MYSQL:
     - HOST: '10.0.0.193'       # 外网 IP    # 次一级 MYSQL 
       NAME: 'mysql-3'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
@@ -443,6 +462,7 @@ MYSQL:
     - HOST: '10.0.0.201'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-1_1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.191'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -584,6 +604,7 @@ MYSQL:
     - HOST: '10.0.0.202'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-1_2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.191'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -724,6 +745,7 @@ MYSQL:
     - HOST: '10.0.0.203'       # 内网 IP     # 二级 MYSQL 
       NAME: 'mysql-2_1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.192'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -864,6 +886,7 @@ MYSQL:
     - HOST: '10.0.0.204'       # 内网 IP     # 二级 MYSQL 
       NAME: 'mysql-2_2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'                      # 若 master-slave 高可用，slave 使用 replication 都改指向第一台 MySQL
       MASTER_HOST: '10.0.0.192'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -1004,6 +1027,7 @@ MYSQL:
     - HOST: '10.0.0.205'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-3_1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.193'
@@ -1144,6 +1168,7 @@ MYSQL:
     - HOST: '10.0.0.206'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-3_2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+      DATADIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.193'
@@ -1282,6 +1307,7 @@ MYSQL:
           DATABASE: '*'          
           
   DATADIR: '/var/lib/mysql'
+  BASEDIR: '/var/lib/mysql'
   CREATE_DATABASES:
     - landan
     - vpn
