@@ -1,11 +1,11 @@
 ---
  # 这里有个坑 
  # 需要等待一段时间 才会起来
-- name: (pause) sleep 30s
+- name: (pause) sleep 60s
   pause:
-    seconds: 30
-- name: "(shell) ndb_mgmd -f /etc/mgm.ini --reload"
-  shell: "ndb_mgmd -f /etc/mgm.ini --reload"
+    seconds: 60
+- name: "(shell) ndb_mgmd -f /etc/mgm.ini --initial"
+  shell: "ndb_mgmd -f /etc/mgm.ini --initial"
   notify: 
     - debug yum install ndb_mgm
   run_once: true

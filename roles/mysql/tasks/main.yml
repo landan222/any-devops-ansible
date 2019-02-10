@@ -60,6 +60,9 @@
 - import_tasks: template-delegate_to-etc_my_cnf.yml
 - import_tasks: file-delegate_to-mkdir-var_lib_mysql.yml
 
+## MYSQL CLUSTER CLUSTER (安装) 部分
+- import_tasks: yum-install-mysql_cluster.yml
+
 
 ## MYSQL CLUSTER NDB MANAGEMENT (关闭) 部分 ，mgmd -e 'shutdown' ndb_mgm ndb也 一起关闭了
 - import_tasks: shell-delegate_to-mgmd_e_shutdown.yml
@@ -72,5 +75,10 @@
 
 ## MYSQL CLUSTER NDB (启动) 部分
 - import_tasks: shell-delegate_to-ndbd_initial.yml
+
+## MYSQL CLUSTER CLUSTER (启动) 部分
+- import_tasks: template-etc_my_cnf.yml # 之後的 MySQL 才會寫 BINLOG 
+- import_tasks: service-mysqld-restarted.yml
+
 
 

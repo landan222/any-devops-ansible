@@ -1,0 +1,8 @@
+- name: "(template) scp etc/masterha_default.cnf.j2 /etc/masterha_default.cnf"
+  template:
+    src: etc/masterha_default.cnf.j2
+    dest: /etc/masterha_default.cnf
+    owner: root
+    group: root
+    mode: 0755
+  when: mysql_ha == 'mha'

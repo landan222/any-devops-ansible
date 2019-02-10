@@ -1,10 +1,7 @@
-## inventory_hostname:{{inventory_hostname }}
-## host:{{ host }}
-
 {% if host is defined and host in groups[bra ~ '-ndb'] %}
 ################################ MYSQL NDB NODE
 
-{% set j =  groups[bra ~ '-ndb'].index(host) %}
+{% set j =  groups[bra ~ '-ndb'].index(host) or mysql_ha == 'ndb' %}
 
 [mysqld]
 ndbcluster
@@ -15,7 +12,7 @@ port              = {{ NDB.SERVERS[j].PORT }}
 socket            = {{ NDB.SERVERS[j].SOCKET }}
 ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
 
-[MYSQL_CLUSTER]
+[mysql_cluster]
 ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
 
 {% else %}

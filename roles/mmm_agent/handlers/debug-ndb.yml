@@ -1,6 +1,0 @@
----
-- name: (debug) string_ndb
-  run_once: true
-  debug: 
-    msg: "{{ string_ndb }}"
-  when: mysql_ha == 'ndb'

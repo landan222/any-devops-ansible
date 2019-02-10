@@ -4,10 +4,19 @@
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     allow_downgrade: True
   when: mysql_ha == 'mmm'
-- name: (yum) yum install mysql-mmm-agent mysql-mmm-monitor
+- name: (yum) yum remove  mysql-mmm-agent mysql-mmm-monitor
+  yum: 
+    name:
+      - mysql-mmm-agent
+      - mysql-mmm-monitor
+    state: absent
+  when: mysql_ha == 'mmm'
+
+- name: (yum) yum install  mysql-mmm-agent mysql-mmm-monitor
   yum: 
     name:
       - mysql-mmm-agent
       - mysql-mmm-monitor
     state: latest
+  notify: debug yum install mysql-mmm monitor
   when: mysql_ha == 'mmm'

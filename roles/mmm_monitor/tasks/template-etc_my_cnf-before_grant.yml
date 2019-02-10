@@ -1,7 +1,0 @@
-- name: (template) scp etc/my.cnf.before_grant.j2 /etc/my.cnf
-  template:
-    src: etc/my.cnf.before_grant.j2
-    dest: /etc/my.cnf
-    owner: root
-    group: root
-    mode: 0755

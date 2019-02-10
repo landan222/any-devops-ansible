@@ -1,0 +1,6 @@
+---
+- name: "(shell) nohup masterha_manager --conf={{ MYSQL.MASTERHA.CONF }} --remove_dead_master_conf --ignore_last_failover < /dev/null > {{ MYSQL.MASTERHA.MANAGER_LOG }} 2>&1 &"
+  shell: "nohup masterha_manager --conf={{ MYSQL.MASTERHA.CONF }} --remove_dead_master_conf --ignore_last_failover < /dev/null > {{ MYSQL.MASTERHA.MANAGER_LOG }} 2>&1 &"
+  notify: 
+    - debug yum install master manager
+  when: mysql_ha == 'mha'
