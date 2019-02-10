@@ -1,0 +1,26 @@
+- name: (file) mkdir /etc/masterha
+  file:
+    path: /etc/masterha
+    state: directory
+    mode: 0755
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-masterha'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+- name: "(template) scp etc/masterha/app.cnf.j2 /etc/masterha/app.cnf"
+  template:
+    src: etc/masterha/app.cnf.j2
+    dest: /etc/masterha/app.cnf
+    owner: root
+    group: root
+    mode: 0755
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-masterha'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"

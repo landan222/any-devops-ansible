@@ -1,0 +1,10 @@
+---
+- name: (service) service mysqld restarted
+  service:
+    name: mysqld
+    state: restarted
+# - name: Debug start nginx
+#   debug: 
+#     msg: 'The key value is !!'
+#   when: debug==true or debug==1
+    

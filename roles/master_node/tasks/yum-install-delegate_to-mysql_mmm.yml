@@ -1,0 +1,43 @@
+---
+- name: (yum) yum insatll epel-release-latest-7.noarch.rpm
+  yum: 
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    allow_downgrade: True
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-mmm_monitor'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'mmm'
+- name: (yum) yum remove  mysql-mmm-agent mysql-mmm-monitor
+  yum: 
+    name:
+      - mysql-mmm-agent
+      - mysql-mmm-monitor
+    state: absent
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-mmm_monitor'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'mmm'
+
+- name: (yum) yum install  mysql-mmm-agent mysql-mmm-monitor
+  yum: 
+    name:
+      - mysql-mmm-agent
+      - mysql-mmm-monitor
+    state: latest
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-mmm_monitor'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  notify: debug yum install mysql-mmm monitor
+  when: mysql_ha == 'mmm'

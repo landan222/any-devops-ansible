@@ -1,0 +1,8 @@
+- name: (template) scp etc/hosts.j2 /etc/hosts
+  template:
+    src: etc/hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes

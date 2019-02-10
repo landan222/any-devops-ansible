@@ -1,0 +1,9 @@
+#jinja2: lstrip_blocks: True
+
+{% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
+include mmm_common.conf
+
+# The 'this' variable refers to this server.  Proper operation requires
+# that 'this' server (db1 by default), as well as all other servers, have the
+# proper IP addresses set in mmm_common.conf.
+this {{ MYSQL.SERVERS[i].NAME }}

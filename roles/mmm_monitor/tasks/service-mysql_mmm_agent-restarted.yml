@@ -1,0 +1,11 @@
+---
+- name: (service) service mysql-mmm-agent restarted
+  service:
+    name: mysql-mmm-agent
+    state: restarted
+  when: mysql_ha == 'mmm'
+# - name: Debug start nginx
+#   debug: 
+#     msg: 'The key value is !!'
+#   when: debug==true or debug==1
+    

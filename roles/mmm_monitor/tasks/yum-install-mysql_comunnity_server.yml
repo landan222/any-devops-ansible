@@ -1,0 +1,44 @@
+---
+- name: (yum) yum insatll mysql80-community rpm
+  yum: 
+    name: https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+    allow_downgrade: True
+    
+- name: '(command) yum-config-manager --disable mysql-community'
+  command: "yum-config-manager --disable {{ package_name }}"
+  with_items:
+    - mysql55-community
+    - mysql56-community
+    - mysql57-community
+    - mysql80-community
+  loop_control:
+    loop_var: package_name
+# - name: service mysqld stopped
+#   service:
+#     name: mysqld
+#     state: stopped
+- name: '(command) yum-config-manager --enable mysql-community'
+  command: "yum-config-manager --enable {{ package_name }}"
+  with_items:
+    - "mysql{{ mysql_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-community"
+  loop_control:
+    loop_var: package_name
+
+- name: (yum) yum remove mysql-community-server
+  yum: 
+    name:
+      - mysql-community-server
+      - mysql-community-client
+      - mysql-community-common
+      - mysql-community-libs
+    state: absent
+- name: "(file) rm -Rf {{ MYSQL.DATADIR }}"
+  file:
+    state: absent
+    path: "{{ MYSQL.DATADIR }}"
+- name: (yum) yum install mysql-community-server
+  yum: 
+    name:
+      - mysql-community-server
+    state: latest
+  notify: debug yum install mysql-community-server

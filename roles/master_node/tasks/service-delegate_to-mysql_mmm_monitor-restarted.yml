@@ -1,0 +1,18 @@
+---
+- name: (service) service mysql-mmm-monitor restarted
+  service:
+    name: mysql-mmm-monitor
+    state: restarted
+  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
+  run_once: true
+  loop: "{{ groups[bra ~ '-mmm_monitor'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  when: mysql_ha == 'mmm'
+# - name: Debug start nginx
+#   debug: 
+#     msg: 'The key value is !!'
+#   when: debug==true or debug==1
+    
