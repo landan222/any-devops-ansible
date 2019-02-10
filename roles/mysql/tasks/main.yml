@@ -50,9 +50,27 @@
 # - import_tasks: shell-delegate_to-masterha_manager.yml
 # 
 #
-## MYSQL CLUSTER NDB MANAGEMENT 部分
+
+## MYSQL CLUSTER NDB MANAGEMENT (安装) 部分
 - import_tasks: yum-install-delegate_to-mysql_ndb_mgm.yml
 - import_tasks: template-delegate_to-etc_mgm_ini.yml 
-## MYSQL CLUSTER NDB 部分
+
+## MYSQL CLUSTER NDB (安装) 部分
 - import_tasks: yum-install-delefate_to-mysql_ndb.yml
 - import_tasks: template-delegate_to-etc_my_cnf.yml
+- import_tasks: file-delegate_to-mkdir-var_lib_mysql.yml
+
+
+## MYSQL CLUSTER NDB MANAGEMENT (关闭) 部分 ，mgmd -e 'shutdown' ndb_mgm ndb也 一起关闭了
+- import_tasks: shell-delegate_to-mgmd_e_shutdown.yml
+
+## MYSQL CLUSTER NDB (关闭) 部分
+# 用 mgmd -e 'shutdown' ndb也 一起关闭了
+
+## MYSQL CLUSTER NDB MANAGEMENT (启动) 部分 ，一定要 ndb_mgm 先开启
+- import_tasks: shell-delegate_to-mgmd_reload.yml
+
+## MYSQL CLUSTER NDB (启动) 部分
+- import_tasks: shell-delegate_to-ndbd_initial.yml
+
+

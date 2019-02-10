@@ -20,4 +20,6 @@ mysqlbinlog --no-defaults mysql-bin.000001 --database=landan --start-datetime='2
 
 
 
-ndb_mgmd -f /etc/mgm.ini --reload
+sudo ndb_mgmd -f /etc/mgm.ini --reload
+
+sudo ndb_mgm -e "show"

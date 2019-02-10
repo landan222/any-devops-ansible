@@ -5,8 +5,8 @@ NoOfReplicas=2
 [ndb_mgmd]
 {% set int_nodeid = int_nodeid + 1 %}
 nodeid={{ int_nodeid }}
-HostName={{ NDB_MGM.SERVERS[0].HOST }}
-DataDir=/var/lib/mysql
+hostname={{ NDB_MGM.SERVERS[0].HOST }}
+datadir=/var/lib/mysql
 
 
 {% set int_nodeid = 1 %}
@@ -14,8 +14,8 @@ DataDir=/var/lib/mysql
 {% set int_nodeid = int_nodeid + 1 %}
 [ndbd]
 nodeid={{ int_nodeid }}
-HostName={{ NDB.SERVERS[loop.index - 1].HOST }}
-DataDir={{ NDB.SERVERS[loop.index - 1].DATADIR }}
+hostname={{ NDB.SERVERS[loop.index - 1].HOST }}
+datadir={{ NDB.SERVERS[loop.index - 1].DATADIR }}
 
 {% endfor %}
 
@@ -26,7 +26,6 @@ DataDir={{ NDB.SERVERS[loop.index - 1].DATADIR }}
 {% set int_nodeid = int_nodeid + 1 %}
 [mysqld]
 nodeid={{ int_nodeid }}
-HostName={{ MYSQL.SERVERS[loop.index - 1].HOST }}
-DataDir={{ MYSQL.SERVERS[loop.index - 1].DATADIR }}
+hostname={{ MYSQL.SERVERS[loop.index - 1].HOST }}
 
 {% endfor %}
