@@ -4,6 +4,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/node.fea.yml
   pre_tasks:
     - shell: echo 'playbook node starts'
   roles:
@@ -12,12 +14,14 @@
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook node10 ends'
+    - shell: echo 'playbook node ends'
 - name: Install develop node
   hosts: dev-node
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/node.dev.yml
   pre_tasks:
     - shell: echo 'playbook node starts'
   roles:
