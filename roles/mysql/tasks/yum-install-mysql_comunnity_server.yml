@@ -24,14 +24,11 @@
   loop_control:
     loop_var: package_name
 
-- name: (yum) yum remove mysql-community-server mysql-cluster*
+- name: (yum) yum remove mysql-community* mysql-cluster-community*
   yum: 
     name:
-      - mysql-community-server
-      - mysql-community-client
-      - mysql-community-common
-      - mysql-community-libs
-      - mysql-cluster*
+      - mysql-cluster-community*
+      - mysql-community*
     state: absent
 - name: "(file) rm -Rf {{ MYSQL.SERVERS[groups[bra ~ '-cluster_mysql'].index(inventory_hostname)].DATADIR }}"
   file:
