@@ -3,39 +3,18 @@
   yum: 
     name: mariadb-libs
     state: absent
-  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
-  run_once: true
-  loop: "{{ groups[bra ~ '-cluster_ndb'] }}"
-  loop_control:
-    index_var: index
-    loop_var: host
-    label: "{{ host }}"
   when: mysql_ha == 'cluster'
 
 - name: (yum) yum insatll epel-release-latest-7.noarch.rpm
   yum: 
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     allow_downgrade: True
-  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
-  run_once: true
-  loop: "{{ groups[bra ~ '-cluster_ndb'] }}"
-  loop_control:
-    index_var: index
-    loop_var: host
-    label: "{{ host }}"
   when: mysql_ha == 'cluster'
 
 - name: (yum) yum insatll mysql-cluster-community-data-node-7.6.9-1.el7.x86_64.rpm
   yum: 
     name: https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-data-node-7.6.9-1.el7.x86_64.rpm
     allow_downgrade: True
-  delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
-  run_once: true
-  loop: "{{ groups[bra ~ '-cluster_ndb'] }}"
-  loop_control:
-    index_var: index
-    loop_var: host
-    label: "{{ host }}"
   notify: debug yum install mysql ndb
   when: mysql_ha == 'cluster'
 

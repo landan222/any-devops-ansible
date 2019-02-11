@@ -1,12 +1,4 @@
 ---
 - name: "(shell) ndbd --initial"
   shell: "ndbd --initial"
-  run_once: true
-  delegate_to: "{{ host }}"
-  loop: "{{ groups[bra ~ '-cluster_ndb'] }}"
-  loop_control:
-    index_var: index
-    loop_var: host
-    label: "{{ host }}"
-  register: string_ndb_initial
   when: mysql_ha == 'cluster'
