@@ -1,0 +1,19 @@
+---
+ # 这里有个坑 
+ # 需要等待一段时间 才会起来
+- name: (pause) sleep 90s
+  pause:
+    seconds: 90
+- name: "(shell) ndb_mgmd -f /etc/mgm.ini --initial"
+  shell: "ndb_mgmd -f /etc/mgm.ini --initial"
+  notify: 
+    - debug yum install ndb_mgm
+  run_once: true
+  delegate_to: "{{ host }}"
+  loop: "{{ groups[bra ~ '-ndb_mgm'] }}"
+  loop_control:
+    index_var: index
+    loop_var: host
+    label: "{{ host }}"
+  notify: debug yum install mysql ndb
+  when: mysql_ha == 'cluster'
