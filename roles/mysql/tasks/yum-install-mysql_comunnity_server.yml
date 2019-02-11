@@ -32,10 +32,10 @@
       - mysql-community-common
       - mysql-community-libs
     state: absent
-- name: "(file) rm -Rf {{ MYSQL.DATADIR }}"
+- name: "(file) rm -Rf {{ MYSQL.SERVERS[groups[bra ~ '-cluster_mysql'].index(inventory_hostname)].DATADIR }}"
   file:
     state: absent
-    path: "{{ MYSQL.DATADIR }}"
+    path: "{{ MYSQL.SERVERS[groups[bra ~ '-cluster_mysql'].index(inventory_hostname)].DATADIR }}"
 - name: (yum) yum install mysql-community-server
   yum: 
     name:

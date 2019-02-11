@@ -73,7 +73,7 @@ pid-file = /var/run/mysqld/mysqld.pid
 server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
 
 port = {{ MYSQL.SERVERS[i].PORT }}
-datadir = {{ MYSQL.DATADIR }}
+datadir = {{ MYSQL.SERVERS[i].DATADIR }}
 socket = /var/lib/mysql/mysql.sock
 pid-file = /var/run/mysqld/mysqld.pid
 init-connect='SET NAMES utf8mb4'
