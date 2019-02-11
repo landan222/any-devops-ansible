@@ -1,5 +1,5 @@
 ---
-mysql_version: 5.6
+mysql_version: 5.7
 mysql_create_databases: 'landan,vpn'
 mysql_ha: 'cluster' # master-slave, master-master-slave, dual-master, mmm, mha, ndb, mmm-cluster, pxc
     
