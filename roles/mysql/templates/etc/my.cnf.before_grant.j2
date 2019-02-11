@@ -20,7 +20,7 @@
 # sort_buffer_size = 2M
 # read_rnd_buffer_size = 2M
 datadir = {{ MYSQL.SERVERS[i].DATADIR }}
-socket = {{ MYSQL.SERVERS[i].DATADIR }}
+socket = {{ MYSQL.SERVERS[i].SOCKET }}
 
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links = 0
