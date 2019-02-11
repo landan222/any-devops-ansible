@@ -2,10 +2,4 @@
 - name: "(shell) ndb_mgm -e shutdown"
   shell: "ndb_mgm -e shutdown"
   run_once: true
-  delegate_to: "{{ host }}"
-  loop: "{{ groups[bra ~ '-cluster_ndb_mgm'] }}"
-  loop_control:
-    index_var: index
-    loop_var: host
-    label: "{{ host }}"
   when: mysql_ha == 'cluster'
