@@ -3,11 +3,6 @@ mysql_version: 5.7
 mysql_create_databases: 'landan,vpn'
 mysql_ha: 'cluster' # master-slave, master-master-slave, dual-master, mmm, mha, ndb, mmm-cluster, pxc
 
-MASTERHA:
-  VIP: '10.0.0.180/24'
-  CONF: '/etc/masterha/app.cnf'
-  MANAGER_LOG: '/var/log/masterha/masterha.log'
-
 MYSQL:
   GTID_MODE: yes
   SERVERS:
