@@ -3,7 +3,6 @@
   yum: #
     name:  http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     state: present
-  when: mysql_ha == 'mha'
   
 - name: "(yum) yum install perl-DBD-MySQL perl-Config-Tiny perl-Log-Dispatch perl-Parallel-ForkManager"
   yum: 
@@ -13,18 +12,14 @@
       - perl-Log-Dispatch 
       - perl-Parallel-ForkManager
     state: latest
-  when: mysql_ha == 'mha'
   
 - name: (yum) yum install https://github.com/yoshinorim/mha4mysql-node/releases/download/v0.58/mha4mysql-node-0.58-0.el7.centos.noarch.rpm
   yum: #  https://qiniu.wsfnk.com/mha4mysql-node-0.58-0.el7.centos.noarch.rpm
     name:  https://github.com/yoshinorim/mha4mysql-node/releases/download/v0.58/mha4mysql-node-0.58-0.el7.centos.noarch.rpm
     state: present
-  when: mysql_ha == 'mha'
 ## mha-manager 也需要安装 mha-node  
 - name: (yum) yum install https://github.com/yoshinorim/mha4mysql-manager/releases/download/v0.58/mha4mysql-manager-0.58-0.el7.centos.noarch.rpm
   yum: #  https://qiniu.wsfnk.com/mha4mysql-manager-0.58-0.el7.centos.noarch.rpmsh
     name:  https://github.com/yoshinorim/mha4mysql-manager/releases/download/v0.58/mha4mysql-manager-0.58-0.el7.centos.noarch.rpm
-    state: present
-  when: mysql_ha == 'mha'
-  
+    state: present  
   

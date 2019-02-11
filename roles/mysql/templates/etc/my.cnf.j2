@@ -40,7 +40,7 @@ interactive-timeout
 open-files-limit = 8192                                   # 增加每个进程的可打开文件数量.打开大量表需要将此值设大
 {% if mysql_version == '5.5' or mysql_version == '5.6' %}
 [mysqld_safe]
-log-error = mysqld_safe-error.log
+log-error = {{ MYSQL.SERVERS[i].LOGDIR }}/mysqld_safe-error.log
 pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
@@ -154,12 +154,12 @@ log_output = FILE                                       # log 写入 file , 效�
 ######################### [mysqld] General Log 相关 #########################
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
 general_log = on                                        # 记录所有 DDL, DML, DCL, 语句
-general_log_file = mysql-general.log
+general_log_file = {{ MYSQL.SERVERS[i].LOGDIR }}/mysql-general.log
 {% endif %}
 
 ######################### [mysqld] Error log 相关 #########################catc
 {% if mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1' %}
-log-error = mysql-error.log
+log-error = {{ MYSQL.SERVERS[i].LOGDIR }}/mysql-error.log
 {% endif %}
 
 ######################### [mysqld] Slow log 相关 #########################catc
@@ -169,12 +169,12 @@ long_query_time = 1                                     # 指定多少秒未返�
 min_examined_row_limit = 5                              # 记录那些由于查找了多余5次而引发的慢查询
 log-slow-admin-statements                               # 记录那些慢的OPTIMIZE TABLE,ANALYZE TABLE和ALTER TABLE语句
 log-slow-slave-statements                               # 记录由slave所产生的慢查询
-slow_query_log_file = mysql-slow.log                    # 指定慢查询日志文件路径
+slow_query_log_file = {{ MYSQL.SERVERS[i].LOGDIR }}/mysql-slow.log       # 指定慢查询日志文件路径
 
 ############################ [mysqld] Relay log 相关 ############################
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 %}
-relay-log = mysql-relay                                 # relay 目录
-relay-log-info-file = mysql-relay.info                  # info 目录
+relay-log = {{ MYSQL.SERVERS[i].LOGDIR }}/mysql-relay                                 # relay 目录
+relay-log-info-file = {{ MYSQL.SERVERS[i].LOGDIR }}/mysql-relay.info                  # info 目录
 slave-skip-errors = 1007,1008,1032,1062                 # 跳过主从复制时的错误
 read-only = 1                                           # GRANT 含 SUPER 的 才可以 改寫 db 
 #master-connect-retry = 30                              # 5.7 不作用, 主从复制丢失，重连间隔时间，默认60s
@@ -192,8 +192,8 @@ enforce_gtid_consistency = on
 {% endif %}
 
 ############################ [mysqld] Bin log 相关 - 其他 ############################
-log-bin = mysql-bin                          # 开启二进制日志                  
-log-bin-index = mysql-bin.index      
+log-bin = {{ MYSQL.SERVERS[i].LOGDIR }}/mysql-bin                          # 开启二进制日志                  
+log-bin-index = {{ MYSQL.SERVERS[i].LOGDIR }}/mysql-bin.index      
 binlog_format = row
 binlog-cache-size = 32M                                 # 设置二进制日志缓存大小
 sync_binlog = 1                                         # 控制binlog的写入频率。每执行多少次事务写入一次(这个参数性能消耗很大，但可减小MySQL崩溃造成的损失) 

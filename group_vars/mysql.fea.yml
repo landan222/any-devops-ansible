@@ -14,6 +14,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0'  # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -157,6 +158,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       # ENGINE: 'BLACKHOLE'
@@ -301,6 +303,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -445,6 +448,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -589,6 +593,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -732,6 +737,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -875,6 +881,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'                      # 若 master-slave 高可用，slave 使用 replication 都改指向第一台 MySQL
@@ -1018,6 +1025,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'
@@ -1161,6 +1169,7 @@ MYSQL:
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
       BASEDIR: '/var/lib/mysql'
+      LOGDIR: '/var/log/mysql'
       SOCKET: '/var/lib/mysql/mysql.sock'
       PORT: 3306
       ENGINE: 'InnoDB'

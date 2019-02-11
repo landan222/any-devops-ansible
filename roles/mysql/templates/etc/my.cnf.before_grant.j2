@@ -20,7 +20,7 @@
 # sort_buffer_size = 2M
 # read_rnd_buffer_size = 2M
 datadir = {{ MYSQL.SERVERS[i].DATADIR }}
-socket = /var/lib/mysql/mysql.sock
+socket = {{ MYSQL.SERVERS[i].DATADIR }}mkd
 
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links = 0
@@ -33,13 +33,13 @@ symbolic-links = 0
 # mysql 5.7 以後版本, 預設有安全密碼
 skip-grant-tables = 1
 skip-networking = 1
-log-error = /var/log/mysqld.log
+log-error = {{ MYSQL.SERVERS[i].LOGDIR }}/mysqld-error.log
 pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
 {% if mysql_version == '5.5' or mysql_version == '5.6' %}
 [mysqld_safe]
-log-error = /var/log/mysqld.log
+log-error = {{ MYSQL.SERVERS[i].LOGDIR }}/mysqld_safe-error.log
 pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 

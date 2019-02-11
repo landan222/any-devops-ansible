@@ -3,7 +3,6 @@
     path: /etc/masterha/scripts
     state: directory
     mode: 0755
-  when: mysql_ha == 'mha'
 
 - name: "(template) scp etc/masterha/scripts/master_ip_failover.j2 /etc/masterha/scripts/master_ip_failover"
   template:
@@ -12,4 +11,3 @@
     owner: root
     group: root
     mode: 0755
-  when: mysql_ha == 'mha'

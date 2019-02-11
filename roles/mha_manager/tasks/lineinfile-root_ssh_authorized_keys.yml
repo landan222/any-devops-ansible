@@ -1,11 +1,9 @@
 - name: "(shell) echo y | ssh-keygen -q -f /root/.ssh/id_rsa -t rsa -N ''"
   shell: "echo y | ssh-keygen -q -f /root/.ssh/id_rsa -t rsa -N ''"
-  when: mysql_ha == 'mha'
 
 - name: "(shell) cat /root/.ssh/id_rsa.pub"
   shell: "cat /root/.ssh/id_rsa.pub"
   register: string_id_rsa_pub
-  when: mysql_ha == 'mha'
   
 - name: (file) touch /root/.ssh/authorized_keys
   file:
@@ -14,7 +12,6 @@
     group: root
     mode: 0700
     state: touch
-  when: mysql_ha == 'mha'
    
 # 把 MASTERHA 的 key pair 放到 个个 MYSQLs
 - name: "(lineinfile) scp root/.ssh/id_rsa.*.pub  >> /root/.ssh/authorized_keys"
@@ -22,4 +19,3 @@
     dest: /root/.ssh/authorized_keys
     line: "{{ string_id_rsa_pub.stdout }}"
     insertbefore: 'EOF'
-  when: mysql_ha == 'mha'

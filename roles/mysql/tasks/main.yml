@@ -4,6 +4,7 @@
 - import_tasks: yum-install-yum_utils.yml
 - import_tasks: yum-install-mysql_comunnity_server.yml
 - import_tasks: service-mysqld-restarted.yml # when service mysqld start at the first time, should not template /etc/my.cnf
+- import_tasks: file-mkdir-var_log_mysql.yml
 - import_tasks: template-etc_my_cnf-before_grant.yml
 - import_tasks: service-mysqld-restarted.yml
 - import_tasks: shell-mysql-tmp_update_user_sql.yml
