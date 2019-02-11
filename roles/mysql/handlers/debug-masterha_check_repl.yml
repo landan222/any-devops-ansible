@@ -1,6 +1,6 @@
 ---
-- name: "(shell) sudo masterha_check_repl --conf={{ MYSQL.MASTERHA.CONF }}"
-  shell: "masterha_check_repl --conf={{ MYSQL.MASTERHA.CONF }}"
+- name: "(shell) sudo masterha_check_repl --conf={{ MASTERHA.CONF }}"
+  shell: "masterha_check_repl --conf={{ MASTERHA.CONF }}"
   register: string_masterha_repl
   ignore_errors: yes
   delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中

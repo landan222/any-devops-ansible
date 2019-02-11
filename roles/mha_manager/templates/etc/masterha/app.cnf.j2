@@ -1,6 +1,6 @@
 [server default]
 manager_workdir=/var/run/msaterha/
-manager_log={{ MYSQL.MASTERHA.MANAGER_LOG }}
+manager_log={{ MASTERHA.MANAGER_LOG }}
 
 {% for SERVER in MYSQL.SERVERS %}
 {% if 1 == loop.index or (2 <= loop.index and SERVER.IS_MASTER is defined ) %}

@@ -2,8 +2,8 @@
 - name: (pause) sleep 10s
   pause:
     seconds: 10
-- name: "(shell) sudo masterha_check_status --conf={{ MYSQL.MASTERHA.CONF }}"
-  shell: "masterha_check_status --conf={{ MYSQL.MASTERHA.CONF }}"
+- name: "(shell) sudo masterha_check_status --conf={{ MASTERHA.CONF }}"
+  shell: "masterha_check_status --conf={{ MASTERHA.CONF }}"
   register: string_masterha_status
   retries: 3 
   delay: 3
