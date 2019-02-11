@@ -1,0 +1,18 @@
+#log4perl.logger = FATAL, MMMLog, MailFatal
+log4perl.logger = FATAL, MMMLog
+
+log4perl.appender.MMMLog = Log::Log4perl::Appender::File
+log4perl.appender.MMMLog.Threshold = INFO
+log4perl.appender.MMMLog.filename = /var/log/mysql-mmm/mmm_mond.log
+log4perl.appender.MMMLog.recreate = 1
+log4perl.appender.MMMLog.layout = PatternLayout
+log4perl.appender.MMMLog.layout.ConversionPattern = %d %5p %m%n
+
+#log4perl.appender.MailFatal = Log::Dispatch::Email::MailSender
+#log4perl.appender.MailFatal.Threshold = FATAL
+#log4perl.appender.MailFatal.from = mmm@example.com
+#log4perl.appender.MailFatal.to = root
+#log4perl.appender.MailFatal.buffered = 0
+#log4perl.appender.MailFatal.subject = FATAL error in mysql-mmm-monitor
+#log4perl.appender.MailFatal.layout = PatternLayout
+#log4perl.appender.MailFatal.layout.ConversionPattern = %d %m%n
