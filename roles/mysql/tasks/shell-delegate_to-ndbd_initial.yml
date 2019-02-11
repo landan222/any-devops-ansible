@@ -3,7 +3,7 @@
   shell: "ndbd --initial"
   run_once: true
   delegate_to: "{{ host }}"
-  loop: "{{ groups[bra ~ '-ndb'] }}"
+  loop: "{{ groups[bra ~ '-cluster_ndb'] }}"
   loop_control:
     index_var: index
     loop_var: host

@@ -5,7 +5,7 @@
     state: absent
   delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
   run_once: true
-  loop: "{{ groups[bra ~ '-ndb'] }}"
+  loop: "{{ groups[bra ~ '-cluster_ndb'] }}"
   loop_control:
     index_var: index
     loop_var: host
@@ -18,7 +18,7 @@
     allow_downgrade: True
   delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
   run_once: true
-  loop: "{{ groups[bra ~ '-ndb'] }}"
+  loop: "{{ groups[bra ~ '-cluster_ndb'] }}"
   loop_control:
     index_var: index
     loop_var: host
@@ -31,7 +31,7 @@
     allow_downgrade: True
   delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
   run_once: true
-  loop: "{{ groups[bra ~ '-ndb'] }}"
+  loop: "{{ groups[bra ~ '-cluser_ndb'] }}"
   loop_control:
     index_var: index
     loop_var: host

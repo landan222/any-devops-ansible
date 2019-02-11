@@ -1,10 +1,10 @@
 ## inventory_hostname:{{inventory_hostname }}
 ## host:{{ host }}
 
-{% if host is defined and host in groups[bra ~ '-ndb'] %}
+{% if host is defined and host in groups[bra ~ '-cluster_ndb'] %}
 ################################ MYSQL NDB NODE
 
-{% set j =  groups[bra ~ '-ndb'].index(host) %}
+{% set j =  groups[bra ~ '-cluster_ndb'].index(host) %}
 
 [mysqld]
 ndbcluster
