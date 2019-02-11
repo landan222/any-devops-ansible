@@ -122,6 +122,9 @@
   pre_tasks:
     - shell: echo 'playbook cluster_ndb_mgm starts'
   roles:
+    - role: pause
+      vars:
+        bra: fea
     - role: cluster_ndb_mgm
       vars:
         bra: fea

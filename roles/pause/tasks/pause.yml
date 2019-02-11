@@ -1,0 +1,8 @@
+---
+- name: (pause) sleep 60s 
+  pause:
+    seconds: 60
+    prompt: "您正在部署到生产环境 (master branch), 请问要继续吗? Ctrl + C -> C 继续..."
+  when: bra == 'mas'
+
+    
