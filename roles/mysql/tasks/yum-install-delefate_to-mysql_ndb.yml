@@ -36,7 +36,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  notify: yum install mysql ndb
+  notify: debug yum install mysql ndb
   when: mysql_ha == 'ndb'
 
  
