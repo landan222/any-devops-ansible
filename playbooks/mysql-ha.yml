@@ -108,7 +108,7 @@
     - shell: echo 'playbook mha_manager ends'   
  
 - name: install feature cluster_ndb_mgm
-  hosts: cluster_ndb_mgm
+  hosts: fea-cluster_ndb_mgm
   strategy: linear # free, debug
   serial:
     - 10
@@ -128,8 +128,9 @@
       when: (branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined) and mysql_ha == 'cluster'
   post_tasks:
     - shell: echo 'playbook cluster_ndb_mgm ends'
+    
 - name: install feature cluster_ndb
-  hosts: fea-cluster_ndb
+  hosts: fea-fea-cluster_ndb
   strategy: linear # free, debug
   serial:
     - 10
@@ -152,7 +153,7 @@
     
     
 - name: install feature cluster_mysql
-  hosts: cluster_mysql
+  hosts: fea-cluster_mysql
   strategy: linear # free, debug
   serial:
     - 10
