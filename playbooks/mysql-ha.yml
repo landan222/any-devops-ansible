@@ -64,48 +64,48 @@
     - shell: echo 'playbook mmm_monitor ends'    
 # 
     
-# - name: install feature mha_node
-#   hosts: fea-mha_node
-#   strategy: linear # free, debug
-#   serial:
-#     - 10
-#     - 50%
-#   gather_facts: true
-#   become: true
-#   vars_files:
-#     - ./../group_vars/mysql.fea.yml
-#     - ./../group_vars/ndb.fea.yml
-#     - ./../group_vars/ndb_mgm.fea.yml
-#   pre_tasks:
-#     - shell: echo 'playbook mha_node starts'
-#   roles:
-#     - role: mha_node
-#       vars:
-#         bra: fea
-#       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mha'
-#   post_tasks:
-#     - shell: echo 'playbook mha_node ends'
-# - name: install feature mha_manager
-#   hosts: fea-mha_manager
-#   strategy: linear # free, debug
-#   serial:
-#     - 10
-#     - 50%
-#   gather_facts: true
-#   become: true
-#   vars_files:
-#     - ./../group_vars/mysql.fea.yml
-#     - ./../group_vars/ndb.fea.yml
-#     - ./../group_vars/ndb_mgm.fea.yml
-#   pre_tasks:
-#     - shell: echo 'playbook mha_manager starts'
-#   roles:
-#     - role: mha_manager
-#       vars:
-#         bra: fea
-#       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mha'
-#   post_tasks:
-#     - shell: echo 'playbook mha_manager ends'   
+- name: install feature mha_node
+  hosts: fea-mha_node
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/ndb.fea.yml
+    - ./../group_vars/ndb_mgm.fea.yml
+  pre_tasks:
+    - shell: echo 'playbook mha_node starts'
+  roles:
+    - role: mha_node
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mha'
+  post_tasks:
+    - shell: echo 'playbook mha_node ends'
+- name: install feature mha_manager
+  hosts: fea-mha_manager
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/ndb.fea.yml
+    - ./../group_vars/ndb_mgm.fea.yml
+  pre_tasks:
+    - shell: echo 'playbook mha_manager starts'
+  roles:
+    - role: mha_manager
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mha'
+  post_tasks:
+    - shell: echo 'playbook mha_manager ends'   
  
  
 
