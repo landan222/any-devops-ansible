@@ -1,4 +1,4 @@
-{% set int_index =  groups[bra ~ '-cluster_ndb'].index(host) %}
+{% set int_index =  groups[bra ~ '-cluster_ndb'].index(inventory_hostname) %}
 
 [mysqld]
 ndbcluster

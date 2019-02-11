@@ -3,10 +3,6 @@
   shell: "sudo ndb_mgm -e 'show'"
   register: string_ndb_show
   ignore_errors: yes
-  when: mysql_ha == 'cluster'
 - name: (debug) string_ndb_show
-  run_once: true
   debug: 
-    msg: "{{ string_ndb_show }}"
-  when: mysql_ha == 'cluster'
-  
+    msg: "{{ string_ndb_show }}"  

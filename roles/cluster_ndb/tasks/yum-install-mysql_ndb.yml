@@ -1,22 +1,19 @@
 ---
-- name: (yum) yum remove mariadb-libs
+- name: (yum) yum remove mariadb-libs mysql*
   yum: 
-    name: mariadb-libs
+    name: 
+      - mariadb-libs
+      - mysql*
     state: absent
-  when: mysql_ha == 'cluster'
 
 - name: (yum) yum insatll epel-release-latest-7.noarch.rpm
   yum: 
     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     allow_downgrade: True
-  when: mysql_ha == 'cluster'
-
 - name: (yum) yum insatll mysql-cluster-community-data-node-7.6.9-1.el7.x86_64.rpm
   yum: 
     name: https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-data-node-7.6.9-1.el7.x86_64.rpm
     allow_downgrade: True
-  notify: debug yum install mysql ndb
-  when: mysql_ha == 'cluster'
-
+  notify: debug yum install cluster_ndb
  
   

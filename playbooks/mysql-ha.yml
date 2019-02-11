@@ -133,7 +133,7 @@
     - shell: echo 'playbook cluster_ndb_mgm ends'
     
 - name: install feature cluster_ndb
-  hosts: fea-fea-cluster_ndb
+  hosts: fea-cluster_ndb
   strategy: linear # free, debug
   serial:
     - 10

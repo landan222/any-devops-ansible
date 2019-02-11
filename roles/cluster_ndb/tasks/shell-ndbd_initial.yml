@@ -1,4 +1,4 @@
 ---
 - name: "(shell) ndbd --initial"
   shell: "ndbd --initial"
-  when: mysql_ha == 'cluster'
+  register: string_ndbd_initial

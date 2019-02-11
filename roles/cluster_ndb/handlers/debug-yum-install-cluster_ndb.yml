@@ -1,0 +1,4 @@
+---
+- name: (debug) string_ndbd_initial
+  debug: 
+    msg: "{{ string_ndbd_initial }}"
