@@ -50,7 +50,7 @@ server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
 
 port = {{ MYSQL.SERVERS[i].PORT }}
 datadir = {{ MYSQL.SERVERS[i].DATADIR }}
-socket = /var/lib/mysql/mysql.sock
+socket = {{ MYSQL.SERVERS[i].SOCKET }}
 pid-file = /var/run/mysqld/mysqld.pid
 init-connect='SET NAMES utf8mb4'
 skip-character-set-client-handshake                      # 此处是忽略客户端的字符集，使用服务器的设置
