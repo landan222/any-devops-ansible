@@ -3,8 +3,6 @@
   shell: "masterha_check_repl --conf={{ MASTERHA.CONF }}"
   register: string_masterha_repl
   ignore_errors: yes
-  when: mysql_ha == 'mha'
 - name: (debug) string_masterha_repl
-  run_once: true
   debug: 
     msg: "{{ string_masterha_repl }}"
