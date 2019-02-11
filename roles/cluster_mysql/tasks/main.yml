@@ -2,5 +2,7 @@
 ---
 ## MYSQL CLUSTER NDB (启动) 部分
 - import_tasks: yum-install-mysql_cluster.yml
+- import_tasks: template-etc_my_cnf.yml
+- import_tasks: service-mysqld-restarted.yml
 
 

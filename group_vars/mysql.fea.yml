@@ -14,6 +14,7 @@ MYSQL:
       NAME: 'mysql-1'
       BIND_ADDRESS: '0.0.0.0'  # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       IS_MASTER: yes                        # 一级 MYSQL , 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
@@ -155,6 +156,7 @@ MYSQL:
       NAME: 'mysql-2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       # ENGINE: 'BLACKHOLE'
       IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
@@ -297,6 +299,7 @@ MYSQL:
       NAME: 'mysql-3'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
@@ -439,6 +442,7 @@ MYSQL:
       NAME: 'mysql-1_1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.191'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -581,6 +585,7 @@ MYSQL:
       NAME: 'mysql-1_2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.191'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -722,6 +727,7 @@ MYSQL:
       NAME: 'mysql-2_1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.192'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -863,6 +869,7 @@ MYSQL:
       NAME: 'mysql-2_2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'                      # 若 master-slave 高可用，slave 使用 replication 都改指向第一台 MySQL
       MASTER_HOST: '10.0.0.192'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
@@ -1004,6 +1011,7 @@ MYSQL:
       NAME: 'mysql-3_1'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.193'
@@ -1145,6 +1153,7 @@ MYSQL:
       NAME: 'mysql-3_2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
       DATADIR: '/var/lib/mysql'
+      BASEDIR: '/var/lib/mysql'
       PORT: 3306
       ENGINE: 'InnoDB'
       MASTER_HOST: '10.0.0.193'
