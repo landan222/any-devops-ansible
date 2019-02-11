@@ -16,4 +16,4 @@
     loop_var: host
     label: "{{ host }}"
   notify: debug yum install mysql ndb
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'

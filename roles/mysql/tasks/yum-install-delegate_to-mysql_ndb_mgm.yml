@@ -10,7 +10,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
 
 - name: (yum) yum insatll epel-release-latest-7.noarch.rpm
   yum: 
@@ -23,7 +23,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
 
 - name: (yum) yum insatll mysql-cluster-community-common-7.6.9-1.el7.x86_64.rpm
   yum: 
@@ -36,7 +36,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
   
 
 - name: (yum) yum insatll mysql-cluster-community-libs-7.6.9-1.el7.x86_64.rpm
@@ -50,7 +50,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
   
 - name: (yum) yum insatll mysql-cluster-community-client-7.6.9-1.el7.x86_64.rpm
   yum: 
@@ -63,7 +63,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
 
 - name: (yum) yum insatll mysql-cluster-community-server-7.6.9-1.el7.x86_64.rpm
   yum: 
@@ -76,7 +76,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
 
 - name: (yum) yum insatll mysql-cluster-community-server-7.6.9-1.el7.x86_64.rpm
   yum: 
@@ -89,5 +89,5 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'  
+  when: mysql_ha == 'cluster'  
   

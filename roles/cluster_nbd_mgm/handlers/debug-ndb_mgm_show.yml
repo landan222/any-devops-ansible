@@ -10,10 +10,10 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
 - name: (debug) string_ndb_show
   run_once: true
   debug: 
     msg: "{{ string_ndb_show }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
   

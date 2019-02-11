@@ -10,7 +10,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
 
 - name: "(template) scp etc/mgm.ini.j2 /etc/mgm.ini"
   template:
@@ -26,4 +26,4 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'

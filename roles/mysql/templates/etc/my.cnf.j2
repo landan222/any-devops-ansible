@@ -1,7 +1,7 @@
 {% if host is defined and host in groups[bra ~ '-cluster_ndb'] %}
 ################################ MYSQL NDB NODE
 
-{% set j =  groups[bra ~ '-cluster_ndb'].index(host) or mysql_ha == 'ndb' %}
+{% set j =  groups[bra ~ '-cluster_ndb'].index(host) or mysql_ha == 'cluster' %}
 
 [mysqld]
 ndbcluster

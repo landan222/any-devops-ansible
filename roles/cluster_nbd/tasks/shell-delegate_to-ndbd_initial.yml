@@ -9,4 +9,4 @@
     loop_var: host
     label: "{{ host }}"
   register: string_ndb_initial
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'

@@ -12,4 +12,4 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'ndb'
+  when: mysql_ha == 'cluster'
