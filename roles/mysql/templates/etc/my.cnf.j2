@@ -40,7 +40,7 @@ interactive-timeout
 open-files-limit = 8192                                   # 增加每个进程的可打开文件数量.打开大量表需要将此值设大
 {% if mysql_version == '5.5' or mysql_version == '5.6' %}
 [mysqld_safe]
-log-error = /var/log/mysqld_safe-error.log
+log-error = mysqld_safe-error.log
 pid-file = /var/run/mysqld/mysqld.pid
 {% endif %}
 
