@@ -4,7 +4,7 @@
 port = {{ MYSQL.SERVERS[i].PORT }}
 user = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}
 password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}
-# default-character-set = utf8mb4                         # 5.7 会造成 /usr/bin/mysqlbinlog 不作用, 
+# default-character-set = {{ MYSQL.CHARACTER_SET }}       # 5.7 会造成 /usr/bin/mysqlbinlog 不作用, 
 
 [mysql]
 ######################### [mysql] 基本设置 #########################
@@ -52,17 +52,17 @@ port = {{ MYSQL.SERVERS[i].PORT }}
 datadir = {{ MYSQL.SERVERS[i].DATADIR }}
 socket = {{ MYSQL.SERVERS[i].SOCKET }}
 pid-file = /var/run/mysqld/mysqld.pid
-init-connect='SET NAMES utf8mb4'
+init-connect='SET NAMES {{ MYSQL.CHARACTER_SET }}'
 skip-character-set-client-handshake                      # 此处是忽略客户端的字符集，使用服务器的设置
 skip-external-locking
 slave-parallel-workers=6
 
 # external-locking = FALSE                               # 5.7 不作用, 避免外部锁定(减少出错几率，增加稳定性)
 # skip-name-resolv                                       # 5.7 不作用, 禁止外部连接进行DNS解析
-transaction_isolation = READ-COMMITTED                   # 事务隔离级别
+transaction_isolation = {{ MYSQL.TRANSACTION_ISOLATION }}# 事务隔离级别
 
-character-set-server = utf8mb4
-collation-server = utf8mb4_general_ci                    # 设置校对规则
+character-set-server = {{ MYSQL.CHARACTER_SET }}
+collation-server = {{ MYSQL.COLLATION }}                 # 设置校对规则
 symbolic-links = 0                                       # Disabling symbolic-links is recommended to prevent assorted security risks
 lower_case_table_names = 1
 
