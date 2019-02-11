@@ -20,48 +20,48 @@
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
     - shell: echo 'playbook mysql ends'
-# - name: install feature mmm_agent
-#   hosts: fea-mmm_agent
-#   strategy: linear # free, debug
-#   serial:
-#     - 10
-#     - 50%
-#   gather_facts: true
-#   become: true
-#   vars_files:
-#     - ./../group_vars/mysql.fea.yml
-#     - ./../group_vars/ndb.fea.yml
-#     - ./../group_vars/ndb_mgm.fea.yml
-#   pre_tasks:
-#     - shell: echo 'playbook mmm_agent starts'
-#   roles:
-#     - role: mmm_agent
-#       vars:
-#         bra: fea
-#       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mmm'
-#   post_tasks:
-#     - shell: echo 'playbook mmm_agent ends'
-# - name: install feature mmm_monitor
-#   hosts: fea-mmm_monitor
-#   strategy: linear # free, debug
-#   serial:
-#     - 10
-#     - 50%
-#   gather_facts: true
-#   become: true
-#   vars_files:
-#     - ./../group_vars/mysql.fea.yml
-#     - ./../group_vars/ndb.fea.yml
-#     - ./../group_vars/ndb_mgm.fea.yml
-#   pre_tasks:
-#     - shell: echo 'playbook mmm_monitor starts'
-#   roles:
-#     - role: mmm_monitor
-#       vars:
-#         bra: fea
-#       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mmm'
-#   post_tasks:
-#     - shell: echo 'playbook mmm_monitor ends'    
+- name: install feature mmm_agent
+  hosts: fea-mmm_agent
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/ndb.fea.yml
+    - ./../group_vars/ndb_mgm.fea.yml
+  pre_tasks:
+    - shell: echo 'playbook mmm_agent starts'
+  roles:
+    - role: mmm_agent
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mmm'
+  post_tasks:
+    - shell: echo 'playbook mmm_agent ends'
+- name: install feature mmm_monitor
+  hosts: fea-mmm_monitor
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/ndb.fea.yml
+    - ./../group_vars/ndb_mgm.fea.yml
+  pre_tasks:
+    - shell: echo 'playbook mmm_monitor starts'
+  roles:
+    - role: mmm_monitor
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined and mysql_ha == 'mmm'
+  post_tasks:
+    - shell: echo 'playbook mmm_monitor ends'    
 # 
     
 # - name: install feature mha_node
