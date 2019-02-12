@@ -3,7 +3,6 @@
     path: /usr/mysql-cluster
     state: directory
     mode: 0755
-  when: mysql_ha == 'cluster'
 
 - name: "(template) scp etc/mgm.ini.j2 /etc/mgm.ini"
   template:
@@ -12,4 +11,3 @@
     owner: root
     group: root
     mode: 0755
-  when: mysql_ha == 'cluster'

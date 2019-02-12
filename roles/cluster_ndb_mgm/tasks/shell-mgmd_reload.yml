@@ -8,4 +8,3 @@
   shell: "ndb_mgmd -f /etc/mgm.ini --initial"
   notify: 
     - debug yum install ndb_mgm
-  when: mysql_ha == 'cluster'

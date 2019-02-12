@@ -1,5 +1,4 @@
 ---
 - name: "(shell) ndb_mgm -e shutdown"
   shell: "ndb_mgm -e shutdown"
-  run_once: true
-  when: mysql_ha == 'cluster'
+  ignore_errors: yes
