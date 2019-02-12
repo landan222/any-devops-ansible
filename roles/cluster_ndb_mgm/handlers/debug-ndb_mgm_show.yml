@@ -1,6 +1,6 @@
 ---
-- name: "(shell) sudo ndb_mgm -e 'show'"
-  shell: "sudo ndb_mgm -e 'show'"
+- name: "(shell)ndb_mgm -e 'show'"
+  shell: "ndb_mgm -e 'show'"
   register: string_ndb_show
   ignore_errors: yes
 - name: (debug) string_ndb_show

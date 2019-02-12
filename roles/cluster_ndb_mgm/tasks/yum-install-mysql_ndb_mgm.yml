@@ -1,9 +1,10 @@
 ---
-- name: (yum) yum remove mariadb-libs mysql*
+- name: (yum) yum remove mariadb-libs mysql-community* mysql-cluster-community*
   yum: 
     name: 
       - mariadb-libs
-      - mysql*
+      - mysql-cluster-community*
+      - mysql-community*
     state: absent
 
 - name: (yum) yum insatll epel-release-latest-7.noarch.rpm
