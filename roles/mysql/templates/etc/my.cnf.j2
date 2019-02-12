@@ -52,6 +52,14 @@ port = {{ MYSQL.SERVERS[i].PORT }}
 datadir = {{ MYSQL.SERVERS[i].DATADIR }}
 socket = {{ MYSQL.SERVERS[i].SOCKET }}
 pid-file = /var/run/mysqld/mysqld.pid
+
+{# 先 and 后 or #}
+{% if (mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1') and mysql_skip == True %}
+# mysql 5.7 以後版本, 預設有安全密碼
+skip-grant-tables = 1
+skip-networking = 1
+{% endif %}
+
 init-connect='SET NAMES {{ MYSQL.CHARACTER_SET }}'
 skip-character-set-client-handshake                      # 此处是忽略客户端的字符集，使用服务器的设置
 skip-external-locking
@@ -69,9 +77,10 @@ lower_case_table_names = 1
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
-{% if mysql_version == '5.7'%}
+{% if mysql_version == '5.7' and mysql_skip == False %}
+# 使用 skip-grant-tables = 1, skip-networking = 1 时，validate-password 不可同时使用
 validate-password = 0
-{% elif mysql_version == '8.0' or mysql_version == '8.1' %}
+{% elif (mysql_version == '8.0' or mysql_version == '8.1') and mysql_skip == False %}
 validate_password.dictionary_file = /usr/share/dict/words
 validate_password.length = 4
 validate_password.policy = 0
