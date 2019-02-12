@@ -10,10 +10,6 @@ password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}
 
 [mysql]
 ######################### [mysql] 基本设置 #########################
-{% if mysql_ha == 'cluster' %}
-ndbcluster
-ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
-{% endif %}
 no-auto-rehash                                            # 仅允许使用键值的updates和deletes
 
 [mysqldump]
@@ -52,11 +48,17 @@ pid-file = /var/run/mysqld/mysqld.pid
 
 [mysqld]
 ######################### [mysqld] 基本设置 #########################
+{% if mysql_ha == 'cluster' %}
+ndbcluster
+ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
+{% endif %}
+
+
 server_id = {{ groups[bra ~ '-mysql'].index(inventory_hostname) + 1 }}
 
 port = {{ MYSQL.SERVERS[i].PORT }}
 datadir = {{ MYSQL.SERVERS[i].DATADIR }}
-basedir = {{ MYSQL.SERVERS[i].BASEDIR }}
+# basedir = {{ MYSQL.SERVERS[i].BASEDIR }}
 socket = {{ MYSQL.SERVERS[i].SOCKET }}
 pid-file = /var/run/mysqld/mysqld.pid
 

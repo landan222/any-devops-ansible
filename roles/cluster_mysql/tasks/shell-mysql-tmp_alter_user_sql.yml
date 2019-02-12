@@ -11,10 +11,12 @@
 
 - name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/alter_user.sql"
   shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/alter_user.sql"
+  run_once: yes
   when: mysql_version == '5.5' or mysql_version == '5.6' or mysql_version == '5.7'
 
 - name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='' --force < /tmp/alter_user.sql"
   shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='' --force < /tmp/alter_user.sql"
+  run_once: yes
   when: mysql_version == '8.0' or mysql_version == '8.1'
 # - name: (shell) mysqld --init-file=/tmp/update_user.sql
 #   shell: mysqld --init-file=/tmp/update_user.sql
