@@ -10,7 +10,7 @@
     mode: 0755
 - name: (shell) mysql --force < /tmp/update_user.sql
   shell: mysql --force < /tmp/update_user.sql
-  run_once: yes
+  run_once: no
  
  # when: mysql_version == '5.5' or mysql_version == '5.6' or mysql_version == '5.7'
 # - name: (shell) mysqld --init-file=/tmp/update_user.sql

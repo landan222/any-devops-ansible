@@ -10,4 +10,4 @@
     mode: 0755
 - name: "(shell) mysql --user='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"
   shell: "mysql --user='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"
-  run_once: yes
+  run_once: no
