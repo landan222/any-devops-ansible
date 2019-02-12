@@ -1,5 +1,5 @@
 {% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
--- 这里 table 使用 ENGINE BLACKHOLE , 二级 maser 不会看到 数据 !! 
+-- 这里 table 如果使用 ENGINE BLACKHOLE , 二级 maser 不会看到 数据 !! 
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 192.168.1.72    Database: ga
@@ -20,6 +20,8 @@
 
 
 
+# 需要指定 使用的 database, 才知道 是不是该忽略 binglog 复制
+USE `landan`;
 
 --
 -- Dumping routines for database 'ga'
@@ -138,8 +140,6 @@
 -- DELIMITER ;
 -- e888d1bd26527e20a14083635f7ba65662c8ad0a15d9d1ca38d5dee762a16e0194273db6f1a3e5b9b434e7b2bb350dff = md5('landan' . 'LANDAN_PASSWORD_KEY') . md5('1234qwer') . md5( strrev(md5('1234qwer' . 'LANDAN_PASSWORD_KEY')) );
 
-# 需要指定 使用的 database, 才知道 是不是该忽略 binglog 复制
-USE `landan`;
 
 CREATE TABLE `users` (
   `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -150,8 +150,8 @@ CREATE TABLE `users` (
   `updated_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `deleted_time` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`))
--- ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4 PARTITION BY LINEAR HASH(user_id) PARTITIONS 8 ;
+-- ENGINE = {% if mysql_ha = 'cluster' %}ndbcluster{% else %}Innodb{% endif %}
+DEFAULT CHARACTER SET = utf8mb4 {% if mysql_ha = 'cluster' %}PARTITION BY LINEAR HASH(user_id) PARTITIONS 8{% else %}{% endif %};
 
 SET UNIQUE_CHECKS = 0;
 LOCK TABLES `users` WRITE;
