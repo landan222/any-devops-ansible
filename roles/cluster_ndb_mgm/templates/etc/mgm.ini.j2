@@ -1,5 +1,7 @@
 [ndbd default]
-NoOfReplicas=2
+#NoOfReplicas=1                       # 被分割成  NDB个数/1 份, 数据 平均分割给 所有 NDB个数 
+NoOfReplicas=2                        # 被分割成  NDB个数/1 份, 数据 平均分割给 所有 NDB个数 , 还要加上备份 2 份
+
 
 {% set int_nodeid = 0 %}
 [ndb_mgmd]
