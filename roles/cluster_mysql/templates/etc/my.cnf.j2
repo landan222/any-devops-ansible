@@ -324,7 +324,7 @@ loose_rpl_semi_sync_slave_enabled = 1                   # slave 使用 semisync_
 
 #########################################################################################
 
-{% elif mysql_ha == 'mha' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1  and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
+{% elif mysql_ha == 'mha' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
 log-slave-updates = 1                                   # mha , 可能切换一级 MASTER， 一级 MYSQL需 将 replication 来的 记入到从服务器自己的二进制日志文件中 
 
 plugin_load = "rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so" # mha ，一级 MYSQL 可能切换担任 master 或 slave
@@ -332,7 +332,7 @@ loose_rpl_semi_sync_master_enabled = 1                  # mha ，一级 MYSQL �
 loose_rpl_semi_sync_slave_enabled = 1                   # mha 使用 semisync_slave
 loose_rpl_semi_sync_master_timeout = 5000               # mha 半同步 timeout 5000  中
 
-{% elif mysql_ha == 'mha' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2  and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
+{% elif mysql_ha == 'mha' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
 log-slave-updates = 1                                   # mha , 可能切换一级 MASTER，一级 MYSQL需 将 replication 来的 记入到从服务器自己的二进制日志文件中 
 
 plugin_load = "rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so" # mha ，一级 MYSQL 可能切换担任 master 或 slave
@@ -340,7 +340,7 @@ loose_rpl_semi_sync_master_enabled = 1                  # mha ，一级 MYSQL �
 loose_rpl_semi_sync_slave_enabled = 1                   # mha 使用 semisync_slave
 loose_rpl_semi_sync_master_timeout = 5000               # mha 半同步 timeout 5000  中
 
-{% elif mysql_ha == 'mha' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 3  and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
+{% elif mysql_ha == 'mha' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 3 and ( MYSQL.SERVERS[i].IS_MASTER == 1 or MYSQL.SERVERS[i].IS_MASTER == yes or MYSQL.SERVERS[i].IS_MASTER == True ) %}
 log-slave-updates = 1                                   # mha , 可能切换一级 MASTER，一级 MYSQL需 将 replication 来的 记入到从服务器自己的二进制日志文件中 
 
 plugin_load = "rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so" # mha ，一级 MYSQL 可能切换担任 master 或 slave
