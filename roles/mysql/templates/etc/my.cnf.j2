@@ -1,9 +1,11 @@
 {% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
 [client]
 ######################### [client] 基本设置 #########################
+{% if bra == 'fea' or bra == 'dev' %}
 port = {{ MYSQL.SERVERS[i].PORT }}
 user = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}
 password = {{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}
+{% endif %}
 # default-character-set = {{ MYSQL.CHARACTER_SET }}       # 5.7 会造成 /usr/bin/mysqlbinlog 不作用, 
 
 [mysql]
