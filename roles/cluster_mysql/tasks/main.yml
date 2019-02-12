@@ -5,7 +5,7 @@
 - import_tasks: set_fact-mysql_skip_true.yml
 - import_tasks: template-etc_my_cnf.yml
 - import_tasks: service-mysqld-restarted.yml
-- import_tasks: shell-mysql-tmp_alter_user_sql.yml
+- import_tasks: shell-mysql-tmp_update_user_sql.yml
 - import_tasks: set_fact-mysql_skip_false.yml
 - import_tasks: template-etc_my_cnf.yml
 - import_tasks: service-mysqld-restarted.yml
@@ -14,4 +14,3 @@
 - import_tasks: shell-mysql-tmp_create_sql.yml
 - import_tasks: shell-mysql-tmp_landan_sql.yml
 - import_tasks: shell-mysql-tmp_cms_sql.yml
-
