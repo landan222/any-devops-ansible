@@ -86,14 +86,14 @@ lower_case_table_names = 1
 # Recommended in standard MySQL setup
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
-{% if mysql_version == '5.7' and mysql_skip == False %}
-# 使用 skip-grant-tables = 1, skip-networking = 1 时，validate-password 不可同时使用
-validate-password = 0
-{% elif (mysql_version == '8.0' or mysql_version == '8.1') and mysql_skip == False %}
+
+{% if (mysql_version == '8.0' or mysql_version == '8.1') and mysql_ha == 'cluster' %}
 validate_password.dictionary_file = /usr/share/dict/words
 validate_password.length = 4
 validate_password.policy = 0
 validate_password.number_count = 1
+{% elif mysql_version == '5.7' and mysql_skip == False %}
+validate-password = 0
 {% endif %}
 
 ############################# [mysqld] 效能 - 一般容量相关 #############################
@@ -356,6 +356,10 @@ loose_rpl_semi_sync_slave_enabled = 1                   # slave 使用 semisync_
 
 #########################################################################################
 
+{% elif mysql_ha == 'cluster' %}
+log-slave-updates = 0                                   # cluster , 
+
+#########################################################################################
 {% else %}
 log-slave-updates = 0                                   # 将从服务器从主服务器收到的更新记入到从服务器自己的二进制日志文件中
       
@@ -366,7 +370,7 @@ loose_rpl_semi_sync_slave_enabled = 1                   # slave 使用 semisync_
 
 
 {% if mysql_ha == 'cluster' %}
-default_storage_engine = NDBCLUSTER                      # CLUSTER 使用
+default_storage_engine = ndbcluster                     # CLUSTER 使用
 {% elif mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 and MYSQL.SERVERS[i].ENGINE is undefined %}
 default_storage_engine = BLACKHOLE                      # 二级 master 若使用 BACKHOLE engine , 在 二级 master 看不见资料的 !!
 {% elif MYSQL.SERVERS[i].ENGINE is undefined %}

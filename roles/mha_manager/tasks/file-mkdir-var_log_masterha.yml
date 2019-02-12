@@ -2,4 +2,5 @@
   file:
     path: /var/log/masterha
     state: directory
+    recurse: yes
     mode: 0775

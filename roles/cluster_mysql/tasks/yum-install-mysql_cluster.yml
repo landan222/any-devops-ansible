@@ -11,6 +11,11 @@
   file:
     state: absent
     path: "{{ MYSQL.SERVERS[groups[bra ~ '-cluster_mysql'].index(inventory_hostname)].DATADIR }}"
+    
+- name: "(file) rm -Rf {{ MYSQL.SERVERS[groups[bra ~ '-cluster_mysql'].index(inventory_hostname)].LOGDIR }}"
+  file:
+    state: absent
+    path: "{{ MYSQL.SERVERS[groups[bra ~ '-cluster_mysql'].index(inventory_hostname)].LOGDIR }}"
   
 - name: (yum) yum insatll epel-release-latest-7.noarch.rpm
   yum: 
