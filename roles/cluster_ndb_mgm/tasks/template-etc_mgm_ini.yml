@@ -2,12 +2,12 @@
   file:
     path: /usr/mysql-cluster
     state: directory
-    mode: 0755
+    mode: 0775
 
 - name: "(template) scp etc/mgm.ini.j2 /etc/mgm.ini"
   template:
     src: etc/mgm.ini.j2
     dest: /etc/mgm.ini
-    owner: root
-    group: root
-    mode: 0755
+    owner: mysql
+    group: mysql
+    mode: 0775

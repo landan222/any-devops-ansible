@@ -1,5 +1,5 @@
 ---
-- name: mongo --version
+- name: (shell) mongo --version
   shell: mongo --version
   register: string_mongodb_version
   become: False

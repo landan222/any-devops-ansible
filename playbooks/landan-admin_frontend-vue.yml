@@ -1,15 +1,17 @@
 ---
-- name: Install feature admin168
-  hosts: fea-admin168
+- name: Install feature landan-admin_frontend-vue
+  hosts: fea-landan-admin_frontend-vue
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/landan-admin_frontend-vue.fea.yml
   pre_tasks:
-    - shell: echo 'playbook admin168 starts'
+    - shell: echo 'playbook landan-admin_frontend-vue starts'
   roles:
-    - role: admin168
+    - role: landan-admin_frontend-vue
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook admin168g ends'
+    - shell: echo 'playbook landan-admin_frontend-vue ends'

@@ -1,0 +1,13 @@
+###
+{% set i = groups[bra ~ '-sql_mysql'].index(inventory_hostname) %}
+
+
+{% if i == 1 %}
+
+{% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
+CREATE DATABASE {{ CREATE_DATABASE }} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+{% endfor %}
+
+{% endif %}
+
+###

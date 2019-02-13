@@ -1,8 +1,0 @@
-###
-{% if mysql_ha == 'cluster' %}
-{% set i =  groups[bra ~ '-cluster_mysql'].index(inventory_hostname) %}
-{% elif %}
-{% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
-{% endif %}
-
-ALTER USER '{{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}'@'{{ MYSQL.SERVERS[i].CONNECTIONS[0].HOSTS[1] }}' IDENTIFIED BY '{{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}';  

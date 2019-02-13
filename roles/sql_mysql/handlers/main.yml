@@ -1,0 +1,5 @@
+---  
+- name: debug mysql sql
+  import_tasks: debug-mysql_show_databases.yml
+
+  #listen: # ansible 2.7 版本 import_tasks 没有 listen

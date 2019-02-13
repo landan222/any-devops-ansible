@@ -185,6 +185,30 @@
       when: (branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined) and mysql_ha == 'cluster'
   post_tasks:
     - shell: echo 'playbook cluster_mysql ends'
+    
+    
+- name: install feature sql_mysql
+  hosts: fea-sql_mysql
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/masterha.fea.yml
+    - ./../group_vars/ndb.fea.yml
+    - ./../group_vars/ndb_mgm.fea.yml
+  pre_tasks:
+    - shell: echo 'playbook sql_mysql starts'
+  roles:
+    - role: sql_mysql
+      vars:
+        bra: fea
+      when: (branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined)
+  post_tasks:
+    - shell: echo 'playbook sql_mysql ends'
 
     
 - name: install develop mysql
