@@ -153,8 +153,8 @@ CREATE TABLE `users` (
   `updated_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
   `deleted_time` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`))
--- ENGINE = {% if mysql_ha == 'cluster' %}ndbcluster{% else %}Innodb{% endif %}
-DEFAULT CHARACTER SET = utf8mb4 {% if mysql_ha == 'cluster' %}PARTITION BY LINEAR HASH(user_id) PARTITIONS 8{% else %}{% endif %};
+-- ENGINE = {% if mysql_ha == 'cluster' %}ndbcluster {% else %}Innodb {% endif %}
+ DEFAULT CHARACTER SET = utf8mb4 {% if mysql_ha == 'cluster' %} {% else %} PARTITION BY LINEAR HASH(user_id) PARTITIONS 8{% endif %};
 
 SET UNIQUE_CHECKS = 0;
 LOCK TABLES `users` WRITE;
