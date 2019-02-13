@@ -124,48 +124,49 @@
 #127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 10.0.0.173 ansible_ssh_host=10.0.0.173 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
-[fea-cluster_ndb]
-#127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.181 ansible_ssh_host=10.0.0.181 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.182 ansible_ssh_host=10.0.0.182 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 
 ##
 [fea-xtrabackup]
 #127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.181 ansible_ssh_host=10.0.0.181 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.182 ansible_ssh_host=10.0.0.182 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 
 [fea-mmm_agent]
 #127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.181 ansible_ssh_host=10.0.0.181 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.182 ansible_ssh_host=10.0.0.182 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.183 ansible_ssh_host=10.0.0.183 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea-mha_node]
 #127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-
+10.0.0.181 ansible_ssh_host=10.0.0.181 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.182 ansible_ssh_host=10.0.0.182 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.183 ansible_ssh_host=10.0.0.183 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea-mysql]
 #127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-#10.0.0.201 ansible_ssh_host=10.0.0.201 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-#10.0.0.202 ansible_ssh_host=10.0.0.202 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-#10.0.0.203 ansible_ssh_host=10.0.0.203 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.181 ansible_ssh_host=10.0.0.181 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.182 ansible_ssh_host=10.0.0.182 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.183 ansible_ssh_host=10.0.0.183 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 [fea-sql_mysql]
 #127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-#10.0.0.201 ansible_ssh_host=10.0.0.201 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-#10.0.0.202 ansible_ssh_host=10.0.0.202 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
-#10.0.0.203 ansible_ssh_host=10.0.0.203 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.181 ansible_ssh_host=10.0.0.181 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.182 ansible_ssh_host=10.0.0.182 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.183 ansible_ssh_host=10.0.0.183 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+#10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+
+[fea-cluster_ndb]
+#127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.201 ansible_ssh_host=10.0.0.201 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
+10.0.0.202 ansible_ssh_host=10.0.0.202 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa.pub
 
 
 [fea-cluster_mysql]
