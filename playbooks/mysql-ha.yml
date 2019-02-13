@@ -84,7 +84,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/masterha.fea.yml
+    - ./../group_vars/mha_manager.fea.yml
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
@@ -108,7 +108,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/masterha.fea.yml
+    - ./../group_vars/mha_manager.fea.yml
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:

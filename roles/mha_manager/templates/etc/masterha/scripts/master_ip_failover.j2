@@ -10,7 +10,7 @@
 	);
 
 	#定义VIP变量
-	my $vip = '{{ MASTERHA.VIP }}';
+	my $vip = '{{ MHA_MANAGER.VIP }}';
 	my $key = '1';
 	my $ssh_start_vip = "/sbin/ifconfig ens192:$key $vip";
 	my $ssh_stop_vip = "/sbin/ifconfig ens192:$key down";
