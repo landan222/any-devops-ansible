@@ -7,7 +7,7 @@ NoOfReplicas=2                        # 被分割成  NDB个数/1 份, 数据 �
 [ndb_mgmd]
 {% set int_nodeid = int_nodeid + 1 %}
 nodeid={{ int_nodeid }}
-hostname={{ NDB_MGM.SERVERS[0].HOST }}
+hostname={{ CLUSTER_NDB_MGM.SERVERS[0].HOST }}
 datadir=/var/lib/mysql
 
 

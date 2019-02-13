@@ -10,7 +10,7 @@ mysql_ha: 'cluster' # master-slave, master-master-slave, dual-master, mmm, mha, 
 # mmm 多主模式, MMM 方案不适用对数据一致性要求很高的业务
 # mha 
 # ndb MYSQL CLUSTER 集从模式
-NDB_MGM:
+CLUSTER_NDB_MGM:
   SERVERS:
     - HOST: '10.0.0.173'
 

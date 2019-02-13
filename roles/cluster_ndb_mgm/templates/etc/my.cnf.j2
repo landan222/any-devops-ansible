@@ -7,7 +7,7 @@ datadir           = {{ CLUSTER_NDB.SERVERS[int_index].DATADIR }}
 user              = mysql
 port              = {{ CLUSTER_NDB.SERVERS[int_index].PORT }}
 socket            = {{ CLUSTER_NDB.SERVERS[int_index].SOCKET }}
-ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
+ndb-connectstring = {{ CLUSTER_NDB_MGM.SERVERS[0].HOST }}
 
 [MYSQL_CLUSTER]
-ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
+ndb-connectstring = {{ CLUSTER_NDB_MGM.SERVERS[0].HOST }}
