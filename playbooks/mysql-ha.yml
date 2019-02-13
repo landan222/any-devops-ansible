@@ -13,7 +13,8 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook mysql starts'
+    - name: "本地 feature 环境，MySQL 安装开始"
+      shell: echo 'playbook mysql starts'
       check_mode: no
   roles:
     - role: mysql
@@ -21,7 +22,8 @@
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and mysql_ha != 'cluster' and (with_with_roles is not defined or 'mysql' in with_roles )
   post_tasks:
-    - shell: echo 'playbook mysql ends'
+    - name: "本地 feature 环境，MySQL 安装完毕"
+      shell: echo 'playbook mysql ends'
 - name: install feature mmm_agent
   hosts: fea-mmm_agent
   strategy: linear # free, debug
@@ -36,14 +38,16 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook mmm_agent starts'
+    - name: "本地 feature 环境，MMM Agent 安装开始"
+      shell: echo 'playbook mmm_agent starts'
   roles:
     - role: mmm_agent
       vars:
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature','all'] ) and mysql_ha == 'mmm' and (with_with_roles is not defined or 'mmm_agent' in with_roles )
   post_tasks:
-    - shell: echo 'playbook mmm_agent ends'
+    - name: "本地 feature 环境，MMM Agent 安装完毕"
+      shell: echo 'playbook mmm_agent ends'
 - name: install feature mmm_monitor
   hosts: fea-mmm_monitor
   strategy: linear # free, debug
@@ -58,14 +62,16 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook mmm_monitor starts'
+    - name: "本地 feature 环境，MMM Monitor 安装开始"
+      shell: echo 'playbook mmm_monitor starts'
   roles:
     - role: mmm_monitor
       vars:
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and mysql_ha == 'mmm' and (with_with_roles is not defined or 'mmm_monitor' in with_roles )
   post_tasks:
-    - shell: echo 'playbook mmm_monitor ends'    
+    - name: "本地 feature 环境，MMM Monitor 安装完毕"
+      shell: echo 'playbook mmm_monitor ends'    
 # 
     
 - name: install feature mha_node
@@ -82,14 +88,16 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook mha_node starts'
+    - name: "本地 feature 环境，MHA Node 安装开始"
+      shell: echo 'playbook mha_node starts'
   roles:
     - role: mha_node
       vars:
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature','all'] ) and mysql_ha == 'mha' and (with_with_roles is not defined or 'mha_node' in with_roles )
   post_tasks:
-    - shell: echo 'playbook mha_node ends'
+    - name: "本地 feature 环境，MHA Node 安装完毕"
+      shell: echo 'playbook mha_node ends'
 - name: install feature mha_manager
   hosts: fea-mha_manager
   strategy: linear # free, debug
@@ -104,14 +112,16 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook mha_manager starts'
+    - name: "本地 feature 环境，MHA Manager 安装开始"
+      shell: echo 'playbook mha_manager starts'
   roles:
     - role: mha_manager
       vars:
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and mysql_ha == 'mha' and (with_with_roles is not defined or 'mha_manager' in with_roles )
   post_tasks:
-    - shell: echo 'playbook mha_manager ends'   
+    - name: "本地 feature 环境，MHA Manager 安装完毕"
+      shell: echo 'playbook mha_manager ends'   
  
 - name: install feature cluster_ndb_mgm
   hosts: fea-cluster_ndb_mgm
@@ -127,7 +137,8 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook cluster_ndb_mgm starts'
+    - name: "本地 feature 环境，Cluster NDB MGM 安装开始"
+      shell: echo 'playbook cluster_ndb_mgm starts'
   roles:
     - role: pause
       vars:
@@ -137,7 +148,8 @@
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and mysql_ha == 'cluster' and (with_with_roles is not defined or 'cluster_ndb_mgm' in with_with_roles )
   post_tasks:
-    - shell: echo 'playbook cluster_ndb_mgm ends'
+    - name: "本地 feature 环境，Cluster NDB MGM 安装完毕"
+      shell: echo 'playbook cluster_ndb_mgm ends'
     
 - name: install feature cluster_ndb
   hosts: fea-cluster_ndb
@@ -153,14 +165,16 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook cluster_ndb starts'
+    - name: "本地 feature 环境，Cluster NDB 安装开始"
+      shell: echo 'playbook cluster_ndb starts'
   roles:
     - role: cluster_ndb
       vars:
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature' ,'all'] ) and mysql_ha == 'cluster' and (with_roles is not defined or 'cluster_ndb' in with_with_roles )
   post_tasks:
-    - shell: echo 'playbook cluster_ndb ends'   
+    - name: "本地 feature 环境，Cluster NDB 安装完毕"
+      shell: echo 'playbook cluster_ndb ends'   
     
     
 - name: install feature cluster_mysql
@@ -177,14 +191,16 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook cluster_mysql starts'
+    - name: "本地 feature 环境，Cluster MySQL 安装开始"
+      shell: echo 'playbook cluster_mysql starts'
   roles:
     - role: cluster_mysql
       vars:
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and mysql_ha == 'cluster' and (with_with_roles is not defined or 'cluster_mysql' in with_with_roles)
   post_tasks:
-    - shell: echo 'playbook cluster_mysql ends'
+    - name: "本地 feature 环境，Cluster MySQL 安装完毕"
+      shell: echo 'playbook cluster_mysql ends'
     
     
 - name: install feature sql_mysql
@@ -201,14 +217,16 @@
     - ./../group_vars/ndb.fea.yml
     - ./../group_vars/ndb_mgm.fea.yml
   pre_tasks:
-    - shell: echo 'playbook sql_mysql starts'
+    - name: "本地 feature 环境，sql 安装开始"
+      shell: echo 'playbook sql_mysql starts'
   roles:
     - role: sql_mysql
       vars:
         bra: fea
       when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and (with_roles is not defined or 'sql_mysql' in with_with_roles)
   post_tasks:
-    - shell: echo 'playbook sql_mysql ends'
+    - name: "本地 feature 环境，sql 安装完毕"
+      shell: echo 'playbook sql_mysql ends'
 
     
 - name: install develop mysql
@@ -222,14 +240,16 @@
     - ./../group_vars/ndb.dev.yml
     - ./../group_vars/ndb_mgm.dev.yml
   pre_tasks:
-    - shell: echo 'playbook mysql starts'
+    - name: "开发 devlop 环境，MySQL 安装开始"
+      shell: echo 'playbook mysql starts'
   roles:
     - role: mysql
       vars:
         bra: dev
       when: (branch is not defined or branch in ['dev', 'develop', 'all'] ) and mysql_ha == 'cluster' and (with_roles is not defined or 'mysql' in with_roles )
   post_tasks:
-    - shell: echo 'playbook mysql ends'
+    - name: "开发 develop 环境，MySQL 安装完毕"
+      shell: echo 'playbook mysql ends'
 # - name: Install release nginx
 #   hosts: rel_nginx
 #   become: true
