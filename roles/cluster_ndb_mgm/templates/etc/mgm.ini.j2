@@ -16,8 +16,8 @@ datadir=/var/lib/mysql
 {% set int_nodeid = int_nodeid + 1 %}
 [ndbd]
 nodeid={{ int_nodeid }}
-hostname={{ NDB.SERVERS[loop.index - 1].HOST }}
-datadir={{ NDB.SERVERS[loop.index - 1].DATADIR }}
+hostname={{ CLUSTER_NDB.SERVERS[loop.index - 1].HOST }}
+datadir={{ CLUSTER_NDB.SERVERS[loop.index - 1].DATADIR }}
 
 {% endfor %}
 

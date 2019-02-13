@@ -1,5 +1,5 @@
 ---
-NDB:
+CLUSTER_NDB:
   SERVERS:
     - HOST: '10.0.0.181'
       PORT: 3306

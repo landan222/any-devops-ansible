@@ -2,11 +2,11 @@
 
 [mysqld]
 ndbcluster
-basedir           = {{ NDB.SERVERS[int_index].BASEDIR }}
-datadir           = {{ NDB.SERVERS[int_index].DATADIR }}
+basedir           = {{ CLUSTER_NDB.SERVERS[int_index].BASEDIR }}
+datadir           = {{ CLUSTER_NDB.SERVERS[int_index].DATADIR }}
 user              = mysql
-port              = {{ NDB.SERVERS[int_index].PORT }}
-socket            = {{ NDB.SERVERS[int_index].SOCKET }}
+port              = {{ CLUSTER_NDB.SERVERS[int_index].PORT }}
+socket            = {{ CLUSTER_NDB.SERVERS[int_index].SOCKET }}
 ndb-connectstring = {{ NDB_MGM.SERVERS[0].HOST }}
 
 [mysql_cluster]
