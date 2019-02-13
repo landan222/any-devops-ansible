@@ -1,4 +1,8 @@
+{% if mysql_ha == 'cluster' %}
+{% set i =  groups[bra ~ '-cluster_mysql'].index(inventory_hostname) %}
+{% elif %}
 {% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
+{% endif %}
 
 ## MYSQ HA: {{ mysql_ha }} 高可用形态
 

@@ -1,4 +1,10 @@
-{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
+{% if mysql_ha == 'cluster' %}
+{% set i =  groups[bra ~ '-cluster_mysql'].index(inventory_hostname) %}
+{% elif %}
+{% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
+{% endif %}
+
+{% if i + 1 == 1 %}
 
 -- 这里强制 table 使用 ENGINE MyISAM , 二级 maser 会看到 数据 !! 
 DROP DATABASE IF EXISTS `cms`;

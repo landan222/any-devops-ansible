@@ -1,4 +1,11 @@
-{% if groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
+{% if mysql_ha == 'cluster' %}
+{% set i =  groups[bra ~ '-cluster_mysql'].index(inventory_hostname) %}
+{% elif %}
+{% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
+{% endif %}
+
+
+{% if i + 1 == 1 %}
 -- 这里 table 使用 ENGINE BLACKHOLE , 二级 maser 不会看到 数据 !! 
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
