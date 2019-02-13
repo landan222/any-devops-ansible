@@ -1,10 +1,14 @@
 ###
+{% if mysql_ha == 'cluster' %}
+{% set i =  groups[bra ~ '-cluster_mysql'].index(inventory_hostname) %}
+{% elif %}
+{% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
+{% endif %}
+
 # 這類DCL語句也是記錄為STATEMENT格式。
 # grant 語句默認的db是replcrash，
 # 並不是replicate_ignore_db選項中的mysql (雖然grant最終改變的對象是在mysql)，
 # 所以這條grant語句不會過濾。
-{% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
-
 USE mysql;
 
 {% for CONNECTION in MYSQL.SERVERS[i].CONNECTIONS %}
