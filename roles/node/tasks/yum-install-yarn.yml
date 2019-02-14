@@ -1,0 +1,13 @@
+---
+- name: (yum) yum remove yarn
+  yum: 
+    name:
+      - yarn
+    state: absent
+- name: (yum) yum install yarn
+  yum: 
+    name:
+      - yarn
+    state: latest
+  notify: 
+    - debug yum install yarn
