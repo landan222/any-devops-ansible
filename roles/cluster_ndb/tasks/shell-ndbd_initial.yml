@@ -1,4 +1,4 @@
 ---
 - name: "(shell) ndbd --initial"
   shell: "ndbd --initial"
-  register: string_ndbd_initial
+  register: s_ndbd_initial

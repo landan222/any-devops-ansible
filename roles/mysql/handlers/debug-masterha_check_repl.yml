@@ -1,7 +1,7 @@
 ---
 - name: "(shell) sudo masterha_check_repl --conf={{ MASTERHA.CONF }}"
   shell: "masterha_check_repl --conf={{ MASTERHA.CONF }}"
-  register: string_masterha_repl
+  register: s_masterha_repl
   ignore_errors: yes
   delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
   run_once: true
@@ -11,7 +11,7 @@
     loop_var: host
     label: "{{ host }}"
   when: mysql_ha == 'mha'
-- name: (debug) string_masterha_repl
+- name: (debug) s_masterha_repl
   run_once: true
   debug: 
-    msg: "{{ string_masterha_repl }}"
+    msg: "{{ s_masterha_repl }}"

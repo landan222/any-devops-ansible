@@ -1,4 +1,4 @@
 ---
-- name: (debug) string_admin168_version
+- name: (debug) s_admin168_version
   debug: 
-    msg: "{{ string_admin168_version }}"
+    msg: "{{ s_admin168_version }}"

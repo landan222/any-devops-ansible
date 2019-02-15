@@ -2,8 +2,8 @@
 
 - name: "(shell) pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
   shell: "pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} --version"
-  register: string_pip_version
+  register: s_pip_version
 
-- name: debug string_pip_version
+- name: debug s_pip_version
   debug: 
-    msg: "{{ string_pip_version }}"
+    msg: "{{ s_pip_version }}"

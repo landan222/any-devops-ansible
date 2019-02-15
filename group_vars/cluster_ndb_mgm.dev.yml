@@ -1,4 +1,4 @@
 ---
-NDB_MGM:
+CLUSTER_NDB_MGM:
   SERVERS:
     - HOST: '10.0.0.173'

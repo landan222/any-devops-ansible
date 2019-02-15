@@ -3,7 +3,7 @@
 
 - name: "(shell) cat /root/.ssh/id_rsa.pub"
   shell: "cat /root/.ssh/id_rsa.pub"
-  register: string_id_rsa_pub
+  register: s_id_rsa_pub
   
 - name: (file) touch /root/.ssh/authorized_keys
   file:
@@ -17,5 +17,5 @@
 - name: "(lineinfile) scp root/.ssh/id_rsa.*.pub  >> /root/.ssh/authorized_keys"
   lineinfile:
     dest: /root/.ssh/authorized_keys
-    line: "{{ string_id_rsa_pub.stdout }}"
+    line: "{{ s_id_rsa_pub.stdout }}"
     insertbefore: 'EOF'

@@ -1,7 +1,7 @@
 ---
 - name: (shell) nginx -v
   shell: nginx -v
-  register: string_nginx_version
-- name: (debug) string_nginx_version
+  register: s_nginx_version
+- name: (debug) s_nginx_version
   debug: 
-    msg: "{{ string_nginx_version }}"
+    msg: "{{ s_nginx_version }}"

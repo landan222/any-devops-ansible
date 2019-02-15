@@ -1,8 +1,8 @@
 ---
 - name: yarn -v
   shell: yarn -v
-  register: string_yarn_version
+  register: s_yarn_version
   become: False
-- name: debug string_yarn_version
+- name: debug s_yarn_version
   debug: 
-    msg: "{{ string_yarn_version }}"
+    msg: "{{ s_yarn_version }}"

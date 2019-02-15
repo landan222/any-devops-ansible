@@ -1,8 +1,8 @@
 ---
 - name: (shell) mongo --version
   shell: mongo --version
-  register: string_mongodb_version
+  register: s_mongodb_version
   become: False
-- name: debug string_mongodb_version
+- name: debug s_mongodb_version
   debug: 
-    msg: "{{ string_mongodb_version }}"
+    msg: "{{ s_mongodb_version }}"

@@ -3,7 +3,7 @@
   shell: git branch -av
   args:
     chdir: "{{ LANDAN_ADMIN_FRONTEND_VUE.DEST }}"
-  register: string_landan_admin_frontend_vue_version
-- name: (debug) string_landan_admin_frontend_vue_version
+  register: s_landan_admin_frontend_vue_version
+- name: (debug) s_landan_admin_frontend_vue_version
   debug: 
-    msg: "{{ string_landan_admin_frontend_vue_version }}"
+    msg: "{{ s_landan_admin_frontend_vue_version }}"

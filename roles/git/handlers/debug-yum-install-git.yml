@@ -1,7 +1,7 @@
 ---
 - name: (shell) git --version
   shell: git --version
-  register: string_git_version
-- name: (debug) string_git_version
+  register: s_git_version
+- name: (debug) s_git_version
   debug: 
-    msg: "{{ string_git_version }}"
+    msg: "{{ s_git_version }}"

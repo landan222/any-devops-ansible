@@ -1,9 +1,9 @@
 ---
 - name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' -e 'SHOW DATABASES;'"
   shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' -e 'SHOW DATABASES;'"
-  register: string_mysql_show_databases
+  register: s_mysql_show_databases
   ignore_errors: yes
-- name: (debug) string_mysql_show_databases
+- name: (debug) s_mysql_show_databases
   run_once: true
   debug: 
-    msg: "{{ string_mysql_show_databases }}"  
+    msg: "{{ s_mysql_show_databases }}"  

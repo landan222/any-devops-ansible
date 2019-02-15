@@ -33,5 +33,5 @@
     method: GET
     return_content: yes
     status_code: 200
-  register: string_elasticsearch_version
+  register: s_elasticsearch_version
 

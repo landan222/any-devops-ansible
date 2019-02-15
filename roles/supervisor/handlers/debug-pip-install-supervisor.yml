@@ -1,7 +1,7 @@
 ---
 - name: (shell) supervisord --version
   shell: supervisord --version
-  register: string_supervisor_version
-- name: (debug) string_supervisor_version
+  register: s_supervisor_version
+- name: (debug) s_supervisor_version
   debug: 
-    msg: "{{ string_supervisor_version }}"
+    msg: "{{ s_supervisor_version }}"

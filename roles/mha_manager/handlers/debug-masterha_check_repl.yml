@@ -1,8 +1,8 @@
 ---
 - name: "(shell) sudo masterha_check_repl --conf={{ MASTERHA.CONF }}"
   shell: "masterha_check_repl --conf={{ MASTERHA.CONF }}"
-  register: string_masterha_repl
+  register: s_masterha_repl
   ignore_errors: yes
-- name: (debug) string_masterha_repl
+- name: (debug) s_masterha_repl
   debug: 
-    msg: "{{ string_masterha_repl }}"
+    msg: "{{ s_masterha_repl }}"

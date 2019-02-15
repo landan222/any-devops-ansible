@@ -4,7 +4,7 @@
     seconds: 5
 - name: "(shell) mmm_control checks all"
   shell: "mmm_control checks all"
-  register: string_mmm_control_checks_all
+  register: s_mmm_control_checks_all
   ignore_errors: yes
   delegate_to: "{{ host }}"                # 特殊用法委派，可以达到 MySQL1 的 key 放到 MySQL1,2,3 中
   run_once: true
@@ -13,7 +13,7 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-- name: (debug) string_mmm_control_checks_all
+- name: (debug) s_mmm_control_checks_all
   run_once: true
   debug: 
-    msg: "{{ string_mmm_control_checks_all }}"
+    msg: "{{ s_mmm_control_checks_all }}"

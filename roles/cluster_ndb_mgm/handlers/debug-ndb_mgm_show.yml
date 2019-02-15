@@ -1,8 +1,8 @@
 ---
 - name: "(shell)ndb_mgm -e 'show'"
   shell: "ndb_mgm -e 'show'"
-  register: string_ndb_show
+  register: s_ndb_show
   ignore_errors: yes
-- name: (debug) string_ndb_show
+- name: (debug) s_ndb_show
   debug: 
-    msg: "{{ string_ndb_show }}"  
+    msg: "{{ s_ndb_show }}"  

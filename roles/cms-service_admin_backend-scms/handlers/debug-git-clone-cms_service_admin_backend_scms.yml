@@ -1,4 +1,4 @@
 ---
-- name: (debug) string_cms-service_admin_backend-scms_version
+- name: (debug) s_cms-service_admin_backend-scms_version
   debug: 
-    msg: "{{ string_cms-service_admin_backend-scms_version }}"
+    msg: "{{ s_cms-service_admin_backend-scms_version }}"

@@ -8,8 +8,8 @@
     update: yes
     accept_hostkey: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
-  register: string_nyga_version
-  notify: debug git clone string_nyga_version
+  register: s_nyga_version
+  notify: debug git clone s_nyga_version
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
 # key must be put in root because sudo git clone

@@ -1,7 +1,7 @@
 ---
 - name: (shell) java -version
   shell: java -version
-  register: string_java_version
-- name: (debug) string_java_version
+  register: s_java_version
+- name: (debug) s_java_version
   debug: 
-    msg: "{{ string_java_version }}"
+    msg: "{{ s_java_version }}"

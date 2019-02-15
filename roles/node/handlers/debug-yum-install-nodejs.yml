@@ -1,15 +1,15 @@
 ---
 - name: node -v
   shell: node -v
-  register: string_node_version
+  register: s_node_version
   become: False
-- name: debug string_node_version
+- name: debug s_node_version
   debug: 
-    msg: "{{ string_node_version }}"
+    msg: "{{ s_node_version }}"
 - name: npm -v
   shell: npm -v
-  register: string_npm_version
+  register: s_npm_version
   become: False
-- name: debug string_npm_version
+- name: debug s_npm_version
   debug: 
-    msg: "{{ string_npm_version }}"
+    msg: "{{ s_npm_version }}"

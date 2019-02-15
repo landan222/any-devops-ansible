@@ -4,7 +4,7 @@
     seconds: 10
 - name: "(shell) sudo masterha_check_status --conf={{ MASTERHA.CONF }}"
   shell: "masterha_check_status --conf={{ MASTERHA.CONF }}"
-  register: string_masterha_status
+  register: s_masterha_status
   retries: 3 
   delay: 3
   ignore_errors: yes
@@ -16,7 +16,7 @@
     loop_var: host
     label: "{{ host }}"
   when: mysql_ha == 'mha'
-- name: (debug) string_masterha_status
+- name: (debug) s_masterha_status
   run_once: true
   debug: 
-    msg: "{{ string_masterha_status }}"
+    msg: "{{ s_masterha_status }}"
