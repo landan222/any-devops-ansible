@@ -1,0 +1,3 @@
+---
+LANDAN_WWW_BACKEND_KOA:
+  DEST: '/home/vagrant/www/landan-www_backend-koa'
