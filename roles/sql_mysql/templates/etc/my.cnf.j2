@@ -62,7 +62,7 @@ socket = {{ MYSQL.SERVERS[i].SOCKET }}
 pid-file = /var/run/mysqld/mysqld.pid
 
 {# 先 and 后 or #}
-{% if (mysql_version == '5.7' or mysql_version == '8.0' or mysql_version == '8.1') and mysql_skip == True %}
+{% if (mysql_version in ['5.7', '8.0', '8.1', 5.7, 8.0, 8.1]) and mysql_skip == True %}
 # mysql 5.7 以後版本, 預設有安全密碼
 skip-grant-tables = 1
 skip-networking = 1
@@ -86,12 +86,12 @@ lower_case_table_names = 1
 #sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
 
-{% if (mysql_version == '8.0' or mysql_version == '8.1') and mysql_ha == 'cluster' %}
+{% if (mysql_version in ['8.0', '8.1', 8.0, 8.1]) and mysql_ha == 'cluster' %}
 validate_password.dictionary_file = /usr/share/dict/words
 validate_password.length = 4
 validate_password.policy = 0
 validate_password.number_count = 1
-{% elif mysql_version == '5.7' and mysql_skip == False %}
+{% elif mysql_version in ['5.7', 5.7] and mysql_skip == False %}
 validate-password = 0
 {% endif %}
 
@@ -202,7 +202,7 @@ relay_log_purge = 0                                     # MHA 需要 relay-log �
 relay_log_purge = 1                                     # MHA 需要 relay-log ， 请不要自动清除
 {% endif %}
 ######################### [mysqld] Bin log 相关 - GTID MODE #########################
-{% if (mysql_version == '5.7' or mysql_version == '8.0') and (MYSQL.GTID_MODE == 'yes' or MYSQL.GTID_MODE == 1 or MYSQL.GTID_MODE == true )%}
+{% if (mysql_version in ['5.7', '8.0', '8.1', 5.7, 8.0, 8.1]) and (MYSQL.GTID_MODE == 'yes' or MYSQL.GTID_MODE == 1 or MYSQL.GTID_MODE == true )%}
 gtid_executed_compression_period = 1000                      
 gtid_mode = on            
 enforce_gtid_consistency = on
