@@ -162,6 +162,38 @@ INSERT INTO `users` (user_id, name, password) VALUES (1,'landan','e888d1bd26527e
 UNLOCK TABLES;
 SET UNIQUE_CHECKS = 1;
 
+CREATE TABLE `www_menus` (
+  `www_menu_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `href` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(12) DEFAULT NULL,
+  `created_time` datetime(6) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(6),
+  `updated_time` datetime(6) DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(6),
+  `deleted_time` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`www_menu_id`)
+) ENGINE = {% if mysql_ha == 'cluster' %}ndbcluster {% else %}Innodb {% endif %}
+  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `www_menu_descriptions` (
+  `www_menu_description_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language_id` int(12) unsigned DEFAULT NULL,
+  PRIMARY KEY (`www_menu_description_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE `languages` (
+  `language_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`language_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `languages`(`language_id`, `code`, `note`) VALUES (1, 'en-us', '英语 (美国)');
+INSERT INTO `languages`(`language_id`, `code`, `note`) VALUES (2, 'en', '英语 (英国)');
+INSERT INTO `languages`(`language_id`, `code`, `note`) VALUES (3, 'zh-cn', '中文 (中华人民共和国)');
+INSERT INTO `languages`(`language_id`, `code`, `note`) VALUES (4, 'zh-tw', '中文 (台湾)');
+
+
 
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
