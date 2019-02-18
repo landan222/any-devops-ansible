@@ -1,0 +1,19 @@
+---
+- name: Install feature landan-www_backend-koa
+  hosts: fea-landan-www_backend-koa
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/landan-www_backend-koa.fea.yml
+  pre_tasks:
+    - name: "本地 feature 環境 , 安裝 landan-www_backend-koa 開始"
+      shell: echo 'playbook landan-www_backend-koa starts'
+  roles:
+    - role: landan-www_backend-koa
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - name: "本地 feature 環境 , 安裝 landan-www_backend-koa 完畢"
+      shell: echo 'playbook landan-www_backend-koa ends'
