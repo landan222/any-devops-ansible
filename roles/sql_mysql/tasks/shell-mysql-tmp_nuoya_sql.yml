@@ -1,0 +1,13 @@
+---
+# - name: command mysql_upgrade --force -uroot
+#   command: mysql_upgrade --force -u root
+- name: (template) scp tmp/nuoya.sql.j2 /tmp/nuoya.sql
+  template:
+    src: tmp/nuoya.sql.j2
+    dest: /tmp/nuoya.sql
+    owner: vagrant
+    group: vagrant
+    mode: 0775
+- name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/nouya.sql"
+  shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/nuoya.sql"
+  run_once: yes
