@@ -1,4 +1,11 @@
 ---
+- name: (yum) yum remove mysql-community* mysql-cluster-community*
+  yum: 
+    name:
+      - mysql-cluster-community*
+      - mysql-community*
+    state: absent
+    
 - name: (yum) yum insatll mysql80-community rpm
   yum: 
     name: https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
@@ -24,12 +31,7 @@
   loop_control:
     loop_var: package_name
 
-- name: (yum) yum remove mysql-community* mysql-cluster-community*
-  yum: 
-    name:
-      - mysql-cluster-community*
-      - mysql-community*
-    state: absent
+
 - name: "(file) rm -Rf {{ MYSQL.SERVERS[groups[bra ~ '-mysql'].index(inventory_hostname)].DATADIR }}"
   file:
     state: absent
