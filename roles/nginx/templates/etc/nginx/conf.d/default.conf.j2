@@ -4,7 +4,9 @@ server {
     listen       {{ CONF['HTTP_PORT'] | default(80) }};
     listen       [::]:{{ CONF['HTTP_PORT'] | default(80) }};
     server_name  {{ CONF['SERVER_NAME'] }};
+    {% if CONF['ROOT'] is defined %}
     root         {{ CONF['ROOT'] }};
+    {% endif %}
     index        index.html index.php index.htm;
 
     {% if CONF.REWRITES is defined %}
@@ -22,10 +24,24 @@ server {
  
     server_tokens off;
   
+    {% if CONF['PROXY_PASS'] is defined %}
+    location / {
+        proxy_set_header X-SSL-Client-Cert $ssl_client_cert;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_pass {{ CONF['PROXY_PASS'] }};
+        proxy_redirect off;
+    }
+    {% else %}
     location / {
         try_files $uri $uri/ /index.php;
     }
+    {% endif %}
  
+    {% if CONF['PHP_VERSION'] is defined %}
     location ~* \.php$ {
         fastcgi_pass 127.0.0.1:90{{ CONF['PHP_VERSION'] | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }};
         fastcgi_index index.php;
@@ -33,6 +49,8 @@ server {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
+    {% endif %}
+       
     error_page 404 /404.html;
         location = /40x.html {
     }

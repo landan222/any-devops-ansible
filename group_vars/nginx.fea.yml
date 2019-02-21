@@ -62,3 +62,7 @@ NGINX:
       ROOT: '/home/vagrant/www/phpinfo73-php/'
       SERVER_NAME: 'fea.phpinfo73.com'
       PHP_VERSION: '7.3'
+    - HTTP_PORT: 80
+      ROOT: '/home/vagrant/www/landan-admin_backend-lumen/public'
+      SERVER_NAME: 'fea.www.landan.com'
+      PROXY_PASS: 'http://127.0.0.1:4001/'
