@@ -26,6 +26,10 @@ server {
   
     {% if CONF['PROXY_PASS'] is defined %}
     location / {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+
         proxy_set_header X-SSL-Client-Cert $ssl_client_cert;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
@@ -43,6 +47,11 @@ server {
  
     {% if CONF['PHP_VERSION'] is defined %}
     location ~* \.php$ {
+        add_header Access-Control-Allow-Origin '*';
+        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+        add_header Access-Control-Allow-Credentials true;
+        
         fastcgi_pass 127.0.0.1:90{{ CONF['PHP_VERSION'] | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }};
         fastcgi_index index.php;
         fastcgi_split_path_info ^(.+\.php)(.*)$;
