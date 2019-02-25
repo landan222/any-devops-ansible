@@ -1,4 +1,6 @@
 - import_tasks: yum-install-redis.yml
 - import_tasks: template-etc_redis_conf.yml
-# - import_tasks: service-firewalld-restarted.yml
+- import_tasks: file-mkdir-var_run_redis.yml
+- import_tasks: file-mkdir-var_log_redis.yml
+- import_tasks: file-mkdir-var_lib_redis.yml
 - import_tasks: service-redis-restarted.yml

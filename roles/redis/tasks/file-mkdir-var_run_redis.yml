@@ -1,0 +1,9 @@
+
+- name: (file) mkdir /var/run/redis/
+  file:
+    path: /var/run/redis/
+    state: directory
+    recurse: yes
+    owner: redis
+    group: redis
+    mode: 0755

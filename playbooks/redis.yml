@@ -7,14 +7,16 @@
   vars_files:
     - ./../group_vars/redis.fea.yml
   pre_tasks:
-    - shell: echo 'playbook redis starts'
+    - name: '本地 feature 环境，Redis 安装开始'
+      shell: echo 'playbook redis starts'
   roles:
     - role: redis
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook redis ends'
+    - name: '开发 feature 环境，Redis 安装完毕'
+      shell: echo 'playbook redis ends'
   vars:
 - name: Install develop redis
   hosts: dev-redis
@@ -24,11 +26,13 @@
   vars_files:
     - ./../group_vars/redis.dev.yml
   pre_tasks:
-    - shell: echo 'playbook redis starts'
+    - name: '开发 develop 环境，Redis 安装开始'
+      shell: echo 'playbook redis starts'
   roles:
     - role: redis
       vars:
         bra: dev
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
-    - shell: echo 'playbook redis ends'
+    - name: '开发 develop 环境，Redis 安装完毕'
+      shell: echo 'playbook redis ends'
