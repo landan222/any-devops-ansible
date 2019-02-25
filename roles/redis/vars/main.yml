@@ -2,3 +2,4 @@
 BIND: '127.0.0.1'
 REDIS_PORT: 6379
 REQUIREPASS: 'redis_pass'
+UNIXSOCKET: '/run/redis/redis.sock'
