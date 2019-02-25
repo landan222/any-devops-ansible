@@ -1,0 +1,12 @@
+- name: (shell) git config --global color.status auto
+  shell: git config --global color.status auto
+  ignore_errors: True
+- name: (shell) git config --global color.status auto
+  shell: git config --global color.status auto
+  ignore_errors: True
+- name: (shell) git config --global color.branch auto
+  shell: git config --global color.branch auto
+  ignore_errors: True
+- name: (shell) git config --global color.interactive auto
+  shell: git config --global color.interactive auto
+  ignore_errors: True
