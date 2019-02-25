@@ -4,6 +4,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/redis.fea.yml
   pre_tasks:
     - shell: echo 'playbook redis starts'
   roles:
@@ -19,6 +21,8 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/redis.dev.yml
   pre_tasks:
     - shell: echo 'playbook redis starts'
   roles:
