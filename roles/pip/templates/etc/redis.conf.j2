@@ -58,7 +58,7 @@
 # IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES
 # JUST COMMENT THE FOLLOWING LINE.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bind {{ BIND }}
+bind {{ REDIS.BIND }}
 
 # Protected mode is a layer of security protection, in order to avoid that
 # Redis instances left open on the internet are accessed and exploited.
@@ -81,7 +81,7 @@ protected-mode yes
 
 # Accept connections on the specified port, default is 6379 (IANA #815344).
 # If port 0 is specified Redis will not listen on a TCP socket.
-port {{ REDIS_PORT }}
+port {{ REDIS.PORT }}
 
 # TCP listen() backlog.
 #
@@ -98,7 +98,7 @@ tcp-backlog 511
 # incoming connections. There is no default, so Redis will not listen
 # on a unix socket when not specified.
 #
-unixsocket {{ UNIXSOCKET }}
+unixsocket {{ REDIS.UNIXSOCKET }}
 unixsocketperm 700
 
 # Close the connection after a client is idle for N seconds (0 to disable)
@@ -477,7 +477,7 @@ slave-priority 100
 # 150k passwords per second against a good box. This means that you should
 # use a very strong password otherwise it will be very easy to break.
 #
-requirepass {{ REQUIREPASS }}
+requirepass {{ REDIS.REQUIREPASS }}
 
 # Command renaming.
 #
