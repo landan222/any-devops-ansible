@@ -1,0 +1,7 @@
+---
+SUPERVISOR:
+  FILE: '/var/run/supervisord/supervisord.sock'
+  PORT: '*:9001'
+  LOGFILE: '/var/log/supervisord/supervisord.log'
+  SERVERURL: 'unix:///var/run/supervisord/supervisord.sock'
+  FILES: '/etc/supervisord/conf.d/*.conf'

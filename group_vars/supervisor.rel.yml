@@ -1,0 +1,7 @@
+---
+SUPERVISOR:
+  FILE: '/var/run/supervisord/supervisor.sock'
+  PORT: '127.0.0.1:9001'                               # 生产环境 禁止外网访问
+  LOGFILE: '/var/log/supervisord/supervisord.log'
+  SERVERURL: 'unix:///var/run/supervisord/supervisord.sock'
+  FILES: '/etc/supervisord/conf.dd/*.conf'
