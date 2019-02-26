@@ -16,7 +16,7 @@ MYSQL:
   GTID_MODE: yes
   TRANSACTION_ISOLATION: 'READ-COMMITTED'
   CHARACTER_SET: 'utf8mb4'
-  COLLATION: 'utf8mb4_general_ci'
+  COLLATION: 'utf8mb4_unicode_ci'
   SERVERS:
     - HOST: '10.0.0.181'       # 内网 IP   
       NAME: 'mysql-1'
