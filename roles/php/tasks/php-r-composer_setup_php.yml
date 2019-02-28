@@ -5,3 +5,6 @@
   notify: php composer-setup.php
 - name: (shell) php -r "unlink('composer-setup.php');"
   shell: php -r "unlink('composer-setup.php');"
+- name: (yum) yum insatll unzip
+  yum: 
+    name: unzip
