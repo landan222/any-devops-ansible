@@ -1,4 +1,4 @@
 ---
-- name: (debug) s_landan_admin_backend_lumen_version
+- name: (debug) s_landan_www_resource_backend_koa_version
   debug: 
-    msg: "{{ s_landan_admin_backend_lumen_version }}"
+    msg: "{{ s_landan_www_resource_backend_koa_version }}"
