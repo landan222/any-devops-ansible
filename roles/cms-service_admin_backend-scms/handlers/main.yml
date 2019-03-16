@@ -1,4 +1,0 @@
----
-- name: debug git clone landan-admin_backend-lumen
-  import_tasks: debug-git-clone-cms_service_admin_backend_scms.yml
-  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen
