@@ -1,7 +1,7 @@
 ---
-- name: "(git) git clone git@github.com:landan789/landan-admin_frontend-vue.git {{ LANDAN_ADMIN_UI_FRONTEND_VUE.DEST }}"
+- name: "(git) git clone git@github.com:doroke7/landan-admin_ui_frontend-vue.git {{ LANDAN_ADMIN_UI_FRONTEND_VUE.DEST }}"
   git:
-    repo: 'git@github.com:landan789/landan-admin_frontend-vue.git'
+    repo: 'git@github.com:doroke7/landan-admin_ui_frontend-vue.git'
     dest: "{{ LANDAN_ADMIN_UI_FRONTEND_VUE.DEST }}"
     version: "{{ 'develop' if branch in ['fea', 'feature'] else branch }}"
     clone: yes
