@@ -7,11 +7,13 @@
   vars_files:
     - ./../group_vars/landan-admin_ui_frontend-vue.fea.yml
   pre_tasks:
-    - shell: echo 'playbook landan-admin_ui_frontend-vue starts'
+    - name: "本地 feature 环境，landan-admin_ui_frontend-vue 安装开始"
+      shell: echo 'playbook landan-admin_ui_frontend-vue starts'
   roles:
     - role: landan-admin_ui_frontend-vue
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook landan-admin_ui_frontend-vue ends'
+    - name: "本地 feature 环境，landan-admin_ui_frontend-vue 安装完毕"
+      shell: echo 'playbook landan-admin_ui_frontend-vue ends'
