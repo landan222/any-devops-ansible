@@ -1,0 +1,28 @@
+---
+- name: (shell) yarn global add @vue/cli
+  shell: yarn global add @vue/cli
+
+- name: (shell) yarn global add @vue/cli-service-global
+  shell: yarn global add @vue/cli-service-global
+  
+- name: (shell) yarn global add @vue/cli-service
+  shell: yarn global add @vue/cli-service
+
+
+
+
+
+- name: (shell) yarn global add @vue/cli-plugin-e2e-nightwatch
+  shell: yarn global add @vue/cli-plugin-e2e-nightwatch
+  
+- name: (shell) yarn global add @vue/cli-plugin-pwa
+  shell: yarn global add @vue/cli-plugin-pwa
+
+- name: (shell) yarn global add @vue/cli-plugin-typescript
+  shell: yarn global add @vue/cli-plugin-typescript
+
+- name: (shell) yarn global add @vue/cli-plugin-unit-jest
+  shell: yarn global add @vue/cli-plugin-unit-jest
+  
+- name: (shell) yarn global add typescript
+  shell: yarn global add typescript
