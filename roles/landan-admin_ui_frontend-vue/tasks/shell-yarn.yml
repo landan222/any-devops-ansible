@@ -1,5 +1,6 @@
 ---
 - name: (shell) yarn --no-bin-links
   shell: yarn --no-bin-links
+  become: no # 使用 vagrant:vagrant yarn --no-bin-links
   args:
     chdir: "{{ LANDAN_ADMIN_UI_FRONTEND_VUE.DEST }}"
