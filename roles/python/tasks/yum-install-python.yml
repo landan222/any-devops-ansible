@@ -39,8 +39,10 @@
     force: True
     follow: False
   notify: debug yum install python-pip
- 
-
+	
+- name: "(shell) pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} install --upgrade pip"
+  shell: "pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} install --upgrade pip"
+	
 - name: "(file) ln -sf /usr/bin/python{{ python_version | default(3.6) }} /usr/bin/python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }}"  
   file:
     src: "/usr/bin/python{{ python_version | default(3.6) }}"
