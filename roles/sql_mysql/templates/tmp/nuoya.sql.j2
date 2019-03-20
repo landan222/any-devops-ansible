@@ -108,10 +108,10 @@ CREATE TABLE `lottery_issues` (
   `lottery_id` int(12) NOT NULL,
   `no` int(12) NOT NULL COMMENT '期号',
   `numbers` json DEFAULT NULL,
-  `time` datetime DEFAULT NULL,
-  `added_time` datetime NOT NULL,
-  `edited_time` datetime DEFAULT NULL,
-  `removed_time` datetime DEFAULT NULL,
+  `time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `added_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `edited_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `removed_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`lottery_issue_id`),
   UNIQUE KEY `lotteryid_no` (`lottery_id`,`no`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
