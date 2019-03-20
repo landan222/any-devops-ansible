@@ -100,6 +100,21 @@ CREATE TABLE `lotteries`  (
 ) ENGINE = {% if mysql_ha == 'cluster' %}ndbcluster {% else %}Innodb {% endif %} 
   DEFAULT CHARACTER SET = utf8mb4 {% if mysql_ha == 'cluster' %} {% else %} {% endif %}
   AUTO_INCREMENT = 127 COMMENT = '彩票信息表' ROW_FORMAT = Dynamic;
+  
+  
+  
+CREATE TABLE `lottery_issues` (
+  `lottery_issue_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `lottery_id` int(12) NOT NULL,
+  `no` int(12) NOT NULL COMMENT '期号',
+  `numbers` json DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `added_time` datetime NOT NULL,
+  `edited_time` datetime DEFAULT NULL,
+  `removed_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`lottery_issue_id`),
+  UNIQUE KEY `lotteryid_no` (`lottery_id`,`no`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of lotteries
@@ -197,6 +212,11 @@ INSERT INTO `lotteries` VALUES (121, 17, 15, 'agjs', 4, NULL, 0, 0, 0, 0, '0', '
 INSERT INTO `lotteries` VALUES (123, 19, 29, 'QT老虎机', 4, NULL, 0, 0, 0, 0, '0', '0', '0', 'QTLHJ', 127, 0, '(Y)(M)(D)(N2)', 'thirdBet', '00:00:00', '00:00:00', 0, 3, 1, 0, 0, 1956, NULL, '2018-09-20 16:27:35', '2018-09-20 16:27:35', 13, NULL);
 INSERT INTO `lotteries` VALUES (125, 13, 31, 'cq9lhj', 4, NULL, 0, 1, 0, 0, '0', '0', '0', 'cq9lhj', 127, 0, '(Y)(M)(D)(N2)', 'thirdBet', '00:00:00', '00:00:00', 14, 3, 1, 0, 0, 1956, NULL, '2018-09-27 13:41:32', '2018-10-15 17:15:53', 12, 'cq9lhj');
 INSERT INTO `lotteries` VALUES (126, 0, 10, 'LHFFC', 2, 1, 1, 0, 1, 0, '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', '7', '7', 'LHFFC', 127, 0, '(y)(M)(D)(N4)', '', '00:00:00', '00:00:00', 0, 3, 1, 1440, 1440, 1956, NULL, '2018-11-29 18:13:47', '2019-01-02 17:25:12', 0, NULL);
+
+
+INSERT INTO `lottery_issues`(`lottery_issue_id`, `lottery_id`, `no`, `numbers`, `time`, `added_time`, `edited_time`, `removed_time`) VALUES (1, 9, 2019032034, '[8, 3, 6, 10, 2]', '2019-03-20 20:30:10', '2019-03-20 21:35:26', '2019-03-20 21:35:31', NULL);
+INSERT INTO `lottery_issues`(`lottery_issue_id`, `lottery_id`, `no`, `numbers`, `time`, `added_time`, `edited_time`, `removed_time`) VALUES (2, 9, 2019032033, '[7, 5, 10, 11, 1]', '2019-03-20 20:10:10', '2019-03-20 21:47:29', '2019-03-20 21:47:32', NULL);
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 
