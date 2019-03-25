@@ -379,14 +379,20 @@ CREATE TABLE `lottery_issues` (
   `no` int(12) NOT NULL COMMENT '期号',
   `numbers` json DEFAULT NULL,
   `time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `added_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `edited_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `removed_time` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`lottery_issue_id`),
-  UNIQUE KEY `lotteryid_no` (`lottery_id`,`no`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
+  `order` int(12) DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `added_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `edited_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `removed_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`lottery_issue_id`,`added_time`),
+  UNIQUE KEY `lotteryid_no` (`lottery_id`,`no`,`added_time`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+/*!50100 PARTITION BY RANGE (TO_DAYS(added_time))
+(PARTITION less_than_20190322 VALUES LESS THAN (737505) COMMENT = 'TO_DAYS(\'2019-03-22 00:00:00\')' ENGINE = InnoDB,
+ PARTITION less_than_20190323 VALUES LESS THAN (737506) COMMENT = 'TO_DAYS(\'2019-03-23 00:00:00\')' ENGINE = InnoDB,
+ PARTITION less_than_20190324 VALUES LESS THAN (737507) COMMENT = 'TO_DAYS(\'2019-03-24 00:00:00\')' ENGINE = InnoDB,
+ PARTITION less_than_20190325 VALUES LESS THAN (737508) COMMENT = 'TO_DAYS(\'2019-03-25 00:00:00\')' ENGINE = InnoDB,
+ PARTITION less_than_maxvalue VALUES LESS THAN MAXVALUE COMMENT = 'MAXVALUE' ENGINE = InnoDB) */;
 INSERT INTO `lottery_issues`(`lottery_issue_id`, `lottery_id`, `no`, `numbers`, `time`, `added_time`, `edited_time`, `removed_time`) VALUES (1, 9, 2019032034, '[8, 3, 6, 10, 2]', '2019-03-20 20:30:10', '2019-03-20 21:35:26', '2019-03-20 21:35:31', NULL);
 INSERT INTO `lottery_issues`(`lottery_issue_id`, `lottery_id`, `no`, `numbers`, `time`, `added_time`, `edited_time`, `removed_time`) VALUES (2, 9, 2019032033, '[7, 5, 10, 11, 1]', '2019-03-20 20:10:10', '2019-03-20 21:47:29', '2019-03-20 21:47:32', NULL);
 
