@@ -52,7 +52,7 @@ ndbcluster
 ndb-connectstring = {{ CLUSTER_NDB_MGM.SERVERS[0].HOST }}
 {% endif %}
 
-
+default-time-zone = '+8:00'
 server_id = {{ groups[bra ~ '-sql_mysql'].index(inventory_hostname) + 1 }}
 
 port = {{ MYSQL.SERVERS[i].PORT }}
