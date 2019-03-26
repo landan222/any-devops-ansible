@@ -378,17 +378,30 @@ CREATE TABLE `lottery_issues` (
   `lottery_id` int(12) NOT NULL,
   `no` char(24) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '期号',
   `numbers` json DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `time` time DEFAULT NULL,
+  `date` date NOT NULL COMMENT '预计开奖日期',
+  `time` time NOT NULL COMMENT '预计开奖时间',
+  `opened_time` datetime DEFAULT NULL COMMENT '实际开奖时间',
   `order` int(12) DEFAULT NULL,
   `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `added_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `edited_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `removed_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`lottery_issue_id`),
-  UNIQUE KEY `lotteryid_no` (`lottery_id`,`no`) USING BTREE,
+  PRIMARY KEY (`lottery_issue_id`, date),
+  UNIQUE KEY `lotteryid_no` (`lottery_id`,`no`, `date`) USING BTREE,
   KEY `date` (`date`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  PARTITION BY RANGE( TO_DAYS(date) ) (
+    PARTITION less_than_20190318 VALUES LESS THAN (TO_DAYS('2019-03-18')),
+    PARTITION less_than_20190319 VALUES LESS THAN (TO_DAYS('2019-03-19')),
+    PARTITION less_than_20190320 VALUES LESS THAN (TO_DAYS('2019-03-20')),
+    PARTITION less_than_20190321 VALUES LESS THAN (TO_DAYS('2019-03-21')),
+    PARTITION less_than_20190322 VALUES LESS THAN (TO_DAYS('2019-03-22')),
+    PARTITION less_than_20190323 VALUES LESS THAN (TO_DAYS('2019-03-23')),
+    PARTITION less_than_20190324 VALUES LESS THAN (TO_DAYS('2019-03-24')),
+    PARTITION less_than_20190325 VALUES LESS THAN (TO_DAYS('2019-03-25')),
+    PARTITION less_than_maxvalue VALUES LESS THAN MAXVALUE
+  );
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 
