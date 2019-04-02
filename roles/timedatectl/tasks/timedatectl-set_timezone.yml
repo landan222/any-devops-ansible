@@ -1,0 +1,3 @@
+---
+- name: "(shell) timedatectl set-timezone Asia/Shanghai"
+  shell: "timedatectl set-timezone Asia/Shanghai"

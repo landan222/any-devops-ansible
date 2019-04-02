@@ -10,6 +10,7 @@
   become: true
   vars_files:
     - ./../group_vars/python.fea.yml
+    - ./../group_vars/timedatectl.fea.yml
   pre_tasks:
     - shell: "echo 'playbook python starts' "
   roles:

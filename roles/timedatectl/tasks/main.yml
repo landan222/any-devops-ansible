@@ -1,0 +1,2 @@
+---
+- import_tasks: timedatectl-set_timezone.yml
