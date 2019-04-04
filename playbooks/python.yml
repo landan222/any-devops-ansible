@@ -12,14 +12,16 @@
     - ./../group_vars/python.fea.yml
     - ./../group_vars/timedatectl.fea.yml
   pre_tasks:
-    - shell: "echo 'playbook python starts' "
+    - name: "本地 feature 环境，Python 安装开始"
+      shell: "echo 'playbook python starts' "
   roles:
     - role: python
       vars:
         bra: fea
       when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
   post_tasks:
-    - shell: echo 'playbook python ends'
+    - name: "本地 feature 环境，Python 安装完毕"
+      shell: echo 'playbook python ends'
 - name: Install develop python
   hosts: dev-python
   strategy: linear # free, debug
@@ -28,11 +30,13 @@
   vars_files:
     - ./../group_vars/python.dev.yml
   pre_tasks:
-    - shell: echo 'playbook python starts'
+    - name: "开发 develop 环境，Python 安装开始"
+      shell: echo 'playbook python starts'
   roles:
     - role: python
       vars:
         bra: dev
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
-    - shell: echo 'playbook python ends'
+    - name: "开发 develop 环境，Python 安装完毕"
+      shell: echo 'playbook python ends'
