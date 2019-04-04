@@ -57,7 +57,7 @@ ansible-playbook playbooks/main.yml --extra-vars "debug=true"
 
 ```
 
-
+8. ansilbe host 是有 cache 机制 如果换了 ssh key 还是 无法连， 试试改个 host 名
 
 # Database Schema
 1.  menus
