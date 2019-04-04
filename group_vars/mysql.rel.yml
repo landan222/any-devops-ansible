@@ -1285,7 +1285,7 @@ MYSQL:
   DATADIR: '/var/lib/mysql'
   BASEDIR: '/var/lib/mysql'
   CREATE_DATABASES:
-    - landan
+    - lottery
     - vpn
     - lorentz
     - chatshier
