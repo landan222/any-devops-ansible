@@ -5,8 +5,8 @@
   template:
     src: tmp/create.sql.j2
     dest: /tmp/create.sql
-    owner: vagrant
-    group: vagrant
+    owner: root
+    group: root
     mode: 0755
 - name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/create.sql"
   shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/create.sql"

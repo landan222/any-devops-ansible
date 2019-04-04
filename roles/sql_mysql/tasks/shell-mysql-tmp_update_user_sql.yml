@@ -5,9 +5,9 @@
   template:
     src: tmp/update_user.sql.j2
     dest: /tmp/update_user.sql
-    owner: vagrant
-    group: vagrant
-    mode: 0755
+    owner: root
+    group: root
+    mode: 0775
 - name: (shell) mysql --force < /tmp/update_user.sql
   shell: mysql --force < /tmp/update_user.sql
   run_once: no

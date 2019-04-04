@@ -5,8 +5,8 @@
   template:
     src: tmp/landan.sql.j2
     dest: /tmp/landan.sql
-    owner: vagrant
-    group: vagrant
+    owner: root
+    group: root
     mode: 0775
 - name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/landan.sql"
   shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/landan.sql"
