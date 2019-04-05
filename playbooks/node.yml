@@ -13,7 +13,7 @@
     - role: node
       vars:
         bra: fea
-      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "本地 feature 环境，Node 安装完毕"
       shell: echo 'playbook node ends'
@@ -31,7 +31,7 @@
     - role: node
       vars:
         bra: dev
-      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+      when: branch in ['dev', 'develop', 'all']
   post_tasks:
     - name: "开发 develop 环境，Node 安装完毕"
       shell: echo 'playbook node ends'
