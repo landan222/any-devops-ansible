@@ -1,0 +1,7 @@
+---
+- name: "(shell) vue --version"
+  shell: vue --version
+  register: s_vue_version
+- name: (debug) s_vue_version
+  debug: 
+    msg: "{{ s_vue_version }}"

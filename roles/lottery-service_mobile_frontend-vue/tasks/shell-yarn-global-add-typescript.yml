@@ -1,3 +1,0 @@
---- 
-- name: (shell) yarn global add typescript
-  shell: yarn global add typescript

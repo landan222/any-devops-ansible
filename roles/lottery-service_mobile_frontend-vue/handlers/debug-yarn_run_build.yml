@@ -1,0 +1,4 @@
+---
+- name: (debug) s_yarn_run_build
+  debug: 
+    msg: "{{ s_yarn_run_build }}"

@@ -1,6 +1,4 @@
 ---
 - import_tasks: git-clone-landan_admin_ui_frontend_vue.yml
-- import_tasks: shell-yarn-global-add-vue_cli.yml
-- import_tasks: shell-yarn-global-add-typescript.yml
 - import_tasks: shell-yarn.yml
 - import_tasks: shell-yarn_run_build.yml
