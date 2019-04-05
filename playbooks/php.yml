@@ -7,14 +7,16 @@
   vars_files:
     - ./../group_vars/php.fea.yml
   pre_tasks:
-    - shell: "echo 'playbook php starts' "
+    - name: "本地 feature 环境，PHP 安装开始"
+      shell: "echo 'playbook php starts' "
   roles:
     - role: php
       vars:
         bra: fea
-      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
-    - shell: echo 'playbook php ends'
+    - name: "本地 feature 环境，PHP 安装完毕"
+      shell: echo 'playbook php ends'
 - name: Install develop php
   hosts: dev-php
   strategy: linear # free, debug
@@ -23,11 +25,13 @@
   vars_files:
     - ./../group_vars/php.dev.yml
   pre_tasks:
-    - shell: echo 'playbook php starts'
+    - name: "开发 develop 环境，PHP 安装开始"
+      shell: echo 'playbook php starts'
   roles:
     - role: php
       vars:
         bra: dev
-      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+      when: branch in ['dev', 'develop', 'all']
   post_tasks:
-    - shell: echo 'playbook php ends'
+    - name: "开发 develop 环境，PHP 安装完毕"  
+      shell: echo 'playbook php ends'
