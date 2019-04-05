@@ -8,18 +8,18 @@
   template:
     src: etc/nginx/nginx.conf.j2
     dest: /etc/nginx/nginx.conf
-    owner: vagrant
-    group: vagrant
-    mode: 0766
+    owner: root
+    group: root
+    mode: 0776
     backup: no
     validate: nginx -t -c %s
 - name: (template) scp etc/nginx/conf.d/default.conf.j2 /etc/nginx/conf.d/*.conf
   template:
     src: etc/nginx/conf.d/default.conf.j2
     dest: "/etc/nginx/conf.d/{{ CONF['SERVER_NAME'] }}.conf"
-    owner: vagrant
-    group: vagrant
-    mode: 0766
+    owner: root
+    group: root
+    mode: 0776
     backup: no
     #validate: nginx -t -c /etc/nginx/nginx.conf
   with_items: "{{ NGINX.CONFS }}"

@@ -2,18 +2,14 @@
 NGINX:
   CONFS:
     - HTTP_PORT: 80
-      ROOT: '/var/www/landan-service_backend-lumen/public'
+      ROOT: '/var/www/landan-admin_other_backend-lumen/public'
+      SERVER_NAME: 'dev.api.lottery.ques98.cn'
       INDEX: 'index.php index.html index.htm'
-      SERVER_NAME: 'dev.lottery.ques68.cn'
-      PHP_VERSION: '5.6'
-    - HTTP_PORT: 80
-      ROOT: '/var/www/landan-admin_backend-lumen/public'
-      INDEX: 'index.php index.html index.htm'
-      SERVER_NAME: 'dev.admin.landan.com'
-      PHP_VERSION: '7.3'
+      # TRY_FILES: '$uri $uri/ /index.php?$query_string'
+      PROXY_PASS: 'http://127.0.0.1:4001/'
     - HTTP_PORT: 80
       ROOT: '/var/www/lottery-service_mobile_frontend-vue/dist'
-      INDEX: 'index.html index.htm'      
+      INDEX: 'index.html index.htm'
       SERVER_NAME: 'dev.mobile.lottery.ques98.cn'
       TRY_FILES: '$uri $uri/ /index.html'
     - HTTP_PORT: 80
