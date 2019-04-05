@@ -1,0 +1,3 @@
+---
+- import_tasks: shell-yarn-global-add-vue_cli.yml
+- import_tasks: shell-yarn-global-add-typescript.yml

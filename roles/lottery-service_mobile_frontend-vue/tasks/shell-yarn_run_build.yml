@@ -1,0 +1,6 @@
+---
+- name: (shell) yarn --no-bin-links
+  shell: yarn --no-bin-links
+  become: no # 使用 vagrant:vagrant yarn --no-bin-links
+  args:
+    chdir: "{{ LOTTERY_SERVICE_MOBILE_FRONTEND_VUE.DEST }}"

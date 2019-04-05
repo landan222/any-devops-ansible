@@ -1,0 +1,4 @@
+---
+- name: debug git clone lottery-service_mobile_frontend-vue
+  import_tasks: debug-git-clone-lottery_service_mobile_frontend_vue.yml
+  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen

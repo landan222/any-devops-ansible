@@ -1,9 +1,0 @@
----
-- name: "(shell) cd {{ LANDAN_ADMIN_UI_FRONTEND_VUE.DEST }} && git branch -av"
-  shell: git branch -av
-  args:
-    chdir: "{{ LANDAN_ADMIN_UI_FRONTEND_VUE.DEST }}"
-  register: s_landan_admin_ui_frontend_vue_version
-- name: (debug) s_landan_admin_ui_frontend_vue_version
-  debug: 
-    msg: "{{ s_landan_admin_ui_frontend_vue_version }}"

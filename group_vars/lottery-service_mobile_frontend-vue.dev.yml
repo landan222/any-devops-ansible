@@ -1,0 +1,3 @@
+---
+LOTTERY_SERVICE_MOBILE_FRONTEND_VUE:
+  DEST: '/var/www/lottery-service_mobile_frontend-vue'
