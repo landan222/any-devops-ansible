@@ -1,0 +1,9 @@
+---
+- name: (shell) yarn run build
+  shell: yarn run build
+  become: no # 使用 vagrant:vagrant yarn --no-bin-links
+  args:
+    chdir: "{{ LOTTERY_SERVICE_WEB_FRONTEND_VUE.DEST }}"
+  register: s_yarn_run_build
+  notify: debug yarn run build
+  

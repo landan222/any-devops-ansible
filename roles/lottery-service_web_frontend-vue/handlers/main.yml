@@ -1,0 +1,6 @@
+---
+- name: debug git clone lottery-service_web_frontend-vue
+  import_tasks: debug-git-clone-lottery_service_web_frontend_vue.yml
+- name: debug yarn run build
+  import_tasks: debug-yarn_run_build.yml
+  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen

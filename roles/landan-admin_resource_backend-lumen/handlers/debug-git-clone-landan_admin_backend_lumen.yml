@@ -1,4 +1,0 @@
----
-- name: (debug) s_landan_admin_backend_lumen_version
-  debug: 
-    msg: "{{ s_landan_admin_backend_lumen_version }}"

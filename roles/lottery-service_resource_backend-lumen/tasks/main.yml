@@ -1,0 +1,3 @@
+---
+- import_tasks: git-clone-lottery-service_resource_backend_lumen.yml
+- import_tasks: shell-composer_install.yml

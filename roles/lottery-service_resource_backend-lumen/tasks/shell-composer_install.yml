@@ -1,0 +1,9 @@
+---
+- name: (shell) composer install
+  shell: composer install
+  become: no # 使用 vagrant:vagrant yarn --no-bin-links
+  args:
+    chdir: "{{ LOTTERY_SERVICE_RESOURCE_BACKEND_LUMEN.DEST }}"
+  register: s_composer_install
+  notify: debug composer install
+  

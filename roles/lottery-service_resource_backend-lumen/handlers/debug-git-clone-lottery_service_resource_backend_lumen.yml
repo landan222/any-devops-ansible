@@ -1,0 +1,9 @@
+---
+- name: "(shell) cd {{ LOTTERY_SERVICE_RESOURCE_BACKEND_LUMEN.DEST }} && git branch -av"
+  shell: git branch -av
+  args:
+    chdir: "{{ LOTTERY_SERVICE_RESOURCE_BACKEND_LUMEN.DEST }}"
+  register: s_lottery_service_resource_backend_vue_version
+- name: (debug) s_lottery_service_resource_backend_vue_version
+  debug: 
+    msg: "{{ s_lottery_service_resource_backend_vue_version }}"

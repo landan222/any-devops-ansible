@@ -13,7 +13,7 @@
     - role: vue_cli
       vars:
         bra: fea
-      when: branch is not defined or branch in ['fea', 'feature', 'all']
+      when: (branch is not defined or branch in ['fea', 'feature', 'all']) and (vue_cli is defined and vue_cli in ['Yes', 'yes', '1', 'True', 'true', 1, True, true])
     - role: lottery-service_mobile_frontend-vue
       vars:
         bra: fea
@@ -36,7 +36,7 @@
     - role: vue_cli
       vars:
         bra: dev
-      when: branch in ['dev', 'develop', 'all']
+      when: (branch in ['dev', 'develop', 'all']) and (vue_cli is defined and vue_cli in ['Yes', 'yes', '1', 'True', 'true', 1, True, true])
     - role: lottery-service_mobile_frontend-vue
       vars:
         bra: dev
