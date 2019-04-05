@@ -1,0 +1,7 @@
+---
+- name: (file) chmod -R 775 /var/www
+  file:
+    path: /var/www
+    owner: root
+    group: root
+    mode: 0777

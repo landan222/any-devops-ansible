@@ -2,7 +2,7 @@
 - import_tasks: template-etc_nginx_nginx_conf.yml
 - import_tasks: service-nginx-restarted.yml
 # - import_tasks: service-firewalld-restarted.yml
-- import_tasks: file-home_vagrant.yml
+- import_tasks: file-var_www.yml
 
 # - import_tasks: "install-nginx.{{ ansible_os_family }}.yml"
 # - import_tasks: "template-etc_nginx_nginx_conf.yml"

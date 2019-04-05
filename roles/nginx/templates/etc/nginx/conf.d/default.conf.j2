@@ -7,7 +7,12 @@ server {
     {% if CONF['ROOT'] is defined %}
     root         {{ CONF['ROOT'] }};
     {% endif %}
-    index        index.html index.php index.htm;
+    
+    {% if CONF['INDEX'] is defined %}
+    index        {{ CONF['INDEX'] }}; 
+    {% else %}
+    index        index.html index.htm; 
+    {% endif %}
 
     {% if CONF.REWRITES is defined %}
     {% for REWRITE in CONF.REWRITES %}
@@ -39,11 +44,14 @@ server {
         proxy_pass {{ CONF['PROXY_PASS'] }};
         proxy_redirect off;
     }
-    {% else %}
+    {% endif %}
+    
+    {% if CONF['TRY_FILES'] is defined %}
     location / {
-        try_files $uri $uri/ /index.php?$query_string;
+        try_files {{ CONF['TRY_FILES'] }};
     }
     {% endif %}
+    
  
     {% if CONF['PHP_VERSION'] is defined %}
     location ~* \.php$ {
