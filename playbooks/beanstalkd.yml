@@ -5,14 +5,16 @@
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook beanstalkd starts'
+    - name: "本地 feature 环境，Beanstalkd 安装开始"
+      shell: echo 'playbook beanstalkd starts'
   roles:
     - role: beanstalkd
       vars:
         bra: fea
-      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
-    - shell: echo 'playbook beanstalkd ends'
+    - name: "本地 feature 环境，Beanstalkd 安装完毕"
+      shell: echo 'playbook beanstalkd ends'
   vars:
 - name: Install develop beanstalkd
   hosts: dev-beanstalkd
@@ -20,11 +22,13 @@
   gather_facts: true
   become: true
   pre_tasks:
-    - shell: echo 'playbook beanstalkd starts'
+    - name: "开发 develop 环境，Beanstalkd 安装开始"
+      shell: echo 'playbook beanstalkd starts'
   roles:
     - role: beanstalkd
       vars:
         bra: dev
-      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+      when: branch in ['dev', 'develop', 'all']
   post_tasks:
-    - shell: echo 'playbook beanstalkd ends'
+    - name: "开发 develop 环境，Beanstalkd 安装完毕"
+      shell: echo 'playbook beanstalkd ends'
