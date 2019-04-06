@@ -16,7 +16,7 @@ sudo supervisorctl -c /etc/supervisor/supervisor.conf reread
 sudo supervisorctl -c /etc/supervisor/supervisor.conf update
 
 
-# 重启 lottery-service_resource_backend-lumen GROUP 所有 命令
+# 重启 lottery-service_resource_backend-lumen GROUP 所有 命令 #  【要加 冒号!!!!!】【要加 冒号!!!!!】【要加 冒号!!!!!】【要加 冒号!!!!!】 
 sudo supervisorctl -c /etc/supervisor/supervisor.conf restart lottery-service_resource_backend-lumen:
 
 # 重启 lottery-crawler_all_backend-sracpy GROUP 所有 命令
