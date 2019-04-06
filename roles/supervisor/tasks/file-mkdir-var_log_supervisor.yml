@@ -1,0 +1,14 @@
+---
+- name: (file) rm -Rf /var/log/supervisor
+  file:
+    path: /var/log/supervisor
+    state: absent
+    
+- name: (file) mkdir /var/log/supervisor
+  file:
+    path: /var/log/supervisor
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
+    mode: 0775

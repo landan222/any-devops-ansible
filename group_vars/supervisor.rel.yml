@@ -1,7 +1,52 @@
 ---
 SUPERVISOR:
-  FILE: '/var/run/supervisord/supervisor.sock'
-  PORT: '127.0.0.1:9001'                               # 生产环境 禁止外网访问
+  FILE: '/var/run/supervisord/supervisord.sock'
+  PORT: '*:9001'
   LOGFILE: '/var/log/supervisord/supervisord.log'
   SERVERURL: 'unix:///var/run/supervisord/supervisord.sock'
-  FILES: '/etc/supervisord/conf.dd/*.conf'
+  FILES: '/etc/supervisor/conf.d/*.conf'
+  USERNAME: 'backend'
+  PASSWORD: 'supervisor_pass'
+  PIDID: 'var/lib/supervisord/supervisord.pid'
+  CONFS:
+    - GROUP: 'lottery-crawler_all_backend-scrapy'
+      PROGRAMS:
+        - PROGRAM: 'python3_src_runner_lottery_issue_index'
+          DIRECTORY: '/var/www/lottery-crawler_all_backend-scrapy'
+          COMMAND: '/usr/bin/python3 /var/www/lottery-crawler_all_backend-scrapy/src/schedules/lottey_issue/index.py'
+          PROCESS_NAME: '%(program_name)s_%(process_num)s'
+          NUMPROCS: 1
+          AUTOSTART: true
+          AUTORESTART: true
+          STARTSECS: 1
+          STARTRETRIES: -1 
+          STDOUT_LOGFILE: '/var/log/supervisor/lottery-crawler_all_backend-scrapy/python3_src_runner_lottery_issue_index.log'
+          REDIRECT_STDERR: true
+          EXITCODES: 0
+
+    - GROUP: 'lottery-service_resource_backend-lumen'
+      PROGRAMS:
+        - PROGRAM: 'php73_artisan_swoole_http_start'
+          DIRECTORY: '/var/www/lottery-service_resource_backend-lumen'
+          COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan swoole:http start'
+          PROCESS_NAME: '%(program_name)s_%(process_num)s'
+          NUMPROCS: 1
+          AUTOSTART: true
+          AUTORESTART: true
+          STARTSECS: 1
+          STARTRETRIES: -1 
+          STDOUT_LOGFILE: '/var/log/supervisor/lottery-service_resource_backend-lumen/php73_artisan_swoole_http_start.log'
+          REDIRECT_STDERR: true
+          EXITCODES: 0
+        - PROGRAM: 'php73_artisan_command_lottery_issue_announce_to_database_by_queue'
+          DIRECTORY: '/var/www/lottery-service_resource_backend-lumen'
+          COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan command:lottery-issue:announce-to-database-by-queue'
+          PROCESS_NAME: '%(program_name)s_%(process_num)s'
+          NUMPROCS: 1
+          AUTOSTART: true
+          AUTORESTART: true
+          STARTSECS: 1
+          STARTRETRIES: -1 
+          STDOUT_LOGFILE: '/var/log/supervisor/lottery-service_resource_backend-lumen/php73_artisan_command_lottery_issue_announce_to_database_by_queue.log'
+          REDIRECT_STDERR: true
+          EXITCODES: 0

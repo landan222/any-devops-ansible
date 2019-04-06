@@ -1,0 +1,14 @@
+---
+- name: (file) rm -Rf /etc/supervisor/conf.d
+  file:
+    path: /etc/supervisor/conf.d
+    state: absent
+    
+- name: (file) mkdir /etc/supervisor/conf.d
+  file:
+    path: /etc/supervisor/conf.d
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
+    mode: 0775

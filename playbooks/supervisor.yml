@@ -4,26 +4,34 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/supervisor.fea.yml
   pre_tasks:
-    - shell: "echo 'playbook supervisor starts' "
+    - name: "本地 feature 环境，Python 安装开始"
+      shell: "echo 'playbook supervisor starts' "
   roles:
     - role: supervisor
       vars:
         bra: fea
-      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
-    - shell: echo 'playbook supervisor ends'
+    - name: "本地 feature 环境，Python 安装开始"
+      shell: echo 'playbook supervisor ends'
 - name: Install develop supervisor
   hosts: dev-supervisor
   strategy: linear # free, debug
   gather_facts: true
   become: true
+  vars_files:
+    - ./../group_vars/supervisor.dev.yml
   pre_tasks:
-    - shell: echo 'playbook supervisor starts'
+    - name: "开发 develop 环境，Python 安装开始"
+      shell: echo 'playbook supervisor starts'
   roles:
     - role: supervisor
       vars:
         bra: dev
-      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+      when: branch in ['dev', 'develop', 'all']
   post_tasks:
-    - shell: echo 'playbook supervisor ends'
+    - name: "开发 develop 环境，Python 安装开始"
+      shell: echo 'playbook supervisor ends'

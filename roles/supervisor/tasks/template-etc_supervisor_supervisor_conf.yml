@@ -1,0 +1,9 @@
+---
+- name: (template) scp etc/supervisor/supervisor.conf.j2 /etc/supervisor/supervisor.conf
+  template:
+    src: etc/supervisor/supervisor.conf.j2
+    dest: /etc/supervisor/supervisor.conf
+    owner: root
+    group: root
+    mode: 0776
+    backup: no

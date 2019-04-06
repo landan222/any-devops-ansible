@@ -1,4 +1,0 @@
----
-- name: debug git clone s_nyga_version
-  import_tasks: debug-git-clone-nyga.yml
-  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen

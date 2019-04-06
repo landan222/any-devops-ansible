@@ -1,0 +1,14 @@
+---
+- name: (file) rm -Rf /var/run/supervisord
+  file:
+    path: /var/run/supervisord
+    state: absent
+    
+- name: (file) mkdir /var/run/supervisord
+  file:
+    path: /var/run/supervisord
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
+    mode: 0777

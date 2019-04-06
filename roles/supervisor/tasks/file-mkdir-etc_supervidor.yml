@@ -1,0 +1,14 @@
+---
+- name: (file) rm -Rf /etc/supervisor
+  file:
+    path: /etc/supervisor
+    state: absent
+    
+- name: (file) mkdir /etc/supervisor
+  file:
+    path: /etc/supervisor
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
+    mode: 0775
