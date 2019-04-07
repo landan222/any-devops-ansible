@@ -1,0 +1,39 @@
+
+---
+- name: Install feature lottery-crawler_all_backend-scrapy
+  hosts: fea-lottery-crawler_all_backend-scrapy
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/lottery-crawler_all_backend-scrapy.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，lottery-crawler_all_backend-scrapy 安装开始"
+      shell: echo 'playbook lottery-crawler_all_backend-scrapy starts'
+  roles:
+    - role: lottery-crawler_all_backend-scrapy
+      vars:
+        bra: fea
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，lottery-crawler_all_backend-scrapy 安装完毕"
+      shell: echo 'playbook lottery-crawler_all_backend-scrapy ends'
+      
+- name: Install develop lottery-crawler_all_backend-scrapy
+  hosts: dev-lottery-crawler_all_backend-scrapy
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/lottery-crawler_all_backend-scrapy.dev.yml
+  pre_tasks:
+    - name: "开发 develop 环境，lottery-crawler_all_backend-scrapy 安装开始"
+      shell: echo 'playbook lottery-crawler_all_backend-scrapy starts'
+  roles:
+    - role: lottery-crawler_all_backend-scrapy
+      vars:
+        bra: dev
+      when: branch in ['dev', 'develop', 'all']
+  post_tasks:
+    - name: "开发 develop 环境，lottery-crawler_all_backend-scrapy 安装完毕"
+      shell: echo 'playbook lottery-crawler_all_backend-scrapy ends'

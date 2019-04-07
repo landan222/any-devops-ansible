@@ -1,5 +1,5 @@
 ---
-- name: "(git) git clone git@gitlab.ques98.cn:lottery/lottery-service_resource_backend-lumen.git {{ LOTTERY_SERVICE_RESOURCE_BACKEND_LUMEN.DEST.DEST }}"
+- name: "(git) git clone git@gitlab.ques98.cn:lottery/lottery-service_resource_backend-lumen.git {{ LOTTERY_SERVICE_RESOURCE_BACKEND_LUMEN.DEST }}"
   git:
     repo: 'git@gitlab.ques98.cn:lottery/lottery-service_resource_backend-lumen.git'
     dest: "{{ LOTTERY_SERVICE_RESOURCE_BACKEND_LUMEN.DEST }}"

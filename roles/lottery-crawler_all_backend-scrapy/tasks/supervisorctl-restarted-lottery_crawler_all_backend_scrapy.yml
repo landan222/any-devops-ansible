@@ -1,0 +1,7 @@
+---
+- supervisorctl:
+    name: "lottery-crawler_all_backend-scrapy:"
+    state: restarted
+    username: backend
+    password: supervisor_pass
+    server_url: http://localhost:9001

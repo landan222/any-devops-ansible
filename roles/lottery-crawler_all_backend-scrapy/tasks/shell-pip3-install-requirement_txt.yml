@@ -1,0 +1,8 @@
+---
+- name: (shell) pip3 install -r requirement.txt
+  shell: pip3 install -r requirement.txt
+  args:
+    chdir: "{{ LOTTERY_CRAWLER_ALL_BACKEND_SCRAPY.DEST }}"
+  register: s_pip3_install
+  notify: debug pip3 install
+  

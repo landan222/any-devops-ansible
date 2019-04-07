@@ -1,0 +1,3 @@
+- name: (shell) git config --global core.ignorecase false
+  shell: git config --global core.ignorecase false
+  ignore_errors: True

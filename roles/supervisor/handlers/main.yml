@@ -1,3 +1,3 @@
 ---
-- name: debug pip install supervisor
-  import_tasks: debug-pip-install-supervisor.yml
+- name: debug pip3 install supervisor
+  import_tasks: debug-pip3-install-supervisor.yml

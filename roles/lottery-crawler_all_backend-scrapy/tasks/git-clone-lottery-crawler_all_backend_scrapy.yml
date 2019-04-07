@@ -1,14 +1,14 @@
 ---
-- name: "(git) git clone git@gitlab.ques98.cn:lottery/lottery-service_web_frontend-vue.git {{ LOTTERY_SERVICE_WEB_FRONTEND_VUE.DEST }}"
+- name: "(git) git clone git@gitlab.ques98.cn:lottery/lottery-crawler_all_backend-scrapy.git {{ LOTTERY_CRAWLER_ALL_BACKEND_SCRAPY.DEST }}"
   git:
-    repo: 'git@gitlab.ques98.cn:lottery/lottery-service_web_frontend-vue.git'
-    dest: "{{ LOTTERY_SERVICE_WEB_FRONTEND_VUE.DEST }}"
+    repo: 'git@gitlab.ques98.cn:lottery/lottery-crawler_all_backend-scrapy.git'
+    dest: "{{ LOTTERY_CRAWLER_ALL_BACKEND_SCRAPY.DEST }}"
     version: "{{ 'develop' if branch in ['fea', 'feature'] else branch }}"
     clone: yes
     update: yes
     accept_hostkey: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
-  notify: debug git clone lottery-service_web_frontend-vue
+  notify: debug git clone lottery-crawler_all_backend-scrapy
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
 # key must be put in root because sudo git clone

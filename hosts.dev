@@ -204,6 +204,10 @@
 [fea-lottery-service_resource_backend-lumen]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
+[fea-lottery-crawler_all_backend-scrapy]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
 [fea-lottery-service_mobile_frontend-vue]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
 
@@ -225,7 +229,7 @@
 47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 [dev-supervisor]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+#47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 [dev-node]
 47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
@@ -273,7 +277,11 @@
 47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 
+
 [dev-lottery-service_resource_backend-lumen]
+47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+[fea-lottery-crawler_all_backend-scrapy]
 47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 [dev-lottery-service_mobile_frontend-vue]

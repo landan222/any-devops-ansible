@@ -1,4 +1,4 @@
 ---
-- import_tasks: git-clone-lottery-service_web_frontend_vue.yml
-- import_tasks: shell-yarn.yml
-- import_tasks: shell-yarn_run_build.yml
+- import_tasks: git-clone-lottery-crawler_all_backend_scrapy.yml
+- import_tasks: shell-pip3-install-requirement_txt.yml
+- import_tasks: supervisorctl-restarted-lottery_crawler_all_backend_scrapy.yml

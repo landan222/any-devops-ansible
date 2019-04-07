@@ -1,0 +1,4 @@
+---
+- name: (debug) s_composer_install
+  debug: 
+    msg: "{{ s_composer_install }}"

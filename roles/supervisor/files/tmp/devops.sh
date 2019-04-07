@@ -29,3 +29,6 @@ sudo supervisorctl -c /etc/supervisor/supervisor.conf stop lottery-service_resou
 
 # 启动 lottery-service_resource_backend-lumen php73_artisan_swoole_http_start
 sudo supervisorctl -c /etc/supervisor/supervisor.conf start lottery-service_resource_backend-lumen:php73_artisan_swoole_http_start
+
+
+# 注意 supervisorctl (Supervisorctl CLI) 前提是要 supervisord 开启
