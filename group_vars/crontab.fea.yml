@@ -1,7 +1,7 @@
 --- # 优先次序高
 CRONTAB:
   CRONS:
-    - CRON: '33 23 * * *'
+    - CRON: '* * * * *' # 这是 Laravel Shcedule 必须要 分分跑
       COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan schedule:run'
       LOG: '/var/www/lottery-service_resource_backend-lumen/storage/logs/Schedules/php73_artisan_schedule_run/index.log'
       NOTE: '定时生产明天彩种期号'
