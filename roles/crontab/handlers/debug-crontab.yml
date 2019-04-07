@@ -1,0 +1,7 @@
+---
+- name: (shell) crontab -l
+  shell: crontab -l
+  register: s_crontab_l
+- name: (debug) s_crontab_l
+  debug: 
+    msg: "{{ s_crontab_l }}"

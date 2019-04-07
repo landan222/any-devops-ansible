@@ -1,0 +1,37 @@
+---
+- name: "Install feature crontab"
+  hosts: fea-crontab
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/crontab.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，Crontab 安装开始"
+      shell: "echo 'playbook Crontab starts' "
+  roles:
+    - role: crontab
+      vars:
+        bra: fea
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，Crontab 安装完毕"
+      shell: echo 'playbook Crontab ends'
+# - name: Install develop Crontab
+#   hosts: dev-crantab
+#   strategy: linear # free, debug
+#   gather_facts: true
+#   become: true
+#   vars_files:
+#     - ./../group_vars/crontab.dev.yml
+#   pre_tasks:
+#     - name: "开发 develop 环境，PHP 安装开始"
+#       shell: echo 'playbook Crontab starts'
+#   roles:
+#     - role: crontab
+#       vars:
+#         bra: dev
+#       when: branch in ['dev', 'develop', 'all']
+#   post_tasks:
+#     - name: "开发 develop 环境，Crontab 安装完毕"  
+#       shell: echo 'playbook Crontab ends'

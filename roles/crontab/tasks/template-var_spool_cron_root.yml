@@ -1,0 +1,9 @@
+---
+- name: (template) scp var/spool/cron/root.j2 /var/spool/cron/root.j2
+  template:
+    src: var/spool/cron/root.j2
+    dest: /var/spool/cron/root
+    owner: root
+    group: root
+    mode: 0766
+  notify: debug crontab

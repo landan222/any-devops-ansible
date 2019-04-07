@@ -1,0 +1,6 @@
+
+{% for CRON in CRONTAB['CRONS'] %}
+## {{loop.index}}. {{ CRON['NOTE'] }} ##
+{{ CRON['CRON'] }} {{ CRON['COMMAND'] }} >> {{ CRON['LOG'] }}
+
+{% endfor %}
