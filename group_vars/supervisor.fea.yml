@@ -17,7 +17,7 @@ SUPERVISOR:
         - PROGRAM: 'python3_src_runner_lottery_issue_index'
           DIRECTORY: '/var/www/lottery-crawler_all_backend-scrapy'
           COMMAND: '/usr/bin/python3 /var/www/lottery-crawler_all_backend-scrapy/src/schedules/lottey_issue/index.py'
-          PROCESS_NAME: '%(program_name)s_%(process_num)s'
+          PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
@@ -32,7 +32,7 @@ SUPERVISOR:
         - PROGRAM: 'php73_artisan_swoole_http_start'
           DIRECTORY: '/var/www/lottery-service_resource_backend-lumen'
           COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan swoole:http start'
-          PROCESS_NAME: '%(program_name)s_%(process_num)s'
+          PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true

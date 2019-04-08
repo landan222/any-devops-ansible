@@ -1,5 +1,5 @@
 # 开启 supervisord
-sudo mkdir /var/run/supervisord/ && sudo supervisord -c /etc/supervisor/supervisor.conf
+sudo mkdir -p /var/run/supervisord/ && sudo supervisord -c /etc/supervisor/supervisor.conf
 
 
 
