@@ -45,7 +45,7 @@ SUPERVISOR:
           DIRECTORY: '/var/www/lottery-service_resource_backend-lumen'
           COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan command:lottery-issue:announce-to-database-by-queue'
           PROCESS_NAME: '%(program_name)s_%(process_num)s'
-          NUMPROCS: 1
+          NUMPROCS: 4
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
