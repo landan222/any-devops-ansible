@@ -14,16 +14,16 @@ SUPERVISOR:
   CONFS:
     - GROUP: 'lottery-crawler_all_backend-scrapy'
       PROGRAMS:
-        - PROGRAM: 'python3_src_schedules_lottery_issue_lottery_request_types_multiple_queue_false_index'
+        - PROGRAM: 'python3_src_schedules_lottery_issue_lottery_request_types_multiple_queue_true_index'
           DIRECTORY: '/var/www/lottery-crawler_all_backend-scrapy'
-          COMMAND: '/usr/bin/python3 /var/www/lottery-crawler_all_backend-scrapy/src/schedules/lottery_issue_lottery_request_types_multiple_queue_false/index.py'
+          COMMAND: '/usr/bin/python3 /var/www/lottery-crawler_all_backend-scrapy/src/schedules/lottery_issue_lottery_request_types_multiple_queue_true/index.py'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-crawler_all_backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_single_queue_true_index.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/lottery-crawler_all_backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_multiple_queue_true_index.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: '高频率 采集 最新采种 API 数据'
