@@ -14,18 +14,32 @@ SUPERVISOR:
   CONFS:
     - GROUP: 'lottery-crawler_all_backend-scrapy'
       PROGRAMS:
-        - PROGRAM: 'python3_src_runner_lottery_issue_index'
+        - PROGRAM: 'python3_src_schedules_lottery_issue_lottery_request_types_multiple_queue_false_index'
           DIRECTORY: '/var/www/lottery-crawler_all_backend-scrapy'
-          COMMAND: '/usr/bin/python3 /var/www/lottery-crawler_all_backend-scrapy/src/schedules/lottey_issue/index.py'
+          COMMAND: '/usr/bin/python3 /var/www/lottery-crawler_all_backend-scrapy/src/schedules/lottery_issue_lottery_request_types_multiple_queue_false/index.py'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-crawler_all_backend-scrapy-python3_src_runner_lottery_issue_index.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/lottery-crawler_all_backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_single_queue_true_index.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
+          NOTE: '高频率 采集 最新采种 API 数据'
+        - PROGRAM: 'python3_src_schedules_lottery_issue_lottery_request_types_single_queue_true_index'
+          DIRECTORY: '/var/www/lottery-crawler_all_backend-scrapy'
+          COMMAND: '/usr/bin/python3 /var/www/lottery-crawler_all_backend-scrapy/src/schedules/lottery_issue_lottery_request_types_single_queue_true/index.py'
+          PROCESS_NAME: '%(program_name)s-%(process_num)s'
+          NUMPROCS: 1
+          AUTOSTART: true
+          AUTORESTART: true
+          STARTSECS: 1
+          STARTRETRIES: -1 
+          STDOUT_LOGFILE: '/var/log/supervisor/lottery-crawler_all_backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_single_queue_true_index.log'
+          REDIRECT_STDERR: true
+          EXITCODES: 0
+          NOTE: '次频率 采集 当天采种 API 数据'
 
     - GROUP: 'lottery-service_resource_backend-lumen'
       PROGRAMS:
@@ -41,6 +55,8 @@ SUPERVISOR:
           STDOUT_LOGFILE: '/var/log/supervisor/lottery-service_resource_backend-lumen-php73_artisan_swoole_http_start.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
+          NOTE: "Swoole + PHP HTTP server"
+
         - PROGRAM: 'php73_artisan_command_lottery_issue_announce_to_database_by_queue'
           DIRECTORY: '/var/www/lottery-service_resource_backend-lumen'
           COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan command:lottery-issue:announce-to-database-by-queue'
@@ -53,3 +69,4 @@ SUPERVISOR:
           STDOUT_LOGFILE: '/var/log/supervisor/lottery-service_resource_backend-lumen-php73_artisan_command_lottery_issue_announce_to_database_by_queue.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
+          NOTE: "对列 开奖"

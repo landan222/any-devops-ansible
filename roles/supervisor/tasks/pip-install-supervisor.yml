@@ -1,10 +1,5 @@
 ---
-- name: (pip) pip3 uninstall supervisor
-  pip:
-    name: supervisor
-    state: absent
+- name: (pip) pip3 uninstall -y supervisor
+  shell: "pip3 uninstall -y supervisor"
 - name: (pip) pip3 install supervisor
-  pip:
-    name: supervisor
-    state: present
-  notify: debug pip3 install supervisor
+  shell: "pip3 install supervisor"
