@@ -1,39 +1,39 @@
 
 ---
-- name: Install feature lottery-crawler_all_backend-scrapy
-  hosts: fea-lottery-crawler_all_backend-scrapy
+- name: Install feature lottery-database-mysql
+  hosts: fea-lottery-database-mysql
   strategy: linear # free, debug
   gather_facts: true
   become: true
   vars_files:
-    - ./../group_vars/lottery-crawler_all_backend-scrapy.fea.yml
+    - ./../group_vars/mysql.fea.yml
   pre_tasks:
-    - name: "本地 feature 环境，lottery-crawler_all_backend-scrapy 安装开始"
-      shell: echo 'playbook lottery-crawler_all_backend-scrapy starts'
+    - name: "本地 feature 环境，lottery-database-mysql 安装开始"
+      shell: echo 'playbook lottery-database-mysql starts'
   roles:
-    - role: lottery-crawler_all_backend-scrapy
+    - role: lottery-database-mysql
       vars:
         bra: fea
       when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
-    - name: "本地 feature 环境，lottery-crawler_all_backend-scrapy 安装完毕"
-      shell: echo 'playbook lottery-crawler_all_backend-scrapy ends'
+    - name: "本地 feature 环境，lottery-database-mysql 安装完毕"
+      shell: echo 'playbook lottery-database-mysql ends'
       
-- name: Install develop lottery-crawler_all_backend-scrapy
-  hosts: dev-lottery-crawler_all_backend-scrapy
+- name: Install develop lottery-database-mysql
+  hosts: dev-lottery-database-mysql
   strategy: linear # free, debug
   gather_facts: true
   become: true
   vars_files:
-    - ./../group_vars/lottery-crawler_all_backend-scrapy.dev.yml
+    - ./../group_vars/mysql.dev.yml
   pre_tasks:
-    - name: "开发 develop 环境，lottery-crawler_all_backend-scrapy 安装开始"
-      shell: echo 'playbook lottery-crawler_all_backend-scrapy starts'
+    - name: "开发 develop 环境，lottery-database-mysql 安装开始"
+      shell: echo 'playbook lottery-database-mysql starts'
   roles:
-    - role: lottery-crawler_all_backend-scrapy
+    - role: lottery-database-mysql
       vars:
         bra: dev
       when: branch in ['dev', 'develop', 'all']
   post_tasks:
-    - name: "开发 develop 环境，lottery-crawler_all_backend-scrapy 安装完毕"
-      shell: echo 'playbook lottery-crawler_all_backend-scrapy ends'
+    - name: "开发 develop 环境，lottery-database-mysql 安装完毕"
+      shell: echo 'playbook lottery-database-mysql ends'

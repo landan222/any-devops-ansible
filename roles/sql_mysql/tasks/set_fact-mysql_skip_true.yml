@@ -1,3 +1,0 @@
-- name: (set_fact) let mysql_skip = True
-  set_fact: 
-    mysql_skip: True

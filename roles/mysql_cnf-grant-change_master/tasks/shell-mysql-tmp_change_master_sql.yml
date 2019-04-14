@@ -1,0 +1,12 @@
+---
+# - name: command mysql_upgrade --force -uroot
+#   command: mysql_upgrade --force -u root
+- name: (template) scp tmp/change_master.sql.j2 /tmp/change_master.sql
+  template:
+    src: tmp/change_master.sql.j2
+    dest: /tmp/change_master.sql
+    owner: root
+    group: root
+
+- name: "(shell) mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"
+  shell: "mysql --user={{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }} --password='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['PASSWORD'] }}' --force < /tmp/change_master.sql"

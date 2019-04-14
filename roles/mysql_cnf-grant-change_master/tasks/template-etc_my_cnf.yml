@@ -1,0 +1,9 @@
+- name: "(template) scp etc/my.cnf.j2 /etc/my.cnf"
+  template:
+    src: etc/my.cnf.j2
+    dest: /etc/my.cnf
+    owner: mysql
+    group: mysql
+    mode: 0775
+  run_once: no
+  
