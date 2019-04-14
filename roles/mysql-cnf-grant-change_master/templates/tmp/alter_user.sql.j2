@@ -1,5 +1,5 @@
 ###
-{% set i = groups[bra ~ '-mysql-cnf-grant-change_master'].index(inventory_hostname) %}
+{% set i = groups[bra ~ '-mysql'].index(inventory_hostname) %}
 
 
 ALTER USER '{{ MYSQL.SERVERS[i].CONNECTIONS[0]['USER'] }}'@'{{ MYSQL.SERVERS[i].CONNECTIONS[0].HOSTS[1] }}' IDENTIFIED BY '{{ MYSQL.SERVERS[i].CONNECTIONS[0]['PASSWORD'] }}';  

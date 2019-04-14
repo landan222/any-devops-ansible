@@ -204,7 +204,7 @@
     
     
 - name: install feature mysql-cnf-grant-change_master
-  hosts: fea-mysql-cnf-grant-change_master
+  hosts: fea-mysql
   strategy: linear # free, debug
   serial:
     - 10

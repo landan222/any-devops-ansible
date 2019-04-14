@@ -155,14 +155,6 @@
 #10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
 #10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
 
-[fea-mysql-cnf-grant-change_master]
-127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
-#10.0.0.181 ansible_ssh_host=10.0.0.181 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
-#10.0.0.182 ansible_ssh_host=10.0.0.182 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
-#10.0.0.183 ansible_ssh_host=10.0.0.183 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
-#10.0.0.191 ansible_ssh_host=10.0.0.191 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
-#10.0.0.192 ansible_ssh_host=10.0.0.192 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
-#10.0.0.193 ansible_ssh_host=10.0.0.193 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
 
 [fea-cluster_ndb]
 127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
