@@ -203,8 +203,8 @@
       shell: echo 'playbook cluster_mysql ends'
     
     
-- name: install feature mysql_cnf-grant-change_master
-  hosts: fea-mysql_cnf-grant-change_master
+- name: install feature mysql-cnf-grant-change_master
+  hosts: fea-mysql-cnf-grant-change_master
   strategy: linear # free, debug
   serial:
     - 10
@@ -217,16 +217,16 @@
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
-    - name: "本地 feature 环境，sql 安装开始"
-      shell: echo 'playbook mysql_cnf-grant-change_master starts'
+    - name: "本地 feature 环境，/etc/my.cnf, GRANT, CHANGE_MASTER 安装开始"
+      shell: echo 'playbook mysql-cnf-grant-change_master starts'
   roles:
-    - role: mysql_cnf-grant-change_master
+    - role: mysql-cnf-grant-change_master
       vars:
         bra: fea
-      when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and (with_roles is not defined or 'mysql_cnf-grant-change_master' in with_with_roles)
+      when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and (with_roles is not defined or 'mysql-cnf-grant-change_master' in with_with_roles)
   post_tasks:
-    - name: "本地 feature 环境，sql 安装完毕"
-      shell: echo 'playbook mysql_cnf-grant-change_master ends'
+    - name: "本地 feature 环境，/etc/my.cnf, GRANT, CHANGE_MASTER 安装完毕"
+      shell: echo 'playbook mysql-cnf-grant-change_master ends'
 
 
 
@@ -436,8 +436,8 @@
       shell: echo 'playbook cluster_mysql ends'
     
     
-- name: install develop mysql_cnf-grant-change_master
-  hosts: dev-mysql_cnf-grant-change_master
+- name: install develop mysql-cnf-grant-change_master
+  hosts: dev-mysql-cnf-grant-change_master
   strategy: linear # free, debug
   serial:
     - 10
@@ -451,12 +451,12 @@
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
     - name: "开发 develop 环境，sql 安装开始"
-      shell: echo 'playbook mysql_cnf-grant-change_master starts'
+      shell: echo 'playbook mysql-cnf-grant-change_master starts'
   roles:
-    - role: mysql_cnf-grant-change_master
+    - role: mysql-cnf-grant-change_master
       vars:
         bra: dev
-      when: (branch in ['dev', 'develop', 'all'] ) and (with_roles is not defined or 'mysql_cnf-grant-change_master' in with_with_roles)
+      when: (branch in ['dev', 'develop', 'all'] ) and (with_roles is not defined or 'mysql-cnf-grant-change_master' in with_with_roles)
   post_tasks:
     - name: "开发 develop 环境，sql 安装完毕"
-      shell: echo 'playbook mysql_cnf-grant-change_master ends'
+      shell: echo 'playbook mysql-cnf-grant-change_master ends'

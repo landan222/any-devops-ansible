@@ -1,4 +1,4 @@
-{% set i = groups[bra ~ '-mysql_cnf_and_grant'].index(inventory_hostname) %}
+{% set i = groups[bra ~ '-mysql-cnf-grant-change_master'].index(inventory_hostname) %}
 
 {% if mysql_version == '5.7' or mysql_ha == 'cluster' %}
 ## Mysql-cluster 7.6 是建构在 Mysql 5.7
