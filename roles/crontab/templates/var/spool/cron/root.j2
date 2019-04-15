@@ -1,6 +1,9 @@
 
 {% for CRON in CRONTAB['CRONS'] %}
+{% if CRON['STATUS'] == True %}
 ## {{loop.index}}. {{ CRON['NOTE'] }} ##
 {{ CRON['CRON'] }} {{ CRON['COMMAND'] }} >> {{ CRON['LOG'] }}
+{% endif %}
 
 {% endfor %}
+

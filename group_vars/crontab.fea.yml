@@ -4,4 +4,40 @@ CRONTAB:
     - CRON: '* * * * *' # 这是 Laravel Shcedule 必须要 分分跑
       COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan schedule:run'
       LOG: '/var/www/lottery-service_resource_backend-lumen/storage/logs/Schedules/php73_artisan_schedule_run/index.log'
+      STATUS: false
       NOTE: '定时生产明天彩种期号'
+    - CRON: '35 23 * * *'
+      COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan command:lottery-issue:add-to-database-by-schedule'
+      LOG: '/var/www/crontab/lottery-service_resource_backend-lumen-php73_artisan_command_lottery_issue_add_to_database_by_schedule.log'
+      NOTE: '定时生产明天彩种期号'
+      STATUS: true
+    - CRON: '* * * * *' # 
+      COMMAND: 'python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py --lottery_request_types=MULTIPLE --queue=True'
+      LOG: '/var/log/crontab/lottery-crawler_all_backend-scrapy-python3-src_runners_lottery_issue_index.log'
+      NOTE: '定时采集彩种期号'
+      STATUS: true
+    - CRON: '* * * * *' # 
+      COMMAND: 'sleep 10; python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py --lottery_request_types=MULTIPLE --queue=True'
+      LOG: '/var/log/crontab/lottery-crawler_all_backend-scrapy-python3-src_runners_lottery_issue_index.log'
+      NOTE: '定时采集彩种期号'
+      STATUS: true
+    - CRON: '* * * * *' # 
+      COMMAND: 'sleep 20; python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py --lottery_request_types=MULTIPLE --queue=True'
+      LOG: '/var/log/crontab/lottery-crawler_all_backend-scrapy-python3-src_runners_lottery_issue_index.log'
+      NOTE: '定时采集彩种期号'
+      STATUS: true
+    - CRON: '* * * * *' # 
+      COMMAND: 'sleep 30; python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py --lottery_request_types=MULTIPLE --queue=True'
+      LOG: '/var/log/crontab/lottery-crawler_all_backend-scrapy-python3-src_runners_lottery_issue_index.log'
+      NOTE: '定时采集彩种期号'
+      STATUS: true
+    - CRON: '* * * * *' # 
+      COMMAND: 'sleep 40; python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py --lottery_request_types=MULTIPLE --queue=True'
+      LOG: '/var/log/crontab/lottery-crawler_all_backend-scrapy-python3-src_runners_lottery_issue_index.log'
+      NOTE: '定时采集彩种期号'
+      STATUS: true
+    - CRON: '* * * * *' # 
+      COMMAND: 'sleep 50; python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py --lottery_request_types=MULTIPLE --queue=True'
+      LOG: '/var/log/crontab/lottery-crawler_all_backend-scrapy-python3-src_runners_lottery_issue_index.log'
+      NOTE: '定时采集彩种期号'
+      STATUS: true
