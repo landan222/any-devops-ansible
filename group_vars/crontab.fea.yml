@@ -22,7 +22,7 @@ CRONTAB:
       NOTE: '定时采集彩种期号'
       STATUS: true
     - CRON: '* * * * *' # 
-      COMMAND: 'sleep 20; python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py --lottery_request_types=MULTIPLE --queue=True'
+      COMMAND: 'sleep 20; python3 /var/www/lottery-crawler_all_backend-scrapy/src/runners/lottery_issue/index.py 35'
       LOG: '/var/log/crontab/lottery-crawler_all_backend-scrapy-python3-src_runners_lottery_issue_index.log'
       NOTE: '定时采集彩种期号'
       STATUS: true
