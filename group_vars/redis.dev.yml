@@ -4,3 +4,8 @@ REDIS:
   BIND: '127.0.0.1'
   UNIXSOCKET: '/run/redis/redis.sock'
   REQUIREPASS: 'redis_pass'
+  PIDFILE: '/var/run/redis/redis.pid'
+  LOGFILE: '/var/log/redis/redis.log'
+  DIR: '/var/lib/redis'
+  LOGLEVEL: 'notice'
+  PROTECTED_MODE: 'yes'

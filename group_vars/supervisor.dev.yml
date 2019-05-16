@@ -45,7 +45,7 @@ SUPERVISOR:
       PROGRAMS:
         - PROGRAM: 'php73_artisan_swoole_http_start'
           DIRECTORY: '/var/www/lottery-service_resource_backend-lumen'
-          COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan swoole:http start'
+          COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan swoole:http restart'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
