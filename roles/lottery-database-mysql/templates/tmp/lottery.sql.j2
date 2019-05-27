@@ -503,6 +503,28 @@ INSERT INTO `lottery_requests` VALUES (45, 'SINGLE', 'https://aiwj888.com/apiapp
 INSERT INTO `lottery_requests` VALUES (46, 'SINGLE', 'https://aiwj888.com/apiapp/5c930735f03c0', '{\"version\": \"v1.0.1\", \"Content-Type\": \"application/x-www-form-urlencoded\"}', 'POST', '{\"code\": \"5f28\", \"date\": \"%DATE\", \"appId\": \"10958068\"}', NULL, 100, '{\"data\": {\"code\": \"code\", \"expect\": \"no\", \"opencode\": \"numbers\", \"opentime\": \"opened_time\"}}', '{\"5f28\": \"5f28\"}', NULL, 1, '2019-04-12 23:01:34', '2019-04-12 23:01:34', NULL);
 INSERT INTO `lottery_requests` VALUES (47, 'MULTIPLE', 'https://aiwj888.com/apiapp/5c93b1f004e20', '{\"version\": \"v1.0.1\", \"Content-Type\": \"application/x-www-form-urlencoded\"}', 'POST', '{\"appId\": \"10958068\"}', NULL, 100, '{\"data\": {\"code\": \"code\", \"expect\": \"no\", \"opencode\": \"numbers\", \"opentime\": \"opened_time\"}}', '{\"hk6\": \"hk6\", \"pl3\": \"pl3\", \"5f28\": \"5f28\", \"ank3\": \"ank3\", \"fc3d\": \"fc3d\", \"ffk3\": \"ffk3\", \"gxk3\": \"gxk3\", \"jlk3\": \"jlk3\", \"jsk3\": \"jsk3\", \"pcdd\": \"pcdd\", \"tw3d\": \"tw3d\", \"3fssc\": \"3fssc\", \"5fsix\": \"5fsix\", \"bj5fc\": \"bj5fc\", \"bjkl8\": \"bjkl8\", \"cqssc\": \"cqssc\", \"ffssc\": \"ffssc\", \"hebk3\": \"hebk3\", \"hubk3\": \"hubk3\", \"jsaft\": \"jsaft\", \"krysu\": \"krysu\", \"mlaft\": \"mlaft\", \"paoma\": \"paoma\", \"shssl\": \"shssl\", \"tw5fc\": \"tw5fc\", \"3fpk10\": \"3fpk10\", \"afgh90\": \"afgh90\", \"ah11x5\": \"ah11x5\", \"bj11x5\": \"bj11x5\", \"bjpk10\": \"bjpk10\", \"cqklsf\": \"cqklsf\", \"ff11x5\": \"ff11x5\", \"ffpk10\": \"ffpk10\", \"fj11x5\": \"fj11x5\", \"gd11x5\": \"gd11x5\", \"gdklsf\": \"gdklsf\", \"js11x5\": \"js11x5\", \"jspk10\": \"jspk10\", \"jx11x5\": \"jx11x5\", \"sd11x5\": \"sd11x5\", \"sh11x5\": \"sh11x5\", \"xj11x5\": \"xj11x5\", \"zj11x5\": \"zj11x5\", \"hlj11x5\": \"hlj11x5\", \"hunklsf\": \"hunklsf\", \"twbingo\": \"twbg\"}', NULL, 1, '2019-04-12 23:01:34', '2019-04-12 23:01:34', NULL);
 
+
+CREATE TABLE `lottery_issue_accumulations` (
+  `lottery_issue_accumution_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `lottery_id` int(12) NOT NULL,
+  `no` int(12) unsigned DEFAULT NULL,
+  `numbers_to_continuous_counts` json DEFAULT NULL,
+  `numbers_to_missing_counts` json DEFAULT NULL,
+  `postion_odd_even_types_to_continuous_counts` json DEFAULT NULL COMMENT '{\n  "0_odd": 0,\n  "1_odd": 0,\n  "2_odd": 0,\n  "3_odd": 0,\n  "4_odd": 0,\n  "5_odd": 0,\n  "6_odd": 0,\n  "7_odd": 0,\n  "8_odd": 0,\n  "9_odd": 0,\n  "0_even": 0,\n  "1_even": 0,\n  "2_even": 0,\n  "3_even": 0,\n  "4_even": 0,\n  "5_even": 0,\n  "6_even": 0,\n  "7_even": 0,\n  "8_even": 0,\n  "9_even": 0,\n  \n}',
+  `postion_odd_even_types_to_missing_counts` json DEFAULT NULL,
+  `postion_small_large_types_to_continuous_counts` json DEFAULT NULL,
+  `postion_small_large_types_to_missing_counts` json DEFAULT NULL,
+  `postion_dragon_tiger_types_to_continuous_counts` json DEFAULT NULL,
+  `postion_dragon_tiger_types_to_missing_counts` json DEFAULT NULL,
+  `postion_summation_odd_even_types_to_continuous_counts` json DEFAULT NULL,
+  `postion_summation_odd_even_types_to_missing_counts` json DEFAULT NULL,
+  `position_summation_small_large_types_continuous_counts` json DEFAULT NULL,
+  `position_summation_small_large_types_missing_counts` json DEFAULT NULL,
+  `extensions` json DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`lottery_issue_accumution_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
