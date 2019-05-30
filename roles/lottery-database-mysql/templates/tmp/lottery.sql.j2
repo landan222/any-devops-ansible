@@ -361,30 +361,57 @@ INSERT INTO `lotteries_to_lottery_requests` VALUES (10007, 47);
 -- ----------------------------
 -- Table structure for lottery_issue_accumulations
 -- ----------------------------
-DROP TABLE IF EXISTS `lottery_issue_accumulations`;
-CREATE TABLE `lottery_issue_accumulations`  (
-  `lottery_issue_accumution_id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `lottery_issue_accumulations` (
+  `lottery_issue_accumulation_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
   `lottery_id` int(12) NOT NULL,
-  `no` bigint(24) UNSIGNED NULL DEFAULT NULL,
-  `numbers_to_continuous_counts` json NULL,
-  `numbers_to_missing_counts` json NULL,
-  `position_odd_even_types_to_continuous_counts` json NULL COMMENT '{\n  \"0_odd\": 0,\n  \"1_odd\": 0,\n  \"2_odd\": 0,\n  \"3_odd\": 0,\n  \"4_odd\": 0,\n  \"5_odd\": 0,\n  \"6_odd\": 0,\n  \"7_odd\": 0,\n  \"8_odd\": 0,\n  \"9_odd\": 0,\n  \"0_even\": 0,\n  \"1_even\": 0,\n  \"2_even\": 0,\n  \"3_even\": 0,\n  \"4_even\": 0,\n  \"5_even\": 0,\n  \"6_even\": 0,\n  \"7_even\": 0,\n  \"8_even\": 0,\n  \"9_even\": 0,\n  \n}',
-  `position_odd_even_types_to_missing_counts` json NULL,
-  `position_small_large_types_to_continuous_counts` json NULL,
-  `position_small_large_types_to_missing_counts` json NULL,
-  `position_dragon_tiger_types_to_continuous_counts` json NULL,
-  `position_dragon_tiger_types_to_missing_counts` json NULL,
-  `position_summation_small_large_types_to_continuous_counts` json NULL,
-  `position_summation_small_large_types_to_missing_counts` json NULL,
-  `position_summation_odd_even_types_to_continuous_counts` json NULL,
-  `position_summation_odd_even_types_to_missing_counts` json NULL,
-  `position_summation_numbers_to_continuous_counts` json NULL,
-  `position_summation_numbers_to_missing_counts` json NULL,
-  `extensions` json NULL,
-  `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`lottery_issue_accumution_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+  `no` bigint(24) unsigned DEFAULT NULL,
+  `date` date NOT NULL,
+  `numbers_to_continuous_counts` json DEFAULT NULL,
+  `numbers_to_missing_counts` json DEFAULT NULL,
+  `position_odd_even_types_to_continuous_counts` json DEFAULT NULL COMMENT '{\n  "0_odd": 0,\n  "1_odd": 0,\n  "2_odd": 0,\n  "3_odd": 0,\n  "4_odd": 0,\n  "5_odd": 0,\n  "6_odd": 0,\n  "7_odd": 0,\n  "8_odd": 0,\n  "9_odd": 0,\n  "0_even": 0,\n  "1_even": 0,\n  "2_even": 0,\n  "3_even": 0,\n  "4_even": 0,\n  "5_even": 0,\n  "6_even": 0,\n  "7_even": 0,\n  "8_even": 0,\n  "9_even": 0,\n  \n}',
+  `position_odd_even_types_to_missing_counts` json DEFAULT NULL,
+  `position_small_large_types_to_continuous_counts` json DEFAULT NULL,
+  `position_small_large_types_to_missing_counts` json DEFAULT NULL,
+  `position_dragon_tiger_types_to_continuous_counts` json DEFAULT NULL,
+  `position_dragon_tiger_types_to_missing_counts` json DEFAULT NULL,
+  `position_summation_small_large_types_to_continuous_counts` json DEFAULT NULL,
+  `position_summation_small_large_types_to_missing_counts` json DEFAULT NULL,
+  `position_summation_odd_even_types_to_continuous_counts` json DEFAULT NULL,
+  `position_summation_odd_even_types_to_missing_counts` json DEFAULT NULL,
+  `position_summation_numbers_to_continuous_counts` json DEFAULT NULL,
+  `position_summation_numbers_to_missing_counts` json DEFAULT NULL,
+  `extensions` json DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`lottery_issue_accumulation_id`, `date`) USING BTREE,
+  UNIQUE KEY `date` (`date`) USING BTREE,
+  UNIQUE KEY `lottery_id-no-date` (`lottery_id`,`no`, `date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT = Dynamic PARTITION BY RANGE (TO_DAYS(date))
+PARTITIONS 20
+(
+PARTITION `less_than_20190525` VALUES LESS THAN (to_days('2019-05-25')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190526` VALUES LESS THAN (to_days('2019-05-26')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190527` VALUES LESS THAN (to_days('2019-05-27')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190528` VALUES LESS THAN (to_days('2019-05-28')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190529` VALUES LESS THAN (to_days('2019-05-29')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190530` VALUES LESS THAN (to_days('2019-05-30')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190531` VALUES LESS THAN (to_days('2019-05-31')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190601` VALUES LESS THAN (to_days('2019-06-01')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190602` VALUES LESS THAN (to_days('2019-06-02')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190603` VALUES LESS THAN (to_days('2019-06-03')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190604` VALUES LESS THAN (to_days('2019-06-04')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190605` VALUES LESS THAN (to_days('2019-06-05')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190606` VALUES LESS THAN (to_days('2019-06-06')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190607` VALUES LESS THAN (to_days('2019-06-07')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190608` VALUES LESS THAN (to_days('2019-06-08')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190609` VALUES LESS THAN (to_days('2019-06-09')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190610` VALUES LESS THAN (to_days('2019-06-10')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190611` VALUES LESS THAN (to_days('2019-06-11')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
+PARTITION `less_than_20190612` VALUES LESS THAN (to_days('2019-06-12')) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
 
+
+PARTITION `less_than_maxvalue` VALUES LESS THAN (MAXVALUE) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 
+
+);
 -- ----------------------------
 -- Table structure for lottery_issue_spiders
 -- ----------------------------
