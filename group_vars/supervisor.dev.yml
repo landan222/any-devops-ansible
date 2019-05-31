@@ -70,3 +70,17 @@ SUPERVISOR:
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: "对列 开奖"
+          
+        - PROGRAM: 'php73_artisan_command_lottery_issue_accumulate_to_database_by_queue'
+          DIRECTORY: '/var/www/lottery-service_resource_backend-lumen'
+          COMMAND: '/usr/bin/php73 /var/www/lottery-service_resource_backend-lumen/artisan command:lottery-issue:accumulate-to-database-by-queue'
+          PROCESS_NAME: '%(program_name)s-%(process_num)s'
+          NUMPROCS: 1
+          AUTOSTART: true
+          AUTORESTART: true
+          STARTSECS: 1
+          STARTRETRIES: -1 
+          STDOUT_LOGFILE: '/var/log/supervisor/lottery-service_resource_backend-lumen-php73_artisan_command_lottery_issue_accumulate_to_database_by_queue.log'
+          REDIRECT_STDERR: true
+          EXITCODES: 0
+          NOTE: "对列 累计(长龙)"
