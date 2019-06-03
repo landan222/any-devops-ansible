@@ -42,4 +42,4 @@
     name:
       - mongodb-org
     state: latest
-  notify: debug yum install mongodb-org
+  #notify: debug yum install mongodb-org
