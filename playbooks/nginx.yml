@@ -4,8 +4,6 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
-  vars_files:
-    - ./../group_vars/nginx.fea.yml
   pre_tasks:
     - name: "本地 feature 环境，Nginx 安装开始"
       shell: echo 'playbook nginx starts'
@@ -23,8 +21,6 @@
   strategy: linear # free, debug
   gather_facts: true
   become: true
-  vars_files:
-    - ./../group_vars/nginx.dev.yml
   pre_tasks:
     - name: "开发 devlop 环境，Nginx 安装开始"
       shell: echo 'playbook nginx starts'
