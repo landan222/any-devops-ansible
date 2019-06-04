@@ -12,4 +12,4 @@
   yum:
     name: redis
     state: present
-  notify: debug yum install redis
+  # notify: debug yum install redis

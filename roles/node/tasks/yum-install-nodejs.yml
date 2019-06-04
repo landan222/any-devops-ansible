@@ -13,5 +13,5 @@
   command: "npm install n -g"
 - name: "(command) n {{ node_version }}"
   command: "n {{ node_version }}"
-  notify: 
-    - debug yum install nodejs
+  # notify: 
+  #   - debug yum install nodejs

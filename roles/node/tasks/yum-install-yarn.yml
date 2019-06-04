@@ -9,5 +9,5 @@
     name:
       - yarn
     state: latest
-  notify: 
-    - debug yum install yarn
+  # notify: 
+  #   - debug yum install yarn

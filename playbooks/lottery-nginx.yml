@@ -1,0 +1,60 @@
+---
+- name: Install feature lottery-nginx
+  hosts: fea-nginx
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/nginx.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，Nginx 安装开始"
+      shell: echo 'playbook nginx starts'
+  roles:
+    - role: lottery-nginx
+      vars: 
+        bra: fea
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，Nginx 安装开始"
+      shell: echo 'playbook nginx ends'
+  vars:
+- name: Install develop lottery-nginx
+  hosts: dev-nginx
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/nginx.dev.yml
+  pre_tasks:
+    - name: "开发 devlop 环境，Nginx 安装开始"
+      shell: echo 'playbook nginx starts'
+  roles:
+    - role: lottery-nginx
+      vars:
+        bra: dev
+      when: branch in ['dev', 'develop', 'all']
+  post_tasks:
+    - name: "开发 devlop 环境，Nginx 安装完毕"
+      shell: echo 'playbook nginx ends'
+# - name: Install release nginx
+#   hosts: rel_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - rel
+# - name: Install master nginx
+#   hosts: mas_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - mas
