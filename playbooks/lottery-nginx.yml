@@ -5,10 +5,10 @@
   gather_facts: true
   become: true
   vars_files:
-    - ./../group_vars/nginx.fea.yml
+    - ./../group_vars/lottery-nginx.fea.yml
   pre_tasks:
     - name: "本地 feature 环境，Nginx 安装开始"
-      shell: echo 'playbook nginx starts'
+      shell: echo 'playbook lottery-nginx starts'
   roles:
     - role: lottery-nginx
       vars: 
@@ -16,7 +16,7 @@
       when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "本地 feature 环境，Nginx 安装开始"
-      shell: echo 'playbook nginx ends'
+      shell: echo 'playbook lottery-nginx ends'
   vars:
 - name: Install develop lottery-nginx
   hosts: dev-nginx
@@ -24,7 +24,7 @@
   gather_facts: true
   become: true
   vars_files:
-    - ./../group_vars/nginx.dev.yml
+    - ./../group_vars/lottery-nginx.dev.yml
   pre_tasks:
     - name: "开发 devlop 环境，Nginx 安装开始"
       shell: echo 'playbook nginx starts'
@@ -35,7 +35,7 @@
       when: branch in ['dev', 'develop', 'all']
   post_tasks:
     - name: "开发 devlop 环境，Nginx 安装完毕"
-      shell: echo 'playbook nginx ends'
+      shell: echo 'playbook lottery-nginx ends'
 # - name: Install release nginx
 #   hosts: rel_nginx
 #   become: true
