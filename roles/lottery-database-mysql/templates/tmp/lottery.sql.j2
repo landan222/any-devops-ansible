@@ -434,7 +434,7 @@ CREATE TABLE `lottery_issue_counts` (
   `removed_time` datetime DEFAULT NULL,
   `edited_time` datetime DEFAULT NULL,
   PRIMARY KEY (`lottery_issue_count_id`,`date`) USING BTREE,
-  UNIQUE KEY `lottery_id-no-date` (`lottery_id`,`date`) USING BTREE,
+  UNIQUE KEY `lottery_id-date` (`lottery_id`,`date`) USING BTREE,
   KEY `date` (`date`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC
 /*!50100 PARTITION BY RANGE (TO_DAYS(date))
