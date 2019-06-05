@@ -7,11 +7,11 @@
 systemLog:
   destination: file
   logAppend: true
-  path: /var/log/mongodb/mongod.log
+  path: {{ MONGODB.SYSTEM_LOG_PATH }}
 
 # Where and how to store data.
 storage:
-  dbPath: /var/lib/mongo
+  dbPath: {{ MONGODB.STORAGE_DB_PATH }}
   journal:
     enabled: true
 #  engine:
@@ -21,13 +21,13 @@ storage:
 # how the process runs
 processManagement:
   fork: true  # fork and run in background
-  pidFilePath: /var/run/mongodb/mongod.pid  # location of pidfile
+  pidFilePath: {{ MONGODB.PID_FILE_PATH }}  # location of pidfile
   timeZoneInfo: /usr/share/zoneinfo
 
 # network interfaces
 net:
-  port: 27017
-  bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
+  port: {{ MONGODB.PORT }}
+  bindIp: {{ MONGODB.BIND_IP }}  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
 
 
 #security:

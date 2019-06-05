@@ -1,2 +1,8 @@
 --- # 优先次序高
 mongodb_version: '4.0'
+MONGODB:
+  BIND_IP: '0.0.0.0'
+  PORT: 27017
+  SYSTEM_LOG_PATH: '/var/log/mongodb/mongod.log' 
+  STORAGE_DB_PATH: '/var/lib/mongo'
+  PID_FILE_PATH: '/var/run/mongodb/mongod.pid'
