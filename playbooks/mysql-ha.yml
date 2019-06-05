@@ -9,7 +9,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -34,7 +34,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -58,7 +58,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -84,7 +84,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -108,7 +108,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -133,7 +133,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -161,7 +161,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -187,7 +187,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -213,7 +213,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/mha_manager.fea.yml
+    - ./../group_vars/masterha.fea.yml
     - ./../group_vars/cluster_ndb.fea.yml
     - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
@@ -242,7 +242,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -267,7 +267,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -291,7 +291,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -317,7 +317,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -341,7 +341,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -366,7 +366,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -394,7 +394,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -420,7 +420,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
@@ -446,7 +446,7 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/mha_manager.dev.yml
+    - ./../group_vars/masterha.dev.yml
     - ./../group_vars/cluster_ndb.dev.yml
     - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
