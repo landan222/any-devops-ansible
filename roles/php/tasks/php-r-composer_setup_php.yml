@@ -2,7 +2,7 @@
   shell: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 - name: (shell) php composer-setup.php --install-dir=/usr/bin --filename=composer
   shell: php composer-setup.php --install-dir=/usr/bin --filename=composer
-  notify: php composer-setup.php
+  #notify: php composer-setup.php
 - name: (shell) php -r "unlink('composer-setup.php');"
   shell: php -r "unlink('composer-setup.php');"
 - name: (yum) yum insatll unzip

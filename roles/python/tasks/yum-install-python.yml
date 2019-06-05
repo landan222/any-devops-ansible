@@ -11,7 +11,7 @@
       - "python{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}u-devel"
     state: latest
   when: python_version == '3.4' or  python_version == '3.5' or  python_version == '3.6'
-  notify: debug yum install python
+  #notify: debug yum install python
 # - name: yum install python
 #   yum: 
 #     name:
@@ -36,7 +36,7 @@
     state: link
     force: True
     follow: False
-  notify: debug yum install python-pip
+  #notify: debug yum install python-pip
 
 - name: "(shell) pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} install --upgrade pip"
   shell: "pip{{ python_version | default(3.6) | regex_replace('([0-9]+).([0-9]+)', '\\1') }} install --upgrade pip"
@@ -48,4 +48,4 @@
     state: link
     force: True
     follow: False
-  notify: debug yum install python
+#notify: debug yum install python

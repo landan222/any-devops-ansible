@@ -40,7 +40,7 @@
       - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-swoole"
       - "php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }}-php-zip"
     state: latest
-  notify: debug yum install php
+  #notify: debug yum install php
   
 - name: "(file) ln -sf /usr/bin/php{{ php_version | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }} /usr/bin/php"  
   file:
