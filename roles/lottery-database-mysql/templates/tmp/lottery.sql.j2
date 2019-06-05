@@ -414,6 +414,51 @@ PARTITION `less_than_20190612` VALUES LESS THAN (737587) ENGINE = InnoDB MAX_ROW
 PARTITION `less_than_maxvalue` VALUES LESS THAN (MAXVALUE) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 )
 ;
 
+
+CREATE TABLE `lottery_issue_counts` (
+  `lottery_issue_count_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `lottery_id` int(12) NOT NULL,
+  `date` date NOT NULL,
+  `numbers_to_counts` json DEFAULT NULL,
+  `small_large_types_to_counts` json DEFAULT NULL,
+  `odd_even_types_to_counts` json DEFAULT NULL COMMENT '{\n  "0_odd": 0,\n  "1_odd": 0,\n  "2_odd": 0,\n  "3_odd": 0,\n  "4_odd": 0,\n  "5_odd": 0,\n  "6_odd": 0,\n  "7_odd": 0,\n  "8_odd": 0,\n  "9_odd": 0,\n  "0_even": 0,\n  "1_even": 0,\n  "2_even": 0,\n  "3_even": 0,\n  "4_even": 0,\n  "5_even": 0,\n  "6_even": 0,\n  "7_even": 0,\n  "8_even": 0,\n  "9_even": 0,\n  \n}',
+  `position_odd_even_types_to_counts` json DEFAULT NULL,
+  `position_small_large_types_to_counts` json DEFAULT NULL,
+  `position_dragon_tiger_types_to_counts` json DEFAULT NULL,
+  `position_summation_small_large_types_to_counts` json DEFAULT NULL,
+  `position_summation_odd_even_types_to_counts` json DEFAULT NULL,
+  `position_summation_numbers_to_counts` json DEFAULT NULL,
+  `extensions` json DEFAULT NULL,
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `added_time` datetime DEFAULT NULL,
+  `removed_time` datetime DEFAULT NULL,
+  `edited_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`lottery_issue_count_id`,`date`) USING BTREE,
+  UNIQUE KEY `lottery_id-no-date` (`lottery_id`,`date`) USING BTREE,
+  KEY `date` (`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC
+/*!50100 PARTITION BY RANGE (TO_DAYS(date))
+(PARTITION less_than_20190525 VALUES LESS THAN (737569) ENGINE = InnoDB,
+ PARTITION less_than_20190526 VALUES LESS THAN (737570) ENGINE = InnoDB,
+ PARTITION less_than_20190527 VALUES LESS THAN (737571) ENGINE = InnoDB,
+ PARTITION less_than_20190528 VALUES LESS THAN (737572) ENGINE = InnoDB,
+ PARTITION less_than_20190529 VALUES LESS THAN (737573) ENGINE = InnoDB,
+ PARTITION less_than_20190530 VALUES LESS THAN (737574) ENGINE = InnoDB,
+ PARTITION less_than_20190531 VALUES LESS THAN (737575) ENGINE = InnoDB,
+ PARTITION less_than_20190601 VALUES LESS THAN (737576) ENGINE = InnoDB,
+ PARTITION less_than_20190602 VALUES LESS THAN (737577) ENGINE = InnoDB,
+ PARTITION less_than_20190603 VALUES LESS THAN (737578) ENGINE = InnoDB,
+ PARTITION less_than_20190604 VALUES LESS THAN (737579) ENGINE = InnoDB,
+ PARTITION less_than_20190605 VALUES LESS THAN (737580) ENGINE = InnoDB,
+ PARTITION less_than_20190606 VALUES LESS THAN (737581) ENGINE = InnoDB,
+ PARTITION less_than_20190607 VALUES LESS THAN (737582) ENGINE = InnoDB,
+ PARTITION less_than_20190608 VALUES LESS THAN (737583) ENGINE = InnoDB,
+ PARTITION less_than_20190609 VALUES LESS THAN (737584) ENGINE = InnoDB,
+ PARTITION less_than_20190610 VALUES LESS THAN (737585) ENGINE = InnoDB,
+ PARTITION less_than_20190611 VALUES LESS THAN (737586) ENGINE = InnoDB,
+ PARTITION less_than_20190612 VALUES LESS THAN (737587) ENGINE = InnoDB,
+ PARTITION less_than_maxvalue VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
+
 -- ----------------------------
 -- Table structure for lottery_issue_spiders
 -- ----------------------------
