@@ -1,7 +1,0 @@
-db.getCollection("users").dropIndex("name")
-
-db.getCollection("users").createIndex({
-    name: "text"
-}, {
-    name: "name"
-})

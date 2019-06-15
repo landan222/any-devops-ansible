@@ -1,0 +1,8 @@
+---
+- name: (shell) mongo --version
+  shell: mongo --version
+  register: s_mongodb_version
+  become: False
+- name: debug s_mongodb_version
+  debug: 
+    msg: "{{ s_mongodb_version }}"
