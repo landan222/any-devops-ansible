@@ -1,4 +1,0 @@
----
-- name: (debug) s_admin168_version
-  debug: 
-    msg: "{{ s_admin168_version }}"
