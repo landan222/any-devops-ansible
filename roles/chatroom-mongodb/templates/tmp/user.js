@@ -20,6 +20,15 @@
 // ----------------------------
 db.getCollection("users").drop();
 db.createCollection("users");
+
+db.getCollection("users").dropIndex("name");
+
+db.getCollection("users").createIndex({
+    name: "text"
+}, {
+    name: "name"
+});
+
 db.getCollection("users").createIndex({
     "$**": "text"
 }, {
@@ -184,45 +193,4 @@ db.getCollection("users").insert([ {
     removedTime: null,
     __v: NumberInt("0")
 } ]);
-db.getCollection("users").insert([ {
-    _id: ObjectId("5d0496e9ad10ef3bb4125a9d"),
-    name: "user004",
-    url: "",
-    nickname: "",
-    password: "642d4e5baab28ed468d3ea77b6e202fe2b241ccd",
-    level: NumberInt("1"),
-    role: "MEMBER",
-    experience: NumberInt("0"),
-    "group_ids": [ ],
-    addedTime: ISODate("2019-06-15T06:53:21.155Z"),
-    editedTime: ISODate("2019-06-15T06:53:21.155Z"),
-    notBeforeTime: ISODate("2019-06-15T06:53:21.155Z"),
-    removedTime: null,
-    __v: NumberInt("0")
-} ]);
-db.getCollection("users").insert([ {
-    _id: ObjectId("5d049df3ad10ef3bb4125a9e"),
-    name: "user004",
-    url: "",
-    nickname: "",
-    password: "642d4e5baab28ed468d3ea77b6e202fe2b241ccd",
-    level: NumberInt("1"),
-    role: "MEMBER",
-    experience: NumberInt("0"),
-    "group_ids": [ ],
-    addedTime: ISODate("2019-06-15T06:53:21.155Z"),
-    editedTime: ISODate("2019-06-15T06:53:21.155Z"),
-    notBeforeTime: ISODate("2019-06-15T06:53:21.155Z"),
-    removedTime: null,
-    __v: NumberInt("0")
-} ]);
 
-
-
-db.getCollection("users").dropIndex("name");
-
-db.getCollection("users").createIndex({
-    name: "text"
-}, {
-    name: "name"
-});
