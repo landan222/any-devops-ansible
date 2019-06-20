@@ -1,4 +1,6 @@
 use chatroom;
+db.dropUser("backend");
+db.dropUser("backend_r");
 
 db.createUser(
   {
@@ -11,7 +13,7 @@ db.createUser(
 
 db.createUser(
   {
-    user: "backend",
+    user: "backend_r",
     pwd: "mongodb_pass",
     roles: [ { role: "read", db: "chatroom" } ]
   }

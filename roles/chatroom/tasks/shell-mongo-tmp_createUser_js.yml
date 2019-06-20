@@ -7,4 +7,5 @@
     group: root
     mode: 0776
     backup: no
-    # validate: nginx -t -c %s
+- name: (shell) mongo < /tmp/createUser.js
+  shell: mongo < /tmp/createUser.js
