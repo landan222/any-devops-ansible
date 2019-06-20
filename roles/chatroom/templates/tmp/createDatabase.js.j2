@@ -16,6 +16,7 @@
 
 use chatroom;
 db.getCollection("users").drop();
+db.getCollection("rooms").drop();
 use chatroom;
 
 db.createCollection("users");
@@ -77,7 +78,7 @@ db.getCollection("users").insert([ {
     role: "MEMBER",
     notBeforeTime: "2019-06-13 07:51:56.122",
     nickname: "用户一",
-    url: "user/user.png",
+    url: "user/member.png",
     level: 1
 } ]);
 db.getCollection("users").insert([ {
@@ -93,13 +94,13 @@ db.getCollection("users").insert([ {
     __v: NumberInt("0"),
     notBeforeTime: "2019-06-13 07:51:56.122",
     nickname: "用户二",
-    url: "user/user.png",
+    url: "user/member.png",
     level: 2
 } ]);
 db.getCollection("users").insert([ {
     _id: ObjectId("5d0492d172d2c37544a68848"),
     name: "user003",
-    url: "user/user.png",
+    url: "user/member.png",
     nickname: "用户三",
     password: "c37190cc10f156598fd23110c23a2b1ba9f4e3af",
     level: NumberInt("3"),
@@ -115,7 +116,7 @@ db.getCollection("users").insert([ {
 db.getCollection("users").insert([ {
     _id: ObjectId("5d04945e72d2c37544a6884d"),
     name: "user004",
-    url: "user/user.png",
+    url: "user/member.png",
     nickname: "用户四",
     password: "03a3c687c89265a9145687e0a67e5972b00b29b6",
     level: NumberInt("4"),
@@ -131,7 +132,7 @@ db.getCollection("users").insert([ {
 db.getCollection("users").insert([ {
     _id: ObjectId("5d04946372d2c37544a6884f"),
     name: "user005",
-    url: "user/user.png",
+    url: "user/member.png",
     nickname: "用户五",
     password: "dfdac1988984ca7f72907c6a04ace510f9c21995",
     level: NumberInt("5"),
@@ -147,7 +148,7 @@ db.getCollection("users").insert([ {
 db.getCollection("users").insert([ {
     _id: ObjectId("5d04946772d2c37544a68851"),
     name: "user006",
-    url: "user/user.png",
+    url: "user/member.png",
     nickname: "用户六",
     password: "bb8091cfaec1dd63a8e6e4a97291f58d412d973b",
     level: NumberInt("6"),
@@ -163,7 +164,7 @@ db.getCollection("users").insert([ {
 db.getCollection("users").insert([ {
     _id: ObjectId("5d04947372d2c37544a68853"),
     name: "user007",
-    url: "user/user.png",
+    url: "user/member.png",
     nickname: "用户七",
     password: "1fee9752173fab31d241d9f56f7d58ade8695a80",
     level: NumberInt("7"),
@@ -179,7 +180,7 @@ db.getCollection("users").insert([ {
 db.getCollection("users").insert([ {
     _id: ObjectId("5d04949872d2c37544a68855"),
     name: "user008",
-    url: "user/user.png",
+    url: "user/member.png",
     nickname: "用户八",
     password: "642d4e5baab28ed468d3ea77b6e202fe2b241ccd",
     level: NumberInt("8"),
@@ -204,7 +205,7 @@ db.getCollection("rooms").insert([ {
     addedTime: ISODate("2019-06-20T10:31:12.455Z"),
     editedTime: ISODate("2019-06-20T10:31:12.455Z"),
     removedTime: null,
-    name: "",
+    name: "聊天室",
     messagers: [ ],
     messages: [ ],
     __v: NumberInt("0")
