@@ -16,7 +16,7 @@
   post_tasks:
     - shell: echo 'playbook mongodb ends'
 - name: Install develop mongodb
-  hosts: fea-mongodb
+  hosts: dev-mongodb
   strategy: linear # free, debug
   gather_facts: true
   become: true
