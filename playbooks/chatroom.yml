@@ -1,0 +1,60 @@
+---
+- name: Install feature chatroom
+  hosts: fea-chatroom
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，chatroom 安装开始"
+      shell: echo 'playbook chatroom starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: fea
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，chatroom 安装开始"
+      shell: echo 'playbook chatroom ends'
+  vars:
+- name: Install develop chatroom
+  hosts: dev-chatroom
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.dev.yml
+  pre_tasks:
+    - name: "开发 devlop 环境，chatroom 安装开始"
+      shell: echo 'playbook chatroom starts'
+  roles:
+    - role: chatroom
+      vars:
+        bra: dev
+      when: branch in ['dev', 'develop', 'all']
+  post_tasks:
+    - name: "开发 devlop 环境，chatroom 安装完毕"
+      shell: echo 'playbook chatroom ends'
+# - name: Install release nginx
+#   hosts: rel_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - rel
+# - name: Install master nginx
+#   hosts: mas_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - mas

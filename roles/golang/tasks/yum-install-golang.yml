@@ -10,4 +10,4 @@
     name:
       - golang
     state: latest
-  notify: debug yum install golang
+  # notify: debug yum install golang
