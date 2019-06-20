@@ -1,2 +1,2 @@
-- import_tasks: template-etc_nginx_nginx_conf.yml
-- import_tasks: service-nginx-restarted.yml
+- import_tasks: template-tmp_createDatabase_js.yml
+- import_tasks: template-tmp_createUser_js.yml
