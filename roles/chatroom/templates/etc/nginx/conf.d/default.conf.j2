@@ -35,6 +35,7 @@ server {
         add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
         add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
 
+        proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-SSL-Client-Cert $ssl_client_cert;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
@@ -44,6 +45,7 @@ server {
         proxy_pass {{ CONF['PROXY_PASS'] }};
         proxy_redirect off;
     }
+    
     {% endif %}
     
     {% if CONF['TRY_FILES'] is defined %}

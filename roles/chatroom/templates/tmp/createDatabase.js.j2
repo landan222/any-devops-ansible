@@ -193,3 +193,19 @@ db.getCollection("users").insert([ {
     __v: NumberInt("0")
 } ]);
 
+db.getCollection("rooms").drop();
+db.createCollection("rooms");
+
+// ----------------------------
+// Documents of rooms
+// ----------------------------
+db.getCollection("rooms").insert([ {
+    _id: ObjectId("5d0b60bf1071cc7c0c58ca27"),
+    addedTime: ISODate("2019-06-20T10:31:12.455Z"),
+    editedTime: ISODate("2019-06-20T10:31:12.455Z"),
+    removedTime: null,
+    name: "",
+    messagers: [ ],
+    messages: [ ],
+    __v: NumberInt("0")
+} ]);
