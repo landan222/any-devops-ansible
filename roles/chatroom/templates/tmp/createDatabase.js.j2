@@ -16,6 +16,8 @@
 
 use chatroom;
 db.getCollection("users").drop();
+use chatroom;
+
 db.createCollection("users");
 
 db.getCollection("users").dropIndex("name");
