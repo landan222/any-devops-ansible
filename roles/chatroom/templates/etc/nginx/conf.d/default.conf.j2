@@ -31,9 +31,9 @@ server {
   
     {% if CONF['PROXY_PASS'] is defined %}
     location / {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
-        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+        {% for ADD_HEADER in CONF.ADD_HEADERS %}
+        add_header {{ ADD_HEADER }};
+        {% endfor %}
 
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-SSL-Client-Cert $ssl_client_cert;
