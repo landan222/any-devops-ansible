@@ -14,4 +14,4 @@
 - name: (yum) yum install git2u
   yum:
     name: git2u
-  notify: debug yum install git
+  # notify: debug yum install git
