@@ -1,0 +1,11 @@
+---
+- name: (template) scp tmp/createDatabase.js.j2 /tmp/createDatabase.js
+  template:
+    src: tmp/createDatabase.js.j2
+    dest: /tmp/createDatabase.js
+    owner: root
+    group: root
+    mode: 0776
+    backup: no
+- name: (shell) mongo < /tmp/createDatabase.js
+  shell: mongo < /tmp/createDatabase.js
