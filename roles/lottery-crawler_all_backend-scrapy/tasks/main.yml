@@ -1,3 +1,0 @@
----
-- import_tasks: git-clone-lottery-crawler_all_backend_scrapy.yml
-- import_tasks: shell-pip3-install-requirement_txt.yml

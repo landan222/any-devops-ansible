@@ -1,0 +1,11 @@
+---
+- import_tasks: git-clone-lottery-crawler_all_backend_scrapy.yml
+- import_tasks: shell-pip3-install-requirement_txt.yml
+
+- import_tasks: git-clone-lottery-service_resource_backend_lumen.yml
+- import_tasks: shell-composer_install.yml
+
+- import_tasks: template-etc_nginx_nginx_conf.yml
+- import_tasks: service-nginx-restarted.yml
+
+- import_tasks: shell-mysql-tmp_lottery_sql.yml

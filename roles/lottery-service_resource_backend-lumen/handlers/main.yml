@@ -1,6 +1,0 @@
----
-- name: debug git clone lottery-service_resource_backend-lumen
-  import_tasks: debug-git-clone-lottery_service_resource_backend_lumen.yml
-- name: debug composer install
-  import_tasks: debug-composer_install.yml
-  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen

@@ -1,6 +1,6 @@
 
 ---
-- name: Install feature lottery-database-mysql
+- name: Install feature lottery
   hosts: fea-lottery-database-mysql
   strategy: linear # free, debug
   gather_facts: true
@@ -8,32 +8,32 @@
   vars_files:
     - ./../group_vars/mysql.fea.yml
   pre_tasks:
-    - name: "本地 feature 环境，lottery-database-mysql 安装开始"
+    - name: "本地 feature 环境，lottery 安装开始"
       shell: echo 'playbook lottery-database-mysql starts'
   roles:
-    - role: lottery-database-mysql
+    - role: lottery
       vars:
         bra: fea
       when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
-    - name: "本地 feature 环境，lottery-database-mysql 安装完毕"
+    - name: "本地 feature 环境，lottery 安装完毕"
       shell: echo 'playbook lottery-database-mysql ends'
       
-- name: Install develop lottery-database-mysql
-  hosts: dev-lottery-database-mysql
+- name: Install develop lottery
+  hosts: dev-lottery
   strategy: linear # free, debug
   gather_facts: true
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
   pre_tasks:
-    - name: "开发 develop 环境，lottery-database-mysql 安装开始"
-      shell: echo 'playbook lottery-database-mysql starts'
+    - name: "开发 develop 环境，lottery 安装开始"
+      shell: echo 'playbook lottery starts'
   roles:
-    - role: lottery-database-mysql
+    - role: lottery
       vars:
         bra: dev
       when: branch in ['dev', 'develop', 'all']
   post_tasks:
-    - name: "开发 develop 环境，lottery-database-mysql 安装完毕"
-      shell: echo 'playbook lottery-database-mysql ends'
+    - name: "开发 develop 环境，lottery 安装完毕"
+      shell: echo 'playbook lottery ends'
