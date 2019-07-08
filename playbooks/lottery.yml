@@ -1,12 +1,12 @@
 
 ---
 - name: Install feature lottery
-  hosts: fea-lottery-database-mysql
+  hosts: fea-lottery
   strategy: linear # free, debug
   gather_facts: true
   become: true
   vars_files:
-    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/lottery.fea.yml
   pre_tasks:
     - name: "本地 feature 环境，lottery 安装开始"
       shell: echo 'playbook lottery-database-mysql starts'
@@ -25,7 +25,7 @@
   gather_facts: true
   become: true
   vars_files:
-    - ./../group_vars/mysql.dev.yml
+    - ./../group_vars/lottery.dev.yml
   pre_tasks:
     - name: "开发 develop 环境，lottery 安装开始"
       shell: echo 'playbook lottery starts'
