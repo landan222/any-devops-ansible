@@ -1,4 +1,0 @@
----
-- name: (debug) s_landan_www_resource_backend_koa_version
-  debug: 
-    msg: "{{ s_landan_www_resource_backend_koa_version }}"

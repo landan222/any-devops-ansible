@@ -1,4 +1,0 @@
----
-- name: debug git clone landan-www_resource_backend-koa
-  import_tasks: debug-git-clone-landan_www_resource_backend_koa.yml
-  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen
