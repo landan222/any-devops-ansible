@@ -32,25 +32,21 @@
   post_tasks:
     - name: "开发 devlop 环境，Nginx 安装完毕"
       shell: echo 'playbook nginx ends'
-# - name: Install release nginx
-#   hosts: rel_nginx
-#   become: true
-#   pre_tasks:
-#     - shell: echo 'playbook nginx starts'
-#   roles:
-#     - role: nginx
-#   post_tasks:
-#     - shell: echo 'playbook nginx ends'
-#   tags:
-#     - rel
-# - name: Install master nginx
-#   hosts: mas_nginx
-#   become: true
-#   pre_tasks:
-#     - shell: echo 'playbook nginx starts'
-#   roles:
-#     - role: nginx
-#   post_tasks:
-#     - shell: echo 'playbook nginx ends'
-#   tags:
-#     - mas
+
+
+- name: Install release nginx
+  hosts: rel-nginx
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  pre_tasks:
+    - name: "开发 release 环境，Nginx 安装开始"
+      shell: echo 'playbook nginx starts'
+  roles:
+    - role: nginx
+      vars:
+        bra: rel
+      when: branch in ['rel', 'release', 'all']
+  post_tasks:
+    - name: "开发 release 环境，Nginx 安装完毕"
+      shell: echo 'playbook nginx ends'
