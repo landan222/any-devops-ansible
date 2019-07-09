@@ -35,3 +35,22 @@
   post_tasks:
     - name: "开发 develop 环境，Node 安装完毕"
       shell: echo 'playbook node ends'
+      
+- name: Install release node
+  hosts: rel-node
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/node.rel.yml
+  pre_tasks:
+    - name: "开发 release 环境，Node 安装开始"
+      shell: echo 'playbook node starts'
+  roles:
+    - role: node
+      vars:
+        bra: dev
+      when: branch in ['rel', 'release', 'all']
+  post_tasks:
+    - name: "开发 release 环境，Node 安装完毕"
+      shell: echo 'playbook node ends'
