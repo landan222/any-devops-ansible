@@ -31,3 +31,21 @@
       when: branch == 'dev' or branch == 'develop' or branch == 'all'
   post_tasks:
     - shell: echo 'playbook mongodb ends'
+    
+    
+- name: Install release mongodb
+  hosts: rel-mongodb
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mongodb.rel.yml
+  pre_tasks:
+    - shell: echo 'playbook mongodb starts'
+  roles:
+    - role: mongodb
+      vars:
+        bra: rel
+      when: branch == 'rel' or branch == 'release' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook mongodb ends'
