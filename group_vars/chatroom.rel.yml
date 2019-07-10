@@ -4,7 +4,7 @@ CHATROOM:
     CONFS:
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-service_socket_backend-sockeio/public'
-        SERVER_NAME: 'rel.socket.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.socket.chatroom.ques98.cn'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         PROXY_PASS: 'http://127.0.0.1:4003/'
@@ -14,13 +14,13 @@ CHATROOM:
 
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-service_any_frontend-vue/dist'
-        SERVER_NAME: 'rel.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.chatroom.ques98.cn'
         INDEX: 'index.html index.htm'
         TRY_FILES: '$uri $uri/ /index.html'
         
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-admin_any_backend-fastadmin/public'
-        SERVER_NAME: 'rel.admin.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.admin.chatroom.ques98.cn'
         INDEX: 'index.php index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         PHP_VERSION: '7.3'

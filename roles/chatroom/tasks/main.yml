@@ -1,5 +1,5 @@
 - import_tasks: shell-mongo-tmp_createUser_js.yml
-- import_tasks: shell-mongo-tmp_createDatabase_js.yml
+- import_tasks: shell-mongo-tmp_chatroom_js.yml
 
 - import_tasks: shell-mysql-tmp_chatroom_sql.yml
 
