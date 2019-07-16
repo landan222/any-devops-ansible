@@ -78,7 +78,7 @@ sh /var/www/any-cicd_playbook_devops-ansible/linux_shells/yum-install-ansible.sh
 ```
 
 
-1. 安装 MySQL, MongoDB, Redis, Nginx, Node, pm2
+1. 安装 MySQL, MongoDB, Redis, Nginx, Node(含 pm2 )
 ```
 cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/mysql-ha.yml && 
 cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/mongodb.yml && 
