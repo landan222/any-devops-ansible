@@ -5,7 +5,7 @@ db.dropUser("backend_r");
 db.createUser(
   {
     user: "backend",
-    pwd: "mongodb_pass",
+    pwd: "mongodb_pass_backend",
     roles: [ { role: "readWrite", db: "chatroom" } ]
   }
 );
@@ -14,7 +14,7 @@ db.createUser(
 db.createUser(
   {
     user: "backend_r",
-    pwd: "mongodb_pass",
+    pwd: "mongodb_pass_backend",
     roles: [ { role: "read", db: "chatroom" } ]
   }
 );
