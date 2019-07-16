@@ -1,0 +1,4 @@
+---
+- name: debug yum install nginx
+  import_tasks: debug-yum-install-nginx.yml
+  #listen: # ansible 2.7 版本 import_tasks 没有 listen

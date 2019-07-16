@@ -1,0 +1,80 @@
+#jinja2: lstrip_blocks: True
+
+server {
+    listen       {{ CONF['HTTP_PORT'] | default(80) }};
+    listen       [::]:{{ CONF['HTTP_PORT'] | default(80) }};
+    server_name  {{ CONF['SERVER_NAME'] }};
+    {% if CONF['ROOT'] is defined %}
+    root         {{ CONF['ROOT'] }};
+    {% endif %}
+    
+    {% if CONF['INDEX'] is defined %}
+    index        {{ CONF['INDEX'] }}; 
+    {% else %}
+    index        index.html index.htm; 
+    {% endif %}
+
+    {% if CONF.REWRITES is defined %}
+    {% for REWRITE in CONF.REWRITES %}
+    rewrite      {{ REWRITE }};
+    {% endfor %}
+    {% endif %}
+    
+    # Load configuration files for the default server block.
+
+    location ~* \.(ico|css|js|gif|jpe?g|png|ogg|ogv|svg|svgz|eot|otf|woff)(\?.+)?$ {
+        expires max;
+        log_not_found off;
+    }
+ 
+    server_tokens off;
+  
+    {% if CONF['PROXY_PASS'] is defined %}
+    location / {
+        {% for ADD_HEADER in CONF.ADD_HEADERS %}
+        add_header {{ ADD_HEADER }};
+        {% endfor %}
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-SSL-Client-Cert $ssl_client_cert;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_pass {{ CONF['PROXY_PASS'] }};
+        proxy_redirect off;
+    }
+    
+    {% endif %}
+    
+    {% if CONF['TRY_FILES'] is defined %}
+    location / {
+        try_files {{ CONF['TRY_FILES'] }};
+    }
+    {% endif %}
+    
+ 
+    {% if CONF['PHP_VERSION'] is defined %}
+    location ~* \.php$ {
+        add_header Access-Control-Allow-Origin '*';
+        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS';
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+        add_header Access-Control-Allow-Credentials true;
+        
+        fastcgi_pass 127.0.0.1:90{{ CONF['PHP_VERSION'] | default(5.6) | regex_replace('([0-9]+).([0-9]+)', '\\1\\2') }};
+        fastcgi_index index.php;
+        fastcgi_split_path_info ^(.+\.php)(.*)$;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+    {% endif %}
+       
+    error_page 404 /404.html;
+        location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}
