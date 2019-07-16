@@ -3,3 +3,4 @@
 - import_tasks: yum-install-nodejs.yml
 - import_tasks: tee-etc_yum_repos_d_yarn_repo.yml
 - import_tasks: yum-install-yarn.yml
+- import_tasks: yarn-global-add-pm2.yml

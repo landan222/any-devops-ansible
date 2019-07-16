@@ -58,3 +58,32 @@ ansible-playbook playbooks/main.yml --extra-vars "debug=true"
 ```
 
 8. ansilbe host 是有 cache 机制 如果换了 ssh key 还是 无法连， 试试改个 host 名
+
+
+## 安装 [聊天室项目]
+
+0. 安装 GIT
+```
+略
+```
+
+0. 到 Linux 主机目录下载 CICD 项目
+```
+cd /var/www && git clone git@gitlab.ques98.cn:any/any-cicd_playbook_devops-ansible.git
+```
+
+0. 下载 Ansible 主程序
+```
+sh /var/www/any-cicd_playbook_devops-ansible/linux_shells/yum-install-ansible.sh
+```
+
+
+1. 安装 MySQL, MongoDB, Redis, Nginx, Node, pm2
+```
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/mysql-ha.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/mongodb.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/redis.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/nginx.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/node.yml && 
+
+```
