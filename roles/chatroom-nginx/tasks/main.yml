@@ -1,0 +1,7 @@
+- import_tasks: shell-mongo-tmp_createUser_js.yml
+- import_tasks: shell-mongo-tmp_chatroom_js.yml
+
+- import_tasks: shell-mysql-tmp_chatroom_sql.yml
+
+- import_tasks: template-etc_nginx_nginx_conf.yml
+- import_tasks: service-nginx-restarted.yml
