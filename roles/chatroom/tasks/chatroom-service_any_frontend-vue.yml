@@ -27,14 +27,14 @@
     group: root
     mode: 0776
     backup: no
-  when: chatroom_service_socket_backend_socketio_build is not undefined and chatroom_service_socket_backend_socketio_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+  when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 
   
-- name: "(shell) yarn"
+- name: "(shell) cd /var/www/chatroom-service_any_frontend-vue && yarn"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn"
   when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 
-- name: "(shell) yarn run build"
+- name: "(shell) cd /var/www/chatroom-service_any_frontend-vue && yarn run build"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn run build"
   when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 

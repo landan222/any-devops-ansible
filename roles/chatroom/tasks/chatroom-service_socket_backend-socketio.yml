@@ -31,16 +31,16 @@
 
 
 
-- name: "(shell) yarn"
+- name: "(shell) cd /var/www/chatroom-service_socket_backend-socketio && yarn"
   shell: "cd /var/www/chatroom-service_socket_backend-socketio && yarn"
   when: chatroom_service_socket_backend_socketio_build is not undefined and chatroom_service_socket_backend_socketio_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 
-- name: "(shell) yarn run build"
+- name: "(shell) cd /var/www/chatroom-service_socket_backend-socketio && yarn run build"
   shell: "cd /var/www/chatroom-service_socket_backend-socketio && yarn run build"
   when: chatroom_service_socket_backend_socketio_build is not undefined and chatroom_service_socket_backend_socketio_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
   
 
-- name: "(shell) pm2 restart pm2.json"
+- name: "(shell) cd /var/www/chatroom-service_socket_backend-socketio && pm2 restart pm2.json"
   shell: "cd /var/www/chatroom-service_socket_backend-socketio && pm2 restart pm2.json"
   when: chatroom_service_socket_backend_socketio_pm2 is not undefined and chatroom_service_socket_backend_socketio_pm2 in ['yes', '1', 1, true, True, 'true', 'True', 'pm2']
   # notify: 

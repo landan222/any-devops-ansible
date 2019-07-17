@@ -28,14 +28,14 @@
   when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 
 
-- name: "(shell) yarn"
+- name: "(shell) cd /var/www/chatroom-service_other_backend-koa && yarn"
   shell: "cd /var/www/chatroom-service_other_backend-koa && yarn"
   when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
-- name: "(shell) yarn run build"
+- name: "(shell) cd /var/www/chatroom-service_other_backend-koa && yarn run build"
   shell: "cd /var/www/chatroom-service_other_backend-koa && yarn run build"
   when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
   
   
-- name: "(shell) pm2 restart pm2.json"
+- name: "(shell) cd /var/www/chatroom-service_other_backend-koa && pm2 restart pm2.json"
   shell: "cd /var/www/chatroom-service_other_backend-koa && pm2 restart pm2.json"
   when: chatroom_service_other_backend_koa_pm2 is not undefined and chatroom_service_other_backend_koa_pm2 in ['yes', '1', 1, true, True, 'true', 'True', 'pm2']
