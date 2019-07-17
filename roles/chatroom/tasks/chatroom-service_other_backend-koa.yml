@@ -24,7 +24,9 @@
     owner: root
     group: root
     mode: 0776
-    backup: no  
+    backup: no
+  when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+
 
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_other_backend-koa && yarn"

@@ -27,6 +27,7 @@
     group: root
     mode: 0776
     backup: no  
+  when: chatroom_service_socket_backend_socketio_build is not undefined and chatroom_service_socket_backend_socketio_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 
 
 

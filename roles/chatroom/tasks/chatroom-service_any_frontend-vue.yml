@@ -26,7 +26,9 @@
     owner: root
     group: root
     mode: 0776
-    backup: no  
+    backup: no
+  when: chatroom_service_socket_backend_socketio_build is not undefined and chatroom_service_socket_backend_socketio_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+
   
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn"
