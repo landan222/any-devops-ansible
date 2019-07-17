@@ -1,0 +1,32 @@
+--- 
+- name: (file) mkdir /var/www/chatroom-service_any_frontend-vue
+  file:
+    path: /var/www/chatroom-service_any_frontend-vue
+    recurse: yes 
+    owner: root
+    group: root
+    mode: 0777
+  when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+
+    
+- name: "(git) git clone git@gitlab.ques98.cn:chatroom/chatroom-service_any_frontend-vue /var/www/chatroom-service_any_frontend-vue"
+  git:
+    repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_any_frontend-vue.git'
+    dest: "/var/www/chatroom-service_any_frontend-vue"
+    version: "{{ 'develop' if branch == 'feature' or branch == 'fea' else branch }}"
+    update: yes
+    accept_hostkey: yes
+  become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
+  when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+  
+- name: "(shell) yarn"
+  shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn"
+  when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+
+- name: "(shell) yarn run build"
+  shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn run build"
+  when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+
+# chmod -R 700 /root/.ssh/id_rsa
+# chmod -R 700 /root/.ssh/id_rsa.pub
+# key must be put in root because sudo git clone

@@ -1,7 +1,7 @@
-- import_tasks: shell-mongo-tmp_createUser_js.yml
-- import_tasks: shell-mongo-tmp_chatroom_js.yml
+- import_tasks: chatroom-mongodb.yml
+- import_tasks: chatroom-mysql.yml
+- import_tasks: chatroom-nginx.yml
 
-- import_tasks: shell-mysql-tmp_chatroom_sql.yml
-
-- import_tasks: template-etc_nginx_nginx_conf.yml
-- import_tasks: service-nginx-restarted.yml
+- import_tasks: chatroom-service_other_backend-koa.yml
+- import_tasks: chatroom-service_socket_backend-socketio.yml
+- import_tasks: chatroom-service_any_frontend-vue.yml

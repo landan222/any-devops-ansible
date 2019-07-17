@@ -1,0 +1,14 @@
+---
+- name: (template) scp tmp/chatroom.sql.j2 /tmp/chatroom.sql
+  template:
+    src: tmp/chatroom.sql.j2
+    dest: /tmp/chatroom.sql
+    owner: root
+    group: root
+    mode: 0776
+    backup: no
+  when: chatroom_mysql is not undefined and chatroom_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'mysql']
+
+- name: (shell) mysql < /tmp/chatroom.sql
+  shell: mysql < /tmp/chatroom.sql
+  when: chatroom_mysql is not undefined and chatroom_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'mysql']

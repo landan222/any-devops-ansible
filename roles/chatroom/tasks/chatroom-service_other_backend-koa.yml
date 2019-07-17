@@ -1,0 +1,32 @@
+- name: (file) mkdir /var/www/chatroom-service_other_backend-koa
+  file:
+    path: /var/www/chatroom-service_other_backend-koa
+    recurse: yes 
+    owner: root
+    group: root
+    mode: 0777
+  when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+    
+- name: "(git) git clone git@gitlab.ques98.cn:chatroom/chatroom-service_other_backend-koa /var/www/chatroom-service_other_backend-koa"
+  git:
+    repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_other_backend-koa.git'
+    dest: "/var/www/chatroom-service_other_backend-koa"
+    version: "{{ 'develop' if branch == 'feature' or branch == 'fea' else branch }}"
+    update: yes
+    accept_hostkey: yes
+  become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
+  when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+  
+  
+
+- name: "(shell) yarn"
+  shell: "cd /var/www/chatroom-service_other_backend-koa && yarn"
+  when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+- name: "(shell) yarn run build"
+  shell: "cd /var/www/chatroom-service_other_backend-koa && yarn run build"
+  when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+  
+  
+- name: "(shell) pm2 restart pm2.json"
+  shell: "cd /var/www/chatroom-service_other_backend-koa && pm2 restart pm2.json"
+  when: chatroom_service_other_backend_koa_pm2 is not undefined and chatroom_service_other_backend_koa_pm2 in ['yes', '1', 1, true, True, 'true', 'True', 'pm2']

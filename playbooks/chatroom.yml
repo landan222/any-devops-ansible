@@ -1,65 +1,4 @@
 ---
-# - name: Install feature chatroom-service_other_backend-koa
-#   hosts: fea-chatroom-service_other_backend-koa
-#   strategy: linear # free, debug
-#   gather_facts: true
-#   become: true
-#   vars_files:
-#     - ./../group_vars/chatroom.fea.yml
-#   pre_tasks:
-#     - name: "本地 feature 环境，chatroom-service_other_backend-koa 安装开始"
-#       shell: echo 'playbook chatroom-service_other_backend-koa starts'
-#   roles:
-#     - role: chatroom-service_other_backend-koa
-#       vars: 
-#         bra: fea
-#       when: branch is not defined or branch in ['fea', 'feature', 'all']
-#       tags: [ 'untagged' ]
-#   post_tasks:
-#     - name: "本地 feature 环境，chatroom-service_other_backend-koa 安装开始"
-#       shell: echo 'playbook chatroom-service_other_backend-koa ends'
-#   
-# - name: Install feature chatroom-service_socket_backend-socketio
-#   hosts: fea-chatroom-service_socket_backend-socketio
-#   strategy: linear # free, debug
-#   gather_facts: true
-#   become: true
-#   vars_files:
-#     - ./../group_vars/chatroom.fea.yml
-#   pre_tasks:
-#     - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装开始"
-#       shell: echo 'playbook chatroom-service_socket_backend-socketio starts'
-#   roles:
-#     - role: chatroom-service_socket_backend-socketio
-#       vars:
-#         bra: fea
-#       when: branch in ['fea', 'feature', 'all']
-#       tags: [ 'untagged' ]
-#   post_tasks:
-#     - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装完毕"
-#       shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
-#       
-#       
-# - name: Install feature chatroom-service_any_frontend-vue
-#   hosts: fea-chatroom-service_any_frontend-vue
-#   strategy: linear # free, debug
-#   gather_facts: true
-#   become: true
-#   vars_files:
-#     - ./../group_vars/chatroom.fea.yml
-#   pre_tasks:
-#     - name: "开发 feature 环境，chatroom-service_any_frontend-vue 安装开始"
-#       shell: echo 'playbook chatroom-service_any_frontend-vue starts'
-#   roles:
-#     - role: chatroom-service_any_frontend-vue
-#       vars:
-#         bra: fea
-#       when: branch in ['fea', 'feature', 'all']
-#   post_tasks:
-#     - name: "开发 feature 环境，chatroom-service_any_frontend-vue 安装完毕"
-#       shell: echo 'playbook chatroom-service_any_frontend-vue ends'
-#       
-#       
 - name: Install feature chatroom-service_other_backend-koa
   hosts: fea-chatroom-service_other_backend-koa
   strategy: linear # free, debug
@@ -71,9 +10,10 @@
     - name: "本地 feature 环境，chatroom-service_other_backend-koa 安装开始"
       shell: echo 'playbook chatroom-service_other_backend-koa starts'
   roles:
-    - role: chatroom-service_other_backend-koa
+    - role: chatroom
       vars: 
         bra: fea
+        chatroom_service_other_backend_koa_build: true
       when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "本地 feature 环境，chatroom-service_other_backend-koa 安装开始"
@@ -90,53 +30,82 @@
     - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装开始"
       shell: echo 'playbook chatroom-service_socket_backend-socketio starts'
   roles:
-    - role: chatroom-service_socket_backend-socketio
+    - role: chatroom
       vars:
         bra: fea
+        chatroom_service_socket_backend_socketio_build: true
+
       when: branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装完毕"
       shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
       
       
-      
-- name: Install develop chatroom-service_socket_backend-socketio
-  hosts: dev-chatroom-service_socket_backend-socketio
+- name: Install feature chatroom-service_any_frontend-vue
+  hosts: fea-chatroom-service_any_frontend-vue
   strategy: linear # free, debug
   gather_facts: true
   become: true
   vars_files:
-    - ./../group_vars/chatroom.dev.yml
+    - ./../group_vars/chatroom.fea.yml
   pre_tasks:
-    - name: "开发 devlop 环境，chatroom-service_socket_backend-socketio 安装开始"
+    - name: "开发 feature 环境，chatroom-service_any_frontend-vue 安装开始"
+      shell: echo 'playbook chatroom-service_any_frontend-vue starts'
+  roles:
+    - role: chatroom
+      vars:
+        bra: fea
+        chatroom_service_any_frontend_vue_build: true
+      when: branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "开发 feature 环境，chatroom-service_any_frontend-vue 安装完毕"
+      shell: echo 'playbook chatroom-service_any_frontend-vue ends'
+      
+      
+      
+- name: Install feature chatroom-service_other_backend-koa
+  hosts: fea-chatroom-service_other_backend-koa
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，chatroom-service_other_backend-koa 安装开始"
+      shell: echo 'playbook chatroom-service_other_backend-koa starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: fea
+        chatroom_service_other_backend_koa_pm2: true
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，chatroom-service_other_backend-koa 安装开始"
+      shell: echo 'playbook chatroom-service_other_backend-koa ends'
+  
+- name: Install feature chatroom-service_socket_backend-socketio
+  hosts: fea-chatroom-service_socket_backend-socketio
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.fea.yml
+  pre_tasks:
+    - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装开始"
       shell: echo 'playbook chatroom-service_socket_backend-socketio starts'
   roles:
-    - role: chatroom-service_socket_backend-socketio
+    - role: chatroom
       vars:
-        bra: dev
-      when: branch in ['dev', 'develop', 'all']
+        bra: fea
+        chatroom_service_socket_backend_socketio_pm2: true
+
+      when: branch in ['fea', 'feature', 'all']
   post_tasks:
-    - name: "开发 devlop 环境，chatroom-service_socket_backend-socketio 安装完毕"
+    - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装完毕"
       shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
-# - name: Install release nginx
-#   hosts: rel_nginx
-#   become: true
-#   pre_tasks:
-#     - shell: echo 'playbook nginx starts'
-#   roles:
-#     - role: nginx
-#   post_tasks:
-#     - shell: echo 'playbook nginx ends'
-#   tags:
-#     - rel
-# - name: Install master nginx
-#   hosts: mas_nginx
-#   become: true
-#   pre_tasks:
-#     - shell: echo 'playbook nginx starts'
-#   roles:
-#     - role: nginx
-#   post_tasks:
-#     - shell: echo 'playbook nginx ends'
-#   tags:
-#     - mas
+      
+      
+    
+
+      
+     
