@@ -1,4 +1,12 @@
 --- 
+- name: (file) mkdir /var/www/chatroom-service_other_backend-koa
+  file:
+    path: /var/www/chatroom-service_other_backend-koa
+    recurse: yes 
+    owner: root
+    group: root
+    mode: 0777
+    
 - name: "(git) git clone git@gitlab.ques98.cn:chatroom/chatroom-service_other_backend-koa /var/www/chatroom-service_other_backend-koa"
   git:
     repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_other_backend-koa.git'

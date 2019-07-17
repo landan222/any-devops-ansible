@@ -1,0 +1,10 @@
+---
+
+- name: "(command) yarn"
+  shell: "cd /var/www/chatroom-service_socket_backend-socketio && yarn"
+- name: "(command) yarn run build"
+  shell: "cd /var/www/chatroom-service_socket_backend-socketio && yarn run build"
+  # notify: 
+
+  # notify: 
+  #   - debug yum install nodejs

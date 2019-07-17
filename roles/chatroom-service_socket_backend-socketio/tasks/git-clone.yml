@@ -1,4 +1,14 @@
---- 
+---
+
+- name: (file) mkdir /var/www/chatroom-service_socket_backend-socketio
+  file:
+    path: /var/www/chatroom-service_socket_backend-socketio
+    recurse: yes  
+    owner: root
+    group: root
+    mode: 0777
+    
+    
 - name: "(git) git clone git@gitlab.ques98.cn:chatroom/chatroom-service_socket_backend-socketio.git /var/www/chatroom-service_socket_backend-socketio"
   git:
     repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_socket_backend-socketio.git'
