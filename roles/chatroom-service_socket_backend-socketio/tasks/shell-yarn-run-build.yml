@@ -2,11 +2,11 @@
 
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_socket_backend-socketio && yarn"
-  when: build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+  when: build is not undefined and build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 
 - name: "(shell) yarn run build"
   shell: "cd /var/www/chatroom-service_socket_backend-socketio && yarn run build"
-  when: build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+  when: build is not undefined and build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
   
 
   # notify: 

@@ -2,7 +2,7 @@
 
 - name: "(shell) pm2 restart pm2.json"
   shell: "cd /var/www/chatroom-service_socket_backend-socketio && pm2 restart pm2.json"
-  when: pm2 in ['yes', '1', 1, true, True, 'true', 'True', 'pm2']
+  when: pm2 is not undefined and pm2 in ['yes', '1', 1, true, True, 'true', 'True', 'pm2']
   # notify: 
 
   # notify: 
