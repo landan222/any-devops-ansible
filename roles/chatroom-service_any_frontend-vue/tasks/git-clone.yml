@@ -1,4 +1,12 @@
 --- 
+- name: (file) mkdir /var/www/chatroom-service_any_frontend-vue
+  file:
+    path: /var/www/chatroom-service_any_frontend-vue
+    recurse: yes 
+    owner: root
+    group: root
+    mode: 0777
+    
 - name: "(git) git clone git@gitlab.ques98.cn:chatroom/chatroom-service_any_frontend-vue /var/www/chatroom-service_any_frontend-vue"
   git:
     repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_any_frontend-vue.git'

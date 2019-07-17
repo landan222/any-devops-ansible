@@ -38,6 +38,26 @@
       shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
       
       
+- name: Install feature chatroom-service_any_frontend-vue
+  hosts: fea-chatroom-service_any_frontend-vue
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.fea.yml
+  pre_tasks:
+    - name: "开发 feature 环境，chatroom-service_any_frontend-vue 安装开始"
+      shell: echo 'playbook chatroom-service_any_frontend-vue starts'
+  roles:
+    - role: chatroom-service_any_frontend-vue
+      vars:
+        bra: fea
+      when: branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "开发 feature 环境，chatroom-service_any_frontend-vue 安装完毕"
+      shell: echo 'playbook chatroom-service_any_frontend-vue ends'
+      
+      
       
 - name: Install develop chatroom-service_socket_backend-socketio
   hosts: dev-chatroom-service_socket_backend-socketio

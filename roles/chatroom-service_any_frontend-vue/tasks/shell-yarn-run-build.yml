@@ -1,0 +1,10 @@
+---
+
+- name: "(shell) yarn"
+  shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn"
+- name: "(shell) yarn run build"
+  shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn run build"
+  # notify: 
+
+  # notify: 
+  #   - debug yum install nodejs
