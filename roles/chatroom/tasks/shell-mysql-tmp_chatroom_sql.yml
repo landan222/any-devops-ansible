@@ -1,0 +1,11 @@
+---
+- name: (template) scp tmp/chatroom.sql.j2 /tmp/chatroom.sql
+  template:
+    src: tmp/chatroom.sql.j2
+    dest: /tmp/chatroom.sql
+    owner: root
+    group: root
+    mode: 0776
+    backup: no
+- name: (shell) mysql < /tmp/chatroom.sql
+  shell: mysql < /tmp/chatroom.sql
