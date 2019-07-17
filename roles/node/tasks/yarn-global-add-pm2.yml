@@ -1,6 +1,6 @@
 ---
 
-- name: "(command) yarn global remove pm2"
+- name: "(command) npm global remove pm2"
   command: "yarn global remove pm2"
 - name: "(command) yarn global add pm2"
   command: "yarn global add pm2"
