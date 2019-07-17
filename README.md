@@ -87,3 +87,12 @@ cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/ngin
 cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/node.yml && 
 
 ```
+
+1. 安装 chatroom
+```
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/chatroom.yml (生产 develop, release, master 环境)
+
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook playbooks/chatroom.yml -e "chatroom_service_other_backend_koa_pm2=0 chatroom_service_socket_backend_socket_pm2=0"(开发 feature 环境)
+
+
+```

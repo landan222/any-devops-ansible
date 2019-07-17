@@ -1,4 +1,68 @@
 ---
+- name: Install feature chatroom-mongodb
+  hosts: fea-chatroom-mongodb
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，chatroom-mongodb 安装开始"
+      shell: echo 'playbook chatroom-mongodb starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: fea
+        chatroom_mongodb: true
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，chatroom-mongodb 安装开始"
+      shell: echo 'playbook chatroom-mongodb ends'
+      
+- name: Install feature chatroom-mysql
+  hosts: fea-chatroom-mysql
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，chatroom-mysql 安装开始"
+      shell: echo 'playbook chatroom-mysql starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: fea
+        chatroom_mysql: true
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，chatroom-mysql 安装开始"
+      shell: echo 'playbook chatroom-mysql ends'
+      
+      
+- name: Install feature chatroom-nginx
+  hosts: fea-chatroom-nginx
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，chatroom-nginx 安装开始"
+      shell: echo 'playbook chatroom-nginx starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: fea
+        chatroom_nginx: true
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，chatroom-nginx 安装开始"
+      shell: echo 'playbook chatroom-nginx ends'
+
+
+
+
 - name: Install feature chatroom-service_other_backend-koa
   hosts: fea-chatroom-service_other_backend-koa
   strategy: linear # free, debug
