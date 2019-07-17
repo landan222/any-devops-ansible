@@ -2,10 +2,10 @@
 
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_other_backend-koa && yarn"
-  tags: build
+  when: build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
 - name: "(shell) yarn run build"
   shell: "cd /var/www/chatroom-service_other_backend-koa && yarn run build"
-  tags: build
+  when: build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
   # notify: 
 
   # notify: 

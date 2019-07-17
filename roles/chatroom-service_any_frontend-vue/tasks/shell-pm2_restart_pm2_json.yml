@@ -1,9 +1,0 @@
----
-
-- name: "(shell) pm2 restart pm2.json"
-  shell: "cd /var/www/chatroom-service_other_backend-koa && pm2 restart pm2.json"
-  tags: pm2
-  # notify: 
-
-  # notify: 
-  #   - debug yum install nodejs

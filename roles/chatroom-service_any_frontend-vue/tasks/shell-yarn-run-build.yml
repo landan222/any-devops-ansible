@@ -2,12 +2,11 @@
 
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn"
-  tags:
-    - 'build'
+  when: build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+
 - name: "(shell) yarn run build"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn run build"
-  tags:
-    - 'build'
+  when: build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
   # notify: 
 
   # notify: 
