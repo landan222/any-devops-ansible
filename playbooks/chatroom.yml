@@ -14,6 +14,7 @@
       vars: 
         bra: fea
       when: branch is not defined or branch in ['fea', 'feature', 'all']
+      tags: [ 'untagged' ]
   post_tasks:
     - name: "本地 feature 环境，chatroom-service_other_backend-koa 安装开始"
       shell: echo 'playbook chatroom-service_other_backend-koa ends'
@@ -33,6 +34,7 @@
       vars:
         bra: fea
       when: branch in ['fea', 'feature', 'all']
+      tags: [ 'untagged' ]
   post_tasks:
     - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装完毕"
       shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
