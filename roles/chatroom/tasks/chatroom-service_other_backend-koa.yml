@@ -17,7 +17,14 @@
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
   when: chatroom_service_other_backend_koa_build is not undefined and chatroom_service_other_backend_koa_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
   
-  
+- name: (template) scp var/www/chatroom-service_other_backend-koa/.env.j2 /var/www/chatroom-service_other_backend-koa/.env
+  template:
+    src: var/www/chatroom-service_other_backend-koa/.env.j2
+    dest: /var/www/chatroom-service_other_backend-koa/.env
+    owner: root
+    group: root
+    mode: 0776
+    backup: no  
 
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_other_backend-koa && yarn"

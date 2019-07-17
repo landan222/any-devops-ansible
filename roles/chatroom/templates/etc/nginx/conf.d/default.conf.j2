@@ -31,10 +31,12 @@ server {
   
     {% if CONF['PROXY_PASS'] is defined %}
     location / {
+        {% if CONF['ADD_HEADERS'] is defined %}
         {% for ADD_HEADER in CONF.ADD_HEADERS %}
         add_header {{ ADD_HEADER }};
         {% endfor %}
-
+        {% endif %}
+       
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-SSL-Client-Cert $ssl_client_cert;
         proxy_set_header Upgrade $http_upgrade;

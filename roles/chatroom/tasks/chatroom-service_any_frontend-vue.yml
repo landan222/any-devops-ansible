@@ -18,6 +18,15 @@
     accept_hostkey: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
   when: chatroom_service_any_frontend_vue_build is not undefined and chatroom_service_any_frontend_vue_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
+
+- name: (template) scp var/www/chatroom-service_any_frontend-vue/.env.j2 /var/www/chatroom-service_any_frontend-vue/.env
+  template:
+    src: var/www/chatroom-service_any_frontend-vue/.env.j2
+    dest: /var/www/chatroom-service_any_frontend-vue/.env
+    owner: root
+    group: root
+    mode: 0776
+    backup: no  
   
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn"
