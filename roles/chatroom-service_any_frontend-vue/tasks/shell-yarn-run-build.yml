@@ -2,8 +2,12 @@
 
 - name: "(shell) yarn"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn"
+  tags:
+    - 'build'
 - name: "(shell) yarn run build"
   shell: "cd /var/www/chatroom-service_any_frontend-vue && yarn run build"
+  tags:
+    - 'build'
   # notify: 
 
   # notify: 

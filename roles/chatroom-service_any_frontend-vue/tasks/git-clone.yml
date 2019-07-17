@@ -6,6 +6,8 @@
     owner: root
     group: root
     mode: 0777
+  tags:
+    - 'build'
     
 - name: "(git) git clone git@gitlab.ques98.cn:chatroom/chatroom-service_any_frontend-vue /var/www/chatroom-service_any_frontend-vue"
   git:
@@ -15,6 +17,8 @@
     update: yes
     accept_hostkey: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
+  tags:
+    - 'build'
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
 # key must be put in root because sudo git clone

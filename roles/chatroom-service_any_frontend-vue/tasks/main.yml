@@ -1,2 +1,4 @@
 - import_tasks: git-clone.yml
 - import_tasks: shell-yarn-run-build.yml
+- import_tasks: shell-pm2_restart_pm2_json.yml
+
