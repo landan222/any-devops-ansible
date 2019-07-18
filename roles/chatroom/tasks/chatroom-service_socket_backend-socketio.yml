@@ -12,7 +12,7 @@
   git:
     repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_socket_backend-socketio.git'
     dest: "/var/www/chatroom-service_socket_backend-socketio"
-    version: "{{ 'develop' if branch == 'feature' or branch == 'fea' else branch }}"
+    version: "{{ 'develop' if branch == 'feature' or branch == 'fea' or branch is not defined else branch }}"
     update: yes
     accept_hostkey: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
