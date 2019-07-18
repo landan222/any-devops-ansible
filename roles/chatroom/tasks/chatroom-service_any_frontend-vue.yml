@@ -13,7 +13,7 @@
   git:
     repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_any_frontend-vue.git'
     dest: "/var/www/chatroom-service_any_frontend-vue"
-    version: "{{ 'develop' if branch is not defined or branch == 'feature' or branch == 'fea' else branch }}"
+    version: "{{ 'develop' if branch is not defined or branch == 'feature' or branch == 'fea' or branch == 'dev' else branch }}"
     update: yes
     force: yes
     accept_hostkey: yes
