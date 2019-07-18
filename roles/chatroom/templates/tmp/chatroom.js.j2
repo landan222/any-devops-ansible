@@ -23,6 +23,10 @@ use chatroom;
 // 小写 不能有 引号  USE, 'chatroom', `chatroom` 都不可
 // 一定要另外起一行 comment
 
+
+// ----------------------------
+// Collection structure for rooms
+// ----------------------------
 db.getCollection("rooms").drop();
 db.createCollection("rooms");
 
@@ -78,7 +82,8 @@ db.getCollection("users").insert([ {
     role: "ADMIN",
     addedTime: "2019-07-12 15:33:07.895",
     editedTime: "2019-07-12 15:33:07.895",
-    notBeforeTime: "2019-07-12 15:33:07.895"
+    notBeforeTime: "2019-07-12 15:33:07.895",
+    platformUid: "admin"
 } ]);
 db.getCollection("users").insert([ {
     _id: ObjectId("5d28a8f1af0fd03ce4004344"),
@@ -92,5 +97,6 @@ db.getCollection("users").insert([ {
     addedTime: "2019-07-12 15:33:07.895",
     editedTime: "2019-07-12 15:33:07.895",
     notBeforeTime: "2019-07-12 15:33:07.895",
-    type: 0
+    type: 0,
+    platformUid: "system"
 } ]);
