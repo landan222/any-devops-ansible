@@ -99,7 +99,7 @@
         bra: fea
         chatroom_service_socket_backend_socketio_build: true
 
-      when: branch in ['fea', 'feature', 'all']
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装完毕"
       shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
@@ -120,7 +120,7 @@
       vars:
         bra: fea
         chatroom_service_any_frontend_vue_build: true
-      when: branch in ['fea', 'feature', 'all']
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "开发 feature 环境，chatroom-service_any_frontend-vue 安装完毕"
       shell: echo 'playbook chatroom-service_any_frontend-vue ends'
@@ -163,7 +163,7 @@
         bra: fea
         chatroom_service_socket_backend_socketio_pm2: true
 
-      when: branch in ['fea', 'feature', 'all']
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "开发 feature 环境，chatroom-service_socket_backend-socketio 安装完毕"
       shell: echo 'playbook chatroom-service_socket_backend-socketio ends'

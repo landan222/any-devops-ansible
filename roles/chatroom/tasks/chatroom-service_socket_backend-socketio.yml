@@ -12,8 +12,9 @@
   git:
     repo: 'git@gitlab.ques98.cn:chatroom/chatroom-service_socket_backend-socketio.git'
     dest: "/var/www/chatroom-service_socket_backend-socketio"
-    version: "{{ 'develop' if branch == 'feature' or branch == 'fea' or branch is not defined else branch }}"
+    version: "{{ 'develop' if branch is not defined or branch == 'feature' or branch == 'fea' else branch }}"
     update: yes
+    force: yes
     accept_hostkey: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
   when: chatroom_service_socket_backend_socketio_build is not undefined and chatroom_service_socket_backend_socketio_build in ['yes', '1', 1, true, True, 'true', 'True', 'build']
