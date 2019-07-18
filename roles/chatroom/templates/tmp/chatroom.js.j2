@@ -19,7 +19,9 @@
 // Collection structure for rooms
 // ----------------------------
 
-use chatroom; // 小写 不能有 引号  USE, 'chatroom', `chatroom` 都不可
+use chatroom; 
+// 小写 不能有 引号  USE, 'chatroom', `chatroom` 都不可
+// 一定要另外起一行 comment
 
 db.getCollection("rooms").drop();
 db.createCollection("rooms");
