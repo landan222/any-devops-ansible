@@ -52,7 +52,7 @@ CHATROOM:
     PORT: 3306
     DATABASE: 'chatroom'
     USERNAME: 'backend'
-    PASSWORD: 'mysql_pass_backend'
+    PASSWORD: 'mongodb_pass_backend'
   DRIVERS:
     ONE:
       LOGIN_STATE_URL: 'http://test.c368.com/apiapp/5d1cb62aa5488'
