@@ -49,7 +49,7 @@ CHATROOM:
     PASSWORD: 'mysql_pass_backend'
   MONGODB:
     HOST: '127.0.0.1'
-    PORT: 3306
+    PORT: 27017
     DATABASE: 'chatroom'
     USERNAME: 'backend'
     PASSWORD: 'mongodb_pass_backend'
