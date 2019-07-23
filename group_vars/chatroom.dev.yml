@@ -13,7 +13,9 @@ CHATROOM:
         SERVER_NAME: 'dev.socket.chatroom.ques98.cn'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
-        PROXY_PASS: 'http://127.0.0.1:4003/'
+        LOCATIONS:
+          PATH: '/'
+          PROXY_PASS: 'http://127.0.0.1:4003'
         # ADD_HEADERS:
 #           - "Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS'"
 #           - "Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization'"
@@ -24,7 +26,9 @@ CHATROOM:
         SERVER_NAME: 'dev.api.service.chatroom.ques98.cn'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
-        PROXY_PASS: 'http://127.0.0.1:4002'
+        LOCATIONS:
+          PATH: '/'
+          PROXY_PASS: 'http://127.0.0.1:4002'
         # ADD_HEADERS:
 #           - "Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS'"
 #           - "Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization'"

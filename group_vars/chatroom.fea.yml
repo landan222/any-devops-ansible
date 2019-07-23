@@ -13,7 +13,9 @@ CHATROOM:
         SERVER_NAME: 'fea.socket.chatroom.ques98.cn'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
-        PROXY_PASS: 'http://127.0.0.1:4003/'
+        LOCATIONS:
+          - PATH: '~* \.io'
+            PROXY_PASS: 'http://127.0.0.1:4003' # 不可 / 结尾
         # ADD_HEADERS:
 #           - "Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS'"
 #           - "Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization'"
@@ -24,7 +26,9 @@ CHATROOM:
         SERVER_NAME: 'fea.api.service.chatroom.ques98.cn'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
-        PROXY_PASS: 'http://127.0.0.1:4002'  # 不可 / 结尾
+        LOCATIONS:
+          - PATH: '/'
+            PROXY_PASS: 'http://127.0.0.1:4002' # 不可 / 结尾
         # ADD_HEADERS:
 #           - "Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS'"
 #           - "Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization'"
@@ -33,14 +37,26 @@ CHATROOM:
         ROOT: '/var/www/chatroom-service_any_frontend-vue/dist'
         SERVER_NAME: 'fea.chatroom.ques98.cn'
         INDEX: 'index.html index.htm'
-        TRY_FILES: '$uri $uri/ /index.html'
-        
+        LOCATIONS:
+          - PATH: '/'
+            TRY_FILES: '$uri $uri/ /index.html'
+   
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-admin_any_backend-fastadmin/public'
         SERVER_NAME: 'fea.admin.chatroom.ques98.cn'
         INDEX: 'index.php index.html index.htm'
-        # TRY_FILES: '$uri $uri/ /index.php?$query_string'
-        PHP_VERSION: '7.3'
+        LOCATIONS:
+          - PATH: '~* \.php$'
+            ADD_HEADERS:
+              - "Access-Control-Allow-Origin '*'"
+              - "Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS'"
+              - "Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization'"
+              - "Access-Control-Allow-Credentials true"
+            FASTCGI_PASS: '127.0.0.1:9073'
+            FASTCGI_INDEX: 'index.php'
+            FASTCGI_SPLIT_PATH_INFO: '^(.+\.php)(.*)$'
+            FASTCGI_PARAM: 'SCRIPT_FILENAME $document_root$fastcgi_script_name'
+            INCLUDE: '/etc/nginx/fastcgi_params'
   MYSQL:
     HOST: '127.0.0.1'
     PORT: 3306
