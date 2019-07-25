@@ -31,7 +31,7 @@
     - role: php
       vars:
         bra: dev
-      when: branch in ['dev', 'develop', 'all']
+      when: branch is defined and branch in ['dev', 'develop', 'all']
   post_tasks:
     - name: "开发 develop 环境，PHP 安装完毕"  
       shell: echo 'playbook php ends'
