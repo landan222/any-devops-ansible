@@ -348,3 +348,180 @@
 
       
      
+
+
+
+##### REL ####################################################################################################################
+
+
+- name: Install release chatroom-mongodb
+  hosts: rel-chatroom-mongodb
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "本地 release 环境，chatroom-mongodb 安装开始"
+      shell: echo 'playbook chatroom-mongodb starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: dev
+        chatroom_mongodb: true
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "本地 release 环境，chatroom-mongodb 安装开始"
+      shell: echo 'playbook chatroom-mongodb ends'
+      
+- name: Install release chatroom-mysql
+  hosts: rel-chatroom-mysql
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "本地 release 环境，chatroom-mysql 安装开始"
+      shell: echo 'playbook chatroom-mysql starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: dev
+        chatroom_mysql: true
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "本地 release 环境，chatroom-mysql 安装开始"
+      shell: echo 'playbook chatroom-mysql ends'
+      
+      
+- name: Install release chatroom-nginx
+  hosts: rel-chatroom-nginx
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "本地 release 环境，chatroom-nginx 安装开始"
+      shell: echo 'playbook chatroom-nginx starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: dev
+        chatroom_nginx: true
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "本地 release 环境，chatroom-nginx 安装开始"
+      shell: echo 'playbook chatroom-nginx ends'
+
+
+
+
+- name: Install release chatroom-service_other_backend-koa
+  hosts: rel-chatroom-service_other_backend-koa
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "本地 release 环境，chatroom-service_other_backend-koa 安装开始"
+      shell: echo 'playbook chatroom-service_other_backend-koa starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: dev
+        chatroom_service_other_backend_koa_build: true
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "本地 release 环境，chatroom-service_other_backend-koa 安装开始"
+      shell: echo 'playbook chatroom-service_other_backend-koa ends'
+  
+- name: Install release chatroom-service_socket_backend-socketio
+  hosts: rel-chatroom-service_socket_backend-socketio
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "开发 release 环境，chatroom-service_socket_backend-socketio 安装开始"
+      shell: echo 'playbook chatroom-service_socket_backend-socketio starts'
+  roles:
+    - role: chatroom
+      vars:
+        bra: dev
+        chatroom_service_socket_backend_socketio_build: true
+
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "开发 release 环境，chatroom-service_socket_backend-socketio 安装完毕"
+      shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
+      
+      
+- name: Install release chatroom-service_any_frontend-vue
+  hosts: rel-chatroom-service_any_frontend-vue
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "开发 release 环境，chatroom-service_any_frontend-vue 安装开始"
+      shell: echo 'playbook chatroom-service_any_frontend-vue starts'
+  roles:
+    - role: chatroom
+      vars:
+        bra: dev
+        chatroom_service_any_frontend_vue_build: true
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "开发 release 环境，chatroom-service_any_frontend-vue 安装完毕"
+      shell: echo 'playbook chatroom-service_any_frontend-vue ends'
+      
+      
+      
+- name: Install release chatroom-service_other_backend-koa
+  hosts: rel-chatroom-service_other_backend-koa
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "本地 release 环境，chatroom-service_other_backend-koa 安装开始"
+      shell: echo 'playbook chatroom-service_other_backend-koa starts'
+  roles:
+    - role: chatroom
+      vars: 
+        bra: dev
+        chatroom_service_other_backend_koa_pm2: true
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "本地 release 环境，chatroom-service_other_backend-koa 安装开始"
+      shell: echo 'playbook chatroom-service_other_backend-koa ends'
+  
+- name: Install release chatroom-service_socket_backend-socketio
+  hosts: rel-chatroom-service_socket_backend-socketio
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chatroom.rel.yml
+  pre_tasks:
+    - name: "开发 release 环境，chatroom-service_socket_backend-socketio 安装开始"
+      shell: echo 'playbook chatroom-service_socket_backend-socketio starts'
+  roles:
+    - role: chatroom
+      vars:
+        bra: dev
+        chatroom_service_socket_backend_socketio_pm2: true
+
+      when: branch is defined and branch in ['dev', 'release', 'all']
+  post_tasks:
+    - name: "开发 release 环境，chatroom-service_socket_backend-socketio 安装完毕"
+      shell: echo 'playbook chatroom-service_socket_backend-socketio ends'
+      
+      
+    

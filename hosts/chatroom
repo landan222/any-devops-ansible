@@ -19,23 +19,26 @@
 
 
 
-[dev-chatroom-service_other_backend-koa]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
-[dev-chatroom-service_socket_backend-socketio]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+[rel-chatroom-service_other_backend-koa]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
-[dev-chatroom-service_any_frontend-vue]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+[rel-chatroom-service_socket_backend-socketio]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
-[dev-chatroom-mongodb]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+[rel-chatroom-service_any_frontend-vue]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
-[dev-chatroom-mysql]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+[rel-chatroom-mongodb]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
-[dev-chatroom-nginx]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+[rel-chatroom-mysql]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+[rel-chatroom-nginx]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+
 
 
 
@@ -159,81 +162,6 @@
 
 ####################################################################################################################################################################
 
-[dev-git]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-nginx]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-golang]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-php]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-supervisor]
-#47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-node]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-python]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-redis]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-memcached]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-beanstalkd]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-logstash]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-kibana]
-
-[dev-mmm_monitor]
-[dev-mha_manager]
-[dev-cluster_ndb_mgm]
-
-[dev-xtrabackup]
-[dev-mmm_agent]
-[dev-mha_node]
-
-[dev-mysql]
-#47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-mongodb]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-
-[dev-mysql_cnf-grant-change_master]
-#47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-cluster_ndb]
-
-
-[dev-cluster_mysql]
-
-[dev-elasticsearch]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-filebeat]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-
-
-[dev-lottery]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-[dev-chatroom]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-
-
-[dev-crontab]
-47.90.29.155 ansible_ssh_host=47.90.29.155 ansible_ssh_port=34111 ansible_ssh_user=root ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 ####################################################################################################################################################################
 
