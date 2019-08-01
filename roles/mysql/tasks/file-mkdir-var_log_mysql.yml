@@ -1,0 +1,13 @@
+- name: (file) rm -Rf /var/log/mysql
+  file:
+    path: /var/log/mysql
+    state: absent
+    
+- name: (file) mkdir /var/log/mysql
+  file:
+    path: /var/log/mysql
+    state: directory
+    recurse: yes
+    owner: mysql
+    group: mysql
+    mode: 0775
