@@ -1,0 +1,90 @@
+---
+
+- name: install feature mmm_monitor
+  hosts: fea-mmm_monitor
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/masterha.fea.yml
+    - ./../group_vars/cluster_ndb.fea.yml
+    - ./../group_vars/cluster_ndb_mgm.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，MMM Monitor 安装开始"
+      shell: echo 'playbook mmm_monitor starts'
+  roles:
+    - role: mmm_monitor
+      vars:
+        bra: fea
+      when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and mysql_ha == 'mmm' and (with_with_roles is not defined or 'mmm_monitor' in with_roles )
+  post_tasks:
+    - name: "本地 feature 环境，MMM Monitor 安装完毕"
+      shell: echo 'playbook mmm_monitor ends'    
+
+####################
+
+
+- name: install develop mmm_monitor
+  hosts: dev-mmm_monitor
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.dev.yml
+    - ./../group_vars/masterha.dev.yml
+    - ./../group_vars/cluster_ndb.dev.yml
+    - ./../group_vars/cluster_ndb_mgm.dev.yml
+  pre_tasks:
+    - name: "开发 develop 环境，MMM Monitor 安装开始"
+      shell: echo 'playbook mmm_monitor starts'
+  roles:
+    - role: mmm_monitor
+      vars:
+        bra: dev
+      when: (branch is not defined or branch in ['dev', 'develop', 'all'] )
+  post_tasks:
+    - name: "开发 develop 环境，MMM Monitor 安装完毕"
+      shell: echo 'playbook mmm_monitor ends'    
+
+      
+      
+      
+      
+      
+###################################################
+
+
+
+- name: install release mmm_monitor
+  hosts: rel-mmm_monitor
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.rel.yml
+    - ./../group_vars/masterha.rel.yml
+    - ./../group_vars/cluster_ndb.rel.yml
+    - ./../group_vars/cluster_ndb_mgm.rel.yml
+  pre_tasks:
+    - name: "开发 release 环境，MMM Monitor 安装开始"
+      shell: echo 'playbook mmm_monitor starts'
+  roles:
+    - role: mmm_monitor
+      vars:
+        bra: rel
+      when: (branch is not defined or branch in ['rel', 'release', 'all'] )
+  post_tasks:
+    - name: "开发 release 环境，MMM Monitor 安装完毕"
+      shell: echo 'playbook mmm_monitor ends'    
+# 
+    

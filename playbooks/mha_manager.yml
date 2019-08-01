@@ -1,0 +1,85 @@
+---
+
+- name: install feature mha_manager
+  hosts: fea-mha_manager
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.fea.yml
+    - ./../group_vars/masterha.fea.yml
+    - ./../group_vars/cluster_ndb.fea.yml
+    - ./../group_vars/cluster_ndb_mgm.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，MHA Manager 安装开始"
+      shell: echo 'playbook mha_manager starts'
+  roles:
+    - role: mha_manager
+      vars:
+        bra: fea
+      when: (branch is not defined or branch in ['fea', 'feature', 'all'] )
+  post_tasks:
+    - name: "本地 feature 环境，MHA Manager 安装完毕"
+      shell: echo 'playbook mha_manager ends'   
+ 
+####################
+
+- name: install develop mha_manager
+  hosts: dev-mha_manager
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.dev.yml
+    - ./../group_vars/masterha.dev.yml
+    - ./../group_vars/cluster_ndb.dev.yml
+    - ./../group_vars/cluster_ndb_mgm.dev.yml
+  pre_tasks:
+    - name: "开发 develop 环境，MHA Manager 安装开始"
+      shell: echo 'playbook mha_manager starts'
+  roles:
+    - role: mha_manager
+      vars:
+        bra: dev
+      when: (branch in ['dev', 'develop', 'all'] )
+  post_tasks:
+    - name: "开发 develop 环境，MHA Manager 安装完毕"
+      shell: echo 'playbook mha_manager ends'   
+ 
+      
+      
+      
+###################################################
+
+
+- name: install release mha_manager
+  hosts: rel-mha_manager
+  strategy: linear # free, debug
+  serial:
+    - 10
+    - 50%
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/mysql.rel.yml
+    - ./../group_vars/masterha.rel.yml
+    - ./../group_vars/cluster_ndb.rel.yml
+    - ./../group_vars/cluster_ndb_mgm.rel.yml
+  pre_tasks:
+    - name: "开发 release 环境，MHA Manager 安装开始"
+      shell: echo 'playbook mha_manager starts'
+  roles:
+    - role: mha_manager
+      vars:
+        bra: rel
+      when: (branch in ['rel', 'release', 'all'] ) and mysql_ha == 'mha' and (with_with_roles is not defined or 'mha_manager' in with_roles )
+  post_tasks:
+    - name: "开发 release 环境，MHA Manager 安装完毕"
+      shell: echo 'playbook mha_manager ends'   
+ 
