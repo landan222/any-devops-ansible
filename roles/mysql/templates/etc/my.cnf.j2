@@ -1,8 +1,4 @@
-{% if mysql_ha == 'cluster' %}
-{% set i =  groups[bra ~ '-cluster_mysql'].index(inventory_hostname) %}
-{% elif %}
 {% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
-{% endif %}
 
 [client]
 ######################### [client] 基本设置 #########################
