@@ -9,9 +9,6 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.fea.yml
-    - ./../group_vars/masterha.fea.yml
-    - ./../group_vars/cluster_ndb.fea.yml
-    - ./../group_vars/cluster_ndb_mgm.fea.yml
   pre_tasks:
     - name: "本地 feature 环境，MySQL 安装开始"
       shell: echo 'playbook mysql starts'
@@ -37,9 +34,6 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.dev.yml
-    - ./../group_vars/masterha.dev.yml
-    - ./../group_vars/cluster_ndb.dev.yml
-    - ./../group_vars/cluster_ndb_mgm.dev.yml
   pre_tasks:
     - name: "开发 develop 环境，MySQL 安装开始"
       shell: echo 'playbook mysql starts'
@@ -69,9 +63,6 @@
   become: true
   vars_files:
     - ./../group_vars/mysql.rel.yml
-    - ./../group_vars/masterha.rel.yml
-    - ./../group_vars/cluster_ndb.rel.yml
-    - ./../group_vars/cluster_ndb_mgm.rel.yml
   pre_tasks:
     - name: "开发 release 环境，MySQL 安装开始"
       shell: echo 'playbook mysql starts'
