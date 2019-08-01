@@ -6,4 +6,3 @@
     group: vagrant
     mode: 0660
     backup: no
-  when: mysql_ha == 'mmm'
