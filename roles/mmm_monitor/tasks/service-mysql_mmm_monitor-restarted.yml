@@ -10,7 +10,6 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'mmm'
 # - name: Debug start nginx
 #   debug: 
 #     msg: 'The key value is !!'

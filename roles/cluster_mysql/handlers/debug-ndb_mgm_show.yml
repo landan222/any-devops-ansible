@@ -5,7 +5,6 @@
   ignore_errors: yes
 - name: (debug) s_ndb_show
   run_once: true
-  debug: 
-    msg: "{{ s_ndb_show }}"
-  when: mysql_ha == 'cluster'
+  # debug: 
+  #   msg: "{{ s_ndb_show }}"
   

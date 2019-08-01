@@ -7,8 +7,21 @@
     group: root
     mode: 0776
     backup: no
-  when: chatroom_mysql is not undefined and chatroom_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'mysql']
+  when: chatroom_mysql is not undefined or chatroom_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'mysql']
 
 - name: (shell) mysql < /tmp/chatroom.sql
   shell: mysql < /tmp/chatroom.sql
-  when: chatroom_mysql is not undefined and chatroom_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'mysql']
+  when: chatroom_mysql is not undefined or chatroom_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'mysql']
+
+
+# - name: command mysql_upgrade --force -uroot
+#   command: mysql_upgrade --force -u root
+- name: (template) scp tmp/grant.sql.j2 /tmp/grant.sql
+  template:
+    src: tmp/grant.sql.j2
+    dest: /tmp/grant.sql
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+- name: "(shell) mysql --user='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"
+  shell: "mysql --user='{{ MYSQL.SERVERS[0].CONNECTIONS[0]['USER'] }}' --password='' --force < /tmp/grant.sql"

@@ -1,6 +1,6 @@
 ---
 mysql_version: '5.7'
-# 'none' 
+mysql_ha: 'none' 
 # master-slave, 
 # master-master-slave, 
 # dual-master, 

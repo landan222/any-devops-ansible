@@ -4,61 +4,17 @@
 {% set i =  groups[bra ~ '-mysql'].index(inventory_hostname) %}
 {% endif %}
 
-## MYSQ HA: {{ mysql_ha }} 高可用形态
-
-############################################################################################
-{% if mysql_ha == 'master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
-## master-slave 高可用，master 不需 使用 replication 指向其他台 MySQL
-
-{% elif mysql_ha == 'master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 2 %}
-## master-slave 高可用，slave 使用 replication 都指向第一台 MySQL
-{% set master_host = MYSQL.SERVERS[0].HOST %}
 
 ############################################################################################
 
-{% elif mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
-## master-master-slave 高可用，一级 master 不需 使用 replication 指向其他台 MySQL
+############################################################################################
 
-{% elif mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 %}
-## master-master-slave 高可用，次级 master 使用 replication 指向第一台 MySQL， 此时 第二台 MySQL engine 可能为 BALCKHOLE，看不到资料
-{% set master_host = MYSQL.SERVERS[0].HOST %}
-
-{% elif mysql_ha == 'master-master-slave' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 3 %}
-## master-master-slave 高可用，slave 使用 replication 都指向第二台 MySQL， 此时 第二台 MySQL engine 可能为 BALCKHOLE，看不到资料
-{% set master_host = MYSQL.SERVERS[1].HOST %}
 
 ############################################################################################
 
-{% elif mysql_ha == 'dual-master' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
-## daul-master 高可用，MASTER 使用 replication 指向第二台 MySQL， 
-{% set master_host = MYSQL.SERVERS[1].HOST %}
-
-{% elif mysql_ha == 'dual-master' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 %}
-## daul-master 高可用，备用MASTER 使用 replication 指向第二台 MySQL， 
-{% set master_host = MYSQL.SERVERS[0].HOST %}
-
-{% elif mysql_ha == 'dual-master' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 3 %}
-## daul-master 高可用，SLAVE 使用 replication 指向第一台 MySQL， 
-{% set master_host = MYSQL.SERVERS[0].HOST %}
 
 ############################################################################################
 
-{% elif mysql_ha == 'mmm' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
-## mmm 高可用，MASTER 使用 replication 指向第二台 MySQL， 
-{% set master_host = MYSQL.SERVERS[1].HOST %}
-
-{% elif mysql_ha == 'mmm' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 2 %}
-## mmm 高可用，备用MASTER 使用 replication 指向第二台 MySQL， 
-{% set master_host = MYSQL.SERVERS[0].HOST %}
-
-{% elif mysql_ha == 'mmm' and groups[bra ~ '-mysql'].index(inventory_hostname) + 1 >= 3 %}
-## mmm 高可用，SLAVE 使用 replication 指向第一台 MySQL， 
-{% set master_host = MYSQL.SERVERS[0].HOST %}
-
-############################################################################################
-
-{% elif groups[bra ~ '-mysql'].index(inventory_hostname) + 1 == 1 %}
-## master 不需 使用 replication 指向其他台 MySQL
 
 ############################################################################################
 

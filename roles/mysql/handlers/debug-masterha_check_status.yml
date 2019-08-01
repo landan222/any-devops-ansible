@@ -15,7 +15,6 @@
     index_var: index
     loop_var: host
     label: "{{ host }}"
-  when: mysql_ha == 'mha'
 - name: (debug) s_masterha_status
   run_once: true
   debug: 

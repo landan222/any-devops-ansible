@@ -3,4 +3,3 @@
   run_once: true
   debug: 
     msg: "{{ s_ndb }}"
-  when: mysql_ha == 'cluster'

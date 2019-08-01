@@ -20,7 +20,7 @@
     - role: mha_node
       vars:
         bra: fea
-      when: (branch is not defined or branch in ['fea', 'feature','all'] ) and mysql_ha == 'mha' and (with_with_roles is not defined or 'mha_node' in with_roles )
+      when: (branch is not defined or branch in ['fea', 'feature','all'] )
   post_tasks:
     - name: "本地 feature 环境，MHA Node 安装完毕"
       shell: echo 'playbook mha_node ends'

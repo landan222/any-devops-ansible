@@ -20,7 +20,7 @@
     - role: mmm_monitor
       vars:
         bra: fea
-      when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) and mysql_ha == 'mmm' and (with_with_roles is not defined or 'mmm_monitor' in with_roles )
+      when: (branch is not defined or branch in ['fea', 'feature', 'all'] ) 
   post_tasks:
     - name: "本地 feature 环境，MMM Monitor 安装完毕"
       shell: echo 'playbook mmm_monitor ends'    
