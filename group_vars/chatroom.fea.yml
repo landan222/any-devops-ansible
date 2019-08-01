@@ -73,3 +73,1325 @@ CHATROOM:
     ONE:
       LOGIN_STATE_URL: 'http://test.c368.com/apiapp/5d1cb62aa5488'
       MONEY_STATE_URL: 'http://test.c368.com/apiapp/5d1cb646059d8'
+      
+      
+ 
+ 
+ 
+ ---
+ mysql_version: '5.7'
+ mysql_ha: 'none' 
+ # master-slave, 
+ # master-master-slave, 
+ # dual-master, 
+ # mmm, 
+ # mha, 
+ # cluster, 
+ # fabric 
+ # mmm-cluster, 
+ # pxc
+ 
+ MYSQL:
+   GTID_MODE: yes
+   TRANSACTION_ISOLATION: 'READ-COMMITTED'
+   CHARACTER_SET: 'utf8mb4'
+   COLLATION: 'utf8mb4_unicode_ci'
+   SERVERS:
+     - HOST: '10.0.0.181'       # 内网 IP   
+       NAME: 'mysql-1'
+       BIND_ADDRESS: '0.0.0.0'  # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'
+       IS_MASTER: yes                        # 一级 MYSQL , 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
+       CONNECTIONS:
+         - drop_user: false                 # index = 0, 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true                 # index = 1
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true                 # index = 2
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true                 # index = 3
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true                 # index = 4
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true                 # index = 5
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true                # index = 6
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true                # index = 7
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false               # index = 8
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*'
+           
+     - HOST: '10.0.0.182'       # 外网 IP   # 次一级 MYSQL 
+       NAME: 'mysql-2'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       # ENGINE: 'BLACKHOLE'
+       IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
+       MASTER_HOST: '10.0.0.181'             
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*'     
+           
+     - HOST: '10.0.0.183'       # 外网 IP    # 次一级 MYSQL 
+       NAME: 'mysql-3'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'
+       IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
+       MASTER_HOST: '10.0.0.181'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+              - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+              - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*'
+ 
+     - HOST: '10.0.0.191'       # 内网 IP      # 二级 MYSQL 
+       NAME: 'mysql-1_1'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'
+       MASTER_HOST: '10.0.0.191'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*' 
+      
+              
+     - HOST: '10.0.0.192'       # 内网 IP      # 二级 MYSQL 
+       NAME: 'mysql-1_2'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'
+       MASTER_HOST: '10.0.0.181'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*' 
+    
+     - HOST: '10.0.0.193'       # 内网 IP     # 二级 MYSQL 
+       NAME: 'mysql-2_1'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'
+       MASTER_HOST: '10.0.0.182'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*'       
+           
+     - HOST: '10.0.0.194'       # 内网 IP     # 二级 MYSQL 
+       NAME: 'mysql-2_2'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'                      # 若 master-slave 高可用，slave 使用 replication 都改指向第一台 MySQL
+       MASTER_HOST: '10.0.0.182'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*'
+           
+     - HOST: '10.0.0.195'       # 内网 IP      # 二级 MYSQL 
+       NAME: 'mysql-3_1'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'
+       MASTER_HOST: '10.0.0.183'
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*'
+           
+     - HOST: '10.0.0.196'       # 内网 IP      # 二级 MYSQL 
+       NAME: 'mysql-3_2'
+       BIND_ADDRESS: '0.0.0.0' # 内网 IP
+       DATADIR: '/var/lib/mysql'
+       BASEDIR: '/var/lib/mysql'
+       LOGDIR: '/var/log/mysql'
+       SOCKET: '/var/lib/mysql/mysql.sock'
+       PORT: 3306
+       ENGINE: 'InnoDB'
+       MASTER_HOST: '10.0.0.183'
+       CONNECTIONS:
+         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
+           with_grant_option: true
+           GRANTS:
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
+             - '127.0.0.1'
+           PASSWORD: 'mysql_pass_cli'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
+           PASSWORD: 'mysql_pass_natgateway'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'ALL'
+           USER: 'root'
+           HOSTS: 
+             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_router'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'REPLICATION CLIENT'
+           USER: 'monitor'
+           HOSTS: 
+             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_monitor'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: true
+           GRANTS: 
+             - 'SUPER'
+             - 'RELOAD'
+             - 'REPLICATION CLIENT'
+             - 'SELECT'
+             - 'CREATE'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'DELETE'
+             - 'DROP'
+           USER: 'manager'
+           HOSTS: 
+             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
+           PASSWORD: 'mysql_pass_manager'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SELECT'
+             - 'INSERT'
+             - 'UPDATE'
+             - 'CREATE'
+             - 'CREATE TEMPORARY TABLES'
+             - 'LOCK TABLES'
+             - 'EXECUTE'
+             - 'CREATE ROUTINE'
+             - 'ALTER ROUTINE'
+           USER: 'backend'
+           HOSTS: 
+             - 'localhost'
+             - '127.0.0.1'                # 提供 PHP GOLANG NODEJS 从 127.0.0.1 连取 127.0.0.1 ，在 VN localhost
+             - '10.0.0.51'                # GOLANG
+             - '10.0.0.52'                # GOLANG
+             - '10.0.0.91'                # PHP
+             - '10.0.0.92'                # PHP
+             - '10.0.0.121'               # NODE
+             - '10.0.0.151'               # Python            
+           PASSWORD: 'mysql_pass_backend'
+           DATABASE: '*'
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'REPLICATION SLAVE'
+             - 'REPLICATION CLIENT'
+           USER: 'replicator'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL SLAVE 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'
+             - '10.0.0.191'
+             - '10.0.0.192'
+             - '10.0.0.193'
+             - '10.0.0.194'
+             - '10.0.0.195'
+             - '10.0.0.196'
+           PASSWORD: 'mysql_pass_replicator'
+           DATABASE: '*'          
+           
+         - drop_user: true
+           with_grant_option: false
+           GRANTS: 
+             - 'SUPER'
+             - 'REPLICATION CLIENT'
+             - 'PROCESS'
+           USER: 'agent'
+           HOSTS: 
+             - '10.0.0.181'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.182'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.183'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.191'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.192'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.193'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网
+             - '10.0.0.194'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
+           PASSWORD: 'mysql_pass_agent'
+           DATABASE: '*'
+                  
+         - drop_user: false                  
+           with_grant_option: true
+           GRANTS:
+             - 'RELOAD'
+             - 'LOCK TABLES'
+             - 'REPLICATION CLIENT'
+             - 'CREATE TABLESPACE'
+             - 'PROCESS'
+             - 'SUPER'
+           USER: 'backup'
+           HOSTS: 
+             - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
+             - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
+           PASSWORD: 'mysql_pass_backup'
+           DATABASE: '*'          
