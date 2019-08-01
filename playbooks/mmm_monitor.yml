@@ -48,7 +48,7 @@
     - role: mmm_monitor
       vars:
         bra: dev
-      when: (branch is not defined or branch in ['dev', 'develop', 'all'] )
+      when: (branch is defined and branch in ['dev', 'develop', 'all'] )
   post_tasks:
     - name: "开发 develop 环境，MMM Monitor 安装完毕"
       shell: echo 'playbook mmm_monitor ends'    
@@ -82,7 +82,7 @@
     - role: mmm_monitor
       vars:
         bra: rel
-      when: (branch is not defined or branch in ['rel', 'release', 'all'] )
+      when: (branch is defined and branch in ['rel', 'release', 'all'] )
   post_tasks:
     - name: "开发 release 环境，MMM Monitor 安装完毕"
       shell: echo 'playbook mmm_monitor ends'    

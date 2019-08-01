@@ -47,7 +47,7 @@
     - role: mha_manager
       vars:
         bra: dev
-      when: (branch in ['dev', 'develop', 'all'] )
+      when: (branch is defined and branch in ['dev', 'develop', 'all'] )
   post_tasks:
     - name: "开发 develop 环境，MHA Manager 安装完毕"
       shell: echo 'playbook mha_manager ends'   
@@ -78,7 +78,7 @@
     - role: mha_manager
       vars:
         bra: rel
-      when: (branch in ['rel', 'release', 'all'] ) and mysql_ha == 'mha' and (with_with_roles is not defined or 'mha_manager' in with_roles )
+      when: (branch is defined and branch in ['rel', 'release', 'all'] )
   post_tasks:
     - name: "开发 release 环境，MHA Manager 安装完毕"
       shell: echo 'playbook mha_manager ends'   
