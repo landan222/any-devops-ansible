@@ -78,18 +78,7 @@ CHATROOM:
  
  
  
- ---
- mysql_version: '5.7'
- mysql_ha: 'none' 
- # master-slave, 
- # master-master-slave, 
- # dual-master, 
- # mmm, 
- # mha, 
- # cluster, 
- # fabric 
- # mmm-cluster, 
- # pxc
+
  
  MYSQL:
    GTID_MODE: yes
@@ -108,34 +97,7 @@ CHATROOM:
        ENGINE: 'InnoDB'
        IS_MASTER: yes                        # 一级 MYSQL , 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
        CONNECTIONS:
-         - drop_user: false                 # index = 0, 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true                 # index = 1
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true                 # index = 2
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true                 # index = 3
            with_grant_option: true
            GRANTS: 
@@ -253,34 +215,7 @@ CHATROOM:
        IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
        MASTER_HOST: '10.0.0.181'             
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true
            with_grant_option: true
            GRANTS: 
@@ -398,34 +333,7 @@ CHATROOM:
        IS_MASTER: yes                        # 一级 MYSQL , 此 SLAVE 是别的 SLAVE 的 MASTER 大部分 主机 log-slave-updates = 1
        MASTER_HOST: '10.0.0.181'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true
            with_grant_option: true
            GRANTS: 
@@ -542,34 +450,7 @@ CHATROOM:
        ENGINE: 'InnoDB'
        MASTER_HOST: '10.0.0.191'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true
            with_grant_option: true
            GRANTS: 
@@ -687,34 +568,7 @@ CHATROOM:
        ENGINE: 'InnoDB'
        MASTER_HOST: '10.0.0.181'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true
            with_grant_option: true
            GRANTS: 
@@ -831,34 +685,7 @@ CHATROOM:
        ENGINE: 'InnoDB'
        MASTER_HOST: '10.0.0.182'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true
            with_grant_option: true
            GRANTS: 
@@ -975,34 +802,7 @@ CHATROOM:
        ENGINE: 'InnoDB'                      # 若 master-slave 高可用，slave 使用 replication 都改指向第一台 MySQL
        MASTER_HOST: '10.0.0.182'              # 若 master-master-slave 高可用，slave 使用 replication 都改指向第二台 MySQL
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+     
          - drop_user: true
            with_grant_option: true
            GRANTS: 
@@ -1119,34 +919,7 @@ CHATROOM:
        ENGINE: 'InnoDB'
        MASTER_HOST: '10.0.0.183'
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true
            with_grant_option: true
            GRANTS: 
@@ -1263,34 +1036,7 @@ CHATROOM:
        ENGINE: 'InnoDB'
        MASTER_HOST: '10.0.0.183'
        CONNECTIONS:
-         - drop_user: false                  # 第一个 CONNECTIONS 为 root@localhost 使用 ， 请勿改变次序
-           with_grant_option: true
-           GRANTS:
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - 'localhost'                 # 提供 Linux shell  连取 127.0.0.1 ，在 localhost
-             - '127.0.0.1'
-           PASSWORD: 'mysql_pass_cli'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.2.2'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM NAT    经过 10.0.2.2)  连取 127.0.0.1 ，在 VM 外网
-           PASSWORD: 'mysql_pass_natgateway'
-           DATABASE: '*'
-         - drop_user: true
-           with_grant_option: true
-           GRANTS: 
-             - 'ALL'
-           USER: 'root'
-           HOSTS: 
-             - '10.0.0.1'                 # 提供 Windows or Mac 从 办公室 ip (利用 VM ROUTER 经过 10.0.0.1)  连取 10.0.0.191 ，在 VM 外网
-           PASSWORD: 'mysql_pass_router'
-           DATABASE: '*'
+
          - drop_user: true
            with_grant_option: true
            GRANTS: 
