@@ -216,9 +216,7 @@ max_binlog_size = 1G                                    # 单个二进制日志�
 expire_logs_days = 7                                    # 二进制日志自动删除的天数，默认值为0,表示“没有自动删除”，启动时和二进制日志循环时可能删除      
 log_bin_trust_function_creators = 1                     # 将函数复制到slave  
 
-{% for CREATE_DATABASE in MYSQL.CREATE_DATABASES %}
-binlog-do-db = {{ CREATE_DATABASE }}
-{% endfor %}
+
 binlog-ignore-db = information_schema
 binlog-ignore-db = performace_schema
 binlog-ignore-db = sys
