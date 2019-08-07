@@ -38,7 +38,27 @@
       when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "本地 feature 环境，lottery-mysql 安装完毕"
-      shell: echo 'playbook lottery-mysql ends'      
+      shell: echo 'playbook lottery-mysql ends'
+
+- name: Install feature lottery-supervisor
+  hosts: fea-lottery-supervisor
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/lottery.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，lottery-supervisor 安装开始"
+      shell: echo 'playbook lottery-supervisor starts'
+  roles:
+    - role: lottery
+      vars:
+        bra: fea
+        lottery_supervisor: true
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，lottery-mysql 安装完毕"
+      shell: echo 'playbook lottery-mysql ends' 
       
       
 - name: Install develop lottery
