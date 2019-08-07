@@ -1,9 +1,0 @@
----
-- name: (template) scp etc/mongod.conf.j2 /etc/mongod.conf
-  template:
-    src: etc/mongod.conf.j2
-    dest: "/etc/mongod.conf"
-    owner: root
-    group: root
-    mode: 0776
-    backup: no

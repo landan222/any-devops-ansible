@@ -1,3 +1,0 @@
----
-LOTTERY_CRAWLER_ALL_BACKEND_SCRAPY:
-  DEST: '/var/www/lottery-crawler_all_backend-scrapy'

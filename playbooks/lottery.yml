@@ -9,7 +9,7 @@
     - ./../group_vars/lottery.fea.yml
   pre_tasks:
     - name: "本地 feature 环境，lottery 安装开始"
-      shell: echo 'playbook lottery-database-mysql starts'
+      shell: echo 'playbook lottery starts'
   roles:
     - role: lottery
       vars:
@@ -17,7 +17,7 @@
       when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "本地 feature 环境，lottery 安装完毕"
-      shell: echo 'playbook lottery-database-mysql ends'
+      shell: echo 'playbook lottery ends'
       
 - name: Install develop lottery
   hosts: dev-lottery
@@ -33,7 +33,7 @@
     - role: lottery
       vars:
         bra: dev
-      when: branch in ['dev', 'develop', 'all']
+      when: branch is defined and branch in ['dev', 'develop', 'all']
   post_tasks:
     - name: "开发 develop 环境，lottery 安装完毕"
       shell: echo 'playbook lottery ends'

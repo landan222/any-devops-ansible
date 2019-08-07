@@ -1,3 +1,0 @@
----
-LOTTERY_SERVICE_RESOURCE_BACKEND_LUMEN:
-  DEST: '/var/www/lottery-service_resource_backend-lumen'
