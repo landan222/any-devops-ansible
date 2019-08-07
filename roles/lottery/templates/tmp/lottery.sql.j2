@@ -20,7 +20,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE `lottery`;
+CREATE DATABASE IF NOT EXISTS `lottery`;
 
 USE `lottery`;
 
@@ -414,7 +414,7 @@ PARTITION `less_than_20190612` VALUES LESS THAN (737587) ENGINE = InnoDB MAX_ROW
 PARTITION `less_than_maxvalue` VALUES LESS THAN (MAXVALUE) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 )
 ;
 
-
+DROP TABLE IF EXISTS `lottery_issue_counts`;
 CREATE TABLE `lottery_issue_counts` (
   `lottery_issue_count_id` int(12) unsigned NOT NULL AUTO_INCREMENT,
   `lottery_id` int(12) NOT NULL,
