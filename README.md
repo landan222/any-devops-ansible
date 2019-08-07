@@ -78,7 +78,7 @@ sh /var/www/any-cicd_playbook_devops-ansible/linux_shells/yum-install-ansible.sh
 ```
 
 
-1. 安装 MySQL, MongoDB, Redis, Nginx, Node(含 pm2 )
+1. 安装 MySQL, MongoDB, Redis, Nginx, Node(含 PM2 )
 ```
 cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/mysql-ha.yml && 
 cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/mongodb.yml && 
@@ -93,6 +93,44 @@ cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatr
 cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/chatroom.yml (生产 develop, release, master 环境)
 
 cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/chatroom.yml -e "chatroom_service_other_backend_koa_pm2=0 chatroom_service_socket_backend_socket_pm2=0"(开发 feature 环境)
+
+
+```
+
+
+## 安装 [聊天室项目]
+
+0. 安装 GIT
+```
+略
+```
+
+0. 到 Linux 主机目录下载 CICD 项目
+```
+cd /var/www && git clone git@gitlab.ques98.cn:any/any-cicd_playbook_devops-ansible.git
+```
+
+0. 下载 Ansible 主程序
+```
+sh /var/www/any-cicd_playbook_devops-ansible/linux_shells/yum-install-ansible.sh
+```
+
+
+1. 安装 MySQL, Redis, Nginx, Beanstalkd, Supervisor, Node (含 Yarn, PM2 )
+```
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/mysql.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/redis.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/nginx.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/beanstakld.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/supervisor.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/node.yml && 
+
+```
+
+1. 安装 lottery
+```
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/lottery playbooks/lottery.yml (生产 develop, release, master 环境)
+
 
 
 ```
