@@ -4,7 +4,7 @@ LOTTERY:
     CONFS:
       - HTTP_PORT: 80
         ROOT: '/var/www/landan-admin_other_backend-lumen/public'
-        SERVER_NAME: 'fea.api.lottery.ques98.cn'
+        SERVER_NAME: 'dev.api.lottery.ques98.cn'
         INDEX: 'index.php index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         LOCATIONS:
@@ -13,21 +13,21 @@ LOTTERY:
       - HTTP_PORT: 80
         ROOT: '/var/www/lottery-service_mobile_frontend-vue/dist'
         INDEX: 'index.html index.htm'
-        SERVER_NAME: 'fea.mobile.lottery.ques98.cn'
+        SERVER_NAME: 'dev.mobile.lottery.ques98.cn'
         LOCATIONS:
           - PATH: '/'
             TRY_FILES: '$uri $uri/ /index.html'
       - HTTP_PORT: 80
         ROOT: '/var/www/lottery-service_web_frontend-vue/dist'
         INDEX: 'index.html index.htm'
-        SERVER_NAME: 'fea.web.lottery.ques98.cn'
+        SERVER_NAME: 'dev.web.lottery.ques98.cn'
         LOCATIONS:
           - PATH: '/'
             TRY_FILES: '$uri $uri/ /index.html'
       - HTTP_PORT: 80
         ROOT: '/var/www/lottery-service_any_frontend-vue/dist'
         INDEX: 'index.html index.htm'
-        SERVER_NAME: 'fea.lottery.ques98.cn'
+        SERVER_NAME: 'dev.lottery.ques98.cn'
         LOCATIONS:
           - PATH: '/'
             TRY_FILES: '$uri $uri/ /index.html'
