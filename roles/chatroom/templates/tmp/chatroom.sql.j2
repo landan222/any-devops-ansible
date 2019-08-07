@@ -24,7 +24,28 @@ SET FOREIGN_KEY_CHECKS = 0;
 CREATE DATABASE IF NOT EXISTS `chatroom`;
 
 USE `chatroom`;
+/*
+ Navicat Premium Data Transfer
 
+ Source Server         : fea(10.0.0.11)
+ Source Server Type    : MySQL
+ Source Server Version : 50727
+ Source Host           : localhost:3306
+ Source Schema         : chatroom
+
+ Target Server Type    : MySQL
+ Target Server Version : 50727
+ File Encoding         : 65001
+
+ Date: 07/08/2019 18:40:49
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
@@ -79,6 +100,45 @@ INSERT INTO `admin_log` VALUES (6, 1, 'admin', '/admin/ajax/upload', '', '{\"nam
 INSERT INTO `admin_log` VALUES (7, 1, 'admin', '/admin/ajax/upload', '', '{\"name\":\"Cambodia-pic-WEB-min.jpg\"}', '10.0.2.2', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36', 1561546129);
 INSERT INTO `admin_log` VALUES (8, 1, 'admin', '/admin/user/user/edit/ids/1?dialog=1', '会员管理 会员管理 编辑', '{\"dialog\":\"1\",\"row\":{\"group_id\":\"1\",\"username\":\"admin\",\"nickname\":\"admin\",\"password\":\"c13f62012fd6a8fdf06b3452a94430e5\",\"salt\":\"rpR6Bv\",\"email\":\"admin@163.com\",\"mobile\":\"13888888888\",\"avatar\":\"\\/assets\\/img\\/qrcode.png\",\"level\":\"0\",\"gender\":\"0\",\"birthday\":\"2017-04-15\",\"bio\":\"aaaa\",\"money\":\"0.00\",\"score\":\"0\",\"successions\":\"1\",\"maxsuccessions\":\"1\",\"prevtime\":\"2018-01-17 14:28:12\",\"logintime\":\"2018-01-17 14:46:54\",\"loginip\":\"127.0.0.1\",\"loginfailure\":\"0\",\"joinip\":\"127.0.0.1\",\"jointime\":\"2017-04-06 14:50:18\",\"token\":\"aaaaa\",\"status\":\"sss\",\"verification\":\"1224\"},\"ids\":\"1\"}', '10.0.2.2', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36', 1561546143);
 INSERT INTO `admin_log` VALUES (9, 1, 'admin', '/admin/word/add?dialog=1', 'Word 添加', '{\"dialog\":\"1\",\"row\":{\"from\":\"fuck\",\"to\":\"f***\",\"type\":\"replace\"}}', '10.0.2.2', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36', 1561556742);
+
+-- ----------------------------
+-- Table structure for administrators
+-- ----------------------------
+DROP TABLE IF EXISTS `administrators`;
+CREATE TABLE `administrators`  (
+  `administrator_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `nickname` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '昵称',
+  `password` char(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '头像',
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '电子邮箱',
+  `status` tinyint(1) UNSIGNED ZEROFILL NOT NULL DEFAULT 0 COMMENT '状态',
+  `added_time` datetime(6) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '创建时间',
+  `edited_time` datetime(6) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '更新时间',
+  `removed_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`administrator_id`) USING BTREE,
+  UNIQUE INDEX `username`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of administrators
+-- ----------------------------
+INSERT INTO `administrators` VALUES (1, 'admin', '管理者', 'e45a4f1b101e1e609e258f799a5f40fcb0d8f4e4', 'user/1564820023-6c1af0a78b6233d1e03a3ee09efc6515268d5867.png', '', 1, '2019-08-07 07:50:33.710568', '2019-08-07 07:50:33.710568', NULL);
+
+-- ----------------------------
+-- Table structure for adminstrator_to_department
+-- ----------------------------
+DROP TABLE IF EXISTS `adminstrator_to_department`;
+CREATE TABLE `adminstrator_to_department`  (
+  `administrator_id` int(12) UNSIGNED NOT NULL,
+  `department_id` int(12) UNSIGNED NOT NULL,
+  PRIMARY KEY (`administrator_id`, `department_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adminstrator_to_department
+-- ----------------------------
+INSERT INTO `adminstrator_to_department` VALUES (1, 1);
 
 -- ----------------------------
 -- Table structure for attachment
@@ -280,6 +340,27 @@ INSERT INTO `auth_rule` VALUES (98, 'file', 94, 'word/del', '删除', 'fa fa-cir
 INSERT INTO `auth_rule` VALUES (99, 'file', 94, 'word/multi', '批量更新', 'fa fa-circle-o', '', '', 0, 1561556661, 1561556661, 0, 'normal');
 
 -- ----------------------------
+-- Table structure for authorizations
+-- ----------------------------
+DROP TABLE IF EXISTS `authorizations`;
+CREATE TABLE `authorizations`  (
+  `authorization_id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `route` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `methods` set('GET','POST','PUT','DELETE') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '',
+  `deparment_id` int(12) NOT NULL,
+  `status` tinyint(1) NULL DEFAULT NULL,
+  `added_time` datetime(0) NULL DEFAULT NULL,
+  `edited_time` datetime(0) NULL DEFAULT NULL,
+  `removed_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`authorization_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of authorizations
+-- ----------------------------
+INSERT INTO `authorizations` VALUES (1, '/room', 'GET,POST,PUT,DELETE', 1, 1, '2019-08-14 15:29:06', '2019-08-14 15:29:06', NULL);
+
+-- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
@@ -378,6 +459,21 @@ CREATE TABLE `configs`  (
 INSERT INTO `configs` VALUES (1, 'betMoney', '0');
 INSERT INTO `configs` VALUES (2, 'chargeMoney', '0');
 INSERT INTO `configs` VALUES (3, 'day', '2');
+
+-- ----------------------------
+-- Table structure for departments
+-- ----------------------------
+DROP TABLE IF EXISTS `departments`;
+CREATE TABLE `departments`  (
+  `department_id` int(12) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`department_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of departments
+-- ----------------------------
+INSERT INTO `departments` VALUES (1, '超级部门');
 
 -- ----------------------------
 -- Table structure for ems
