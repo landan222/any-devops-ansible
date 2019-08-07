@@ -3,12 +3,17 @@ LOTTERY:
   NGINX:
     CONFS:
       - HTTP_PORT: 80
-        ROOT: '/var/www/landan-admin_other_backend-lumen/public'
+        ROOT: '/var/www/lottery-service_resource_backend-lumen/public'
         SERVER_NAME: 'fea.api.lottery.ques98.cn'
         INDEX: 'index.php index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         LOCATIONS:
           - PATH: '/'
+            ADD_HEADERS:
+              - "Access-Control-Allow-Origin '*'"
+              - "Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS'"
+              - "Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization'"
+              - "Access-Control-Allow-Credentials true"
             PROXY_PASS: 'http://127.0.0.1:4001' # 不可 / 结尾
       - HTTP_PORT: 80
         ROOT: '/var/www/lottery-service_mobile_frontend-vue/dist'
