@@ -1,23 +1,45 @@
 
 ---
-- name: Install feature lottery
-  hosts: fea-lottery
+- name: Install feature lottery-nginx
+  hosts: fea-lottery-nginx
   strategy: linear # free, debug
   gather_facts: true
   become: true
   vars_files:
     - ./../group_vars/lottery.fea.yml
   pre_tasks:
-    - name: "本地 feature 环境，lottery 安装开始"
-      shell: echo 'playbook lottery starts'
+    - name: "本地 feature 环境，lottery-nginx 安装开始"
+      shell: echo 'playbook lottery-nginx starts'
   roles:
     - role: lottery
       vars:
         bra: fea
+        lottery_nginx: true
       when: branch is not defined or branch in ['fea', 'feature', 'all']
   post_tasks:
     - name: "本地 feature 环境，lottery 安装完毕"
       shell: echo 'playbook lottery ends'
+      
+- name: Install feature lottery-mysql
+  hosts: fea-lottery-mysql
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/lottery.fea.yml
+  pre_tasks:
+    - name: "本地 feature 环境，lottery-mysql 安装开始"
+      shell: echo 'playbook lottery-mysql starts'
+  roles:
+    - role: lottery
+      vars:
+        bra: fea
+        lottery_mysql: true
+      when: branch is not defined or branch in ['fea', 'feature', 'all']
+  post_tasks:
+    - name: "本地 feature 环境，lottery-mysql 安装完毕"
+      shell: echo 'playbook lottery-mysql ends'      
+      
       
 - name: Install develop lottery
   hosts: dev-lottery

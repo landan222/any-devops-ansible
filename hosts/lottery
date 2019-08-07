@@ -1,0 +1,202 @@
+
+[fea-lottery-service_other_backend-koa]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-lottery-service_socket_backend-socketio]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-lottery-service_any_frontend-vue]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-lottery-mysql]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-lottery-nginx]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
+####################################################################################################################################################################
+
+[fea-git]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+##
+
+[fea-nginx]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-lvs]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+## 
+
+[fea-filebeat]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-golang] # Group Name, 空白错误 [node server] 错误 
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-php] # Group Name, 空白错误 [node server] 错误 
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-supervisor]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-node] # Group Name, 空白错误 [node server] 错误 
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+## 
+
+[fea-python]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+##
+
+[fea-memcached]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-redis]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-beanstalkd]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-logstash]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-kibana] 
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-mmm_monitor]
+## 因为 mmm_monitor , masterha 依赖於 mysql 程度太高，可能会舍弃在 playbooks/mmm_monitor.yml 装， 改由 playbooks/mysql.yml 委派的方式装
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-mha_manager]
+## 因为 mmm_monitor , masterha 依赖於 mysql 程度太高，可能会舍弃在 playbooks/mmm_monitor.yml 装， 改由 playbooks/mysql.yml 委派的方式装
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-cluster_ndb_mgm]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
+
+##
+[fea-xtrabackup]
+#127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
+[fea-mmm_agent]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-mha_node]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-mysql]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+[fea-cluster_ndb]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
+[fea-cluster_mysql]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
+
+##
+
+[fea-mongodb]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+##
+
+[fea-elasticsearch]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
+[fea-crontab]
+127.0.0.1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_ssh_private_key_file=/root/.ssh/authorized_keys
+
+
+####################################################################################################################################################################
+
+
+####################################################################################################################################################################
+
+[rel-git]
+
+[rel-nginx]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+[rel-golang]
+
+[rel-php]
+
+[rel-supervisor]
+
+[rel-node]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+[rel-redis]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+[rel-memcached]
+
+[rel-beanstalkd]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+[rel-logstash]
+
+[rel-kibana]
+
+[rel-masterha] 
+
+[rel-xtrabackup]
+
+[rel-mysql]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+
+[rel-mongodb]
+47.75.11.136 ansible_ssh_host=47.75.11.136 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=wJ123456@Abc! ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
+
+[rel-elasticsearch]
+
+[rel-filebeat]
+
+
+
+####################################################################################################################################################################
+
+[mas-git]
+
+[mas-nginx]
+
+[mas-golang]
+
+[mas-php]
+
+[mas-supervisor]
+
+[mas-node]
+
+[mas-redis]
+
+[mas-memcached]
+
+[mas-beanstalkd]
+
+[mas-logstash]
+
+[mas-kibana]
+
+[mas-masterha] 
+
+[mas-xtrabackup]
+
+[mas-mysql]
+
+[mas-elasticsearch]
+
+[mas-filebeat]

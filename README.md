@@ -98,7 +98,7 @@ cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatr
 ```
 
 
-## 安装 [聊天室项目]
+## 安装 [开奖网项目]
 
 0. 安装 GIT
 ```
@@ -118,12 +118,12 @@ sh /var/www/any-cicd_playbook_devops-ansible/linux_shells/yum-install-ansible.sh
 
 1. 安装 MySQL, Redis, Nginx, Beanstalkd, Supervisor, Node (含 Yarn, PM2 )
 ```
-cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/mysql.yml && 
-cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/redis.yml && 
-cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/nginx.yml && 
-cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/beanstakld.yml && 
-cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/supervisor.yml && 
-cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/chatroom playbooks/node.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/lottery playbooks/mysql.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/lottery playbooks/redis.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/lottery playbooks/nginx.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/lottery playbooks/beanstakld.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/lottery playbooks/supervisor.yml && 
+cd /var/www/any-cicd_playbook_devops-ansible/ && ansible-playbook -i hosts/lottery playbooks/node.yml && 
 
 ```
 

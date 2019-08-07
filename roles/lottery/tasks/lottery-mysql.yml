@@ -9,9 +9,13 @@
     group: root
     mode: 0776
     backup: no
+  when: lottery_mysql is not undefined and lottery_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'nginx']
+
 
 - name: (shell) mysql < /tmp/lottery.sql
   shell: mysql < /tmp/lottery.sql
+  when: lottery_mysql is not undefined and lottery_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'nginx']
+
 
 - name: (template) scp tmp/grant.sql.j2 /tmp/grant.sql
   template:
@@ -20,6 +24,10 @@
     owner: vagrant
     group: vagrant
     mode: 0755
+  when: lottery_mysql is not undefined and lottery_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'nginx']
+
     
 - name: "(shell) mysql --user='root' --password='mysql_pass_cli' --force < /tmp/grant.sql"
   shell: "mysql --user='root' --password='mysql_pass_cli' --force < /tmp/grant.sql"
+  when: lottery_mysql is not undefined and lottery_mysql in ['yes', '1', 1, true, True, 'true', 'True', 'nginx']
+  
