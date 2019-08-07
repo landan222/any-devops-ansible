@@ -1,6 +1,6 @@
 ---
 - import_tasks: lottery-nginx.yml
-# - import_tasks: lottery-mysql.yml
+- import_tasks: lottery-mysql.yml
 # - import_tasks: lottery-crawler_all_backend_scrapy.yml
 # - import_tasks: lottery-service_resource_backend_lumen.yml
 

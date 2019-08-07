@@ -13,9 +13,6 @@
 - name: (shell) mysql < /tmp/lottery.sql
   shell: mysql < /tmp/lottery.sql
 
-
-# - name: command mysql_upgrade --force -uroot
-#   command: mysql_upgrade --force -u root
 - name: (template) scp tmp/grant.sql.j2 /tmp/grant.sql
   template:
     src: tmp/grant.sql.j2
@@ -23,5 +20,6 @@
     owner: vagrant
     group: vagrant
     mode: 0755
+    
 - name: "(shell) mysql --user='root' --password='mysql_pass_cli' --force < /tmp/grant.sql"
   shell: "mysql --user='root' --password='mysql_pass_cli' --force < /tmp/grant.sql"

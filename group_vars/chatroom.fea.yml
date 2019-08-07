@@ -112,7 +112,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true                 # index = 4
           with_grant_option: true
           GRANTS: 
@@ -129,7 +129,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true                 # index = 5
           with_grant_option: false
           GRANTS: 
@@ -153,7 +153,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true                # index = 6
           with_grant_option: false
           GRANTS: 
@@ -171,7 +171,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true                # index = 7
           with_grant_option: false
@@ -191,23 +191,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
                   
-        - drop_user: false               # index = 8
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*'
            
     - HOST: '10.0.0.182'       # 外网 IP   # 次一级 MYSQL 
       NAME: 'mysql-2'
@@ -230,7 +215,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -247,7 +232,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -271,7 +256,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -289,7 +274,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -309,23 +294,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
                   
-        - drop_user: false                  
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*'     
            
     - HOST: '10.0.0.183'       # 外网 IP    # 次一级 MYSQL 
       NAME: 'mysql-3'
@@ -348,7 +318,7 @@ MYSQL:
           HOSTS: 
              - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -365,7 +335,7 @@ MYSQL:
           HOSTS: 
              - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -389,7 +359,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -407,7 +377,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -427,23 +397,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
                   
-        - drop_user: false                  
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*'
  
     - HOST: '10.0.0.191'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-1_1'
@@ -465,7 +420,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -482,7 +437,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -506,7 +461,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -524,7 +479,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -544,24 +499,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
-                  
-        - drop_user: false                  
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*' 
-      
+          DATABASE: 'chatroom'
+                      
               
     - HOST: '10.0.0.192'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-1_2'
@@ -583,7 +522,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -600,7 +539,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -624,7 +563,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -642,7 +581,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -662,23 +601,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
                   
-        - drop_user: false                  
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*' 
     
     - HOST: '10.0.0.193'       # 内网 IP     # 二级 MYSQL 
       NAME: 'mysql-2_1'
@@ -700,7 +624,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -717,7 +641,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -741,7 +665,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -759,7 +683,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -779,23 +703,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
-                  
-        - drop_user: false                  
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*'       
+          DATABASE: 'chatroom'
+                     
            
     - HOST: '10.0.0.194'       # 内网 IP     # 二级 MYSQL 
       NAME: 'mysql-2_2'
@@ -817,7 +726,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -834,7 +743,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -858,7 +767,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -876,7 +785,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -896,23 +805,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
                   
-        - drop_user: false                  
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*'
            
     - HOST: '10.0.0.195'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-3_1'
@@ -934,7 +828,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -951,7 +845,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -975,7 +869,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -993,7 +887,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -1013,24 +907,8 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
-                  
-        - drop_user: false                  
-          with_grant_option: true
-          GRANTS:
-            - 'RELOAD'
-            - 'LOCK TABLES'
-            - 'REPLICATION CLIENT'
-            - 'CREATE TABLESPACE'
-            - 'PROCESS'
-            - 'SUPER'
-          USER: 'backup'
-          HOSTS: 
-            - 'localhost'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 localhost
-            - '10.0.0.21'                 # 提供 xtrabuckup shell  连取 127.0.0.1 ，在 Ansilbe 主机
-          PASSWORD: 'mysql_pass_backup'
-          DATABASE: '*'
-           
+          DATABASE: 'chatroom'
+                             
     - HOST: '10.0.0.196'       # 内网 IP      # 二级 MYSQL 
       NAME: 'mysql-3_2'
       BIND_ADDRESS: '0.0.0.0' # 内网 IP
@@ -1051,7 +929,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.171'                 # 提供 MHA manager 从 10.0.0.171  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_monitor'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: true
           GRANTS: 
@@ -1068,7 +946,7 @@ MYSQL:
           HOSTS: 
             - '10.0.0.172'                 # 提供 MHA manager 从 10.0.0.172  连取 10.0.0.191 ，在 VM 外网
           PASSWORD: 'mysql_pass_manager'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -1092,7 +970,7 @@ MYSQL:
             - '10.0.0.121'               # NODE
             - '10.0.0.151'               # Python            
           PASSWORD: 'mysql_pass_backend'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
         - drop_user: true
           with_grant_option: false
           GRANTS: 
@@ -1110,7 +988,7 @@ MYSQL:
             - '10.0.0.195'
             - '10.0.0.196'
           PASSWORD: 'mysql_pass_replicator'
-          DATABASE: '*'          
+          DATABASE: 'chatroom'          
            
         - drop_user: true
           with_grant_option: false
@@ -1130,4 +1008,4 @@ MYSQL:
             - '10.0.0.195'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
             - '10.0.0.196'                # 提供 MYSQL mmm agnent 从 10.0.0.* 连取 10.0.0.191 ，在 VM 内网   
           PASSWORD: 'mysql_pass_agent'
-          DATABASE: '*'
+          DATABASE: 'chatroom'
