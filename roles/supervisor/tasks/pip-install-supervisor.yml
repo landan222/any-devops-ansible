@@ -1,5 +1,6 @@
 ---
 - name: (pip) pip3 uninstall -y supervisor
   shell: "pip3 uninstall -y supervisor"
+  ignore_errors: True
 - name: (pip) pip3 install supervisor
   shell: "pip3 install supervisor"
