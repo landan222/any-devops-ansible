@@ -10,6 +10,19 @@
     force: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
   
+  
+- name: (template) scp var/www/lottery-service_resource_backend-lumen/.env.j2 /var/www/lottery-service_resource_backend-lumen/.env
+  template:
+    src: var/www/lottery-service_resource_backend-lumen/.env.j2
+    dest: /var/www/lottery-service_resource_backend-lumen/.env
+    owner: root
+    group: root
+    mode: 0776
+    backup: no   
+  
+  
+  
+  
 - name: (shell) composer install
   shell: composer install
   become: no # 使用 vagrant:vagrant yarn --no-bin-links
@@ -25,7 +38,15 @@
     owner: root
     group: root
     mode: 0777
+    
+- name: (shell) supervisorctl -c /etc/supervisor/supervisor.conf
+  shell: supervisorctl -c /etc/supervisor/supervisor.conf
+    
+- name: '(shell) supervisorctl -c /etc/supervisor/supervisor.conf restart lottery-service_resource_backend-lumen:'
+  shell: 'supervisorctl -c /etc/supervisor/supervisor.conf restart lottery-service_resource_backend-lumen:'
   
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
-# key must be put in root because sudo git clone
+# key must be put in root because sudo git clone 
+
+# sudo supervisorctl -c /etc/supervisor/supervisor.conf restart lottery-crawler_all_backend-sracpy:

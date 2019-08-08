@@ -3,7 +3,7 @@ CHATROOM:
   SOCKET:
     HOST: 'fea.socket.chatroom.ques98.cn'
   STORAGE:
-    HOST: 'fea.socket.chatroom.ques98.cn'
+    HOST: 'fea.storage.chatroom.ques98.cn'
   HTTP:
     HOST: 'fea.api.service.chatroom.ques98.cn'
   NGINX:

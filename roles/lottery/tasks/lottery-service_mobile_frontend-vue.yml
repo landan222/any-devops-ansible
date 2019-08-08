@@ -10,6 +10,17 @@
     force: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
   
+  
+- name: (template) scp var/www/lottery-service_mobile_frontend-vue/.env.j2 /var/www/lottery-service_mobile_frontend-vue/.env
+  template:
+    src: var/www/lottery-service_mobile_frontend-vue/.env.j2
+    dest: /var/www/lottery-service_mobile_frontend-vue/.env
+    owner: root
+    group: root
+    mode: 0776
+    backup: no   
+  
+  
 - name: (shell) yarn
   shell: yarn
   become: no # 使用 vagrant:vagrant yarn --no-bin-links

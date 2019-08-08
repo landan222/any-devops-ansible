@@ -15,6 +15,17 @@
   args:
     chdir: "/var/www/lottery-crawler_all_backend-scrapy"
   register: s_pip3_install
+  
+  
+- name: (template) scp var/www/lottery-crawler_all_backend-scrapy/.env.j2 /var/www/lottery-crawler_all_backend-scrapy/.env
+  template:
+    src: var/www/lottery-crawler_all_backend-scrapy/.env.j2
+    dest: /var/www/lottery-crawler_all_backend-scrapy/.env
+    owner: root
+    group: root
+    mode: 0776
+    backup: no  
+  
       
 - name: (file) mkdir /var/run/supervisord
   file:
@@ -24,8 +35,15 @@
     owner: root
     group: root
     mode: 0777
+    
+- name: (shell) supervisorctl -c /etc/supervisor/supervisor.conf
+  shell: supervisorctl -c /etc/supervisor/supervisor.conf
+    
+- name: '(shell) supervisorctl restart lottery-crawler_all_backend-scrapy:'
+  shell: 'supervisorctl restart lottery-crawler_all_backend-scrapy:'
 
 
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
 # key must be put in root because sudo git clone
+# sudo supervisorctl -c /etc/supervisor/supervisor.conf

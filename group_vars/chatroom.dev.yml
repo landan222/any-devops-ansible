@@ -3,7 +3,7 @@ CHATROOM:
   SOCKET:
     HOST: 'dev.socket.chatroom.ques98.cn'
   STORAGE:
-    HOST: 'dev.socket.chatroom.ques98.cn'
+    HOST: 'dev.storage.chatroom.ques98.cn'
   HTTP:
     HOST: 'dev.api.service.chatroom.ques98.cn'
   NGINX:
