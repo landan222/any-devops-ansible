@@ -3,6 +3,9 @@
 - import_tasks: lottery-mysql.yml
 - import_tasks: lottery-supervisor.yml
 
-# - import_tasks: lottery-crawler_all_backend_scrapy.yml
-# - import_tasks: lottery-service_resource_backend_lumen.yml
+- import_tasks: lottery-crawler_all_backend_scrapy.yml
+- import_tasks: lottery-service_resource_backend-lumen.yml
+- import_tasks: lottery-service_any_frontend-vue.yml
+- import_tasks: lottery-service_mobile_frontend-vue.yml
+
 

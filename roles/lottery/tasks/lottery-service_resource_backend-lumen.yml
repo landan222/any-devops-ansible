@@ -1,21 +1,22 @@
 ---
-- name: "(git) git clone git@gitlab.ques98.cn:lottery/lottery-crawler_all_backend-scrapy.git /var/www/lottery-crawler_all_backend-scrapy"
+- name: "(git) git clone git@gitlab.ques98.cn:lottery/lottery-service_resource_backend-lumen.git /var/www/lottery-service_resource_backend-lumen"
   git:
-    repo: 'git@gitlab.ques98.cn:lottery/lottery-crawler_all_backend-scrapy.git'
-    dest: "/var/www/lottery-crawler_all_backend-scrapy"
+    repo: 'git@gitlab.ques98.cn:lottery/lottery-service_resource_backend-lumen.git'
+    dest: "/var/www/lottery-service_resource_backend-lumen"
     version: "{{ 'develop' if branch is not defined or branch in ['fea', 'feature'] else branch }}"
     clone: yes
     update: yes
     accept_hostkey: yes
     force: yes
   become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
-
-- name: (shell) pip3 install -r requirement.txt
-  shell: pip3 install -r requirement.txt
+  
+- name: (shell) composer install
+  shell: composer install
+  become: no # 使用 vagrant:vagrant yarn --no-bin-links
   args:
-    chdir: "/var/www/lottery-crawler_all_backend-scrapy"
-  register: s_pip3_install
-      
+    chdir: "/var/www/lottery-service_resource_backend-lumen"
+  register: s_composer_install
+  
 - name: (file) mkdir /var/run/supervisord
   file:
     path: /var/run/supervisord
@@ -24,8 +25,7 @@
     owner: root
     group: root
     mode: 0777
-
-
+  
 # chmod -R 700 /root/.ssh/id_rsa
 # chmod -R 700 /root/.ssh/id_rsa.pub
 # key must be put in root because sudo git clone

@@ -1,0 +1,29 @@
+---
+- name: "(git) git clone git@gitlab.ques98.cn:lottery/lottery-service_mobile_frontend-vue.git /var/www/lottery-service_mobile_frontend-vue"
+  git:
+    repo: 'git@gitlab.ques98.cn:lottery/lottery-service_mobile_frontend-vue.git'
+    dest: "/var/www/lottery-service_mobile_frontend-vue"
+    version: "{{ 'develop' if branch is not defined or branch in ['fea', 'feature'] else branch }}"
+    clone: yes
+    update: yes
+    accept_hostkey: yes
+    force: yes
+  become: no # 使用 vagrant:vagrant git clone 下来， 不使用 root git clone
+  
+- name: (shell) yarn
+  shell: yarn
+  become: no # 使用 vagrant:vagrant yarn --no-bin-links
+  args:
+    chdir: "/var/www/lottery-service_mobile_frontend-vue"
+  register: s_yarn
+
+- name: (shell) yarn run build
+  shell: yarn run build
+  become: no # 使用 vagrant:vagrant yarn --no-bin-links
+  args:
+    chdir: "/var/www/lottery-service_mobile_frontend-vue"
+  register: s_yarn
+  
+# chmod -R 700 /root/.ssh/id_rsa
+# chmod -R 700 /root/.ssh/id_rsa.pub
+# key must be put in root because sudo git clone
