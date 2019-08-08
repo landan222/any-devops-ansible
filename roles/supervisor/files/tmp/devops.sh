@@ -2,7 +2,7 @@
 sudo mkdir -p /var/run/supervisord/;
 sudo unlink /var/run/supervisord/supervisord.sock; 
 sudo unlink /var/run/supervisord/supervisord.pid;
-sudo supervisord -c /etc/supervisor/supervisor.conf;
+sudo supervisord -c /etc/supervisor/supervisor.conf;   # 注意不是 CTL 是 d !!!!!!!!!!!!!!!!!
 
 
 # 关闭 supervisord
