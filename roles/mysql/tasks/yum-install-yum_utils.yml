@@ -3,3 +3,4 @@
   yum:
     name: yum-utils
     state: present
+    lock_timeout: 180
