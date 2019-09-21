@@ -1,16 +1,16 @@
 --- # 优先次序高
 CHATROOM:
   SOCKET:
-    HOST: 'fea.socket.chatroom.ques98.cn'
+    HOST: 'fea.socket.chatroom.landan.com'
   STORAGE:
-    HOST: 'fea.storage.chatroom.ques98.cn'
+    HOST: 'fea.storage.chatroom.landan.com'
   HTTP:
-    HOST: 'fea.api.service.chatroom.ques98.cn'
+    HOST: 'fea.api.chatroom.landan.com'
   NGINX:
     CONFS:
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-service_socket_backend-socketio/public'
-        SERVER_NAME: 'fea.socket.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.socket.chatroom.landan.com'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         LOCATIONS:
@@ -22,7 +22,7 @@ CHATROOM:
 # 
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-storage'
-        SERVER_NAME: 'fea.storage.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.storage.chatroom.landan.com'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         LOCATIONS:
@@ -33,7 +33,7 @@ CHATROOM:
 # 
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-service_other_backend-koa/public'
-        SERVER_NAME: 'fea.api.service.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.api.service.chatroom.landan.com'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         LOCATIONS:
@@ -45,7 +45,7 @@ CHATROOM:
 # 
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-service_any_frontend-vue/dist'
-        SERVER_NAME: 'fea.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.chatroom.landan.com'
         INDEX: 'index.html index.htm'
         LOCATIONS:
           - PATH: '/'
@@ -53,7 +53,7 @@ CHATROOM:
    
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-admin_any_backend-fastadmin/public'
-        SERVER_NAME: 'fea.admin.chatroom.ques98.cn'
+        SERVER_NAME: 'fea.admin.chatroom.landan.com'
         INDEX: 'index.php index.html index.htm'
         LOCATIONS:
           - PATH: '~* \.php$'
