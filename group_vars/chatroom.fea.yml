@@ -33,7 +33,7 @@ CHATROOM:
 # 
       - HTTP_PORT: 80
         ROOT: '/var/www/chatroom-service_other_backend-koa/public'
-        SERVER_NAME: 'fea.api.service.chatroom.landan.com'
+        SERVER_NAME: 'fea.api.chatroom.landan.com'
         INDEX: 'index.html index.htm'
         # TRY_FILES: '$uri $uri/ /index.php?$query_string'
         LOCATIONS:
