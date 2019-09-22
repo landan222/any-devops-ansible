@@ -1,0 +1,21 @@
+#jinja2: lstrip_blocks: True
+
+{% for PROGRAM in  CONF['PROGRAMS'] %}
+[program:{{ PROGRAM['PROGRAM'] }}]
+directory = {{ PROGRAM['DIRECTORY'] }}
+command = {{ PROGRAM['COMMAND'] }}
+process_name = {{ PROGRAM['PROCESS_NAME'] }}
+numprocs = {{ PROGRAM['NUMPROCS'] }}
+autostart={{ PROGRAM['AUTOSTART'] }}
+autorestart={{ PROGRAM['AUTORESTART'] }}
+startsecs={{ PROGRAM['STARTSECS'] }}
+startretries={{ PROGRAM['STARTRETRIES'] }}
+stdout_logfile={{ PROGRAM['STDOUT_LOGFILE'] }}
+redirect_stderr={{ PROGRAM['REDIRECT_STDERR'] }}
+exitcodes={{ PROGRAM['EXITCODES'] }}
+
+{% endfor %}
+
+
+[group:{{ CONF['GROUP'] }}]
+programs={{ CONF['PROGRAMS'] | json_query('[*].PROGRAM') | join(',') }}

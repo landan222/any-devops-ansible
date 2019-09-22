@@ -1,0 +1,9 @@
+---
+- import_tasks: caipiao-nginx.yml
+# - import_tasks: caipiao-mysql.yml
+# - import_tasks: caipiao-supervisor.yml
+
+# - import_tasks: caipiao-crawler_all_backend_scrapy.yml
+
+
+
