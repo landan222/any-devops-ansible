@@ -28,7 +28,7 @@
     - role: nginx
       vars:
         bra: dev
-      when: branch in ['dev', 'develop', 'all']
+      when: branch is defined and branch in ['dev', 'develop', 'all']
   post_tasks:
     - name: "开发 devlop 环境，Nginx 安装完毕"
       shell: echo 'playbook nginx ends'
@@ -46,7 +46,7 @@
     - role: nginx
       vars:
         bra: rel
-      when: branch in ['rel', 'release', 'all']
+      when: branch is defined and branch in ['rel', 'release', 'all']
   post_tasks:
     - name: "开发 release 环境，Nginx 安装完毕"
       shell: echo 'playbook nginx ends'
