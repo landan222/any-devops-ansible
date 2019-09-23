@@ -75,6 +75,7 @@ CREATE TABLE `lotteries`  (
   `lottery_issue_no_format` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '----',
   `numbers` json NULL COMMENT '可选的号码范围，多区时用+分开',
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `official` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `added_time` datetime(0) NULL DEFAULT NULL,
   `edited_time` datetime(0) NULL DEFAULT NULL,
