@@ -39,89 +39,89 @@ LOTTERY:
             
   SUPERVISOR:
     CONFS:
-    - GROUP: 'lottery-backend-scrapy'
+    - GROUP: 'landan-backend-scrapy'
       PROGRAMS:
         - PROGRAM: 'python3_src_schedules_lottery_issue_lottery_request_types_multiple_queue_true_index'
-          DIRECTORY: '/var/www/lottery-backend-scrapy'
-          COMMAND: '/usr/bin/python3 /var/www/lottery-backend-scrapy/src/schedules/lottery_issue_lottery_request_types_multiple_queue_true/index.py'
+          DIRECTORY: '/var/www/landan-backend-scrapy'
+          COMMAND: '/usr/bin/python3 /var/www/landan-backend-scrapy/src/schedules/lottery_issue_lottery_request_types_multiple_queue_true/index.py'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_multiple_queue_true_index.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/landan-backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_multiple_queue_true_index.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: '高频率 采集 最新采种 API 数据'
         - PROGRAM: 'python3_src_schedules_lottery_issue_lottery_request_types_single_queue_true_index'
-          DIRECTORY: '/var/www/lottery-backend-scrapy'
-          COMMAND: '/usr/bin/python3 /var/www/lottery-backend-scrapy/src/schedules/lottery_issue_lottery_request_types_single_queue_true/index.py'
+          DIRECTORY: '/var/www/landan-backend-scrapy'
+          COMMAND: '/usr/bin/python3 /var/www/landan-backend-scrapy/src/schedules/lottery_issue_lottery_request_types_single_queue_true/index.py'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_single_queue_true_index.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/landan-backend-scrapy-python3_src_schedules_lottery_issue_lottery_request_types_single_queue_true_index.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: '次频率 采集 当天采种 API 数据'
   
-    - GROUP: 'lottery-backend-lumen'
+    - GROUP: 'landan-backend-lumen'
       PROGRAMS:
         - PROGRAM: 'php73_artisan_swoole_http_start'
-          DIRECTORY: '/var/www/lottery-backend-lumen'
-          COMMAND: '/usr/bin/php73 /var/www/lottery-backend-lumen/artisan swoole:http start'
+          DIRECTORY: '/var/www/landan-backend-lumen'
+          COMMAND: '/usr/bin/php73 /var/www/landan-backend-lumen/artisan swoole:http start'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-backend-lumen-php73_artisan_swoole_http_start.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/landan-backend-lumen-php73_artisan_swoole_http_start.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: "Swoole + PHP HTTP server"
   
         - PROGRAM: 'php73_artisan_command_lottery_issue_announce_to_database_by_queue'
-          DIRECTORY: '/var/www/lottery-backend-lumen'
-          COMMAND: '/usr/bin/php73 /var/www/lottery-backend-lumen/artisan command:lottery-issue:announce-to-database-by-queue'
+          DIRECTORY: '/var/www/landan-backend-lumen'
+          COMMAND: '/usr/bin/php73 /var/www/landan-backend-lumen/artisan command:lottery-issue:announce-to-database-by-queue'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-backend-lumen-php73_artisan_command_lottery_issue_announce_to_database_by_queue.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/landan-backend-lumen-php73_artisan_command_lottery_issue_announce_to_database_by_queue.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: "对列 开奖"
           
         - PROGRAM: 'php73_artisan_command_lottery_issue_accumulate_to_database_by_queue'
-          DIRECTORY: '/var/www/lottery-backend-lumen'
-          COMMAND: '/usr/bin/php73 /var/www/lottery-backend-lumen/artisan command:lottery-issue:accumulate-to-database-by-queue'
+          DIRECTORY: '/var/www/landan-backend-lumen'
+          COMMAND: '/usr/bin/php73 /var/www/landan-backend-lumen/artisan command:lottery-issue:accumulate-to-database-by-queue'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-backend-lumen-php73_artisan_command_lottery_issue_accumulate_to_database_by_queue.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/landan-backend-lumen-php73_artisan_command_lottery_issue_accumulate_to_database_by_queue.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: "对列 累计(长龙)"
   
         - PROGRAM: 'php73_artisan_command_lottery_issue_count_to_database_by_queue'
-          DIRECTORY: '/var/www/lottery-backend-lumen'
-          COMMAND: '/usr/bin/php73 /var/www/lottery-backend-lumen/artisan command:lottery-issue:count-to-database-by-queue'
+          DIRECTORY: '/var/www/landan-backend-lumen'
+          COMMAND: '/usr/bin/php73 /var/www/landan-backend-lumen/artisan command:lottery-issue:count-to-database-by-queue'
           PROCESS_NAME: '%(program_name)s-%(process_num)s'
           NUMPROCS: 1
           AUTOSTART: true
           AUTORESTART: true
           STARTSECS: 1
           STARTRETRIES: -1 
-          STDOUT_LOGFILE: '/var/log/supervisor/lottery-backend-lumen-php73_artisan_command_lottery_issue_count_to_database_by_queue.log'
+          STDOUT_LOGFILE: '/var/log/supervisor/landan-backend-lumen-php73_artisan_command_lottery_issue_count_to_database_by_queue.log'
           REDIRECT_STDERR: true
           EXITCODES: 0
           NOTE: "对列 统计"
