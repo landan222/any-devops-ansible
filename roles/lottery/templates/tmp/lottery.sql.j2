@@ -275,6 +275,7 @@ INSERT INTO `lotteries_to_lottery_requests` VALUES (1017, 47);
 INSERT INTO `lotteries_to_lottery_requests` VALUES (1018, 10);
 INSERT INTO `lotteries_to_lottery_requests` VALUES (1018, 47);
 INSERT INTO `lotteries_to_lottery_requests` VALUES (1020, 48);
+INSERT INTO `lotteries_to_lottery_requests` VALUES (2001, 51);
 INSERT INTO `lotteries_to_lottery_requests` VALUES (2005, 11);
 INSERT INTO `lotteries_to_lottery_requests` VALUES (2005, 47);
 INSERT INTO `lotteries_to_lottery_requests` VALUES (2006, 12);
@@ -473,7 +474,7 @@ CREATE TABLE `lottery_issue_spiders`  (
   PRIMARY KEY (`lottery_issue_spider_id`) USING BTREE,
   UNIQUE INDEX `lotteryid_no`(`lottery_id`, `no`) USING BTREE,
   INDEX `no`(`no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11722 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for lottery_issues
@@ -496,7 +497,7 @@ CREATE TABLE `lottery_issues`  (
   UNIQUE INDEX `lottery_id-no-date`(`lottery_id`, `no`, `date`) USING BTREE,
   INDEX `date`(`date`) USING BTREE,
   INDEX `no`(`no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic PARTITION BY RANGE (TO_DAYS(date))
+) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic PARTITION BY RANGE (TO_DAYS(date))
 PARTITIONS 10
 (PARTITION `less_than_20190318` VALUES LESS THAN (737501) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
 PARTITION `less_than_20190319` VALUES LESS THAN (737502) ENGINE = InnoDB MAX_ROWS = 0 MIN_ROWS = 0 ,
@@ -584,11 +585,11 @@ INSERT INTO `lottery_requests` VALUES (43, 'SINGLE', 'https://aiwj888.com/apiapp
 INSERT INTO `lottery_requests` VALUES (44, 'SINGLE', 'https://aiwj888.com/apiapp/5c930735f03c0', 'OneThreeNineNine', 'OneThreeNineNineSpiderMiddleware', NULL, '{\"version\": \"v1.0.1\", \"Content-Type\": \"application/x-www-form-urlencoded\"}', 'POST', '{\"code\": \"shssl\", \"date\": \"%DATE\", \"appId\": \"10958068\"}', NULL, 100, NULL, 0, '2019-10-02 20:21:20', '2019-10-02 20:21:20', NULL);
 INSERT INTO `lottery_requests` VALUES (45, 'SINGLE', 'https://aiwj888.com/apiapp/5c930735f03c0', 'OneThreeNineNine', 'OneThreeNineNineSpiderMiddleware', NULL, '{\"version\": \"v1.0.1\", \"Content-Type\": \"application/x-www-form-urlencoded\"}', 'POST', '{\"code\": \"bj5fc\", \"date\": \"%DATE\", \"appId\": \"10958068\"}', NULL, 100, NULL, 0, '2019-10-02 20:21:20', '2019-10-02 20:21:20', NULL);
 INSERT INTO `lottery_requests` VALUES (46, 'SINGLE', 'https://aiwj888.com/apiapp/5c930735f03c0', 'OneThreeNineNine', 'OneThreeNineNineSpiderMiddleware', NULL, '{\"version\": \"v1.0.1\", \"Content-Type\": \"application/x-www-form-urlencoded\"}', 'POST', '{\"code\": \"5f28\", \"date\": \"%DATE\", \"appId\": \"10958068\"}', NULL, 100, NULL, 0, '2019-10-02 20:21:20', '2019-10-02 20:21:20', NULL);
-INSERT INTO `lottery_requests` VALUES (47, 'MULTIPLE', 'https://www.1399kjw.net/data/Current/CurrIssue.json', 'OneThreeNineNine', 'OneThreeNineNineSpiderMiddleware', '{\"ahk3\": \"AHK3\", \"bjk3\": \"BJK3\", \"fc3d\": \"FC3D\", \"gsk3\": \"GSK3\", \"gxk3\": \"GXK3\", \"gzk3\": \"GZK3\", \"hbk3\": \"HBK3\", \"jlk3\": \"JLK3\", \"jsft\": \"JSFT\", \"jsk3\": \"JSK3\", \"klft\": \"KLFT\", \"msk3\": \"MSK3\", \"pcdd\": \"PCDD\", \"shk3\": \"SHK3\", \"xydd\": \"XYDD\", \"xyft\": \"XYFT\", \"cqssc\": \"CQSSC\", \"hebk3\": \"HEBK3\", \"jsssc\": \"JSSSC\", \"klssc\": \"KLSSC\", \"tjssc\": \"TJSSC\", \"xjssc\": \"XJSSC\", \"xykl8\": \"XYKL8\", \"xylhc\": \"XYLHC\", \"bjpk10\": \"BJPK10\", \"cqhlsx\": \"CQHLSX\", \"cqxync\": \"CQKL10\", \"gd11x5\": \"GD11X5\", \"gdkl10\": \"GDKL10\", \"jndssc\": \"JNDSSC\", \"jspk10\": \"JSPK10\", \"klpk10\": \"KLPK10\", \"twbgpc\": \"TWBGPC\", \"jndpc28\": \"JNDPC28\"}', '{\"version\": \"v1.0.1\", \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36\", \"Content-Type\": \"application/x-www-form-urlencoded\"}', 'GET', '{\"appId\": \"10958068\"}', NULL, 100, NULL, 1, '2019-10-03 15:57:23', '2019-10-03 15:57:23', NULL);
+INSERT INTO `lottery_requests` VALUES (47, 'MULTIPLE', 'https://www.1399kjw.net/data/Current/CurrIssue.json', 'OneThreeNineNineA', 'OneThreeNineNineSpiderAMiddleware', '{\"ahk3\": \"AHK3\", \"bjk3\": \"BJK3\", \"fc3d\": \"FC3D\", \"gsk3\": \"GSK3\", \"gxk3\": \"GXK3\", \"gzk3\": \"GZK3\", \"hbk3\": \"HBK3\", \"jlk3\": \"JLK3\", \"jsft\": \"JSFT\", \"jsk3\": \"JSK3\", \"klft\": \"KLFT\", \"msk3\": \"MSK3\", \"pcdd\": \"PCDD\", \"shk3\": \"SHK3\", \"xydd\": \"XYDD\", \"xyft\": \"XYFT\", \"cqssc\": \"CQSSC\", \"hebk3\": \"HEBK3\", \"jsssc\": \"JSSSC\", \"klssc\": \"KLSSC\", \"tjssc\": \"TJSSC\", \"xjssc\": \"XJSSC\", \"xykl8\": \"XYKL8\", \"xylhc\": \"XYLHC\", \"bjpk10\": \"BJPK10\", \"cqhlsx\": \"CQHLSX\", \"cqxync\": \"CQKL10\", \"gd11x5\": \"GD11X5\", \"gdkl10\": \"GDKL10\", \"jndssc\": \"JNDSSC\", \"jspk10\": \"JSPK10\", \"klpk10\": \"KLPK10\", \"twbgpc\": \"TWBGPC\", \"jndpc28\": \"JNDPC28\"}', '{\"version\": \"v1.0.1\", \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36\", \"Content-Type\": \"application/x-www-form-urlencoded\"}', 'GET', '{\"appId\": \"10958068\"}', NULL, 100, NULL, 1, '2019-10-06 12:23:38', '2019-10-06 12:23:38', NULL);
 INSERT INTO `lottery_requests` VALUES (48, 'SINGLE', 'https://rg2a.ccdior.com/PortalUSR/index.jsp', 'Cc', 'CcSpiderMiddleware', NULL, '{\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36\"}', 'POST', '{\"appId\": \"10958068\"}', NULL, 100, NULL, 0, '2019-10-02 16:20:58', '2019-10-02 16:20:58', NULL);
-INSERT INTO `lottery_requests` VALUES (49, 'SINGLE', 'http://api.caipiaokong.cn/lottery/', 'Caipiaokong', 'CaipiaokongSpiderMiddleware', NULL, NULL, 'GET', '{\"uid\": \"1420983\", \"date\": \"%DATE\", \"name\": \"sdsyydj\", \"order\": \"sort\", \"token\": \"b8f6de6d38913593efb73bcf9cf8d78ddeef985c\", \"format\": \"json\"}', NULL, 100, NULL, 0, '2019-10-02 16:21:07', '2019-10-02 16:21:07', NULL);
+INSERT INTO `lottery_requests` VALUES (49, 'SINGLE', 'http://api.caipiaokong.cn/lottery/', 'Caipiaokong', 'CaipiaokongSpiderMiddleware', NULL, NULL, 'GET', '{\"uid\": \"1420983\", \"date\": \"%DATE\", \"name\": \"sdsyydj\", \"order\": \"sort\", \"token\": \"b8f6de6d38913593efb73bcf9cf8d78ddeef985c\", \"format\": \"json\"}', NULL, 100, NULL, 0, '2019-10-04 19:40:35', '2019-10-04 19:40:35', NULL);
 INSERT INTO `lottery_requests` VALUES (50, 'SINGLE', 'https://www.1399kjw.net/data/bjpk10/lotteryList/{}.json', 'OneThreeNineNine', 'OneThreeNineNineSpiderMiddleware', NULL, NULL, 'GET', NULL, NULL, 100, NULL, 0, '2019-10-02 16:21:23', '2019-10-02 16:21:23', NULL);
-INSERT INTO `lottery_requests` VALUES (51, 'SINGLE', 'https://600wcp.com:88/ssc/getPlanOpenDataHistory.json?timestamp=1569848755202', 'SixMillion', 'SixMillion', NULL, NULL, 'GET', NULL, NULL, 100, NULL, 0, '2019-10-02 16:00:46', '2019-10-02 16:00:46', NULL);
+INSERT INTO `lottery_requests` VALUES (51, 'MULTIPLE', 'https://600wcp.com:88/ssc/getPlanOpenDataHistory.json?timestamp=1569848755202', 'SixMillionSpider', 'SixMillionMiddleware', NULL, NULL, 'GET', NULL, NULL, 100, NULL, 0, '2019-10-04 19:40:04', '2019-10-04 19:40:04', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
 
