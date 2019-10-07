@@ -1,0 +1,56 @@
+---
+- name: Install feature chrome
+  hosts: fea-chrome
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chrome.fea.yml
+  pre_tasks:
+    - shell: echo 'playbook chrome starts'
+  roles:
+    - role: chrome
+      vars:
+        bra: fea
+      when: branch == 'fea' or branch == 'feature' or branch == 'all' or branch is not defined
+  post_tasks:
+    - shell: echo 'playbook chrome ends'
+  vars:
+- name: Install develop chrome
+  hosts: dev-chrome
+  strategy: linear # free, debug
+  gather_facts: true
+  become: true
+  vars_files:
+    - ./../group_vars/chrome.fea.yml
+  pre_tasks:
+    - shell: echo 'playbook chrome starts'
+  roles:
+    - role: chrome
+      vars:
+        bra: dev
+      when: branch == 'dev' or branch == 'develop' or branch == 'all'
+  post_tasks:
+    - shell: echo 'playbook chrome ends'
+# - name: Install release nginx
+#   hosts: rel_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - rel
+# - name: Install master nginx
+#   hosts: mas_nginx
+#   become: true
+#   pre_tasks:
+#     - shell: echo 'playbook nginx starts'
+#   roles:
+#     - role: nginx
+#   post_tasks:
+#     - shell: echo 'playbook nginx ends'
+#   tags:
+#     - mas

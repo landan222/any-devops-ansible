@@ -1,0 +1,4 @@
+---
+- name: debug yum install filebeat
+  import_tasks: debug-yum-install-filebeat.yml
+  #listen: debug yum install gitabc # ansible 2.7 版本 import_tasks 没有 listen
